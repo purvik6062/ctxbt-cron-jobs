@@ -62,14 +62,12 @@ class TweetTradingAnalyzer {
 
             const openAiResponse = await this.getOpenAIAnalysis(systemPrompt, tweetText, elements);
 
-            // Instead of a full analysis object, return only the coins array (tokens)
-            if (!openAiResponse.contains_trading_signal || !openAiResponse.tokens) {
-                return [];
-            }
-            return openAiResponse.tokens;
+            console.log("openAiResponse", openAiResponse);
+
+            return openAiResponse;
         } catch (error) {
             console.error('Error analyzing tweet:', error);
-            return [];
+            return { coin_ids: [] };
         }
     }
 
@@ -96,7 +94,7 @@ Please analyze this tweet in strict JSON format.`
 
             console.log("response", response.choices[0].message.content);
 
-            return response.choices[0].message.content;
+            return JSON.parse(response.choices[0].message.content);
         } catch (error) {
             console.error('Error getting OpenAI analysis:', error);
             throw new Error(`OpenAI analysis failed: ${error.message}`);

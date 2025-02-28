@@ -291,8 +291,8 @@ async function processAndStoreTweetsForHandle(twitterHandle, subscribers, tweetR
 
                 const analyzer = new TweetTradingAnalyzer(process.env.OPENAI_API_KEY);
                 const coinsArray = await analyzer.analyzeTweet(tweet.content);
-                console.log(`Coins array for tweet ${tweet.tweet_id}:`, coinsArray);
-                tweetDocument.coins = coinsArray; // Append the coins array from analysis
+                console.log(`Coins array for tweet ${tweet.tweet_id}:`, coinsArray.coin_ids);
+                tweetDocument.coins = coinsArray.coin_ids;
 
                 await influencerCollection.updateOne(
                     { twitterHandle },
