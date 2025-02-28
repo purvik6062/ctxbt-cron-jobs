@@ -15,5 +15,6 @@ module.exports = {
     },
     openAI: {
         apiKey: process.env.OPENAI_API_KEY
-    }
+    },
+    coingeckoApiUrl: 'https://api.coingecko.com/api/v3'
 };
