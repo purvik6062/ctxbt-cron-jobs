@@ -5,19 +5,19 @@ const { processTweets } = require('../services/tweetsService');
 const { fetchAndUpdateCoins } = require('../services/coinsService');
 
 function startCronJobs() {
-    // // Active Subscription Updater - runs every 5 minutes
-    // cron.schedule('*/1 * * * *', async () => {
-    //     console.log('Starting active subscription updater at:', new Date().toISOString());
-    //     await updateSubscribers();
-    // });
+    // updateSubscribers will run every 12 hours (at midnight and noon)
+    cron.schedule('0 */12 * * *', async () => {
+        console.log('Starting active subscription updater at:', new Date().toISOString());
+        await updateSubscribers();
+    });
 
-    // Tweets Processing Job - runs every 10 minutes
-    cron.schedule('*/1 * * * *', async () => {
+    // processTweets will run every day at 10 AM
+    cron.schedule('0 10 * * *', async () => {
         console.log('Starting tweets processing job at:', new Date().toISOString());
         await processTweets();
     });
 
-    // Coins Update Job - runs every 24 hours at midnight
+    // Coins Update Job remains scheduled to run every day at midnight
     cron.schedule('0 0 * * *', async () => {
         console.log('Starting coins update job at:', new Date().toISOString());
         await fetchAndUpdateCoins();

@@ -1,7 +1,7 @@
-import axios from 'axios';
-import PQueue from 'p-queue';
-import dotenv from 'dotenv';
-import { coingeckoApiUrl } from '../config/config';
+// Use dynamic import for p-queue
+const axios = require('axios');
+const dotenv = require('dotenv');
+const { coingeckoApiUrl } = require('../config/config');
 dotenv.config();
 
 class CryptoService {
@@ -18,12 +18,9 @@ class CryptoService {
             }
         });
 
-        this.apiQueue = new PQueue({
-            intervalCap: 25, // Keep 5 reqs/minute buffer for safety
-            interval: 60 * 1000,
-            carryoverConcurrencyCount: true,
-            autoStart: true
-        });
+        // Initialize without p-queue, will be set in initQueue
+        this.apiQueue = null;
+        this.initQueue();
 
         this.tokenCache = new Map();
         this.cacheTTL = 5 * 60 * 1000; // 5 minutes
@@ -42,12 +39,41 @@ class CryptoService {
         };
 
         setInterval(() => {
-            this.metrics.queueStats.push({
-                timestamp: new Date().toISOString(),
-                pending: this.apiQueue.pending,
-                processed: this.apiQueue.completed
-            });
+            if (this.apiQueue) {
+                this.metrics.queueStats.push({
+                    timestamp: new Date().toISOString(),
+                    pending: this.apiQueue.pending,
+                    processed: this.apiQueue.completed
+                });
+            }
         }, 60000);
+    }
+
+    async initQueue() {
+        try {
+            // Dynamically import p-queue
+            const PQueueModule = await import('p-queue');
+            const PQueue = PQueueModule.default;
+
+            this.apiQueue = new PQueue({
+                intervalCap: 25, // Keep 5 reqs/minute buffer for safety
+                interval: 60 * 1000,
+                carryoverConcurrencyCount: true,
+                autoStart: true
+            });
+
+            console.log('PQueue initialized successfully');
+        } catch (error) {
+            console.error('Failed to initialize PQueue:', error);
+            throw new Error('Failed to initialize queue system');
+        }
+    }
+
+    async ensureQueueInitialized() {
+        if (!this.apiQueue) {
+            await this.initQueue();
+        }
+        return this.apiQueue;
     }
 
     formatDateForCoinGecko(timestamp) {
@@ -204,6 +230,8 @@ class CryptoService {
             return this.tokenCache.get(cacheKey);
         }
 
+        await this.ensureQueueInitialized();
+
         return this.apiQueue.add(async () => {
             try {
                 const historicalData = await this.getHistoricalTokenData(coinId, historicalTimestamp, currentTimestamp);
@@ -235,6 +263,8 @@ class CryptoService {
     }
 
     async getTokenDataById(coinId) {
+        await this.ensureQueueInitialized();
+
         return this.apiQueue.add(async () => {
             try {
                 // Direct fetch using coin ID without symbol resolution
@@ -389,6 +419,8 @@ class CryptoService {
             return this.tokenCache.get(cacheKey);
         }
 
+        await this.ensureQueueInitialized();
+
         return this.apiQueue.add(async () => {
             try {
                 const data = await this.getPriceRangeData(coinId, startTimestamp, endTimestamp, interval);
@@ -410,4 +442,4 @@ class CryptoService {
     }
 }
 
-export default CryptoService;
+module.exports = CryptoService;
