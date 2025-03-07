@@ -72,7 +72,8 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                     // Step 4: Call Perplexity API to generate signal
                     const signalMessage = await callPerplexityAPI(prompt);
                     const trimmedMessage = signalMessage.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
-                    const finalMessage = trimmedMessage + `\n\n🔗 [Tweet Link](${tweet.tweet_link})`;
+                    // const finalMessage = trimmedMessage + `\n\n🔗 [Tweet Link](${tweet.tweet_link})`;
+                    const finalMessage = trimmedMessage;
 
                     // Step 5: Store the trading signal in the database
                     await tradingSignalsCollection.insertOne({
@@ -142,30 +143,34 @@ function generatePrompt(tweetContent, marketDataArray) {
   Price Change: ${data.current_data.price_change_since_historical}%
 `;
     }
-
     return `
-Analyze the below given tweets, research about the tokens mentioned and provide me a trading signal out of it:
+Based on the provided tweet and market data, determine the trading signal and fill in the following format accordingly. Use your analysis to decide the values for signal, sentiment, momentum, targets, stop loss, etc., but only output the completed format without additional commentary or sections.
 
-Tweet: "${tweetContent}"
+### Tweet Reference:
+"${tweetContent}"
 
-Market data from CoinGecko:
+### Market Data from CoinGecko:
 ${marketDataStr}
 
-The trading signal should have the token, signal, current price mandatorily (if it doesn't exist in the tweet then search for it) and if there exist target price, stop loss, timeline then that as well otherwise those fields can be null.
+### Trading Signal Format:
+Generate the trading signal in this exact format, filling in the placeholders with appropriate values and starting with the appropriate heading based on the signal:
 
-Please provide the trading signals for each token in this format, using Markdown and emojis:
+- For Buy: 🚀 **Bullish Alert** 🚀  
+- For Sell: 🐻 **Bearish Warning** 🐻  
+- For Hold: ⏳ **Hold Steady** ⏳
 
-🚨 **Trading Signal Alert** 🚨
-
-[For each token:]
-🏛️ **Token:** [Token Name]  
-📈 **Signal:** [Buy/Sell/Hold]  
-💰 **Current Price:** $[Current Price]  
-🎯 **Target Price:** $[Target Price] (if available, otherwise omit)  
-🛑 **Stop Loss:** $[Stop Loss] (if available, otherwise omit)  
+🏛️ **Token**: [Token Name] (and symbol if available)  
+📈 **Signal**: [Buy/Sell/Hold]  
+🎯 **Targets**:  
+  TP1: $[Target Price 1]  
+  TP2: $[Target Price 2] (if available)  
+🛑 **Stop Loss**: $[Stop Loss] (if applicable)  
 ⏳ **Timeline:** [Timeline] (if available, otherwise omit)
 
-Do not include any extra analysis, descriptive text.
+💡 **Trade Tip**:  
+[Provide a concise trade tip with market insight and trading advice specific to this token based on the tweet and market data. The tip must not exceed four lines in length (e.g., 2 to 4 short sentences).] 
+
+Do not include any additional text, analysis, or sections beyond this format. Only output the completed trading signal as shown above.
 `;
 }
 
@@ -194,7 +199,7 @@ async function callPerplexityAPI(prompt) {
                 }
             }
         );
-        console.log("response", response);
+        // console.log("response", response);
 
         return response.data.choices[0].message.content.trim();
     } catch (error) {

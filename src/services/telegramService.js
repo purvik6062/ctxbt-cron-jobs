@@ -8,8 +8,11 @@ async function processAndSendTradingSignalMessage() {
         const db = client.db(dbName);
         const tradingSignalsCollection = db.collection(tradingSignalsCollectionName);
 
-        // Step 1: Fetch all documents where messageSent is false
-        const documents = await tradingSignalsCollection.find({ messageSent: false }).toArray();
+        // Step 1: Fetch the top 10 documents where messageSent is false
+        const documents = await tradingSignalsCollection
+            .find({ messageSent: false })
+            .limit(10)  // Fetch only the first 10 documents
+            .toArray();
 
         // Step 2: Process each document sequentially
         for (const doc of documents) {
@@ -27,7 +30,7 @@ async function processAndSendTradingSignalMessage() {
                     console.log(`Message sent to ${subscriber} for document ${_id}`);
                 } catch (error) {
                     console.error(`Failed to send message to ${subscriber} for document ${_id}:`, error.message);
-                    allSentSuccessfully = false; 
+                    allSentSuccessfully = false;
                 }
             }
 
@@ -45,7 +48,7 @@ async function processAndSendTradingSignalMessage() {
     } catch (error) {
         console.error('Error in processAndSendTradingSignalMessage:', error);
     } finally {
-        await client.close(); 
+        await client.close();
     }
 }
 
