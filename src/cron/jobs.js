@@ -32,12 +32,14 @@ function startCronJobs() {
 
     console.log('Cron jobs are scheduled.');
 
-    // console.log('Starting tweets processing job at:', new Date().toISOString());
-    // processTweets();
     // console.log('Starting active subscription updater at:', new Date().toISOString());
     // updateSubscribers();
     // console.log('Starting coins update job at:', new Date().toISOString());
     // fetchAndUpdateCoins();
+    // console.log('Starting tweets processing job at:', new Date().toISOString());
+    // processTweets();
+    // console.log('Starting message sender job at:', new Date().toISOString());
+    // messageSender();
 }
 
 module.exports = { startCronJobs };
