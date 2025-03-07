@@ -12,11 +12,11 @@ function startCronJobs() {
         await updateSubscribers();
     });
 
-    // processTweets will run every day at 10 AM
-    cron.schedule('0 22 * * *', async () => {
-        console.log('Starting tweets processing job at:', new Date().toISOString());
-        await processTweets();
-    });
+    // // processTweets will run every day at 10 AM
+    // cron.schedule('0 22 * * *', async () => {
+    //     console.log('Starting tweets processing job at:', new Date().toISOString());
+    //     await processTweets();
+    // });
 
     // Coins Update Job remains scheduled to run every day at midnight
     cron.schedule('0 0 * * *', async () => {
