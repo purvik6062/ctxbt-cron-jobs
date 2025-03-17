@@ -51,7 +51,7 @@ function startCronJobs() {
     //     "CryptoDona7",
     //     "IncomeSharks"
     // ];
-    // const subscriber = "chain_l";
+    // const subscriber = "userName";
 
     // addSubscriber(twitterHandles, subscriber);
 }
