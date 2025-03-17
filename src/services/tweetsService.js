@@ -190,15 +190,15 @@ async function scrapeTwitterAccount(subscription) {
             ...scraperCredentials,
             username: subscription.twitterHandleUsername
         };
-        // console.log(`Calling scrape API for Twitter handle: ${subscription.twitterHandleUsername}`);
-        // const response = await axios.post(scrapeEndpoint, requestBody, {
-        //     headers: { 'Content-Type': 'application/json' }
-        // });
-        // console.log(`API call for ${subscription.twitterHandleUsername} successful`);
-        // return { subscription, success: true, data: response.data };
+        console.log(`Calling scrape API for Twitter handle: ${subscription.twitterHandleUsername}`);
+        const response = await axios.post(scrapeEndpoint, requestBody, {
+            headers: { 'Content-Type': 'application/json' }
+        });
+        console.log(`API call for ${subscription.twitterHandleUsername} successful`);
+        return { subscription, success: true, data: response.data };
 
-        console.log(`API call for ${subscription.twitterHandleUsername} successful:`, responseData.status);
-        return { subscription, success: true, data: responseData };
+        // console.log(`API call for ${subscription.twitterHandleUsername} successful:`, responseData.status);
+        // return { subscription, success: true, data: responseData };
     } catch (error) {
         console.error(`Error calling API for ${subscription.twitterHandleUsername}:`, error.message);
         return { subscription, success: false, error: error.message };
@@ -336,7 +336,7 @@ async function processTweets() {
             const result = await scrapeTwitterAccount(subscription);
             if (result.success) {
                 await processAndStoreTweetsForHandle(subscription.twitterHandleUsername, doc.subscribers, result.data);
-                await processAndGenerateSignalsForTweets(subscription.twitterHandleUsername);
+                // await processAndGenerateSignalsForTweets(subscription.twitterHandleUsername);
                 // await processAndSendTradingSignalMessage();
             }
             await new Promise(resolve => setTimeout(resolve, 1000));

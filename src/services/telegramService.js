@@ -11,7 +11,7 @@ async function processAndSendTradingSignalMessage() {
         // Step 1: Fetch the top 10 documents where messageSent is false
         const documents = await tradingSignalsCollection
             .find({ messageSent: false })
-            .limit(10)  // Fetch only the first 10 documents
+            // .limit(10)  // Fetch only the first 10 documents
             .toArray();
 
         // Step 2: Process each document sequentially
