@@ -3,6 +3,16 @@ const Papa = require('papaparse');
 
 // Function to parse tweet date from "DD/MM/YYYY" or "D-M-YYYY" to UTC timestamp
 function parseTweetDate(dateStr) {
+    // Handle ISO 8601 format (e.g., "2025-03-09T04:17:46.000Z")
+    if (dateStr.includes('T') && dateStr.endsWith('Z')) {
+        const date = new Date(dateStr);
+        if (isNaN(date.getTime())) {
+            throw new Error(`Invalid ISO date format: ${dateStr}`);
+        }
+        return date.getTime(); // Returns timestamp in milliseconds UTC
+    }
+
+    // Handle "DD/MM/YYYY" or "D-M-YYYY" formats
     let delimiter;
     if (dateStr.includes('/')) {
         delimiter = '/';
