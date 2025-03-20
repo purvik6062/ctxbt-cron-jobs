@@ -68,6 +68,7 @@ async function processCSV(inputCSV, outputCSV) {
     }
 
     // Process each row
+    // Process each row
     for (const row of rows) {
         const tokenId = row["Token ID"];
         if (!priceCache[tokenId]) {
@@ -99,6 +100,13 @@ async function processCSV(inputCSV, outputCSV) {
         const priceAtTweet = parseFloat(row["Price at Tweet"]);
         const TP1 = parseFloat(row["TP1"]);
         const SL = parseFloat(row["SL"]);
+
+        // Skip if Price at Tweet is greater than TP1 or less than SL
+        if (priceAtTweet > TP1 || priceAtTweet < SL) {
+            row["Exit Price"] = "N/A";
+            row["P&L"] = "N/A";
+            continue;
+        }
 
         let exitPrice = null;
         let peakPrice = priceAtTweet; // Initialize peak as starting price
@@ -138,7 +146,6 @@ async function processCSV(inputCSV, outputCSV) {
         row["Exit Price"] = exitPrice;
         row["P&L"] = pnl.toFixed(2) + "%";
     }
-
     // Write the updated CSV
     const updatedCSV = Papa.unparse(rows);
     fs.writeFileSync(outputCSV, updatedCSV);
