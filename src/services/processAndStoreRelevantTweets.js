@@ -94,21 +94,51 @@ async function processAndStoreTweetsForHandle(twitterHandle, subscribers, tweetR
                     // Analysis will be appended below
                 };
 
-
                 const analyzer = new TweetTradingAnalyzer(process.env.OPENAI_API_KEY);
                 const coinsArray = await analyzer.analyzeTweet(tweet.content);
                 console.log(`Coins array for tweet ${tweet.tweet_id}:`, coinsArray.coin_ids);
                 tweetDocument.coins = coinsArray.coin_ids;
 
-                await influencerCollection.updateOne(
-                    { twitterHandle },
-                    {
-                        $push: { tweets: tweetDocument },
-                        $addToSet: { processedTweetIds: tweet.tweet_id },
-                        $set: { updatedAt: new Date() }
+                // const tweetDate = new Date(tweetDocument.timestamp);
+                // const yesterday = new Date();
+                // yesterday.setDate(yesterday.getDate() - 1);
+
+                // if (tweetDocument.coins.length > 0 && tweetDate >= yesterday) {
+                //     await influencerCollection.updateOne(
+                //         { twitterHandle },
+                //         {
+                //             $push: { tweets: tweetDocument },
+                //             $addToSet: { processedTweetIds: tweet.tweet_id },
+                //             $set: { updatedAt: new Date() }
+                //         }
+                //     );
+                //     console.log(`Stored tweet ${tweet.tweet_id} for ${twitterHandle} with coin analysis.`);
+                // }
+
+                const tweetDate = new Date(tweetDocument.timestamp); // Convert ISO string to Date object
+
+                const now = new Date();
+                const yesterday = new Date();
+                yesterday.setDate(now.getDate() - 1);
+
+                // Ensure the date conversion is valid
+                if (isNaN(tweetDate.getTime())) {
+                    console.error(`Invalid date format for tweet ${tweetDocument.tweet_id}:`, tweetDocument.timestamp);
+                } else {
+                    if (tweetDocument.coins.length > 0 && tweetDate >= yesterday) {
+                        await influencerCollection.updateOne(
+                            { twitterHandle },
+                            {
+                                $push: { tweets: tweetDocument },
+                                $addToSet: { processedTweetIds: tweet.tweet_id },
+                                $set: { updatedAt: new Date() }
+                            }
+                        );
+                        console.log(`Stored tweet ${tweet.tweet_id} for ${twitterHandle} with coin analysis.`);
+                    } else {
+                        console.log(`Tweet ${tweet.tweet_id} is older than yesterday (${tweetDocument.timestamp}). Or Tweet has no coinsArray. Skipping.`);
                     }
-                );
-                console.log(`Stored tweet ${tweet.tweet_id} for ${twitterHandle} with coin analysis.`);
+                }
             } else {
                 await influencerCollection.updateOne(
                     { twitterHandle },
