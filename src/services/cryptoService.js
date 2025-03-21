@@ -119,6 +119,7 @@ class CryptoService {
             return {
                 token: historicalData.symbol.toUpperCase(),
                 coin_id: coinId,
+                id: historicalData.id,
                 historical_data: {
                     timestamp: historicalTimestamp,
                     price_usd: historicalData.market_data.current_price?.usd || 0,

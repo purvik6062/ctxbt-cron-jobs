@@ -7,10 +7,12 @@ const fs = require('fs');
 const cryptoService = new CryptoService();
 let globalState = [];
 
+// Updated columns as per your requirements
 const columns = [
-    'token', 'signal', 'targets', 'stopLoss', 'timeline', 'tradeTip',
-    'currentPrice', 'tweet_id', 'tweet_link', 'tweet_timestamp',
-    'priceAtTweet', 'exitValue'
+    'Twitter Account', 'Tweet', 'Tweet Date', 'Signal Generation Date',
+    'Signal Message', 'Token Mentioned', 'Token ID', 'Price at Tweet',
+    'Highest price in a day', 'Highest price in a week', 'Highest price in a month',
+    'Current Price', 'TP1', 'TP2', 'SL', 'Exit Price', 'P&L'
 ];
 
 function escapeCSV(value) {
@@ -66,24 +68,25 @@ ${data.tradeTip}
 /**
  * Creates a prompt for the Perplexity API to generate a JSON object with trading parameters.
  * @param {string} tweetContent - The tweet text.
- * @param {Array} marketDataArray - Array of market data for coins mentioned in the tweet.
+ * @param {Array} marketData - Array of market data for coins mentioned in the tweet.
  * @returns {string} - The prompt string.
  */
-function generatePrompt(tweetContent, marketDataArray) {
-    const marketDataStr = marketDataArray.map(data => `
-- ${data.token} (${data.coin_id}):
-  Historical Data (${data.historical_data.timestamp}):
-    Price: $${data.historical_data.price_usd}
-    Market Cap: $${data.historical_data.market_cap}
-    Volume: $${data.historical_data.total_volume}
-  Current Data (${data.current_data.timestamp}):
-    Price: $${data.current_data.price_usd}
-    Market Cap: $${data.current_data.market_cap}
-    Volume: $${data.current_data.total_volume}
-  Price Change: ${data.current_data.price_change_since_historical}%
-`).join('');
+function generatePrompt(tweetContent, marketData) {
+    // Format market data for the specific coin
+    const marketDataStr = `
+     - ${marketData.token} (${marketData.coin_id}):
+       Historical Data (${marketData.historical_data.timestamp}):
+         Price: $${marketData.historical_data.price_usd}
+         Market Cap: $${marketData.historical_data.market_cap}
+         Volume: $${marketData.historical_data.total_volume}
+       Current Data (${marketData.current_data.timestamp}):
+         Price: $${marketData.current_data.price_usd}
+         Market Cap: $${marketData.current_data.market_cap}
+         Volume: $${marketData.current_data.total_volume} 
+       Price Change: ${marketData.current_data.price_change_since_historical}%
+         `;
 
-    return `Based on the provided tweet and market data, determine the trading signal and fill in the following format accordingly. Use your analysis to decide the values for signal, sentiment, momentum, targets, stop loss, etc., but only output the completed format without additional commentary or sections. 
+    return `Based on the provided tweet and market data, determine the trading signal for ${marketData.token}  and fill in the following format accordingly. Use your analysis to decide the values for signal, sentiment, momentum, targets, stop loss, etc., based on the tweet and market data provided, but only output the completed format without additional commentary or sections. 
     
 --- INPUT DATA ---
 ### Tweet: "${tweetContent}"
@@ -92,19 +95,20 @@ function generatePrompt(tweetContent, marketDataArray) {
 ### Trading Signal Format(Pure JSON) - The JSON should have the following structure:
 
 {
-  "token": "Token Name (SYM)",
+  "token": "${marketData.token} (${marketData.coin_id})",
   "signal": "Buy/Sell/Hold",
   "targets": [num1 (Target Price 1), num2 (Target Price 2)],
   "stopLoss": num,
   "timeline": "Text",
-  "tradeTip": "Provide a concise trade tip with market insight and trading advice specific to this token based on the tweet and market data. The tip must not exceed four lines in length (e.g., 2 to 4 short sentences)."
+  "tradeTip": "Provide a concise trade tip with market insight and trading advice specific to ${marketData.token} based on the tweet and market data. The tip must not exceed four lines in length (e.g., 2 to 4 short sentences)."
 }
 
 Please provide only the JSON object without any additional text.
 
 --- RULES ---
-1. Strict and valid JSON required
+1. Ensure strict, valid JSON required
 2. Do not include any additional text, analysis, or sections beyond this format. Only output the completed trading signal as shown above.
+3. Output only the JSON object, no additional text.
 `;
 }
 
@@ -169,87 +173,103 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
             const doc = await influencerCollection.findOne({ twitterHandle });
             if (!doc) return;
 
-            const tweetsToProcess = doc.tweets.filter(tweet => !tweet.signalsGenerated);
+            const tweetsToProcess = doc.tweets.filter(
+                tweet => !tweet.signalsGenerated && tweet.coins?.length > 0
+            );
             if (tweetsToProcess.length === 0) return;
 
             console.log(`Processing ${tweetsToProcess.length} tweets for ${twitterHandle}`);
 
+            // Define the CSV file path
+            const csvFile = 'backtesting.csv';
+
+            // Check if CSV file exists, if not, create it with headers
+            if (!fs.existsSync(csvFile)) {
+                const header = columns.join(',');
+                fs.writeFileSync(csvFile, header + '\n');
+            }
+
             for (const tweet of tweetsToProcess) {
                 try {
-                    const marketDataArray = [];
                     for (const coinId of tweet.coins) {
-                        const marketData = await cryptoService.getHistoricalTokenData(
-                            coinId,
-                            tweet.timestamp,
-                            new Date()
-                        );
-                        marketDataArray.push(marketData);
-                    }
+                        try {
+                            const marketData = await cryptoService.getHistoricalTokenData(
+                                coinId,
+                                tweet.timestamp,
+                                new Date()
+                            );
+                            if (!marketData) continue;
 
-                    globalState.push({
-                        tweet: tweet.content,
-                        timestamp: tweet.timestamp,
-                        twitterHandle,
-                        subscribers: doc.subscribers,
-                        market_data: marketDataArray
-                    });
+                            const prompt = generatePrompt(tweet.content, marketData);
+                            const data = await callPerplexityAPI(prompt);
+                            const message = generateMessage(data);
 
-                    const prompt = generatePrompt(tweet.content, marketDataArray);
-                    const data = await callPerplexityAPI(prompt);
-                    const message = generateMessage(data);
+                            // Extract token details
+                            const tokenInfo = data.token.split('(');
+                            const tokenMentioned = tokenInfo[0].trim();
+                            const tokenId = marketData.id ? marketData.id : coinId;
+                            // const tokenId = tokenInfo.length > 1 ? tokenInfo[1].replace(')', '').trim() : coinId;
 
-                    // Determine the token from the API response
-                    const tokenSymbol = data.token.split('(')[1]?.replace(')', '').trim() || data.token;
-                    const tokenData = marketDataArray.find(md => md.token.toUpperCase() === tokenSymbol.toUpperCase());
+                            // Prepare data for CSV with new columns
+                            const csvData = {
+                                'Twitter Account': twitterHandle,
+                                'Tweet': tweet.tweet_link,
+                                'Tweet Date': tweet.timestamp,
+                                'Signal Generation Date': new Date(),
+                                'Signal Message': data.signal,
+                                'Token Mentioned': tokenMentioned,
+                                'Token ID': tokenId,
+                                'Price at Tweet': marketData.historical_data.price_usd,
+                                'Highest price in a day': null, // Will need to be calculated
+                                'Highest price in a week': null, // Will need to be calculated
+                                'Highest price in a month': null, // Will need to be calculated
+                                'Current Price': marketData.current_data.price_usd,
+                                'TP1': data.targets && data.targets.length > 0 ? data.targets[0] : null,
+                                'TP2': data.targets && data.targets.length > 1 ? data.targets[1] : null,
+                                'SL': data.stopLoss || null,
+                                'Exit Price': null, // Will need to be determined later
+                                'P&L': null // Will need to be calculated
+                            };
 
-                    if (!tokenData) {
-                        throw new Error(`Token data not found for ${data.token}`);
-                    }
+                            // Store enhanced data in database
+                            const enhancedSignalData = {
+                                ...data,
+                                currentPrice: marketData.current_data.price_usd,
+                                tweet_id: tweet.tweet_id,
+                                tweet_link: tweet.tweet_link,
+                                tweet_timestamp: tweet.timestamp,
+                                priceAtTweet: marketData.historical_data.price_usd,
+                                exitValue: null,
+                                twitterHandle,
+                                tokenMentioned,
+                                tokenId
+                            };
 
-                    // Extract price information
-                    const currentPrice = tokenData.current_data.price_usd;
-                    const priceAtTweet = tokenData.historical_data.price_usd;
+                            await tradingSignalsCollection.insertOne({
+                                tweet_id: tweet.tweet_id,
+                                twitterHandle,
+                                coin: coinId,
+                                signal_message: message,
+                                signal_data: enhancedSignalData,
+                                generatedAt: new Date(),
+                                subscribers: doc.subscribers,
+                                tweet_link: tweet.tweet_link,
+                                messageSent: false
+                            });
 
-                    // Enhance signal_data with additional fields
-                    const enhancedSignalData = {
-                        ...data,
-                        currentPrice,
-                        tweet_id: tweet.tweet_id,
-                        tweet_link: tweet.tweet_link,
-                        tweet_timestamp: tweet.timestamp,
-                        priceAtTweet,
-                        exitValue: null  // Default to null
-                    };
+                            // Prepare CSV row
+                            const row = columns.map(col => escapeCSV(csvData[col])).join(',');
 
-                    // Store the enhanced signal data in the database
-                    await tradingSignalsCollection.insertOne({
-                        tweet_id: tweet.tweet_id,
-                        twitterHandle,
-                        signal_message: message,
-                        signal_data: enhancedSignalData,
-                        generatedAt: new Date(),
-                        coins: tweet.coins,
-                        subscribers: doc.subscribers,
-                        tweet_link: tweet.tweet_link,
-                        messageSent: false
-                    });
-
-                    // Write enhancedSignalData to backtest.csv
-                    const csvFile = 'backtest.csv';
-                    const row = columns.map(col => escapeCSV(enhancedSignalData[col])).join(',');
-
-                    try {
-                        if (!fs.existsSync(csvFile)) {
-                            const header = columns.join(',');
-                            fs.writeFileSync(csvFile, header + '\n' + row + '\n');
-                        } else {
+                            // Append to CSV file
                             fs.appendFileSync(csvFile, row + '\n');
+
+                            console.log(`Generated signal for ${coinId} in tweet ${tweet.tweet_id}`);
+                        } catch (coinError) {
+                            console.error(`Error processing coin ${coinId} for tweet ${tweet.tweet_id}:`, coinError);
                         }
-                    } catch (csvError) {
-                        console.error('Error writing to CSV:', csvError);
                     }
 
-                    // Update tweet status
+                    // Update tweet status after processing all coins
                     await influencerCollection.updateOne(
                         { twitterHandle, 'tweets.tweet_id': tweet.tweet_id },
                         {
@@ -261,19 +281,13 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                             $inc: { 'tweets.$.processingAttempts': 1 }
                         }
                     );
-
-                    console.log(`Processed tweet ${tweet.tweet_id}`);
-                } catch (error) {
-                    console.error(`Error processing tweet ${tweet.tweet_id}:`, error);
-                    await influencerCollection.updateOne(
-                        { twitterHandle, 'tweets.tweet_id': tweet.tweet_id },
-                        { $set: { 'tweets.$.signalsGenerated': true } }
-                    );
+                    console.log(`Tweet ${tweet.tweet_id} fully processed`);
+                } catch (tweetError) {
+                    console.error(`Error processing tweet ${tweet.tweet_id}:`, tweetError);
                 }
             }
 
-            globalState = [];
-            console.log(`Completed processing for ${twitterHandle}`);
+            console.log(`Completed processing tweets for ${twitterHandle}`);
         } finally {
             await influencerCollection.updateOne(
                 { twitterHandle },
@@ -281,7 +295,7 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
             );
         }
     } catch (error) {
-        console.error('Error in processAndGenerateSignalsForTweets:', error);
+        console.error(`Error in processAndGenerateSignalsForTweets for ${twitterHandle}:`, error);
     } finally {
         await client.close();
     }

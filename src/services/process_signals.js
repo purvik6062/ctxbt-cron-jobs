@@ -147,6 +147,9 @@ async function processCSV(inputCSV, outputCSV) {
     console.log(`Processing complete. Output saved to ${outputCSV}`);
 }
 
-// Run the script
-processCSV('../../backtest.csv', '../../result.csv')
-    .catch(error => console.error('Error:', error));
+// // Run the script
+// processCSV('./backtest.csv', './result.csv')
+//     .catch(error => console.error('Error:', error));
+
+
+module.exports = { processCSV };
