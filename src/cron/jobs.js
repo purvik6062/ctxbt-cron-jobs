@@ -5,7 +5,7 @@ const { processTweets } = require('../services/tweetsService');
 const { fetchAndUpdateCoins } = require('../services/coinsService');
 const { messageSender } = require('../services/messageSender');
 const { addSubscriber } = require('../services/addSubscribers');
-const { processCSV } = require('../services/process_signals');
+const { processCSV } = require('../services/process-signal-multi-strategies')
 
 function startCronJobs() {
     // updateSubscribers will run every 2 hours 
