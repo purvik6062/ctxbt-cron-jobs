@@ -68,14 +68,11 @@ async function processCSV(inputCSV, outputCSV) {
     }
 
     // Process each row
-    // Process each row
     for (const row of rows) {
         const tokenId = row["Token ID"];
         if (!priceCache[tokenId]) {
             console.log(tokenId);
-            row["Exit Price"] = "N/A";
-            row["P&L"] = "N/A";
-            continue;
+            continue; // Skip this row entirely
         }
 
         let tweetTimestamp;
@@ -83,29 +80,23 @@ async function processCSV(inputCSV, outputCSV) {
             tweetTimestamp = parseTweetDate(row["Tweet Date"]);
         } catch (error) {
             console.error(`Error parsing date for row: ${row["Tweet Date"]}`, error);
-            row["Exit Price"] = "N/A";
-            row["P&L"] = "N/A";
-            continue;
+            continue; // Skip this row entirely
         }
 
         const prices = priceCache[tokenId].filter(([ts]) => ts >= tweetTimestamp);
 
         if (prices.length === 0) {
             console.log(tokenId);
-            row["Exit Price"] = "N/A";
-            row["P&L"] = "N/A";
-            continue;
+            continue; // Skip this row entirely
         }
 
         const priceAtTweet = parseFloat(row["Price at Tweet"]);
         const TP1 = parseFloat(row["TP1"]);
         const SL = parseFloat(row["SL"]);
 
-        // Skip if Price at Tweet is greater than TP1 or less than SL
+        // Skip the entire row if Price at Tweet is greater than TP1 or less than SL
         if (priceAtTweet > TP1 || priceAtTweet < SL) {
-            row["Exit Price"] = "N/A";
-            row["P&L"] = "N/A";
-            continue;
+            continue; // Skip this row entirely
         }
 
         let exitPrice = null;
@@ -146,8 +137,12 @@ async function processCSV(inputCSV, outputCSV) {
         row["Exit Price"] = exitPrice;
         row["P&L"] = pnl.toFixed(2) + "%";
     }
-    // Write the updated CSV
-    const updatedCSV = Papa.unparse(rows);
+
+    // Filter out any rows that have been skipped (they won't have Exit Price)
+    const validRows = rows.filter(row => row["Exit Price"] !== undefined);
+
+    // Write the updated CSV with only valid rows
+    const updatedCSV = Papa.unparse(validRows);
     fs.writeFileSync(outputCSV, updatedCSV);
     console.log(`Processing complete. Output saved to ${outputCSV}`);
 }
