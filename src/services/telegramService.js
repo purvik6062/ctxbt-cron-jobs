@@ -26,7 +26,7 @@ async function processAndSendTradingSignalMessage() {
                     message: signal_message
                 };
                 try {
-                    await axios.post('http://localhost:3001/api/telegram/send', payload);
+                    await axios.post('https://telegram-msg-sender.ctxbt.com/api/telegram/send', payload);
                     console.log(`Message sent to ${subscriber} for document ${_id}`);
                 } catch (error) {
                     console.error(`Failed to send message to ${subscriber} for document ${_id}:`, error.message);

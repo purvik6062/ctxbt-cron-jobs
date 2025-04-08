@@ -9,26 +9,26 @@ const { processCSV } = require('../services/process-signal-multi-strategies')
 
 function startCronJobs() {
     // updateSubscribers will run every 2 hours 
-    cron.schedule('0 */2 * * *', async () => {
+    cron.schedule('*/10 * * * *', async () => {
         console.log('Starting active subscription updater at:', new Date().toISOString());
         await updateSubscribers();
     });
 
     // Coins Update Job remains scheduled to run every day at midnight
-    cron.schedule('0 */2 * * *', async () => {
+    cron.schedule('*/20 * * * *', async () => {
         console.log('Starting coins update job at:', new Date().toISOString());
         await fetchAndUpdateCoins();
     });
 
-    // messageSender will run every 6 hours
-    cron.schedule('0 */3 * * *', async () => {
+    // messageSender will run every 3 hours
+    cron.schedule('*/20 * * * *', async () => {
         console.log('Starting message sender job at:', new Date().toISOString());
         await processTweets();
     });
 
-    // messageSender will run every 3 hours
-    cron.schedule('0 */4 * * *', async () => {
-        processCSV('./backtesting.csv', './result.csv')
+    // backtesting job will run every 4 hours
+    cron.schedule('*/30 * * * *', async () => {
+        processCSV('./backtesting.csv')
             .catch(error => console.error('Error:', error));
     });
 

@@ -5,14 +5,12 @@ const axios = require('axios');
 const fs = require('fs');
 
 const cryptoService = new CryptoService();
-let globalState = [];
 
-// Updated columns as per your requirements
+// Updated columns as per your requirements: Removed Highest price columns, added Max Exit Time
 const columns = [
     'Twitter Account', 'Tweet', 'Tweet Date', 'Signal Generation Date',
     'Signal Message', 'Token Mentioned', 'Token ID', 'Price at Tweet',
-    'Highest price in a day', 'Highest price in a week', 'Highest price in a month',
-    'Current Price', 'TP1', 'TP2', 'SL', 'Exit Price', 'P&L'
+    'Current Price', 'TP1', 'TP2', 'SL', 'Exit Price', 'P&L', 'Max Exit Time'
 ];
 
 function escapeCSV(value) {
@@ -49,16 +47,19 @@ function generateMessage(data) {
     const targets = data.targets.map((t, i) => `TP${i + 1}: $${t}`).join('\n');
     const stopLoss = data.stopLoss != null ? `🛑 **Stop Loss**: $${data.stopLoss}` : '';
     const timeline = data.timeline ? `⏳ **Timeline:** ${data.timeline}` : '';
+    const maxExit = data.maxExitTime ? `⏰ **Max Exit Time:** ${data.maxExitTime}` : '';
 
     return `
 ${heading}
 
 🏛️ **Token**: ${data.token}
 📈 **Signal**: ${data.signal}
+💰 **Current Price**: $${data.currentPrice}
 🎯 **Targets**:
 ${targets}
 ${stopLoss}
 ${timeline}
+${maxExit}
 
 💡 **Trade Tip**:
 ${data.tradeTip}
@@ -68,7 +69,7 @@ ${data.tradeTip}
 /**
  * Creates a prompt for the Perplexity API to generate a JSON object with trading parameters.
  * @param {string} tweetContent - The tweet text.
- * @param {Array} marketData - Array of market data for coins mentioned in the tweet.
+ * @param {Object} marketData - Market data for the coin mentioned in the tweet.
  * @returns {string} - The prompt string.
  */
 function generatePrompt(tweetContent, marketData) {
@@ -86,7 +87,7 @@ function generatePrompt(tweetContent, marketData) {
        Price Change: ${marketData.current_data.price_change_since_historical}%
          `;
 
-    return `Based on the provided tweet and market data, determine the trading signal for ${marketData.token}  and fill in the following format accordingly. Use your analysis to decide the values for signal, sentiment, momentum, targets, stop loss, etc., based on the tweet and market data provided, but only output the completed format without additional commentary or sections. 
+    return `Based on the provided tweet and market data, determine the trading signal for ${marketData.token} and fill in the following format accordingly. Use your analysis to decide the values for signal, sentiment, momentum, targets, stop loss, max exit time, etc., based on the tweet and market data provided, but only output the completed format without additional commentary or sections. 
     
 --- INPUT DATA ---
 ### Tweet: "${tweetContent}"
@@ -97,9 +98,11 @@ function generatePrompt(tweetContent, marketData) {
 {
   "token": "${marketData.token} (${marketData.coin_id})",
   "signal": "Buy/Sell/Hold",
+  "currentPrice": ${marketData.current_data.price_usd}.toFixed(4),
   "targets": [num1 (Target Price 1), num2 (Target Price 2)],
   "stopLoss": num,
   "timeline": "Text",
+  "maxExitTime": "ISO 8601 Date/Time string representing the maximum exit time",
   "tradeTip": "Provide a concise trade tip with market insight and trading advice specific to ${marketData.token} based on the tweet and market data. The tip must not exceed four lines in length (e.g., 2 to 4 short sentences)."
 }
 
@@ -208,9 +211,7 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                             const tokenInfo = data.token.split('(');
                             const tokenMentioned = tokenInfo[0].trim();
                             const tokenId = marketData.id ? marketData.id : coinId;
-                            // const tokenId = tokenInfo.length > 1 ? tokenInfo[1].replace(')', '').trim() : coinId;
 
-                            // Prepare data for CSV with new columns
                             const csvData = {
                                 'Twitter Account': twitterHandle,
                                 'Tweet': tweet.tweet_link,
@@ -220,15 +221,13 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                                 'Token Mentioned': tokenMentioned,
                                 'Token ID': tokenId,
                                 'Price at Tweet': marketData.historical_data.price_usd,
-                                'Highest price in a day': null, // Will need to be calculated
-                                'Highest price in a week': null, // Will need to be calculated
-                                'Highest price in a month': null, // Will need to be calculated
                                 'Current Price': marketData.current_data.price_usd,
                                 'TP1': data.targets && data.targets.length > 0 ? data.targets[0] : null,
                                 'TP2': data.targets && data.targets.length > 1 ? data.targets[1] : null,
                                 'SL': data.stopLoss || null,
                                 'Exit Price': null, // Will need to be determined later
-                                'P&L': null // Will need to be calculated
+                                'P&L': null, // Will need to be calculated
+                                'Max Exit Time': data.maxExitTime || null
                             };
 
                             // Store enhanced data in database
@@ -259,7 +258,6 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
 
                             // Prepare CSV row
                             const row = columns.map(col => escapeCSV(csvData[col])).join(',');
-
                             // Append to CSV file
                             fs.appendFileSync(csvFile, row + '\n');
 

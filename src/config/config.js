@@ -8,11 +8,11 @@ module.exports = {
     userCollectionName: 'users',
     influencerCollectionName: 'influencers',
     tradingSignalsCollectionName: 'trading-signals',
-    scrapeEndpoint: 'http://127.0.0.1:8000/scrape',
+    scrapeEndpoint: 'https://tweets-scraper.ctxbt.com/scrape',
     scraperCredentials: {
         user: "",
         password: "",
-        tweets: 5
+        tweets: 3
     },
     openAI: {
         apiKey: process.env.OPENAI_API_KEY
