@@ -12,7 +12,7 @@ module.exports = {
     scraperCredentials: {
         user: "",
         password: "",
-        tweets: 3
+        tweets: 5
     },
     openAI: {
         apiKey: process.env.OPENAI_API_KEY

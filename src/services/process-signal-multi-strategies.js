@@ -109,13 +109,23 @@ async function processCSV(inputCSV) {
 
         // Process each row
         for (const row of rows) {
-            // **Change 1: Skip rows where Exit Price is already calculated**
-            if (row["Final Exit Price"] && row["Final Exit Price"].trim() !== "") {
-                console.log(`Skipping row for token ${row["Token ID"]} as Exit Price is already calculated: ${row["Final Exit Price"]}`);
+            const tokenId = row["Token ID"];
+            const tweetUrl = row["Tweet"];
+            
+            // Skip if no tweet URL is provided
+            if (!tweetUrl) {
+                console.warn(`Skipping row for token ${tokenId} as no Tweet URL is provided`);
                 continue;
             }
-
-            const tokenId = row["Token ID"];
+            
+            // Check if this tweet URL already exists in the database
+            const existingRecord = await collection.findOne({ "Tweet": tweetUrl });
+            
+            if (existingRecord) {
+                console.log(`Skipping row for token ${tokenId} as Tweet URL already exists in database: ${tweetUrl}`);
+                continue;
+            }
+            
             if (!priceCache[tokenId]) {
                 console.warn(`Skipping row due to no price data for ${tokenId}`);
                 continue;
