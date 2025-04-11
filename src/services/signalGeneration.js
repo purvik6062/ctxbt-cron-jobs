@@ -195,11 +195,12 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                 try {
                     for (const coinId of tweet.coins) {
                         try {
-                            const marketData = await cryptoService.getHistoricalTokenData(
+                            const marketData = await cryptoService.getHistoricalTokenDataFromCustomEndpoints(
                                 coinId,
                                 tweet.timestamp,
-                                new Date()
+                                new Date().toISOString()
                             );
+                            // console.log("marketData", marketData)
                             if (!marketData) continue;
 
                             const prompt = generatePrompt(tweet.content, marketData);

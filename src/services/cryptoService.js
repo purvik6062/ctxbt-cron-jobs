@@ -85,6 +85,124 @@ class CryptoService {
         return `${day}-${month}-${year}`;
     }
 
+    async fetchFromMarketCapUrl(coinId) {
+        const url = `https://www.coingecko.com/market_cap/${coinId}/usd/24_hours.json`;
+        try {
+            const response = await fetch(url, { timeout: 60000 });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error(`Error fetching price data for ${coinId}:`, error.message);
+            return null;
+        }
+    }
+
+    async fetchFromPriceChartsUrl(coinId) {
+        const url = `https://www.coingecko.com/price_charts/${coinId}/usd/24_hours.json`;
+        try {
+            const response = await fetch(url, { timeout: 60000 });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error(`Error fetching price data for ${coinId}:`, error.message);
+            return null;
+        }
+    }
+
+    async getHistoricalTokenDataFromCustomEndpoints(coinId, historicalTimestamp, currentTimestamp) {
+        try {
+            // Convert ISO timestamps to Unix timestamps (milliseconds)
+            const historicalUnixMs = new Date(historicalTimestamp).getTime();
+            const currentUnixMs = new Date(currentTimestamp).getTime();
+
+            // Validate that timestamps are within the last 24 hours
+            const now = Date.now();
+            const twentyFourHoursAgo = now - 24 * 60 * 60 * 1000;
+            if (historicalUnixMs < twentyFourHoursAgo || currentUnixMs < twentyFourHoursAgo) {
+                throw new Error('Timestamps must be within the last 24 hours for these endpoints.');
+            }
+
+            const marketCapData = await this.fetchFromMarketCapUrl(coinId);
+            const priceChartsData = await this.fetchFromPriceChartsUrl(coinId);
+
+            // Helper function to find the closest data point to a given timestamp
+            const findClosest = (data, targetTimestamp) => {
+                if (!data || data.length === 0) return null;
+                return data.reduce((prev, curr) => {
+                    const prevDiff = Math.abs(prev[0] - targetTimestamp);
+                    const currDiff = Math.abs(curr[0] - targetTimestamp);
+                    return currDiff < prevDiff ? curr : prev;
+                });
+            };
+
+            // Extract historical data points
+            const historicalPricePoint = findClosest(priceChartsData.stats, historicalUnixMs);
+            const historicalMarketCapPoint = findClosest(marketCapData.stats, historicalUnixMs);
+            const historicalVolumePoint = findClosest(marketCapData.total_volumes, historicalUnixMs);
+
+            // Extract current data points
+            const currentPricePoint = findClosest(priceChartsData.stats, currentUnixMs);
+            const currentMarketCapPoint = findClosest(marketCapData.stats, currentUnixMs);
+            const currentVolumePoint = findClosest(marketCapData.total_volumes, currentUnixMs);
+
+            // Fetch metadata from the official CoinGecko API
+            const metadataResponse = await this.axiosInstance.get(`/coins/${coinId}`, {
+                params: {
+                    localization: false,
+                    tickers: false,
+                    market_data: false,
+                    community_data: false,
+                    developer_data: false,
+                    sparkline: false
+                }
+            });
+            const metadata = metadataResponse.data;
+
+            // Extract values, defaulting to 0 if data is unavailable
+            const historicalPrice = historicalPricePoint ? historicalPricePoint[1] : 0;
+            const currentPrice = currentPricePoint ? currentPricePoint[1] : 0;
+
+            // Calculate price change percentage
+            const priceChange = historicalPrice
+                ? ((currentPrice - historicalPrice) / historicalPrice * 100).toFixed(4)
+                : "0.00";
+
+            // Construct and return the response
+            return {
+                token: metadata.symbol.toUpperCase(),
+                coin_id: coinId,
+                id: metadata.id,
+                historical_data: {
+                    timestamp: historicalTimestamp,
+                    price_usd: historicalPrice,
+                    market_cap: historicalMarketCapPoint ? historicalMarketCapPoint[1] : 0,
+                    total_volume: historicalVolumePoint ? historicalVolumePoint[1] : 0
+                },
+                current_data: {
+                    timestamp: currentTimestamp,
+                    price_usd: currentPrice,
+                    market_cap: currentMarketCapPoint ? currentMarketCapPoint[1] : 0,
+                    total_volume: currentVolumePoint ? currentVolumePoint[1] : 0,
+                    price_change_since_historical: priceChange
+                },
+                metadata: {
+                    name: metadata.name,
+                    categories: metadata.categories || [],
+                    description: metadata.description?.en || ""
+                }
+            };
+        } catch (error) {
+            console.error(`Error fetching data for ${coinId}:`, error);
+            throw new Error(`Failed to fetch data for coin ID ${coinId}: ${error.message}`);
+        }
+    }
+
     async getHistoricalTokenData(coinId, historicalTimestamp, currentTimestamp) {
         try {
             const formattedHistoricalDate = this.formatDateForCoinGecko(historicalTimestamp);
@@ -132,7 +250,7 @@ class CryptoService {
                     market_cap: currentData.market_data?.market_cap?.usd || 0,
                     total_volume: currentData.market_data?.total_volume?.usd || 0,
                     price_change_since_historical: currentData.market_data?.current_price?.usd && historicalData.market_data.current_price?.usd
-                        ? ((currentData.market_data.current_price.usd - historicalData.market_data.current_price.usd) / historicalData.market_data.current_price.usd * 100).toFixed(2)
+                        ? ((currentData.market_data.current_price.usd - historicalData.market_data.current_price.usd) / historicalData.market_data.current_price.usd * 100).toFixed(4)
                         : "0.00"
                 },
                 metadata: {
@@ -171,96 +289,6 @@ class CryptoService {
                 description: currentData.description || ""
             }
         };
-    }
-
-    async _getTokenDataWithHistory(coinId, tweetTimestamp) {
-        try {
-            const currentData = await this.getTokenDataById(coinId);
-            const historicalData = await this.getHistoricalTokenData(coinId, tweetTimestamp, currentData);
-
-            // If we couldn't get historical data, return current data with a note
-            if (!historicalData || historicalData.error) {
-                return {
-                    ...currentData,
-                    historical_context: {
-                        note: "Historical data not available",
-                        timestamp: tweetTimestamp,
-                        price_usd: currentData.current_price,
-                        market_cap: currentData.market_cap,
-                        total_volume: currentData.total_volume
-                    },
-                    price_performance: {
-                        price_at_tweet: currentData.current_price,
-                        current_price: currentData.current_price,
-                        price_change_percentage: "0.00",
-                        market_cap_change: "0.00",
-                        volume_change: "0.00"
-                    }
-                };
-            }
-
-            return {
-                ...currentData,
-                historical_context: historicalData.historical_data,
-                price_performance: {
-                    price_at_tweet: historicalData.historical_data.price_usd,
-                    current_price: currentData.current_price,
-                    price_change_percentage: historicalData.current_data.price_change_since_tweet,
-                    market_cap_change: historicalData.historical_data.market_cap ?
-                        ((currentData.market_cap - historicalData.historical_data.market_cap) / historicalData.historical_data.market_cap * 100).toFixed(2) : "0.00",
-                    volume_change: historicalData.historical_data.total_volume ?
-                        ((currentData.total_volume - historicalData.historical_data.total_volume) / historicalData.historical_data.total_volume * 100).toFixed(2) : "0.00"
-                }
-            };
-        } catch (error) {
-            console.error('Error fetching token data with history:', error.message);
-            // Return a structured error response instead of throwing
-            return {
-                error: true,
-                coin_id: coinId,
-                message: `Failed to fetch token data: ${error.message}`,
-                timestamp: tweetTimestamp
-            };
-        }
-    }
-
-    async getTokenDataWithHistory(coinId, historicalTimestamp, currentTimestamp = new Date()) {
-        const cacheKey = `${coinId}-${new Date(historicalTimestamp).toISOString().split('T')[0]}-${new Date(currentTimestamp).toISOString().split('T')[0]}`;
-
-        if (this.tokenCache.has(cacheKey)) {
-            return this.tokenCache.get(cacheKey);
-        }
-
-        await this.ensureQueueInitialized();
-
-        return this.apiQueue.add(async () => {
-            try {
-                const historicalData = await this.getHistoricalTokenData(coinId, historicalTimestamp, currentTimestamp);
-
-                const response = {
-                    ...historicalData,
-                    price_performance: {
-                        price_at_historical: historicalData.historical_data.price_usd,
-                        current_price: historicalData.current_data.price_usd,
-                        price_change_percentage: historicalData.current_data.price_change_since_historical,
-                        market_cap_change: historicalData.historical_data.market_cap ?
-                            ((historicalData.current_data.market_cap - historicalData.historical_data.market_cap) / historicalData.historical_data.market_cap * 100).toFixed(2) : "0.00",
-                        volume_change: historicalData.historical_data.total_volume ?
-                            ((historicalData.current_data.total_volume - historicalData.historical_data.total_volume) / historicalData.historical_data.total_volume * 100).toFixed(2) : "0.00"
-                    }
-                };
-
-                this.tokenCache.set(cacheKey, response);
-                setTimeout(() => this.tokenCache.delete(cacheKey), this.cacheTTL);
-                return response;
-            } catch (error) {
-                if (error.response?.status === 429) {
-                    await new Promise(resolve => setTimeout(resolve, 60000));
-                    return this.getTokenDataWithHistory(coinId, historicalTimestamp, currentTimestamp);
-                }
-                throw error;
-            }
-        });
     }
 
     async getTokenDataById(coinId) {
