@@ -54,12 +54,11 @@ ${heading}
 
 🏛️ **Token**: ${data.token}
 📈 **Signal**: ${data.signal}
-💰 **Current Price**: $${data.currentPrice}
+💰 **Entry Price**: $${data.currentPrice}
 🎯 **Targets**:
 ${targets}
 ${stopLoss}
 ${timeline}
-${maxExit}
 
 💡 **Trade Tip**:
 ${data.tradeTip}
