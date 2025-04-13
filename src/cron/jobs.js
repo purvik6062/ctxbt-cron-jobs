@@ -6,6 +6,10 @@ const { fetchAndUpdateCoins } = require('../services/coinsService');
 const { messageSender } = require('../services/messageSender');
 const { addSubscriber } = require('../services/addSubscribers');
 const { processCSV } = require('../services/process-signal-multi-strategies')
+<<<<<<< HEAD
+=======
+const pnlNormalizationService = require('../services/pnlNormalizationService');
+>>>>>>> 07c045f (Add PnL normalization service with weekly impact factor calculation)
 
 function startCronJobs() {
     // updateSubscribers will run every 2 hours 
@@ -32,6 +36,19 @@ function startCronJobs() {
             .catch(error => console.error('Error:', error));
     });
 
+<<<<<<< HEAD
+=======
+    // Weekly PnL normalization - runs every Sunday at 23:59
+    cron.schedule('59 23 * * 0', async () => {
+        console.log('Starting weekly PnL normalization at:', new Date().toISOString());
+        try {
+            await pnlNormalizationService.processWeeklyNormalization();
+        } catch (error) {
+            console.error('Error in weekly PnL normalization:', error);
+        }
+    });
+
+>>>>>>> 07c045f (Add PnL normalization service with weekly impact factor calculation)
     console.log('Cron jobs are scheduled.');
 
     // console.log('Starting active subscription updater at:', new Date().toISOString());
