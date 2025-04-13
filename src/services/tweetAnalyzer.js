@@ -2,6 +2,7 @@
 const { OpenAI } = require('openai');
 const path = require('path');
 const coinsData = require(path.join(__dirname, '../utils/coins.json'));
+const { getDb } = require('../db/connection');
 
 class TweetTradingAnalyzer {
     constructor(apiKey) {
@@ -9,6 +10,11 @@ class TweetTradingAnalyzer {
         this.coinsData = new Map();
         this.symbolGroups = new Map();
         this.initializeCoinsData(coinsData);
+        this.db = null;
+    }
+
+    async initialize() {
+        this.db = await getDb();
     }
 
     initializeCoinsData(coinsData) {
@@ -20,6 +26,19 @@ class TweetTradingAnalyzer {
             }
             this.symbolGroups.get(symbol).push(coin);
         });
+    }
+
+    async getImpactFactor(account) {
+        try {
+            if (!this.db) {
+                await this.initialize();
+            }
+            const impactFactorDoc = await this.db.collection('impact_factors').findOne({ account });
+            return impactFactorDoc ? impactFactorDoc.impactFactor : 1.0; // Default to 1.0 if no impact factor found
+        } catch (error) {
+            console.error('Error fetching impact factor:', error);
+            return 1.0;
+        }
     }
 
     getRelevantCoinsForContext(symbols) {
@@ -50,17 +69,19 @@ class TweetTradingAnalyzer {
         };
     }
 
-    async analyzeTweet(tweet) {
+    async analyzeTweet(tweet, account) {
         try {
             if (!tweet || typeof tweet !== 'string') {
                 throw new Error('Invalid tweet format - must be a string');
             }
+
+            const impactFactor = await this.getImpactFactor(account);
             const tweetText = tweet;
             const elements = this.extractTradingElements(tweetText);
             const relevantCoins = this.getRelevantCoinsForContext(elements.cashtags);
-            const systemPrompt = this.createSystemPrompt(relevantCoins);
+            const systemPrompt = this.createSystemPrompt(relevantCoins, impactFactor);
 
-            const openAiResponse = await this.getOpenAIAnalysis(systemPrompt, tweetText, elements);
+            const openAiResponse = await this.getOpenAIAnalysis(systemPrompt, tweetText, elements, impactFactor);
 
             console.log("openAiResponse", openAiResponse);
 
@@ -71,7 +92,7 @@ class TweetTradingAnalyzer {
         }
     }
 
-    async getOpenAIAnalysis(systemPrompt, tweet, elements) {
+    async getOpenAIAnalysis(systemPrompt, tweet, elements, impactFactor) {
         try {
             const response = await this.openai.chat.completions.create({
                 model: "gpt-4o-mini",
@@ -86,6 +107,7 @@ class TweetTradingAnalyzer {
 Extracted cashtags: ${elements.cashtags.join(', ')}
 Extracted hashtags: ${elements.hashtags.join(', ')}
 Extracted mentions: ${elements.mentions.join(', ')}
+Account Impact Factor: ${impactFactor}
 Please analyze this tweet in strict JSON format.`
                     }
                 ],
@@ -101,7 +123,9 @@ Please analyze this tweet in strict JSON format.`
         }
     }
 
-    createSystemPrompt(relevantCoins) {
+    createSystemPrompt(relevantCoins, impactFactor) {
+        const confidenceThreshold = this.calculateConfidenceThreshold(impactFactor);
+        
         return `You are an expert crypto trading analyst. Analyze the given tweet for coins or tokens being discussed.
 When analyzing tokens, use the following reference information to identify the exact token being discussed:
 ${JSON.stringify(
@@ -110,12 +134,29 @@ ${JSON.stringify(
                 symbol: coin.symbol,
                 name: coin.name
             })), null, 2)}
+
 Important guidelines:
-[...additional guidelines...]
+1. Account Impact Factor: ${impactFactor}
+2. Confidence Threshold: ${confidenceThreshold}
+3. For accounts with higher impact factors (${impactFactor}), be more lenient in including potential trading signals
+4. For accounts with lower impact factors, be more strict and only include high-confidence signals
+5. Consider the impact factor when determining if a tweet contains actionable trading information
+6. Higher impact accounts may have more subtle or indirect trading signals
+7. Lower impact accounts require more explicit trading signals
+
 Respond with a array of coin ids of the discussed coins in the below format: 
 coin_ids: ['bitcoin', 'ethereum', 'solana', 'shiba-inu', 'dogecoin']
 If no coins are discussed, respond with an empty array: coin_ids: []
 `;
+    }
+
+    calculateConfidenceThreshold(impactFactor) {
+        // Adjust confidence threshold based on impact factor
+        // Higher impact factor = lower threshold (more lenient)
+        // Lower impact factor = higher threshold (more strict)
+        const baseThreshold = 0.7;
+        const adjustment = (impactFactor - 1) * 0.1; // Adjust by 10% per unit of impact factor
+        return Math.max(0.3, Math.min(0.9, baseThreshold - adjustment));
     }
 }
 

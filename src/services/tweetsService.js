@@ -35,13 +35,27 @@ async function processTweets() {
         const influencerCollection = db.collection(influencerCollectionName);
         // Process only twitter handles with active subscribers
         const docs = await influencerCollection.find({ subscribers: { $exists: true, $ne: [] } }).toArray();
+        
         for (const doc of docs) {
-            const subscription = { twitterHandleUsername: doc.twitterHandle };
-            const result = await scrapeTwitterAccount(subscription); //1/
+            const subscription = { 
+                twitterHandleUsername: doc.twitterHandle,
+                account: doc.twitterHandle // Pass the account name for impact factor lookup
+            };
+            
+            const result = await scrapeTwitterAccount(subscription);
             if (result.success) {
-            await processAndStoreTweetsForHandle(subscription.twitterHandleUsername, doc.subscribers, result.data); //1/
-            await processAndGenerateSignalsForTweets(subscription.twitterHandleUsername); //2/
-            await processAndSendTradingSignalMessage(); //3/
+                // Pass the account information to the processing functions
+                await processAndStoreTweetsForHandle(
+                    subscription.twitterHandleUsername, 
+                    doc.subscribers, 
+                    result.data,
+                    subscription.account
+                );
+                await processAndGenerateSignalsForTweets(
+                    subscription.twitterHandleUsername,
+                    subscription.account
+                );
+                await processAndSendTradingSignalMessage();
             }
             await new Promise(resolve => setTimeout(resolve, 1000));
         }
