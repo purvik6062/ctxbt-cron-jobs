@@ -6,21 +6,22 @@ const { fetchAndUpdateCoins } = require('../services/coinsService');
 const { messageSender } = require('../services/messageSender');
 const { addSubscriber } = require('../services/addSubscribers');
 const { processCSV } = require('../services/process-signal-multi-strategies')
+const pnlNormalizationService = require('../services/pnlNormalizationService');
 
 function startCronJobs() {
-    // updateSubscribers will run every 2 hours 
+    // updateSubscribers will run every 10 minutes 
     cron.schedule('*/10 * * * *', async () => {
         console.log('Starting active subscription updater at:', new Date().toISOString());
         await updateSubscribers();
     });
 
-    // Coins Update Job remains scheduled to run every day at midnight
+    // fetchAndUpdateCoins will run every 20 minutes
     cron.schedule('*/20 * * * *', async () => {
         console.log('Starting coins update job at:', new Date().toISOString());
         await fetchAndUpdateCoins();
     });
 
-    // messageSender will run every 3 hours
+    // messageSender will run every 20 minutes
     let isProcessing = false;
     cron.schedule('*/20 * * * *', async () => {
         if (isProcessing) {
@@ -40,10 +41,20 @@ function startCronJobs() {
         }
     });
 
-    // backtesting job will run every 4 hours
+    // backtesting job will run every 30 minutes
     cron.schedule('*/30 * * * *', async () => {
         processCSV('./backtesting.csv')
             .catch(error => console.error('Error:', error));
+    });
+
+    // Weekly PnL normalization - runs every Sunday at 23:59
+    cron.schedule('59 23 * * 0', async () => {
+        console.log('Starting weekly PnL normalization at:', new Date().toISOString());
+        try {
+            await pnlNormalizationService.processWeeklyNormalization();
+        } catch (error) {
+            console.error('Error in weekly PnL normalization:', error);
+        }
     });
 
     console.log('Cron jobs are scheduled.');
