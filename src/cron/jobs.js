@@ -21,9 +21,23 @@ function startCronJobs() {
     });
 
     // messageSender will run every 3 hours
+    let isProcessing = false;
     cron.schedule('*/20 * * * *', async () => {
-        console.log('Starting message sender job at:', new Date().toISOString());
-        await processTweets();
+        if (isProcessing) {
+            console.log('Previous processTweets job is still running, skipping this run');
+            return;
+        }
+
+        try {
+            isProcessing = true;
+            console.log('Starting message sender job at:', new Date().toISOString());
+            await processTweets();
+            console.log('Completed message sender job at:', new Date().toISOString());
+        } catch (error) {
+            console.error('Error in message sender job:', error);
+        } finally {
+            isProcessing = false;
+        }
     });
 
     // backtesting job will run every 4 hours

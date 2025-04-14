@@ -39,12 +39,15 @@ async function processTweets() {
             const subscription = { twitterHandleUsername: doc.twitterHandle };
             const result = await scrapeTwitterAccount(subscription); //1/
             if (result.success) {
-            await processAndStoreTweetsForHandle(subscription.twitterHandleUsername, doc.subscribers, result.data); //1/
-            await processAndGenerateSignalsForTweets(subscription.twitterHandleUsername); //2/
-            await processAndSendTradingSignalMessage(); //3/
+                await processAndStoreTweetsForHandle(subscription.twitterHandleUsername, doc.subscribers, result.data); //1/
+                await processAndGenerateSignalsForTweets(subscription.twitterHandleUsername); //2/
+                // await processAndSendTradingSignalMessage(); //3/
             }
             await new Promise(resolve => setTimeout(resolve, 1000));
         }
+
+        // Send messages only once after processing all handles
+        await processAndSendTradingSignalMessage();
     } catch (error) {
         console.error('Error processing tweets:', error);
     } finally {

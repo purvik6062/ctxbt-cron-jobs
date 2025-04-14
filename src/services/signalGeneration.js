@@ -251,7 +251,10 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                                 signal_message: message,
                                 signal_data: enhancedSignalData,
                                 generatedAt: new Date(),
-                                subscribers: doc.subscribers,
+                                subscribers: doc.subscribers.map(subscriber => ({
+                                    username: subscriber,
+                                    sent: false
+                                })),
                                 tweet_link: tweet.tweet_link,
                                 messageSent: false
                             });
