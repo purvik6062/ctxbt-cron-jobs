@@ -3,8 +3,10 @@ const Papa = require('papaparse');
 const { MongoClient } = require('mongodb');
 const OpenAI = require('openai');
 const dotenv = require('dotenv');
+const path = require('path');
 
-dotenv.config();
+// Explicitly provide the path to the .env file
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 const uri = process.env.MONGODB_URI;
 const dbName = 'backtesting_db';
