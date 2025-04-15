@@ -5,9 +5,17 @@ const { processTweets } = require('../services/tweetsService');
 const { fetchAndUpdateCoins } = require('../services/coinsService');
 const { messageSender } = require('../services/messageSender');
 const { addSubscriber } = require('../services/addSubscribers');
-const { processCSV } = require('../services/process-signal-multi-strategies')
+const { processCSV } = require('../services/process-signal-multi-strategies');
+const { updateInfluencerScores } = require('../services/updateInfluencerScores');
 
 function startCronJobs() {
+    // updateInfluencerScores Every Sunday at midnight
+    cron.schedule('0 0 0 * * 0', async () => {
+        console.log('Starting influencer scores update at:', new Date().toISOString());
+        await updateInfluencerScores();
+        console.log('Completed influencer scores update at:', new Date().toISOString());
+    });
+
     // updateSubscribers will run every 2 hours 
     cron.schedule('*/10 * * * *', async () => {
         console.log('Starting active subscription updater at:', new Date().toISOString());
@@ -56,6 +64,8 @@ function startCronJobs() {
     // processTweets();
     // console.log('Starting message sender job at:', new Date().toISOString());
     // messageSender();
+    //  console.log('Starting influencer scores update at:', new Date().toISOString());
+    // updateInfluencerScores();
 
     // const twitterHandles = [
     //     "Steve_Cryptoo",
