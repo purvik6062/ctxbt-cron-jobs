@@ -1,14 +1,20 @@
+require('dotenv').config();
 const fs = require('fs');
 const Papa = require('papaparse');
 const { MongoClient } = require('mongodb');
 const OpenAI = require('openai');
-const dotenv = require('dotenv');
+const lighthouse = require('@lighthouse-web3/sdk');
+const stringify = require('json-stable-stringify');
+const path = require('path');
 
-dotenv.config();
+// Explicitly provide the path to the .env file
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
+// Configuration
 const uri = process.env.MONGODB_URI;
 const dbName = 'backtesting_db';
 const collectionName = 'backtesting_results_with_reasoning';
+const tradesCollectionName = 'trades';
 
 // OpenAI API setup
 const openai = new OpenAI({
@@ -68,7 +74,7 @@ async function getReasoningFromLLM(tokenId, bestStrategy, strategyPnLs) {
     }
 }
 
-// Main function to process the CSV and store in MongoDB
+// Main function to process the CSV and store in MongoDB and Lighthouse
 async function processCSV(inputCSV) {
     const fileContent = fs.readFileSync(inputCSV, 'utf8');
     const parsed = Papa.parse(fileContent, { header: true });
@@ -106,26 +112,17 @@ async function processCSV(inputCSV) {
         console.log('Connected to MongoDB');
         const db = client.db(dbName);
         const collection = db.collection(collectionName);
+        const tradesCollection = db.collection(tradesCollectionName);
 
         // Process each row
         for (const row of rows) {
+            if (row["Final Exit Price"] && row["Final Exit Price"].trim() !== "") {
+                console.log(`Skipping row for token ${row["Token ID"]} as Exit Price is already calculated: ${row["Final Exit Price"]}`);
+                continue;
+            }
+
             const tokenId = row["Token ID"];
-            const tweetUrl = row["Tweet"];
-            
-            // Skip if no tweet URL is provided
-            if (!tweetUrl) {
-                console.warn(`Skipping row for token ${tokenId} as no Tweet URL is provided`);
-                continue;
-            }
-            
-            // Check if this tweet URL already exists in the database
-            const existingRecord = await collection.findOne({ "Tweet": tweetUrl });
-            
-            if (existingRecord) {
-                console.log(`Skipping row for token ${tokenId} as Tweet URL already exists in database: ${tweetUrl}`);
-                continue;
-            }
-            
+            const twitterAccount = row["Twitter Account"];
             if (!priceCache[tokenId]) {
                 console.warn(`Skipping row due to no price data for ${tokenId}`);
                 continue;
@@ -139,7 +136,6 @@ async function processCSV(inputCSV) {
                 continue;
             }
 
-            // **Change 2: Parse Max Exit Time**
             let maxExitTimestamp;
             try {
                 maxExitTimestamp = parseDateToTimestamp(row["Max Exit Time"]);
@@ -181,12 +177,11 @@ async function processCSV(inputCSV) {
                 }
             }
 
-            // **Change 3: Process prices with Max Exit Time check**
+            // Process prices with Max Exit Time check
             for (const [ts, price] of prices) {
                 for (const [name, state] of Object.entries(strategyStates)) {
                     if (state.exitPrice !== null) continue;
 
-                    // Exit at this price if timestamp >= Max Exit Time
                     if (ts >= maxExitTimestamp) {
                         state.exitPrice = price;
                         continue;
@@ -202,7 +197,6 @@ async function processCSV(inputCSV) {
                             state.current_TP += state.increment;
                         }
                     } else {
-                        // Update price window for SMA and EMA
                         if (config.type === 'sma' || config.type === 'ema') {
                             state.priceWindow.push(price);
                             if (state.priceWindow.length > config.params.period) {
@@ -210,7 +204,6 @@ async function processCSV(inputCSV) {
                             }
                         }
 
-                        // Calculate MA
                         if (config.type === 'sma' && state.priceWindow.length >= config.params.period) {
                             state.ma = state.priceWindow.reduce((a, b) => a + b, 0) / state.priceWindow.length;
                         } else if (config.type === 'ema') {
@@ -225,18 +218,15 @@ async function processCSV(inputCSV) {
                             state.prevEMA = state.ma;
                         }
 
-                        // Check SL
                         if (price <= SL) {
                             state.exitPrice = SL;
                             continue;
                         }
 
-                        // Check TP1
                         if (price >= TP1) {
                             state.tp1Hit = true;
                         }
 
-                        // After TP1, apply strategy
                         if (state.tp1Hit) {
                             if (config.type === 'trailing') {
                                 if (price > state.peakPrice) {
@@ -255,10 +245,6 @@ async function processCSV(inputCSV) {
                 }
             }
 
-            // **Change 4: Do not set exitPrice to last price if not exited**
-            // Removed the previous code that set exitPrice to lastPrice
-
-            // **Change 5: Skip document if no strategy exited**
             const exitedStrategies = Object.entries(strategyStates).filter(([_, state]) => state.exitPrice !== null);
             if (exitedStrategies.length === 0) {
                 console.log(`Skipping row for token ${tokenId} as no strategy exited by Max Exit Time`);
@@ -275,7 +261,6 @@ async function processCSV(inputCSV) {
                 strategyPnLs[name] = pnl.toFixed(2) + "%";
             }
 
-            // Find best performing strategy among exited ones
             let bestPnL = -Infinity;
             let bestExitPrice = null;
             let bestStrategy = null;
@@ -291,16 +276,55 @@ async function processCSV(inputCSV) {
             document['Final P&L'] = bestPnL.toFixed(2) + "%";
             document['Best Strategy'] = bestStrategy;
 
-            // Get reasoning from LLM
             const reasoning = await getReasoningFromLLM(tokenId, bestStrategy, strategyPnLs);
             document['Reasoning'] = reasoning;
 
-            // Insert into MongoDB
+            // Store in MongoDB (original collection)
+            const insertResult = await collection.insertOne(document);
+            console.log(`Inserted document for token: ${tokenId} into MongoDB`);
+
+            // Prepare minimal object for IPFS
+            const ipfsDoc = {
+                "Signal Generation Date": row["Signal Generation Date"],
+                "Entry Price": row["Price at Tweet"],
+                "Coin ID": row["Token ID"],
+                "TP1": row["TP1"],
+                "TP2": row["TP2"],
+                "SL": row["SL"],
+                "Exit Price": document['Final Exit Price'],
+                "P&L": document['Final P&L'],
+                "Reasoning": document['Reasoning']
+            };
+
+            // Upload to Lighthouse (IPFS)
+            const documentJson = stringify(ipfsDoc);
+            const buffer = Buffer.from(documentJson);
+            console.log("API Key: ", process.env.LIGHTHOUSE_API_KEY);
+            console.log("Buffer length: ", buffer.length);
+            
             try {
-                await collection.insertOne(document);
-                console.log(`Inserted document for token: ${tokenId} with reasoning`);
+                const cidObj = await lighthouse.uploadBuffer(buffer, process.env.LIGHTHOUSE_API_KEY);
+                console.log("CID: ", cidObj);
+                
+                if (cidObj?.data?.Hash) {
+                    // Store trade metadata in MongoDB
+                    const tradeId = `${twitterAccount}_${row["Tweet Date"]}`; // Unique trade identifier
+                    await tradesCollection.insertOne({
+                        tradeId,
+                        cid: cidObj.data.Hash,
+                        timestamp: Date.now()
+                    });
+                    console.log(`Stored trade metadata for ${tradeId} with CID: ${cidObj.data.Hash}`);
+
+                    // Update the original trade document with the IPFS link
+                    await collection.updateOne(
+                        { _id: insertResult.insertedId },
+                        { $set: { "IPFS Link": `https://gateway.lighthouse.storage/ipfs/${cidObj.data.Hash}` } }
+                    );
+                    console.log(`Updated document for token: ${tokenId} with IPFS Link`);
+                }
             } catch (error) {
-                console.error(`Error inserting document for token: ${tokenId}`, error);
+                console.error(`Error uploading to Lighthouse: ${error.message}`);
             }
         }
     } catch (error) {
@@ -312,7 +336,5 @@ async function processCSV(inputCSV) {
 }
 
 // Run the script
-// processCSV('backtesting_testing.csv')
-//     .catch(error => console.error('Error:', error));
-
-module.exports = { processCSV };
+processCSV('backtesting_10_4_2025_1.csv')
+    .catch(error => console.error('Error:', error));
