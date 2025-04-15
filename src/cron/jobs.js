@@ -6,6 +6,7 @@ const { fetchAndUpdateCoins } = require('../services/coinsService');
 const { messageSender } = require('../services/messageSender');
 const { addSubscriber } = require('../services/addSubscribers');
 const { processCSV } = require('../services/process-signal-multi-strategies')
+const { pnlNormalization } = require('../services/pnlNormalization');
 
 function startCronJobs() {
     // updateSubscribers will run every 2 hours 
@@ -30,6 +31,11 @@ function startCronJobs() {
     cron.schedule('*/30 * * * *', async () => {
         processCSV('./backtesting.csv')
             .catch(error => console.error('Error:', error));
+    });
+
+    // pnl normalization job will run every 4 hours
+    cron.schedule('* */4 * * *', async () => {
+        await pnlNormalization();
     });
 
     console.log('Cron jobs are scheduled.');
