@@ -8,41 +8,65 @@ async function processAndSendTradingSignalMessage() {
         const db = client.db(dbName);
         const tradingSignalsCollection = db.collection(tradingSignalsCollectionName);
 
-        // Step 1: Fetch the top 10 documents where messageSent is false
+        // Step 1: Fetch documents where at least one subscriber hasn't received the message
         const documents = await tradingSignalsCollection
-            .find({ messageSent: false })
-            // .limit(10)  // Fetch only the first 10 documents
+            .find({
+                $or: [
+                    { messageSent: { $exists: false } },
+                    { messageSent: false },
+                    { "subscribers.sent": { $ne: true } }
+                ]
+            })
             .toArray();
 
         // Step 2: Process each document sequentially
         for (const doc of documents) {
             const { signal_message, subscribers, _id } = doc;
-            let allSentSuccessfully = true;
 
-            // Step 3: Send message to each subscriber
+            // Initialize sent status for subscribers if not exists
+            if (!doc.subscribers || !Array.isArray(doc.subscribers)) {
+                console.error(`Invalid subscribers format for document ${_id}`);
+                continue;
+            }
+
+            // Step 3: Send message to each subscriber who hasn't received it
             for (const subscriber of subscribers) {
+                // Skip if this subscriber has already received the message
+                if (subscriber.sent === true) {
+                    continue;
+                }
+
                 const payload = {
-                    username: subscriber,
+                    username: subscriber.username || subscriber, // Handle both object and string formats
                     message: signal_message
                 };
+
                 try {
                     await axios.post('https://telegram-msg-sender.ctxbt.com/api/telegram/send', payload);
-                    console.log(`Message sent to ${subscriber} for document ${_id}`);
+                    console.log(`Message sent to ${payload.username} for document ${_id}`);
+
+                    // Update the sent status for this specific subscriber
+                    await tradingSignalsCollection.updateOne(
+                        { _id: _id, "subscribers.username": payload.username },
+                        { $set: { "subscribers.$.sent": true } }
+                    );
                 } catch (error) {
-                    console.error(`Failed to send message to ${subscriber} for document ${_id}:`, error.message);
-                    allSentSuccessfully = false;
+                    console.error(`Failed to send message to ${payload.username} for document ${_id}:`, error.message);
                 }
             }
 
-            // Step 4: Update messageSent only if all sends were successful
-            if (allSentSuccessfully) {
-                await tradingSignalsCollection.updateOne(
-                    { _id: _id },
-                    { $set: { messageSent: true } }
-                );
-                console.log(`Updated document ${_id} with messageSent: true`);
-            } else {
-                console.log(`Did not update document ${_id} due to send failures`);
+            // Check if all subscribers have received the message
+            const allSubscribersSent = subscribers.every(sub => sub.sent === true);
+            if (allSubscribersSent) {
+                try {
+                    await tradingSignalsCollection.updateOne(
+                        { _id: _id },
+                        { $set: { messageSent: true } }
+                    );
+                    console.log(`All subscribers have received message for document ${_id}`);
+                } catch (updateError) {
+                    console.error(`Failed to update messageSent status for document ${_id}:`, updateError);
+                }
             }
         }
     } catch (error) {
