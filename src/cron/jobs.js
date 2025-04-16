@@ -8,6 +8,8 @@ const { addSubscriber } = require('../services/addSubscribers');
 const { processCSV } = require('../services/process-signal-multi-strategies');
 const { updateInfluencerScores } = require('../services/updateInfluencerScores');
 const { pnlNormalization } = require('../services/pnlNormalization');
+const { verifyAndUpdateAllUsersFollow } = require('../services/verifyFollows');
+const { verifyAndUpdateAllUsersRetweet } = require('../services/verifyRetweets');
 
 function startCronJobs() {
     // updateInfluencerScores Every Sunday at midnight
@@ -59,6 +61,19 @@ function startCronJobs() {
     cron.schedule('* */4 * * *', async () => {
         await pnlNormalization();
     });
+
+     // verifyFollows will run once every month (on the 1st day of the month at 00:00)
+    cron.schedule('0 0 1 * *', async () => {
+        console.log('Starting verifyFollows job at:', new Date().toISOString());
+        await verifyAndUpdateAllUsersFollow();
+    });
+
+    // verifyRetweets will run once every week (every Monday at 00:00)
+    cron.schedule('0 0 * * 1', async () => {
+        console.log('Starting verifyRetweets job at:', new Date().toISOString());
+        await verifyAndUpdateAllUsersRetweet();
+    });
+
 
     console.log('Cron jobs are scheduled.');
 
