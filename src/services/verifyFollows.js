@@ -44,7 +44,6 @@ async function verifyAndUpdateAllUsersFollow(project_handle) {
         {
           $set: {
             follow: data.follow,
-            user_protected: data.user_protected
           },
           $inc: {
             credits: data.follow ? 100 : 0
