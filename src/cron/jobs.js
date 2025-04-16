@@ -10,6 +10,7 @@ const { updateInfluencerScores } = require('../services/updateInfluencerScores')
 const { pnlNormalization } = require('../services/pnlNormalization');
 const { verifyAndUpdateAllUsersFollow } = require('../services/verifyFollows');
 const { verifyAndUpdateAllUsersRetweet } = require('../services/verifyRetweets');
+const { resetAllUsersCredits } = require('../services/resetCredits');
 
 function startCronJobs() {
     // updateInfluencerScores Every Sunday at midnight
@@ -72,6 +73,12 @@ function startCronJobs() {
     cron.schedule('0 0 * * 1', async () => {
         console.log('Starting verifyRetweets job at:', new Date().toISOString());
         await verifyAndUpdateAllUsersRetweet();
+    });
+
+    // resetCredits will run once every month (on the 1st day of the month at 00:00)
+    cron.schedule('0 0 1 * *', async () => {
+        console.log('Starting resetCredits job at:', new Date().toISOString());
+        await resetAllUsersCredits();
     });
 
 

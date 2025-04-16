@@ -80,8 +80,6 @@ async function verifyAndUpdateAllUsersRetweet(next_cursor = '') {
         twitterUsername: user.twitterUsername,
         twitterId: user.twitterId,
         retweet: data.retweet,
-        user_protected: data.user_protected,
-        next_cursor: data.next_cursor || next_cursor,
         checked_tweet: tweet_link
       };
     } catch (error) {
