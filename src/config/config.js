@@ -2,9 +2,7 @@
 const dotenv = require('dotenv');
 const path = require('path');
 
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
-
-console.log("mongo uri", process.env.MONGODB_URI)
+dotenv.config();
 
 module.exports = {
     mongoUri: process.env.MONGODB_URI,

@@ -1,4 +1,4 @@
-require('dotenv').config();
+const dotenv = require('dotenv');
 const fs = require('fs');
 const Papa = require('papaparse');
 const { MongoClient } = require('mongodb');
@@ -8,7 +8,7 @@ const stringify = require('json-stable-stringify');
 const path = require('path');
 
 // Explicitly provide the path to the .env file
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+dotenv.config();
 
 // Configuration
 const uri = process.env.MONGODB_URI;
@@ -301,11 +301,11 @@ async function processCSV(inputCSV) {
             const buffer = Buffer.from(documentJson);
             console.log("API Key: ", process.env.LIGHTHOUSE_API_KEY);
             console.log("Buffer length: ", buffer.length);
-            
+
             try {
                 const cidObj = await lighthouse.uploadBuffer(buffer, process.env.LIGHTHOUSE_API_KEY);
                 console.log("CID: ", cidObj);
-                
+
                 if (cidObj?.data?.Hash) {
                     // Store trade metadata in MongoDB
                     const tradeId = `${twitterAccount}_${row["Tweet Date"]}`; // Unique trade identifier
@@ -335,6 +335,7 @@ async function processCSV(inputCSV) {
     }
 }
 
-// Run the script
-processCSV('backtesting_10_4_2025_1.csv')
-    .catch(error => console.error('Error:', error));
+module.exports = { processCSV }
+// // Run the script
+// processCSV('backtesting_10_4_2025_1.csv')
+//     .catch(error => console.error('Error:', error));
