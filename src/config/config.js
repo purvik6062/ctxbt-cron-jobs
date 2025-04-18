@@ -1,5 +1,7 @@
 // src/config/config.js
 const dotenv = require('dotenv');
+const path = require('path');
+
 dotenv.config();
 
 module.exports = {
@@ -21,5 +23,6 @@ module.exports = {
     perplexity: {
         apiKey: process.env.PERPLEXITY_API_KEY,
         endpoint: 'https://api.perplexity.ai/v1/completions',
-    }
+    },
+    tweetScoutApiKey: process.env.TWEETSCOUT_API_KEY
 };

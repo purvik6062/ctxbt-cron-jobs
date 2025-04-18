@@ -13,8 +13,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@lighthouse-web3/sdk": "^0.3.7",
     "axios": "^1.8.1",
-    "dotenv": "^16.4.7",
+    "dotenv": "^16.5.0",
+    "json-stable-stringify": "^1.2.1",
     "mongodb": "^6.13.1",
     "node-cron": "^3.0.3",
     "openai": "^4.86.1",

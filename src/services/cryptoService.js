@@ -62,7 +62,7 @@ class CryptoService {
                 autoStart: true
             });
 
-            console.log('PQueue initialized successfully');
+            // console.log('PQueue initialized successfully');
         } catch (error) {
             console.error('Failed to initialize PQueue:', error);
             throw new Error('Failed to initialize queue system');

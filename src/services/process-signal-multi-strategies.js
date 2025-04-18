@@ -1,14 +1,20 @@
+const dotenv = require('dotenv');
 const fs = require('fs');
 const Papa = require('papaparse');
 const { MongoClient } = require('mongodb');
 const OpenAI = require('openai');
-const dotenv = require('dotenv');
+const lighthouse = require('@lighthouse-web3/sdk');
+const stringify = require('json-stable-stringify');
+const path = require('path');
 
+// Explicitly provide the path to the .env file
 dotenv.config();
 
+// Configuration
 const uri = process.env.MONGODB_URI;
 const dbName = 'backtesting_db';
 const collectionName = 'backtesting_results_with_reasoning';
+const tradesCollectionName = 'trades';
 
 // OpenAI API setup
 const openai = new OpenAI({
@@ -48,12 +54,13 @@ function calculateEMA(prevEMA, price, period) {
 }
 
 // Function to get reasoning from LLM
-async function getReasoningFromLLM(tokenId, bestStrategy, strategyPnLs) {
+async function getReasoningFromLLM(tokenId, bestStrategy, strategyPnLs, signalType) {
     const prompt = `
         For the token "${tokenId}", the best strategy was "${bestStrategy}" with a P&L of ${strategyPnLs[bestStrategy]}.
+        The signal type was "${signalType}" (${signalType === 'Put Options' ? 'bearish position where profit is made when price falls' : 'bullish position where profit is made when price rises'}).
         P&L values for all strategies:
         ${Object.entries(strategyPnLs).map(([strategy, pnl]) => `- ${strategy}: ${pnl}`).join('\n')}
-        Provide a brief reasoning (1-2 sentences) why "${bestStrategy}" might have been the best choice.
+        Provide a brief reasoning (1-2 sentences) why "${bestStrategy}" might have been the best choice for this ${signalType === 'Put Options' ? 'bearish' : 'bullish'} position.
     `;
 
     try {
@@ -68,7 +75,7 @@ async function getReasoningFromLLM(tokenId, bestStrategy, strategyPnLs) {
     }
 }
 
-// Main function to process the CSV and store in MongoDB
+// Main function to process the CSV and store in MongoDB and Lighthouse
 async function processCSV(inputCSV) {
     const fileContent = fs.readFileSync(inputCSV, 'utf8');
     const parsed = Papa.parse(fileContent, { header: true });
@@ -106,26 +113,18 @@ async function processCSV(inputCSV) {
         console.log('Connected to MongoDB');
         const db = client.db(dbName);
         const collection = db.collection(collectionName);
+        const tradesCollection = db.collection(tradesCollectionName);
 
         // Process each row
         for (const row of rows) {
+            if (row["Final Exit Price"] && row["Final Exit Price"].trim() !== "") {
+                console.log(`Skipping row for token ${row["Token ID"]} as Exit Price is already calculated: ${row["Final Exit Price"]}`);
+                continue;
+            }
+
             const tokenId = row["Token ID"];
-            const tweetUrl = row["Tweet"];
-            
-            // Skip if no tweet URL is provided
-            if (!tweetUrl) {
-                console.warn(`Skipping row for token ${tokenId} as no Tweet URL is provided`);
-                continue;
-            }
-            
-            // Check if this tweet URL already exists in the database
-            const existingRecord = await collection.findOne({ "Tweet": tweetUrl });
-            
-            if (existingRecord) {
-                console.log(`Skipping row for token ${tokenId} as Tweet URL already exists in database: ${tweetUrl}`);
-                continue;
-            }
-            
+            const twitterAccount = row["Twitter Account"];
+            const signalType = row["Signal Message"]; // Get the signal type (Buy, Put Options, Hold)
             if (!priceCache[tokenId]) {
                 console.warn(`Skipping row due to no price data for ${tokenId}`);
                 continue;
@@ -139,7 +138,6 @@ async function processCSV(inputCSV) {
                 continue;
             }
 
-            // **Change 2: Parse Max Exit Time**
             let maxExitTimestamp;
             try {
                 maxExitTimestamp = parseDateToTimestamp(row["Max Exit Time"]);
@@ -158,8 +156,17 @@ async function processCSV(inputCSV) {
             const TP1 = parseFloat(row["TP1"]);
             const SL = parseFloat(row["SL"]);
 
-            if (priceAtTweet > TP1 || priceAtTweet < SL) {
+            // For Put Options, our expectations are inverted - we want the price to drop
+            const isPutOptions = signalType === "Put Options";
+            
+            if (!isPutOptions && (priceAtTweet > TP1 || priceAtTweet < SL)) {
                 console.warn(`Invalid price conditions for ${tokenId}: Price at Tweet > TP1 or < SL`);
+                continue;
+            }
+
+            // For put options, the validation logic is inverted (we want price to fall)
+            if (isPutOptions && (priceAtTweet < TP1 || priceAtTweet > SL)) {
+                console.warn(`Invalid price conditions for Put Options ${tokenId}: Price at Tweet < TP1 or > SL`);
                 continue;
             }
 
@@ -170,23 +177,25 @@ async function processCSV(inputCSV) {
                     exitPrice: null,
                     tp1Hit: false,
                     peakPrice: priceAtTweet,
+                    lowestPrice: priceAtTweet, // For put options - track the lowest price
                     priceWindow: [],
                     ma: null,
-                    prevEMA: null
+                    prevEMA: null,
+                    isPutOptions: isPutOptions
                 };
                 if (config.type === 'dynamic_tp_sl') {
                     strategyStates[name].current_SL = SL;
                     strategyStates[name].current_TP = TP1;
-                    strategyStates[name].increment = TP1 - priceAtTweet;
+                    const diff = Math.abs(TP1 - priceAtTweet);
+                    strategyStates[name].increment = isPutOptions ? -diff : diff;
                 }
             }
 
-            // **Change 3: Process prices with Max Exit Time check**
+            // Process prices with Max Exit Time check
             for (const [ts, price] of prices) {
                 for (const [name, state] of Object.entries(strategyStates)) {
                     if (state.exitPrice !== null) continue;
 
-                    // Exit at this price if timestamp >= Max Exit Time
                     if (ts >= maxExitTimestamp) {
                         state.exitPrice = price;
                         continue;
@@ -195,14 +204,24 @@ async function processCSV(inputCSV) {
                     const config = strategies[name];
 
                     if (config.type === 'dynamic_tp_sl') {
-                        if (price <= state.current_SL) {
-                            state.exitPrice = state.current_SL;
-                        } else if (price >= state.current_TP) {
-                            state.current_SL = state.current_TP;
-                            state.current_TP += state.increment;
+                        if (state.isPutOptions) {
+                            // For Put Options, logic is reversed
+                            if (price >= state.current_SL) {
+                                state.exitPrice = state.current_SL;
+                            } else if (price <= state.current_TP) {
+                                state.current_SL = state.current_TP;
+                                state.current_TP += state.increment; // Will be negative for put options
+                            }
+                        } else {
+                            // Original Buy logic
+                            if (price <= state.current_SL) {
+                                state.exitPrice = state.current_SL;
+                            } else if (price >= state.current_TP) {
+                                state.current_SL = state.current_TP;
+                                state.current_TP += state.increment;
+                            }
                         }
                     } else {
-                        // Update price window for SMA and EMA
                         if (config.type === 'sma' || config.type === 'ema') {
                             state.priceWindow.push(price);
                             if (state.priceWindow.length > config.params.period) {
@@ -210,7 +229,6 @@ async function processCSV(inputCSV) {
                             }
                         }
 
-                        // Calculate MA
                         if (config.type === 'sma' && state.priceWindow.length >= config.params.period) {
                             state.ma = state.priceWindow.reduce((a, b) => a + b, 0) / state.priceWindow.length;
                         } else if (config.type === 'ema') {
@@ -225,29 +243,62 @@ async function processCSV(inputCSV) {
                             state.prevEMA = state.ma;
                         }
 
-                        // Check SL
-                        if (price <= SL) {
-                            state.exitPrice = SL;
-                            continue;
+                        if (state.isPutOptions) {
+                            // For Put Options
+                            if (price >= SL) {
+                                state.exitPrice = SL;
+                                continue;
+                            }
+
+                            if (price <= TP1) {
+                                state.tp1Hit = true;
+                            }
+
+                            if (price < state.lowestPrice) {
+                                state.lowestPrice = price;
+                            }
+                        } else {
+                            // For Buy
+                            if (price <= SL) {
+                                state.exitPrice = SL;
+                                continue;
+                            }
+
+                            if (price >= TP1) {
+                                state.tp1Hit = true;
+                            }
+                            
+                            if (price > state.peakPrice) {
+                                state.peakPrice = price;
+                            }
                         }
 
-                        // Check TP1
-                        if (price >= TP1) {
-                            state.tp1Hit = true;
-                        }
-
-                        // After TP1, apply strategy
                         if (state.tp1Hit) {
                             if (config.type === 'trailing') {
-                                if (price > state.peakPrice) {
-                                    state.peakPrice = price;
-                                }
-                                if (price <= state.peakPrice * (1 - config.params.trailPercent)) {
-                                    state.exitPrice = price;
+                                if (state.isPutOptions) {
+                                    // For Put Options - we exit when price rises by trail percent from the lowest
+                                    if (price >= state.lowestPrice * (1 + config.params.trailPercent)) {
+                                        state.exitPrice = price;
+                                    }
+                                } else {
+                                    // For Buy - we exit when price falls by trail percent from peak
+                                    if (price <= state.peakPrice * (1 - config.params.trailPercent)) {
+                                        state.exitPrice = price;
+                                    }
                                 }
                             } else if (config.type === 'sma' || config.type === 'ema') {
-                                if (state.ma !== null && price < state.ma) {
-                                    state.exitPrice = price;
+                                if (state.ma !== null) {
+                                    if (state.isPutOptions) {
+                                        // For Put Options - exit when price rises above MA
+                                        if (price > state.ma) {
+                                            state.exitPrice = price;
+                                        }
+                                    } else {
+                                        // For Buy - exit when price falls below MA
+                                        if (price < state.ma) {
+                                            state.exitPrice = price;
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -255,10 +306,6 @@ async function processCSV(inputCSV) {
                 }
             }
 
-            // **Change 4: Do not set exitPrice to last price if not exited**
-            // Removed the previous code that set exitPrice to lastPrice
-
-            // **Change 5: Skip document if no strategy exited**
             const exitedStrategies = Object.entries(strategyStates).filter(([_, state]) => state.exitPrice !== null);
             if (exitedStrategies.length === 0) {
                 console.log(`Skipping row for token ${tokenId} as no strategy exited by Max Exit Time`);
@@ -269,18 +316,29 @@ async function processCSV(inputCSV) {
             const document = { ...row };
             const strategyPnLs = {};
             for (const [name, state] of exitedStrategies) {
-                const pnl = ((state.exitPrice - priceAtTweet) / priceAtTweet) * 100;
+                let pnl;
+                if (state.isPutOptions) {
+                    // For Put Options - profit when price falls, loss when price rises
+                    pnl = ((priceAtTweet - state.exitPrice) / priceAtTweet) * 100;
+                } else {
+                    // For Buy - profit when price rises, loss when price falls
+                    pnl = ((state.exitPrice - priceAtTweet) / priceAtTweet) * 100;
+                }
                 document[`Exit Price (${name})`] = state.exitPrice;
                 document[`P&L (${name})`] = pnl.toFixed(2) + "%";
                 strategyPnLs[name] = pnl.toFixed(2) + "%";
             }
 
-            // Find best performing strategy among exited ones
             let bestPnL = -Infinity;
             let bestExitPrice = null;
             let bestStrategy = null;
             for (const [name, state] of exitedStrategies) {
-                const pnl = ((state.exitPrice - priceAtTweet) / priceAtTweet) * 100;
+                let pnl;
+                if (state.isPutOptions) {
+                    pnl = ((priceAtTweet - state.exitPrice) / priceAtTweet) * 100;
+                } else {
+                    pnl = ((state.exitPrice - priceAtTweet) / priceAtTweet) * 100;
+                }
                 if (pnl > bestPnL) {
                     bestPnL = pnl;
                     bestExitPrice = state.exitPrice;
@@ -291,16 +349,56 @@ async function processCSV(inputCSV) {
             document['Final P&L'] = bestPnL.toFixed(2) + "%";
             document['Best Strategy'] = bestStrategy;
 
-            // Get reasoning from LLM
-            const reasoning = await getReasoningFromLLM(tokenId, bestStrategy, strategyPnLs);
+            const reasoning = await getReasoningFromLLM(tokenId, bestStrategy, strategyPnLs, signalType);
             document['Reasoning'] = reasoning;
 
-            // Insert into MongoDB
+            // Store in MongoDB (original collection)
+            const insertResult = await collection.insertOne(document);
+            console.log(`Inserted document for token: ${tokenId} into MongoDB`);
+
+            // Prepare minimal object for IPFS
+            const ipfsDoc = {
+                "Signal Generation Date": row["Signal Generation Date"],
+                "Signal Type": signalType,
+                "Entry Price": row["Price at Tweet"],
+                "Coin ID": row["Token ID"],
+                "TP1": row["TP1"],
+                "TP2": row["TP2"],
+                "SL": row["SL"],
+                "Exit Price": document['Final Exit Price'],
+                "P&L": document['Final P&L'],
+                "Reasoning": document['Reasoning']
+            };
+
+            // Upload to Lighthouse (IPFS)
+            const documentJson = stringify(ipfsDoc);
+            const buffer = Buffer.from(documentJson);
+            console.log("API Key: ", process.env.LIGHTHOUSE_API_KEY);
+            console.log("Buffer length: ", buffer.length);
+
             try {
-                await collection.insertOne(document);
-                console.log(`Inserted document for token: ${tokenId} with reasoning`);
+                const cidObj = await lighthouse.uploadBuffer(buffer, process.env.LIGHTHOUSE_API_KEY);
+                console.log("CID: ", cidObj);
+
+                if (cidObj?.data?.Hash) {
+                    // Store trade metadata in MongoDB
+                    const tradeId = `${twitterAccount}_${row["Tweet Date"]}`; // Unique trade identifier
+                    await tradesCollection.insertOne({
+                        tradeId,
+                        cid: cidObj.data.Hash,
+                        timestamp: Date.now()
+                    });
+                    console.log(`Stored trade metadata for ${tradeId} with CID: ${cidObj.data.Hash}`);
+
+                    // Update the original trade document with the IPFS link
+                    await collection.updateOne(
+                        { _id: insertResult.insertedId },
+                        { $set: { "IPFS Link": `https://gateway.lighthouse.storage/ipfs/${cidObj.data.Hash}` } }
+                    );
+                    console.log(`Updated document for token: ${tokenId} with IPFS Link`);
+                }
             } catch (error) {
-                console.error(`Error inserting document for token: ${tokenId}`, error);
+                console.error(`Error uploading to Lighthouse: ${error.message}`);
             }
         }
     } catch (error) {
@@ -311,8 +409,7 @@ async function processCSV(inputCSV) {
     }
 }
 
-// Run the script
-// processCSV('backtesting_testing.csv')
+module.exports = { processCSV }
+// // Run the script
+// processCSV('backtesting_10_4_2025_1.csv')
 //     .catch(error => console.error('Error:', error));
-
-module.exports = { processCSV };

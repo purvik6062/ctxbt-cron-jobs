@@ -2,6 +2,8 @@
 const { MongoClient } = require('mongodb');
 const { mongoUri } = require('../config/config');
 
+require('dotenv').config();
+
 async function connect() {
     const client = new MongoClient(mongoUri);
     await client.connect();

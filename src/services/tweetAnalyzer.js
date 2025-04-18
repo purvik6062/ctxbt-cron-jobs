@@ -2,7 +2,7 @@
 const { OpenAI } = require('openai');
 const path = require('path');
 const coinsData = require(path.join(__dirname, '../utils/coins.json'));
-const { getDb } = require('../db/connection');
+const { connect } = require('../db/index');
 
 class TweetTradingAnalyzer {
     constructor(apiKey) {
@@ -14,7 +14,8 @@ class TweetTradingAnalyzer {
     }
 
     async initialize() {
-        this.db = await getDb();
+        const client = await connect();
+        this.db = client.db("backtesting_db");
     }
 
     initializeCoinsData(coinsData) {
@@ -137,12 +138,13 @@ ${JSON.stringify(
 
 Important guidelines:
 1. Account Impact Factor: ${impactFactor}
-2. Confidence Threshold: ${confidenceThreshold}
+2. Confidence Threshold for including trading signals: ${confidenceThreshold}
 3. For accounts with higher impact factors (${impactFactor}), be more lenient in including potential trading signals
 4. For accounts with lower impact factors, be more strict and only include high-confidence signals
 5. Consider the impact factor when determining if a tweet contains actionable trading information
 6. Higher impact accounts may have more subtle or indirect trading signals
 7. Lower impact accounts require more explicit trading signals
+8. Only include coins if your confidence in the trading signal meets or exceeds the confidence threshold (${confidenceThreshold})
 
 Respond with a array of coin ids of the discussed coins in the below format: 
 coin_ids: ['bitcoin', 'ethereum', 'solana', 'shiba-inu', 'dogecoin']
