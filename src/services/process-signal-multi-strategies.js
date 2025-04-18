@@ -54,12 +54,13 @@ function calculateEMA(prevEMA, price, period) {
 }
 
 // Function to get reasoning from LLM
-async function getReasoningFromLLM(tokenId, bestStrategy, strategyPnLs) {
+async function getReasoningFromLLM(tokenId, bestStrategy, strategyPnLs, signalType) {
     const prompt = `
         For the token "${tokenId}", the best strategy was "${bestStrategy}" with a P&L of ${strategyPnLs[bestStrategy]}.
+        The signal type was "${signalType}" (${signalType === 'Put Options' ? 'bearish position where profit is made when price falls' : 'bullish position where profit is made when price rises'}).
         P&L values for all strategies:
         ${Object.entries(strategyPnLs).map(([strategy, pnl]) => `- ${strategy}: ${pnl}`).join('\n')}
-        Provide a brief reasoning (1-2 sentences) why "${bestStrategy}" might have been the best choice.
+        Provide a brief reasoning (1-2 sentences) why "${bestStrategy}" might have been the best choice for this ${signalType === 'Put Options' ? 'bearish' : 'bullish'} position.
     `;
 
     try {
@@ -123,6 +124,7 @@ async function processCSV(inputCSV) {
 
             const tokenId = row["Token ID"];
             const twitterAccount = row["Twitter Account"];
+            const signalType = row["Signal Message"]; // Get the signal type (Buy, Put Options, Hold)
             if (!priceCache[tokenId]) {
                 console.warn(`Skipping row due to no price data for ${tokenId}`);
                 continue;
@@ -154,8 +156,17 @@ async function processCSV(inputCSV) {
             const TP1 = parseFloat(row["TP1"]);
             const SL = parseFloat(row["SL"]);
 
-            if (priceAtTweet > TP1 || priceAtTweet < SL) {
+            // For Put Options, our expectations are inverted - we want the price to drop
+            const isPutOptions = signalType === "Put Options";
+            
+            if (!isPutOptions && (priceAtTweet > TP1 || priceAtTweet < SL)) {
                 console.warn(`Invalid price conditions for ${tokenId}: Price at Tweet > TP1 or < SL`);
+                continue;
+            }
+
+            // For put options, the validation logic is inverted (we want price to fall)
+            if (isPutOptions && (priceAtTweet < TP1 || priceAtTweet > SL)) {
+                console.warn(`Invalid price conditions for Put Options ${tokenId}: Price at Tweet < TP1 or > SL`);
                 continue;
             }
 
@@ -166,14 +177,17 @@ async function processCSV(inputCSV) {
                     exitPrice: null,
                     tp1Hit: false,
                     peakPrice: priceAtTweet,
+                    lowestPrice: priceAtTweet, // For put options - track the lowest price
                     priceWindow: [],
                     ma: null,
-                    prevEMA: null
+                    prevEMA: null,
+                    isPutOptions: isPutOptions
                 };
                 if (config.type === 'dynamic_tp_sl') {
                     strategyStates[name].current_SL = SL;
                     strategyStates[name].current_TP = TP1;
-                    strategyStates[name].increment = TP1 - priceAtTweet;
+                    const diff = Math.abs(TP1 - priceAtTweet);
+                    strategyStates[name].increment = isPutOptions ? -diff : diff;
                 }
             }
 
@@ -190,11 +204,22 @@ async function processCSV(inputCSV) {
                     const config = strategies[name];
 
                     if (config.type === 'dynamic_tp_sl') {
-                        if (price <= state.current_SL) {
-                            state.exitPrice = state.current_SL;
-                        } else if (price >= state.current_TP) {
-                            state.current_SL = state.current_TP;
-                            state.current_TP += state.increment;
+                        if (state.isPutOptions) {
+                            // For Put Options, logic is reversed
+                            if (price >= state.current_SL) {
+                                state.exitPrice = state.current_SL;
+                            } else if (price <= state.current_TP) {
+                                state.current_SL = state.current_TP;
+                                state.current_TP += state.increment; // Will be negative for put options
+                            }
+                        } else {
+                            // Original Buy logic
+                            if (price <= state.current_SL) {
+                                state.exitPrice = state.current_SL;
+                            } else if (price >= state.current_TP) {
+                                state.current_SL = state.current_TP;
+                                state.current_TP += state.increment;
+                            }
                         }
                     } else {
                         if (config.type === 'sma' || config.type === 'ema') {
@@ -218,26 +243,62 @@ async function processCSV(inputCSV) {
                             state.prevEMA = state.ma;
                         }
 
-                        if (price <= SL) {
-                            state.exitPrice = SL;
-                            continue;
-                        }
+                        if (state.isPutOptions) {
+                            // For Put Options
+                            if (price >= SL) {
+                                state.exitPrice = SL;
+                                continue;
+                            }
 
-                        if (price >= TP1) {
-                            state.tp1Hit = true;
+                            if (price <= TP1) {
+                                state.tp1Hit = true;
+                            }
+
+                            if (price < state.lowestPrice) {
+                                state.lowestPrice = price;
+                            }
+                        } else {
+                            // For Buy
+                            if (price <= SL) {
+                                state.exitPrice = SL;
+                                continue;
+                            }
+
+                            if (price >= TP1) {
+                                state.tp1Hit = true;
+                            }
+                            
+                            if (price > state.peakPrice) {
+                                state.peakPrice = price;
+                            }
                         }
 
                         if (state.tp1Hit) {
                             if (config.type === 'trailing') {
-                                if (price > state.peakPrice) {
-                                    state.peakPrice = price;
-                                }
-                                if (price <= state.peakPrice * (1 - config.params.trailPercent)) {
-                                    state.exitPrice = price;
+                                if (state.isPutOptions) {
+                                    // For Put Options - we exit when price rises by trail percent from the lowest
+                                    if (price >= state.lowestPrice * (1 + config.params.trailPercent)) {
+                                        state.exitPrice = price;
+                                    }
+                                } else {
+                                    // For Buy - we exit when price falls by trail percent from peak
+                                    if (price <= state.peakPrice * (1 - config.params.trailPercent)) {
+                                        state.exitPrice = price;
+                                    }
                                 }
                             } else if (config.type === 'sma' || config.type === 'ema') {
-                                if (state.ma !== null && price < state.ma) {
-                                    state.exitPrice = price;
+                                if (state.ma !== null) {
+                                    if (state.isPutOptions) {
+                                        // For Put Options - exit when price rises above MA
+                                        if (price > state.ma) {
+                                            state.exitPrice = price;
+                                        }
+                                    } else {
+                                        // For Buy - exit when price falls below MA
+                                        if (price < state.ma) {
+                                            state.exitPrice = price;
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -255,7 +316,14 @@ async function processCSV(inputCSV) {
             const document = { ...row };
             const strategyPnLs = {};
             for (const [name, state] of exitedStrategies) {
-                const pnl = ((state.exitPrice - priceAtTweet) / priceAtTweet) * 100;
+                let pnl;
+                if (state.isPutOptions) {
+                    // For Put Options - profit when price falls, loss when price rises
+                    pnl = ((priceAtTweet - state.exitPrice) / priceAtTweet) * 100;
+                } else {
+                    // For Buy - profit when price rises, loss when price falls
+                    pnl = ((state.exitPrice - priceAtTweet) / priceAtTweet) * 100;
+                }
                 document[`Exit Price (${name})`] = state.exitPrice;
                 document[`P&L (${name})`] = pnl.toFixed(2) + "%";
                 strategyPnLs[name] = pnl.toFixed(2) + "%";
@@ -265,7 +333,12 @@ async function processCSV(inputCSV) {
             let bestExitPrice = null;
             let bestStrategy = null;
             for (const [name, state] of exitedStrategies) {
-                const pnl = ((state.exitPrice - priceAtTweet) / priceAtTweet) * 100;
+                let pnl;
+                if (state.isPutOptions) {
+                    pnl = ((priceAtTweet - state.exitPrice) / priceAtTweet) * 100;
+                } else {
+                    pnl = ((state.exitPrice - priceAtTweet) / priceAtTweet) * 100;
+                }
                 if (pnl > bestPnL) {
                     bestPnL = pnl;
                     bestExitPrice = state.exitPrice;
@@ -276,7 +349,7 @@ async function processCSV(inputCSV) {
             document['Final P&L'] = bestPnL.toFixed(2) + "%";
             document['Best Strategy'] = bestStrategy;
 
-            const reasoning = await getReasoningFromLLM(tokenId, bestStrategy, strategyPnLs);
+            const reasoning = await getReasoningFromLLM(tokenId, bestStrategy, strategyPnLs, signalType);
             document['Reasoning'] = reasoning;
 
             // Store in MongoDB (original collection)
@@ -286,6 +359,7 @@ async function processCSV(inputCSV) {
             // Prepare minimal object for IPFS
             const ipfsDoc = {
                 "Signal Generation Date": row["Signal Generation Date"],
+                "Signal Type": signalType,
                 "Entry Price": row["Price at Tweet"],
                 "Coin ID": row["Token ID"],
                 "TP1": row["TP1"],
