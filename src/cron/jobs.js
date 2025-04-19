@@ -27,13 +27,13 @@ function startCronJobs() {
         await updateSubscribers();
     });
 
-    // Coins Update Job remains scheduled to run every day at midnight
+    // fetchAndUpdateCoins will run every 20 minutes
     cron.schedule('*/20 * * * *', async () => {
         console.log('Starting coins update job at:', new Date().toISOString());
         await fetchAndUpdateCoins();
     });
 
-    // messageSender will run every 3 hours
+    // messageSender will run every 20 minutes
     let isProcessing = false;
     cron.schedule('*/20 * * * *', async () => {
         if (isProcessing) {
@@ -53,7 +53,7 @@ function startCronJobs() {
         }
     });
 
-    // backtesting job will run every 4 hours
+    // backtesting job will run every 30 minutes
     cron.schedule('*/30 * * * *', async () => {
         processCSV('./backtesting.csv')
             .catch(error => console.error('Error:', error));
