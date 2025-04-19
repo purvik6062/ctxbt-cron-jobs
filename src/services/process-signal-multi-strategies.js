@@ -8,7 +8,7 @@ const stringify = require('json-stable-stringify');
 const path = require('path');
 
 // Explicitly provide the path to the .env file
-dotenv.config();
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 // Configuration
 const uri = process.env.MONGODB_URI;
@@ -81,6 +81,13 @@ async function processCSV(inputCSV) {
     const parsed = Papa.parse(fileContent, { header: true });
     const rows = parsed.data;
 
+    // Ensure CSV has backtesting_done column
+    if (!rows[0].hasOwnProperty('backtesting_done')) {
+        console.log('Adding backtesting_done column to CSV');
+        rows.forEach(row => row['backtesting_done'] = row['backtesting_done'] || 'false');
+        updateCSVFile(inputCSV, rows);
+    }
+
     const uniqueTokenIds = [...new Set(rows.map(row => row["Token ID"]))];
     const pricePromises = uniqueTokenIds.map(tokenId =>
         fetchPriceData(tokenId).then(data => [tokenId, data])
@@ -116,9 +123,16 @@ async function processCSV(inputCSV) {
         const tradesCollection = db.collection(tradesCollectionName);
 
         // Process each row
-        for (const row of rows) {
+        for (let i = 0; i < rows.length; i++) {
+            const row = rows[i];
+            if (row['backtesting_done'] === 'true' || row['backtesting_done'] === true) {
+                console.log(`Skipping row ${i+1} for token ${row["Token ID"]} as backtesting is already done`);
+                continue;
+            }
             if (row["Final Exit Price"] && row["Final Exit Price"].trim() !== "") {
-                console.log(`Skipping row for token ${row["Token ID"]} as Exit Price is already calculated: ${row["Final Exit Price"]}`);
+                console.log(`Skipping row ${i+1} for token ${row["Token ID"]} as Exit Price is already calculated: ${row["Final Exit Price"]}`);
+                row['backtesting_done'] = 'true';
+                updateCSVFile(inputCSV, rows);
                 continue;
             }
 
@@ -126,7 +140,9 @@ async function processCSV(inputCSV) {
             const twitterAccount = row["Twitter Account"];
             const signalType = row["Signal Message"]; // Get the signal type (Buy, Put Options, Hold)
             if (!priceCache[tokenId]) {
-                console.warn(`Skipping row due to no price data for ${tokenId}`);
+                console.warn(`Skipping row ${i+1} due to no price data for ${tokenId}`);
+                row['backtesting_done'] = 'false';
+                updateCSVFile(inputCSV, rows);
                 continue;
             }
 
@@ -134,7 +150,9 @@ async function processCSV(inputCSV) {
             try {
                 tweetTimestamp = parseDateToTimestamp(row["Tweet Date"]);
             } catch (error) {
-                console.error(`Error parsing Tweet Date for row: ${row["Tweet Date"]}`, error);
+                console.error(`Error parsing Tweet Date for row ${i+1}: ${row["Tweet Date"]}`, error);
+                row['backtesting_done'] = 'false';
+                updateCSVFile(inputCSV, rows);
                 continue;
             }
 
@@ -142,13 +160,17 @@ async function processCSV(inputCSV) {
             try {
                 maxExitTimestamp = parseDateToTimestamp(row["Max Exit Time"]);
             } catch (error) {
-                console.error(`Error parsing Max Exit Time for row: ${row["Max Exit Time"]}`, error);
+                console.error(`Error parsing Max Exit Time for row ${i+1}: ${row["Max Exit Time"]}`, error);
+                row['backtesting_done'] = 'false';
+                updateCSVFile(inputCSV, rows);
                 continue;
             }
 
             const prices = priceCache[tokenId].filter(([ts]) => ts >= tweetTimestamp);
             if (prices.length === 0) {
                 console.warn(`No price data after tweet date for ${tokenId}`);
+                row['backtesting_done'] = 'false';
+                updateCSVFile(inputCSV, rows);
                 continue;
             }
 
@@ -161,12 +183,16 @@ async function processCSV(inputCSV) {
             
             if (!isPutOptions && (priceAtTweet > TP1 || priceAtTweet < SL)) {
                 console.warn(`Invalid price conditions for ${tokenId}: Price at Tweet > TP1 or < SL`);
+                row['backtesting_done'] = 'false';
+                updateCSVFile(inputCSV, rows);
                 continue;
             }
 
             // For put options, the validation logic is inverted (we want price to fall)
             if (isPutOptions && (priceAtTweet < TP1 || priceAtTweet > SL)) {
                 console.warn(`Invalid price conditions for Put Options ${tokenId}: Price at Tweet < TP1 or > SL`);
+                row['backtesting_done'] = 'false';
+                updateCSVFile(inputCSV, rows);
                 continue;
             }
 
@@ -308,7 +334,9 @@ async function processCSV(inputCSV) {
 
             const exitedStrategies = Object.entries(strategyStates).filter(([_, state]) => state.exitPrice !== null);
             if (exitedStrategies.length === 0) {
-                console.log(`Skipping row for token ${tokenId} as no strategy exited by Max Exit Time`);
+                console.log(`Skipping row ${i+1} for token ${tokenId} as no strategy exited by Max Exit Time`);
+                row['backtesting_done'] = 'false';
+                updateCSVFile(inputCSV, rows);
                 continue;
             }
 
@@ -348,6 +376,7 @@ async function processCSV(inputCSV) {
             document['Final Exit Price'] = bestExitPrice;
             document['Final P&L'] = bestPnL.toFixed(2) + "%";
             document['Best Strategy'] = bestStrategy;
+            document['backtesting_done'] = 'true';
 
             const reasoning = await getReasoningFromLLM(tokenId, bestStrategy, strategyPnLs, signalType);
             document['Reasoning'] = reasoning;
@@ -355,6 +384,10 @@ async function processCSV(inputCSV) {
             // Store in MongoDB (original collection)
             const insertResult = await collection.insertOne(document);
             console.log(`Inserted document for token: ${tokenId} into MongoDB`);
+
+            // Update CSV file to mark this row as processed
+            row['backtesting_done'] = 'true';
+            updateCSVFile(inputCSV, rows);
 
             // Prepare minimal object for IPFS
             const ipfsDoc = {
@@ -386,14 +419,15 @@ async function processCSV(inputCSV) {
                     await tradesCollection.insertOne({
                         tradeId,
                         cid: cidObj.data.Hash,
-                        timestamp: Date.now()
+                        timestamp: Date.now(),
+                        backtesting_done: true
                     });
                     console.log(`Stored trade metadata for ${tradeId} with CID: ${cidObj.data.Hash}`);
 
                     // Update the original trade document with the IPFS link
                     await collection.updateOne(
                         { _id: insertResult.insertedId },
-                        { $set: { "IPFS Link": `https://gateway.lighthouse.storage/ipfs/${cidObj.data.Hash}` } }
+                        { $set: { "IPFS Link": `https://gateway.lighthouse.storage/ipfs/${cidObj.data.Hash}`, backtesting_done: true } }
                     );
                     console.log(`Updated document for token: ${tokenId} with IPFS Link`);
                 }
@@ -409,7 +443,14 @@ async function processCSV(inputCSV) {
     }
 }
 
-module.exports = { processCSV }
+// Function to update CSV file with modified rows
+function updateCSVFile(filePath, rows) {
+    const csv = Papa.unparse(rows);
+    fs.writeFileSync(filePath, csv);
+    console.log(`Updated CSV file: ${filePath}`);
+}
+
+// module.exports = { processCSV }
 // // Run the script
-// processCSV('backtesting_10_4_2025_1.csv')
-//     .catch(error => console.error('Error:', error));
+processCSV('../../backtesting.csv')
+    .catch(error => console.error('Error:', error));
