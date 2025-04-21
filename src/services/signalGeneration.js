@@ -40,7 +40,7 @@ function escapeCSV(value) {
 function generateMessage(data) {
     const heading = {
         'Buy': '🚀 **Bullish Alert** 🚀',
-        'Sell': '🐻 **Bearish Warning** 🐻',
+        'Put Options': '🐻 **Bearish Put Option** 🐻',
         'Hold': '⏳ **Hold Steady** ⏳'
     }[data.signal] || '⚠️ **Signal** ⚠️';
 
@@ -59,6 +59,7 @@ ${heading}
 ${targets}
 ${stopLoss}
 ${timeline}
+${maxExit}
 
 💡 **Trade Tip**:
 ${data.tradeTip}
@@ -96,7 +97,7 @@ function generatePrompt(tweetContent, marketData) {
 
 {
   "token": "${marketData.token} (${marketData.coin_id})",
-  "signal": "Buy/Sell/Hold",
+  "signal": "Buy/Put Options/Hold",
   "currentPrice": ${marketData.current_data.price_usd}.toFixed(4),
   "targets": [num1 (Target Price 1), num2 (Target Price 2)],
   "stopLoss": num,
@@ -111,6 +112,7 @@ Please provide only the JSON object without any additional text.
 1. Ensure strict, valid JSON required
 2. Do not include any additional text, analysis, or sections beyond this format. Only output the completed trading signal as shown above.
 3. Output only the JSON object, no additional text.
+4. When analysis suggests a bearish outlook, use "Put Options" instead of "Sell" as the signal value.
 `;
 }
 

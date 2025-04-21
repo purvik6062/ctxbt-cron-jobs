@@ -4,18 +4,30 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "lint": "eslint src/",
+    "build": "echo 'Build completed'",
+    "security-check": "npm audit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@lighthouse-web3/sdk": "^0.3.7",
     "axios": "^1.8.1",
-    "dotenv": "^16.4.7",
+    "dotenv": "^16.5.0",
+    "json-stable-stringify": "^1.2.1",
     "mongodb": "^6.13.1",
     "node-cron": "^3.0.3",
     "openai": "^4.86.1",
     "p-queue": "^8.1.0",
     "papaparse": "^5.5.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.12",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1"
   }
 }

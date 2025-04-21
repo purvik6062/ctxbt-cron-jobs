@@ -1,4 +1,4 @@
-require('dotenv').config();
+const dotenv = require('dotenv');
 const fs = require('fs');
 const Papa = require('papaparse');
 const { MongoClient } = require('mongodb');
@@ -54,12 +54,13 @@ function calculateEMA(prevEMA, price, period) {
 }
 
 // Function to get reasoning from LLM
-async function getReasoningFromLLM(tokenId, bestStrategy, strategyPnLs) {
+async function getReasoningFromLLM(tokenId, bestStrategy, strategyPnLs, signalType) {
     const prompt = `
         For the token "${tokenId}", the best strategy was "${bestStrategy}" with a P&L of ${strategyPnLs[bestStrategy]}.
+        The signal type was "${signalType}" (${signalType === 'Put Options' ? 'bearish position where profit is made when price falls' : 'bullish position where profit is made when price rises'}).
         P&L values for all strategies:
         ${Object.entries(strategyPnLs).map(([strategy, pnl]) => `- ${strategy}: ${pnl}`).join('\n')}
-        Provide a brief reasoning (1-2 sentences) why "${bestStrategy}" might have been the best choice.
+        Provide a brief reasoning (1-2 sentences) why "${bestStrategy}" might have been the best choice for this ${signalType === 'Put Options' ? 'bearish' : 'bullish'} position.
     `;
 
     try {
@@ -79,6 +80,13 @@ async function processCSV(inputCSV) {
     const fileContent = fs.readFileSync(inputCSV, 'utf8');
     const parsed = Papa.parse(fileContent, { header: true });
     const rows = parsed.data;
+
+    // Ensure CSV has backtesting_done column
+    if (!rows[0].hasOwnProperty('backtesting_done')) {
+        console.log('Adding backtesting_done column to CSV');
+        rows.forEach(row => row['backtesting_done'] = row['backtesting_done'] || 'false');
+        updateCSVFile(inputCSV, rows);
+    }
 
     const uniqueTokenIds = [...new Set(rows.map(row => row["Token ID"]))];
     const pricePromises = uniqueTokenIds.map(tokenId =>
@@ -113,16 +121,26 @@ async function processCSV(inputCSV) {
         const tradesCollection = db.collection(tradesCollectionName);
 
         // Process each row
-        for (const row of rows) {
+        for (let i = 0; i < rows.length; i++) {
+            const row = rows[i];
+            if (row['backtesting_done'] === 'true' || row['backtesting_done'] === true) {
+                console.log(`Skipping row ${i+1} for token ${row["Token ID"]} as backtesting is already done`);
+                continue;
+            }
             if (row["Final Exit Price"] && row["Final Exit Price"].trim() !== "") {
-                console.log(`Skipping row for token ${row["Token ID"]} as Exit Price is already calculated: ${row["Final Exit Price"]}`);
+                console.log(`Skipping row ${i+1} for token ${row["Token ID"]} as Exit Price is already calculated: ${row["Final Exit Price"]}`);
+                row['backtesting_done'] = 'true';
+                updateCSVFile(inputCSV, rows);
                 continue;
             }
 
             const tokenId = row["Token ID"];
             const twitterAccount = row["Twitter Account"];
+            const signalType = row["Signal Message"]; // Get the signal type (Buy, Put Options, Hold)
             if (!priceCache[tokenId]) {
-                console.warn(`Skipping row due to no price data for ${tokenId}`);
+                console.warn(`Skipping row ${i+1} due to no price data for ${tokenId}`);
+                row['backtesting_done'] = 'false';
+                updateCSVFile(inputCSV, rows);
                 continue;
             }
 
@@ -130,7 +148,9 @@ async function processCSV(inputCSV) {
             try {
                 tweetTimestamp = parseDateToTimestamp(row["Tweet Date"]);
             } catch (error) {
-                console.error(`Error parsing Tweet Date for row: ${row["Tweet Date"]}`, error);
+                console.error(`Error parsing Tweet Date for row ${i+1}: ${row["Tweet Date"]}`, error);
+                row['backtesting_done'] = 'false';
+                updateCSVFile(inputCSV, rows);
                 continue;
             }
 
@@ -138,13 +158,17 @@ async function processCSV(inputCSV) {
             try {
                 maxExitTimestamp = parseDateToTimestamp(row["Max Exit Time"]);
             } catch (error) {
-                console.error(`Error parsing Max Exit Time for row: ${row["Max Exit Time"]}`, error);
+                console.error(`Error parsing Max Exit Time for row ${i+1}: ${row["Max Exit Time"]}`, error);
+                row['backtesting_done'] = 'false';
+                updateCSVFile(inputCSV, rows);
                 continue;
             }
 
             const prices = priceCache[tokenId].filter(([ts]) => ts >= tweetTimestamp);
             if (prices.length === 0) {
                 console.warn(`No price data after tweet date for ${tokenId}`);
+                row['backtesting_done'] = 'false';
+                updateCSVFile(inputCSV, rows);
                 continue;
             }
 
@@ -152,8 +176,21 @@ async function processCSV(inputCSV) {
             const TP1 = parseFloat(row["TP1"]);
             const SL = parseFloat(row["SL"]);
 
-            if (priceAtTweet > TP1 || priceAtTweet < SL) {
+            // For Put Options, our expectations are inverted - we want the price to drop
+            const isPutOptions = signalType === "Put Options";
+            
+            if (!isPutOptions && (priceAtTweet > TP1 || priceAtTweet < SL)) {
                 console.warn(`Invalid price conditions for ${tokenId}: Price at Tweet > TP1 or < SL`);
+                row['backtesting_done'] = 'false';
+                updateCSVFile(inputCSV, rows);
+                continue;
+            }
+
+            // For put options, the validation logic is inverted (we want price to fall)
+            if (isPutOptions && (priceAtTweet < TP1 || priceAtTweet > SL)) {
+                console.warn(`Invalid price conditions for Put Options ${tokenId}: Price at Tweet < TP1 or > SL`);
+                row['backtesting_done'] = 'false';
+                updateCSVFile(inputCSV, rows);
                 continue;
             }
 
@@ -164,14 +201,17 @@ async function processCSV(inputCSV) {
                     exitPrice: null,
                     tp1Hit: false,
                     peakPrice: priceAtTweet,
+                    lowestPrice: priceAtTweet, // For put options - track the lowest price
                     priceWindow: [],
                     ma: null,
-                    prevEMA: null
+                    prevEMA: null,
+                    isPutOptions: isPutOptions
                 };
                 if (config.type === 'dynamic_tp_sl') {
                     strategyStates[name].current_SL = SL;
                     strategyStates[name].current_TP = TP1;
-                    strategyStates[name].increment = TP1 - priceAtTweet;
+                    const diff = Math.abs(TP1 - priceAtTweet);
+                    strategyStates[name].increment = isPutOptions ? -diff : diff;
                 }
             }
 
@@ -188,11 +228,22 @@ async function processCSV(inputCSV) {
                     const config = strategies[name];
 
                     if (config.type === 'dynamic_tp_sl') {
-                        if (price <= state.current_SL) {
-                            state.exitPrice = state.current_SL;
-                        } else if (price >= state.current_TP) {
-                            state.current_SL = state.current_TP;
-                            state.current_TP += state.increment;
+                        if (state.isPutOptions) {
+                            // For Put Options, logic is reversed
+                            if (price >= state.current_SL) {
+                                state.exitPrice = state.current_SL;
+                            } else if (price <= state.current_TP) {
+                                state.current_SL = state.current_TP;
+                                state.current_TP += state.increment; // Will be negative for put options
+                            }
+                        } else {
+                            // Original Buy logic
+                            if (price <= state.current_SL) {
+                                state.exitPrice = state.current_SL;
+                            } else if (price >= state.current_TP) {
+                                state.current_SL = state.current_TP;
+                                state.current_TP += state.increment;
+                            }
                         }
                     } else {
                         if (config.type === 'sma' || config.type === 'ema') {
@@ -216,26 +267,62 @@ async function processCSV(inputCSV) {
                             state.prevEMA = state.ma;
                         }
 
-                        if (price <= SL) {
-                            state.exitPrice = SL;
-                            continue;
-                        }
+                        if (state.isPutOptions) {
+                            // For Put Options
+                            if (price >= SL) {
+                                state.exitPrice = SL;
+                                continue;
+                            }
 
-                        if (price >= TP1) {
-                            state.tp1Hit = true;
+                            if (price <= TP1) {
+                                state.tp1Hit = true;
+                            }
+
+                            if (price < state.lowestPrice) {
+                                state.lowestPrice = price;
+                            }
+                        } else {
+                            // For Buy
+                            if (price <= SL) {
+                                state.exitPrice = SL;
+                                continue;
+                            }
+
+                            if (price >= TP1) {
+                                state.tp1Hit = true;
+                            }
+                            
+                            if (price > state.peakPrice) {
+                                state.peakPrice = price;
+                            }
                         }
 
                         if (state.tp1Hit) {
                             if (config.type === 'trailing') {
-                                if (price > state.peakPrice) {
-                                    state.peakPrice = price;
-                                }
-                                if (price <= state.peakPrice * (1 - config.params.trailPercent)) {
-                                    state.exitPrice = price;
+                                if (state.isPutOptions) {
+                                    // For Put Options - we exit when price rises by trail percent from the lowest
+                                    if (price >= state.lowestPrice * (1 + config.params.trailPercent)) {
+                                        state.exitPrice = price;
+                                    }
+                                } else {
+                                    // For Buy - we exit when price falls by trail percent from peak
+                                    if (price <= state.peakPrice * (1 - config.params.trailPercent)) {
+                                        state.exitPrice = price;
+                                    }
                                 }
                             } else if (config.type === 'sma' || config.type === 'ema') {
-                                if (state.ma !== null && price < state.ma) {
-                                    state.exitPrice = price;
+                                if (state.ma !== null) {
+                                    if (state.isPutOptions) {
+                                        // For Put Options - exit when price rises above MA
+                                        if (price > state.ma) {
+                                            state.exitPrice = price;
+                                        }
+                                    } else {
+                                        // For Buy - exit when price falls below MA
+                                        if (price < state.ma) {
+                                            state.exitPrice = price;
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -245,7 +332,9 @@ async function processCSV(inputCSV) {
 
             const exitedStrategies = Object.entries(strategyStates).filter(([_, state]) => state.exitPrice !== null);
             if (exitedStrategies.length === 0) {
-                console.log(`Skipping row for token ${tokenId} as no strategy exited by Max Exit Time`);
+                console.log(`Skipping row ${i+1} for token ${tokenId} as no strategy exited by Max Exit Time`);
+                row['backtesting_done'] = 'false';
+                updateCSVFile(inputCSV, rows);
                 continue;
             }
 
@@ -253,7 +342,14 @@ async function processCSV(inputCSV) {
             const document = { ...row };
             const strategyPnLs = {};
             for (const [name, state] of exitedStrategies) {
-                const pnl = ((state.exitPrice - priceAtTweet) / priceAtTweet) * 100;
+                let pnl;
+                if (state.isPutOptions) {
+                    // For Put Options - profit when price falls, loss when price rises
+                    pnl = ((priceAtTweet - state.exitPrice) / priceAtTweet) * 100;
+                } else {
+                    // For Buy - profit when price rises, loss when price falls
+                    pnl = ((state.exitPrice - priceAtTweet) / priceAtTweet) * 100;
+                }
                 document[`Exit Price (${name})`] = state.exitPrice;
                 document[`P&L (${name})`] = pnl.toFixed(2) + "%";
                 strategyPnLs[name] = pnl.toFixed(2) + "%";
@@ -263,7 +359,12 @@ async function processCSV(inputCSV) {
             let bestExitPrice = null;
             let bestStrategy = null;
             for (const [name, state] of exitedStrategies) {
-                const pnl = ((state.exitPrice - priceAtTweet) / priceAtTweet) * 100;
+                let pnl;
+                if (state.isPutOptions) {
+                    pnl = ((priceAtTweet - state.exitPrice) / priceAtTweet) * 100;
+                } else {
+                    pnl = ((state.exitPrice - priceAtTweet) / priceAtTweet) * 100;
+                }
                 if (pnl > bestPnL) {
                     bestPnL = pnl;
                     bestExitPrice = state.exitPrice;
@@ -273,17 +374,23 @@ async function processCSV(inputCSV) {
             document['Final Exit Price'] = bestExitPrice;
             document['Final P&L'] = bestPnL.toFixed(2) + "%";
             document['Best Strategy'] = bestStrategy;
+            document['backtesting_done'] = 'true';
 
-            const reasoning = await getReasoningFromLLM(tokenId, bestStrategy, strategyPnLs);
+            const reasoning = await getReasoningFromLLM(tokenId, bestStrategy, strategyPnLs, signalType);
             document['Reasoning'] = reasoning;
 
             // Store in MongoDB (original collection)
             const insertResult = await collection.insertOne(document);
             console.log(`Inserted document for token: ${tokenId} into MongoDB`);
 
+            // Update CSV file to mark this row as processed
+            row['backtesting_done'] = 'true';
+            updateCSVFile(inputCSV, rows);
+
             // Prepare minimal object for IPFS
             const ipfsDoc = {
                 "Signal Generation Date": row["Signal Generation Date"],
+                "Signal Type": signalType,
                 "Entry Price": row["Price at Tweet"],
                 "Coin ID": row["Token ID"],
                 "TP1": row["TP1"],
@@ -299,25 +406,26 @@ async function processCSV(inputCSV) {
             const buffer = Buffer.from(documentJson);
             console.log("API Key: ", process.env.LIGHTHOUSE_API_KEY);
             console.log("Buffer length: ", buffer.length);
-            
+
             try {
                 const cidObj = await lighthouse.uploadBuffer(buffer, process.env.LIGHTHOUSE_API_KEY);
                 console.log("CID: ", cidObj);
-                
+
                 if (cidObj?.data?.Hash) {
                     // Store trade metadata in MongoDB
                     const tradeId = `${twitterAccount}_${row["Tweet Date"]}`; // Unique trade identifier
                     await tradesCollection.insertOne({
                         tradeId,
                         cid: cidObj.data.Hash,
-                        timestamp: Date.now()
+                        timestamp: Date.now(),
+                        backtesting_done: true
                     });
                     console.log(`Stored trade metadata for ${tradeId} with CID: ${cidObj.data.Hash}`);
 
                     // Update the original trade document with the IPFS link
                     await collection.updateOne(
                         { _id: insertResult.insertedId },
-                        { $set: { "IPFS Link": `https://gateway.lighthouse.storage/ipfs/${cidObj.data.Hash}` } }
+                        { $set: { "IPFS Link": `https://gateway.lighthouse.storage/ipfs/${cidObj.data.Hash}`, backtesting_done: true } }
                     );
                     console.log(`Updated document for token: ${tokenId} with IPFS Link`);
                 }
@@ -330,6 +438,14 @@ async function processCSV(inputCSV) {
     }
 }
 
-// Run the script
-processCSV('backtesting_10_4_2025_1.csv')
+// Function to update CSV file with modified rows
+function updateCSVFile(filePath, rows) {
+    const csv = Papa.unparse(rows);
+    fs.writeFileSync(filePath, csv);
+    console.log(`Updated CSV file: ${filePath}`);
+}
+
+// module.exports = { processCSV }
+// // Run the script
+processCSV('../../backtesting.csv')
     .catch(error => console.error('Error:', error));

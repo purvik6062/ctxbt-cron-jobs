@@ -10,6 +10,7 @@ const { updateInfluencerScores } = require('../services/updateInfluencerScores')
 const { pnlNormalization } = require('../services/pnlNormalization');
 const { verifyAndUpdateAllUsersFollow } = require('../services/verifyFollows');
 const { verifyAndUpdateAllUsersRetweet } = require('../services/verifyRetweets');
+const { calculateMonthlyPayouts } = require('../services/payoutService');
 const { resetAllUsersCredits } = require('../services/resetCredits');
 
 function startCronJobs() {
@@ -26,13 +27,13 @@ function startCronJobs() {
         await updateSubscribers();
     });
 
-    // Coins Update Job remains scheduled to run every day at midnight
+    // fetchAndUpdateCoins will run every 20 minutes
     cron.schedule('*/20 * * * *', async () => {
         console.log('Starting coins update job at:', new Date().toISOString());
         await fetchAndUpdateCoins();
     });
 
-    // messageSender will run every 3 hours
+    // messageSender will run every 20 minutes
     let isProcessing = false;
     cron.schedule('*/20 * * * *', async () => {
         if (isProcessing) {
@@ -52,7 +53,7 @@ function startCronJobs() {
         }
     });
 
-    // backtesting job will run every 4 hours
+    // backtesting job will run every 30 minutes
     cron.schedule('*/30 * * * *', async () => {
         processCSV('./backtesting.csv')
             .catch(error => console.error('Error:', error));
@@ -63,7 +64,7 @@ function startCronJobs() {
         await pnlNormalization();
     });
 
-     // verifyFollows will run once every month (on the 1st day of the month at 00:00)
+    // verifyFollows will run once every month (on the 1st day of the month at 00:00)
     cron.schedule('0 0 1 * *', async () => {
         console.log('Starting verifyFollows job at:', new Date().toISOString());
         await verifyAndUpdateAllUsersFollow();
@@ -73,6 +74,13 @@ function startCronJobs() {
     cron.schedule('0 0 * * 1', async () => {
         console.log('Starting verifyRetweets job at:', new Date().toISOString());
         await verifyAndUpdateAllUsersRetweet();
+    });
+
+    // Calculate monthly payouts on the 1st of each month at 00:00
+    cron.schedule('0 0 1 * *', async () => {
+        console.log('Starting monthly payout calculation at:', new Date().toISOString());
+        await calculateMonthlyPayouts();
+        console.log('Completed monthly payout calculation at:', new Date().toISOString());
     });
 
     // resetCredits will run once every month (on the 1st day of the month at 00:00)
@@ -94,6 +102,8 @@ function startCronJobs() {
     // messageSender();
     //  console.log('Starting influencer scores update at:', new Date().toISOString());
     // updateInfluencerScores();
+    // console.log('Starting monthly payout calculation at:', new Date().toISOString());
+    // calculateMonthlyPayouts();
 
     // const twitterHandles = [
     //     "Steve_Cryptoo",
