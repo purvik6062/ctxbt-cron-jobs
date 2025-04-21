@@ -6,7 +6,7 @@ const OpenAI = require('openai');
 const lighthouse = require('@lighthouse-web3/sdk');
 const stringify = require('json-stable-stringify');
 const path = require('path');
-
+const { connect } = require('../db/index');
 // Explicitly provide the path to the .env file
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
@@ -105,10 +105,8 @@ async function processCSV(inputCSV) {
         'Dynamic TP/SL': { type: 'dynamic_tp_sl' }
     };
 
-    // Connect to MongoDB
-    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
     try {
-        await client.connect();
+        const client = await connect();
         console.log('Connected to MongoDB');
         const db = client.db(dbName);
         const collection = db.collection(collectionName);
@@ -329,9 +327,6 @@ async function processCSV(inputCSV) {
         }
     } catch (error) {
         console.error('Error processing CSV:', error);
-    } finally {
-        await client.close();
-        console.log('MongoDB connection closed');
     }
 }
 
