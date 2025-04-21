@@ -15,24 +15,45 @@ class PnLNormalizationService {
 
     async calculateWeeklyPnL() {
         try {
-            // Fetch PnL data directly from the database
-            const pnlData = await this.db.collection('backtesting_results_with_reasoning').find({}).toArray();
-            console.log("pnlData", pnlData)
+            // Calculate date range for the last week
+            const endDate = new Date();
+            const startDate = new Date(endDate.getTime() - 7 * 24 * 60 * 60 * 1000);
+            
+            // Fetch PnL data from the database for the last week
+            const pnlData = await this.db.collection('backtesting_results_with_reasoning')
+                .find({
+                    "Signal Generation Date": {
+                        $gte: startDate.toISOString(),
+                        $lte: endDate.toISOString()
+                    }
+                })
+                .toArray();
+            console.log("pnlData for last week", pnlData.length, "records from", startDate.toISOString(), "to", endDate.toISOString());
             
             // Group PnL by Twitter Account and calculate sum
             const accountPnL = {};
             pnlData.forEach(entry => {
-                const account = entry["Twitter Account"]; // Use the correct key for the account
-                const pnl = parseFloat(entry["Final P&L"]); // Use the correct key for P&L
+                const account = entry["Twitter Account"];
+                const pnlStr = entry["Final P&L"];
+                // Convert percentage string to number
+                let pnl = 0;
+                if (pnlStr && typeof pnlStr === 'string') {
+                    pnl = parseFloat(pnlStr.replace('%', ''));
+                } else if (typeof pnlStr === 'number') {
+                    pnl = pnlStr;
+                }
+                
                 if (!accountPnL[account]) {
                     accountPnL[account] = 0;
                 }
                 accountPnL[account] += pnl; // Sum the P&L for each account
             });
-
+            
             // Store weekly PnL data
             const weeklyPnL = {
                 timestamp: new Date(),
+                startDate: startDate,
+                endDate: endDate,
                 data: accountPnL
             };
 
@@ -119,18 +140,18 @@ class PnLNormalizationService {
 }
 
 // Add this section to allow direct execution
-if (require.main === module) {
-    (async () => {
-        const service = new PnLNormalizationService();
-        try {
-            const updatedImpactFactors = await service.processWeeklyNormalization();
-            console.log('Updated Impact Factors:', updatedImpactFactors);
-        } catch (error) {
-            console.error('Failed to process weekly normalization:', error);
-        } finally {
-            process.exit(); // Exit the process after completion
-        }
-    })();
-}
+// if (require.main === module) {
+//     (async () => {
+//         const service = new PnLNormalizationService();
+//         try {
+//             const updatedImpactFactors = await service.processWeeklyNormalization();
+//             console.log('Updated Impact Factors:', updatedImpactFactors);
+//         } catch (error) {
+//             console.error('Failed to process weekly normalization:', error);
+//         } finally {
+//             process.exit(); // Exit the process after completion
+//         }
+//     })();
+// }
 
 module.exports = new PnLNormalizationService(); 
