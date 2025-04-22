@@ -1,4 +1,4 @@
-const { connect } = require('../db'); // Database connection module
+const { connect, closeConnection } = require('../db'); // Database connection module
 const { dbName, tradingSignalsCollectionName } = require('../config/config'); // Configuration
 const axios = require('axios'); // For making HTTP requests to Telegram API
 
@@ -72,7 +72,8 @@ async function processAndSendTradingSignalMessage() {
     } catch (error) {
         console.error('Error in processAndSendTradingSignalMessage:', error);
     } finally {
-        await client.close();
+        // Use the new closeConnection function instead of client.close()
+        await closeConnection(client);
     }
 }
 

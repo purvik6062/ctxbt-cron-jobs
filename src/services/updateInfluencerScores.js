@@ -1,4 +1,4 @@
-const { connect } = require('../db/index');
+const { connect, closeConnection } = require('../db/index');
 const { tweetScoutApiKey, dbName } = require('../config/config');
 const axios = require('axios');
 
@@ -48,7 +48,7 @@ async function updateInfluencerScores() {
     } catch (error) {
         console.error('Error in updateInfluencerScores:', error);
     } finally {
-        await client.close();
+        await closeConnection(client);
         console.log('Database connection closed');
     }
 }

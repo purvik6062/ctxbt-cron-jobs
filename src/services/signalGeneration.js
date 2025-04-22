@@ -1,4 +1,4 @@
-const { connect } = require('../db');
+const { connect, closeConnection } = require('../db');
 const { dbName, influencerCollectionName, perplexity, tradingSignalsCollectionName } = require('../config/config');
 const CryptoService = require('./cryptoService');
 const axios = require('axios');
@@ -300,7 +300,7 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
     } catch (error) {
         console.error(`Error in processAndGenerateSignalsForTweets for ${twitterHandle}:`, error);
     } finally {
-        await client.close();
+        await closeConnection(client);
     }
 }
 

@@ -2,7 +2,7 @@
 const { OpenAI } = require('openai');
 const path = require('path');
 const coinsData = require(path.join(__dirname, '../utils/coins.json'));
-const { connect } = require('../db/index');
+const { connect, closeConnection } = require('../db/index');
 
 class TweetTradingAnalyzer {
     constructor(apiKey) {
@@ -11,11 +11,14 @@ class TweetTradingAnalyzer {
         this.symbolGroups = new Map();
         this.initializeCoinsData(coinsData);
         this.db = null;
+        this.client = null;
     }
 
     async initialize() {
+        // We won't store the client as a property, only use as needed in methods
         const client = await connect();
         this.db = client.db("backtesting_db");
+        return client;
     }
 
     initializeCoinsData(coinsData) {
@@ -31,10 +34,17 @@ class TweetTradingAnalyzer {
 
     async getImpactFactor(account) {
         try {
+            let client = null;
             if (!this.db) {
-                await this.initialize();
+                client = await this.initialize();
             }
             const impactFactorDoc = await this.db.collection('impact_factors').findOne({ account });
+
+            // Make sure to release the connection if we created one
+            if (client) {
+                await closeConnection(client);
+            }
+
             return impactFactorDoc ? impactFactorDoc.impactFactor : 1.0; // Default to 1.0 if no impact factor found
         } catch (error) {
             console.error('Error fetching impact factor:', error);
@@ -126,7 +136,7 @@ Please analyze this tweet in strict JSON format.`
 
     createSystemPrompt(relevantCoins, impactFactor) {
         const confidenceThreshold = this.calculateConfidenceThreshold(impactFactor);
-        
+
         return `You are an expert crypto trading analyst. Analyze the given tweet for coins or tokens being discussed.
 When analyzing tokens, use the following reference information to identify the exact token being discussed:
 ${JSON.stringify(

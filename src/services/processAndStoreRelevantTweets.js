@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { connect } = require('../db');
+const { connect, closeConnection } = require('../db');
 const { dbName, influencerCollectionName, openAI } = require('../config/config');
 const TweetTradingAnalyzer = require('./tweetAnalyzer');
 
@@ -155,7 +155,7 @@ async function processAndStoreRelevantTweets(twitterHandle, subscribers, tweetRe
     } catch (error) {
         console.error('Error processing tweets for', twitterHandle, error);
     } finally {
-        await client.close();
+        await closeConnection(client);
     }
 }
 
@@ -279,7 +279,7 @@ async function processAndStorePlatformTweets(twitterHandle, subscribers, tweetRe
     } catch (error) {
         console.error('Error processing platform tweets for', twitterHandle, error);
     } finally {
-        await client.close();
+        await closeConnection(client);
     }
 }
 

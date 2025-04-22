@@ -1,6 +1,6 @@
 // src/services/tweetsService.js
 const axios = require('axios');
-const { connect } = require('../db');
+const { connect, closeConnection } = require('../db');
 const { dbName, influencerCollectionName, scrapeEndpoint, scraperCredentials, openAI } = require('../config/config');
 const { processAndStoreTweetsForHandle } = require('./processAndStoreRelevantTweets');
 const { processAndGenerateSignalsForTweets } = require('./signalGeneration');
@@ -35,19 +35,19 @@ async function processTweets() {
         const influencerCollection = db.collection(influencerCollectionName);
         // Process only twitter handles with active subscribers
         const docs = await influencerCollection.find({ subscribers: { $exists: true, $ne: [] } }).toArray();
-        
+
         for (const doc of docs) {
-            const subscription = { 
+            const subscription = {
                 twitterHandleUsername: doc.twitterHandle,
                 account: doc.twitterHandle // Pass the account name for impact factor lookup
             };
-            
+
             const result = await scrapeTwitterAccount(subscription);
             if (result.success) {
                 // Pass the account information to the processing functions
                 await processAndStoreTweetsForHandle(
-                    subscription.twitterHandleUsername, 
-                    doc.subscribers, 
+                    subscription.twitterHandleUsername,
+                    doc.subscribers,
                     result.data,
                     subscription.account
                 );
@@ -64,7 +64,8 @@ async function processTweets() {
     } catch (error) {
         console.error('Error processing tweets:', error);
     } finally {
-        await client.close();
+        // Use closeConnection instead of client.close()
+        await closeConnection(client);
     }
 }
 

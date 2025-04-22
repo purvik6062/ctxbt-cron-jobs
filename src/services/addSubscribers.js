@@ -1,4 +1,4 @@
-const { connect } = require('../db');
+const { connect, closeConnection } = require('../db');
 const { dbName, tradingSignalsCollectionName } = require('../config/config');
 
 async function addSubscriber(twitterHandles, subscriber) {
@@ -18,7 +18,7 @@ async function addSubscriber(twitterHandles, subscriber) {
     } catch (error) {
         console.error("Error updating subscribers:", error);
     } finally {
-        client.close();
+        await closeConnection(client);
     }
 }
 

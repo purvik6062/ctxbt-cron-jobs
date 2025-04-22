@@ -6,12 +6,12 @@ const OpenAI = require('openai');
 const lighthouse = require('@lighthouse-web3/sdk');
 const stringify = require('json-stable-stringify');
 const path = require('path');
+const { connect, closeConnection } = require('../db'); // Import our connection functions
 
 // Explicitly provide the path to the .env file
 dotenv.config();
 
 // Configuration
-const uri = process.env.MONGODB_URI;
 const dbName = 'backtesting_db';
 const collectionName = 'backtesting_results_with_reasoning';
 const tradesCollectionName = 'trades';
@@ -106,10 +106,9 @@ async function processCSV(inputCSV) {
         'Dynamic TP/SL': { type: 'dynamic_tp_sl' }
     };
 
-    // Connect to MongoDB
-    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+    // Connect to MongoDB using our connection function
+    const client = await connect();
     try {
-        await client.connect();
         console.log('Connected to MongoDB');
         const db = client.db(dbName);
         const collection = db.collection(collectionName);
@@ -158,7 +157,7 @@ async function processCSV(inputCSV) {
 
             // For Put Options, our expectations are inverted - we want the price to drop
             const isPutOptions = signalType === "Put Options";
-            
+
             if (!isPutOptions && (priceAtTweet > TP1 || priceAtTweet < SL)) {
                 console.warn(`Invalid price conditions for ${tokenId}: Price at Tweet > TP1 or < SL`);
                 continue;
@@ -267,7 +266,7 @@ async function processCSV(inputCSV) {
                             if (price >= TP1) {
                                 state.tp1Hit = true;
                             }
-                            
+
                             if (price > state.peakPrice) {
                                 state.peakPrice = price;
                             }
@@ -404,7 +403,8 @@ async function processCSV(inputCSV) {
     } catch (error) {
         console.error('Error processing CSV:', error);
     } finally {
-        await client.close();
+        // Use our closeConnection function instead of client.close()
+        await closeConnection(client);
         console.log('MongoDB connection closed');
     }
 }

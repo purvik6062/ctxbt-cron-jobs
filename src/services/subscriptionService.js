@@ -1,5 +1,5 @@
 // src/services/subscriptionService.js
-const { connect } = require('../db');
+const { connect, closeConnection } = require('../db');
 const { dbName, userCollectionName, influencerCollectionName } = require('../config/config');
 
 async function updateSubscribers() {
@@ -44,7 +44,7 @@ async function updateSubscribers() {
     } catch (error) {
         console.error('Error updating subscribers:', error);
     } finally {
-        await client.close();
+        await closeConnection(client);
     }
 }
 
