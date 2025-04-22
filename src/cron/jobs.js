@@ -61,7 +61,9 @@ function startCronJobs() {
 
     // pnl normalization job will run every 4 hours
     cron.schedule('* */4 * * *', async () => {
-        await pnlNormalization();
+        console.log('Starting PnL normalization job at:', new Date().toISOString());
+        await pnlNormalization.processWeeklyNormalization();
+        console.log('Completed PnL normalization job at:', new Date().toISOString());
     });
 
     // verifyFollows will run once every month (on the 1st day of the month at 00:00)
