@@ -6,11 +6,12 @@ const OpenAI = require('openai');
 const lighthouse = require('@lighthouse-web3/sdk');
 const stringify = require('json-stable-stringify');
 const path = require('path');
-
+const { connect, closeConnection } = require('../db/index');
 // Explicitly provide the path to the .env file
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 // Configuration
+const uri = process.env.MONGODB_URI;
 const dbName = 'backtesting_db';
 const collectionName = 'backtesting_results_with_reasoning';
 const tradesCollectionName = 'trades';
@@ -112,10 +113,8 @@ async function processCSV(inputCSV) {
         'Dynamic TP/SL': { type: 'dynamic_tp_sl' }
     };
 
-    // Connect to MongoDB
-    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
     try {
-        await client.connect();
+        const client = await connect();
         console.log('Connected to MongoDB');
         const db = client.db(dbName);
         const collection = db.collection(collectionName);
@@ -179,7 +178,7 @@ async function processCSV(inputCSV) {
 
             // For Put Options, our expectations are inverted - we want the price to drop
             const isPutOptions = signalType === "Put Options";
-
+            
             if (!isPutOptions && (priceAtTweet > TP1 || priceAtTweet < SL)) {
                 console.warn(`Invalid price conditions for ${tokenId}: Price at Tweet > TP1 or < SL`);
                 row['backtesting_done'] = 'false';
@@ -292,7 +291,7 @@ async function processCSV(inputCSV) {
                             if (price >= TP1) {
                                 state.tp1Hit = true;
                             }
-
+                            
                             if (price > state.peakPrice) {
                                 state.peakPrice = price;
                             }
@@ -434,12 +433,22 @@ async function processCSV(inputCSV) {
                 console.error(`Error uploading to Lighthouse: ${error.message}`);
             }
         }
+        // Release the connection after processing
+        await closeConnection(client);
     } catch (error) {
         console.error('Error processing CSV:', error);
-    } finally {
-        await client.close();
-        console.log('MongoDB connection closed');
+        // Ensure connection is released even in case of error
+        if (client) {
+            await closeConnection(client);
+        }
     }
+}
+
+// Function to update CSV file with modified rows
+function updateCSVFile(filePath, rows) {
+    const csv = Papa.unparse(rows);
+    fs.writeFileSync(filePath, csv);
+    console.log(`Updated CSV file: ${filePath}`);
 }
 
 // module.exports = { processCSV }
