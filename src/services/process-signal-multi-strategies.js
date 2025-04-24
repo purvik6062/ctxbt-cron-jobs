@@ -451,7 +451,7 @@ function updateCSVFile(filePath, rows) {
     console.log(`Updated CSV file: ${filePath}`);
 }
 
-// module.exports = { processCSV }
+module.exports = { processCSV }
 // // Run the script
-processCSV('../../backtesting.csv')
-    .catch(error => console.error('Error:', error));
+// processCSV('../../backtesting.csv')
+//     .catch(error => console.error('Error:', error));

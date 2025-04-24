@@ -261,6 +261,26 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                                 messageSent: false
                             });
 
+                            // Store in backtesting database
+                            const backtestingDb = client.db('backtesting_db');
+                            const backtestingCollection = backtestingDb.collection('trading_signals_backtesting');
+                            await backtestingCollection.insertOne({
+                                'Twitter Account': twitterHandle,
+                                'Tweet': tweet.tweet_link,
+                                'Tweet Date': new Date(tweet.timestamp),
+                                'Signal Generation Date': new Date(),
+                                'Signal Message': data.signal,
+                                'Token Mentioned': tokenMentioned,
+                                'Token ID': tokenId,
+                                'Price at Tweet': marketData.historical_data.price_usd,
+                                'Current Price': marketData.current_data.price_usd,
+                                'TP1': data.targets && data.targets.length > 0 ? data.targets[0] : null,
+                                'TP2': data.targets && data.targets.length > 1 ? data.targets[1] : null,
+                                'SL': data.stopLoss || null,
+                                'Max Exit Time': data.maxExitTime ? new Date(data.maxExitTime) : null,
+                                'backtesting_done': false
+                            });
+
                             // Prepare CSV row
                             const row = columns.map(col => escapeCSV(csvData[col])).join(',');
                             // Append to CSV file
