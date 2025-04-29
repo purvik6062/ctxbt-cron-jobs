@@ -42,7 +42,7 @@ async function processAndSendTradingSignalMessage() {
                 };
 
                 try {
-                    await axios.post('https://telegram-msg-sender.ctxbt.com/api/telegram/send', payload);
+                    await axios.post('https://telegram-msg-sender.maxxit.ai/api/telegram/send', payload);
                     console.log(`Message sent to ${payload.username} for document ${_id}`);
 
                     // Update the sent status for this specific subscriber
