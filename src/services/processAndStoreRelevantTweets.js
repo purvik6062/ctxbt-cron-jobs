@@ -160,7 +160,7 @@ async function processAndStoreRelevantTweets(twitterHandle, subscribers, tweetRe
 }
 
 async function doesTweetMentionPlatform(tweetContent) {
-    const prompt = `Analyze the following tweet and return only "true" if it mentions, promotes, or discusses the platform 'ctxbt' or 'CTxbt' or 'CTXBT' or 'ctxbt.com' or 'app.ctxbt.com', otherwise return "false".\n\nTweet: "${tweetContent}"`;
+    const prompt = `Analyze the following tweet and return only "true" if it mentions, promotes, or discusses the platform 'maxxit' or 'MAXXIT' or 'maxxit ai' or 'MAXXIT AI' or 'maxxit.ai' or 'app.maxxit.ai', otherwise return "false".\n\nTweet: "${tweetContent}"`;
     try {
         const response = await axios.post(
             'https://api.openai.com/v1/chat/completions',
