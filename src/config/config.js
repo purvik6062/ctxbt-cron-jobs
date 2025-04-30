@@ -10,7 +10,7 @@ module.exports = {
     userCollectionName: 'users',
     influencerCollectionName: 'influencers',
     tradingSignalsCollectionName: 'trading-signals',
-    scrapeEndpoint: 'https://tweets-scraper.maxxit.ai.com/scrape',
+    scrapeEndpoint: 'https://tweets-scraper.maxxit.ai/scrape',
     scraperCredentials: {
         user: "",
         password: "",
