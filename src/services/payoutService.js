@@ -63,7 +63,8 @@ async function calculateMonthlyPayouts() {
                         monthlyPayouts: {
                             year: previousMonth.getFullYear(),
                             month: previousMonth.getMonth() + 1, // 1-12 for Jan-Dec
-                            payout: R
+                            payout: R,
+                            updatedAt: new Date(),
                         }
                     }
                 },
