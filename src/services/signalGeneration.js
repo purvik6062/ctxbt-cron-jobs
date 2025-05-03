@@ -47,7 +47,6 @@ function generateMessage(data) {
     const targets = data.targets.map((t, i) => `TP${i + 1}: $${t}`).join('\n');
     const stopLoss = data.stopLoss != null ? `🛑 **Stop Loss**: $${data.stopLoss}` : '';
     const timeline = data.timeline ? `⏳ **Timeline:** ${data.timeline}` : '';
-    const maxExit = data.maxExitTime ? `⏰ **Max Exit Time:** ${data.maxExitTime}` : '';
 
     return `
 ${heading}
@@ -59,7 +58,6 @@ ${heading}
 ${targets}
 ${stopLoss}
 ${timeline}
-${maxExit}
 
 💡 **Trade Tip**:
 ${data.tradeTip}
