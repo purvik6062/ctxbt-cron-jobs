@@ -5,15 +5,19 @@ const { processTweets } = require('../services/tweetsService');
 const { fetchAndUpdateCoins } = require('../services/coinsService');
 const { messageSender } = require('../services/messageSender');
 const { addSubscriber } = require('../services/addSubscribers');
-const { processCSV } = require('../services/process-signal-multi-strategies');
+const { processSignals } = require('../services/process-signal-multi-strategies');
 const { updateInfluencerScores } = require('../services/updateInfluencerScores');
 const { pnlNormalization } = require('../services/pnlNormalization');
 const { verifyAndUpdateAllUsersFollow } = require('../services/verifyFollows');
 const { verifyAndUpdateAllUsersRetweet } = require('../services/verifyRetweets');
 const { calculateMonthlyPayouts } = require('../services/payoutService');
 const { resetAllUsersCredits } = require('../services/resetCredits');
+const { cleanupCSVFiles } = require('./clean-csv-files');
 
 function startCronJobs() {
+    // One-time cleanup of CSV files when the application starts
+    // cleanupCSVFiles();
+
     // updateInfluencerScores Every Sunday at midnight
     cron.schedule('0 0 0 * * 0', async () => {
         console.log('Starting influencer scores update at:', new Date().toISOString());
@@ -55,8 +59,13 @@ function startCronJobs() {
 
     // backtesting job will run every 30 minutes
     cron.schedule('*/30 * * * *', async () => {
-        processCSV('./backtesting.csv')
-            .catch(error => console.error('Error:', error));
+        console.log('Starting backtesting job at:', new Date().toISOString());
+        try {
+            await processSignals();
+            console.log('Completed backtesting job at:', new Date().toISOString());
+        } catch (error) {
+            console.error('Error in backtesting job:', error);
+        }
     });
 
     // pnl normalization job will run every 4 hours
@@ -90,7 +99,6 @@ function startCronJobs() {
         console.log('Starting resetCredits job at:', new Date().toISOString());
         await resetAllUsersCredits();
     });
-
 
     console.log('Cron jobs are scheduled.');
 

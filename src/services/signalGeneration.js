@@ -2,35 +2,8 @@ const { connect, closeConnection } = require('../db');
 const { dbName, influencerCollectionName, perplexity, tradingSignalsCollectionName } = require('../config/config');
 const CryptoService = require('./cryptoService');
 const axios = require('axios');
-const fs = require('fs');
 
 const cryptoService = new CryptoService();
-
-// Updated columns as per your requirements: Removed Highest price columns, added Max Exit Time
-const columns = [
-    'Twitter Account', 'Tweet', 'Tweet Date', 'Signal Generation Date',
-    'Signal Message', 'Token Mentioned', 'Token ID', 'Price at Tweet',
-    'Current Price', 'TP1', 'TP2', 'SL', 'Exit Price', 'P&L', 'Max Exit Time'
-];
-
-function escapeCSV(value) {
-    if (value === null || value === undefined) {
-        return '';
-    }
-    if (typeof value === 'string') {
-        if (value.includes(',') || value.includes('"')) {
-            return `"${value.replace(/"/g, '""')}"`;
-        }
-        return value;
-    } else if (Array.isArray(value)) {
-        const arrayStr = JSON.stringify(value);
-        return `"${arrayStr.replace(/"/g, '""')}"`;
-    } else if (value instanceof Date) {
-        return value.toISOString();
-    } else {
-        return String(value);
-    }
-}
 
 /**
  * Generates a markdown-formatted trading signal message from JSON data.
@@ -182,15 +155,6 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
 
             console.log(`Processing ${tweetsToProcess.length} tweets for ${twitterHandle}`);
 
-            // Define the CSV file path
-            const csvFile = 'backtesting.csv';
-
-            // Check if CSV file exists, if not, create it with headers
-            if (!fs.existsSync(csvFile)) {
-                const header = columns.join(',');
-                fs.writeFileSync(csvFile, header + '\n');
-            }
-
             for (const tweet of tweetsToProcess) {
                 try {
                     for (const coinId of tweet.coins) {
@@ -200,7 +164,6 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                                 tweet.timestamp,
                                 new Date().toISOString()
                             );
-                            // console.log("marketData", marketData)
                             if (!marketData) continue;
 
                             const prompt = generatePrompt(tweet.content, marketData);
@@ -211,24 +174,6 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                             const tokenInfo = data.token.split('(');
                             const tokenMentioned = tokenInfo[0].trim();
                             const tokenId = marketData.id ? marketData.id : coinId;
-
-                            const csvData = {
-                                'Twitter Account': twitterHandle,
-                                'Tweet': tweet.tweet_link,
-                                'Tweet Date': tweet.timestamp,
-                                'Signal Generation Date': new Date(),
-                                'Signal Message': data.signal,
-                                'Token Mentioned': tokenMentioned,
-                                'Token ID': tokenId,
-                                'Price at Tweet': marketData.historical_data.price_usd,
-                                'Current Price': marketData.current_data.price_usd,
-                                'TP1': data.targets && data.targets.length > 0 ? data.targets[0] : null,
-                                'TP2': data.targets && data.targets.length > 1 ? data.targets[1] : null,
-                                'SL': data.stopLoss || null,
-                                'Exit Price': null, // Will need to be determined later
-                                'P&L': null, // Will need to be calculated
-                                'Max Exit Time': data.maxExitTime || null
-                            };
 
                             // Store enhanced data in database
                             const enhancedSignalData = {
@@ -278,11 +223,6 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                                 'Max Exit Time': data.maxExitTime ? new Date(data.maxExitTime) : null,
                                 'backtesting_done': false
                             });
-
-                            // Prepare CSV row
-                            const row = columns.map(col => escapeCSV(csvData[col])).join(',');
-                            // Append to CSV file
-                            fs.appendFileSync(csvFile, row + '\n');
 
                             console.log(`Generated signal for ${coinId} in tweet ${tweet.tweet_id}`);
                         } catch (coinError) {
