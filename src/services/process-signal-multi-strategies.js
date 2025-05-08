@@ -4,6 +4,7 @@ const lighthouse = require('@lighthouse-web3/sdk');
 const stringify = require('json-stable-stringify');
 const path = require('path');
 const { connect, closeConnection } = require('../db/index');
+const axios = require('axios'); // Import axios for HTTP requests
 // Explicitly provide the path to the .env file
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
@@ -53,11 +54,11 @@ function calculateEMA(prevEMA, price, period) {
 // Function to get reasoning from LLM
 async function getReasoningFromLLM(tokenId, bestStrategy, strategyPnLs, signalType) {
     const prompt = `
-        For the token "${tokenId}", the best strategy was "${bestStrategy}" with a P&L of ${strategyPnLs[bestStrategy]}.
+        For the token "${tokenId}", the strategy "${bestStrategy}" achieved a P&L of ${strategyPnLs[bestStrategy]}.
         The signal type was "${signalType}" (${signalType === 'Put Options' ? 'bearish position where profit is made when price falls' : 'bullish position where profit is made when price rises'}).
         P&L values for all strategies:
         ${Object.entries(strategyPnLs).map(([strategy, pnl]) => `- ${strategy}: ${pnl}`).join('\n')}
-        Provide a brief reasoning (1-2 sentences) why "${bestStrategy}" might have been the best choice for this ${signalType === 'Put Options' ? 'bearish' : 'bullish'} position.
+        Provide a very brief explanation (1 sentence) of what the "${bestStrategy}" strategy did in this particular case, without suggesting it's superior to other strategies.
     `;
 
     try {
@@ -69,6 +70,172 @@ async function getReasoningFromLLM(tokenId, bestStrategy, strategyPnLs, signalTy
     } catch (error) {
         console.error(`Error getting reasoning for ${tokenId}:`, error.message);
         return 'Reasoning unavailable due to API error';
+    }
+}
+
+// Format price values with appropriate precision
+function formatCryptoPrice(price) {
+    const numPrice = parseFloat(price);
+    
+    // For very small values (less than 0.00001), use scientific notation
+    if (numPrice < 0.00001) {
+        return numPrice.toExponential(6);
+    }
+    
+    // For small values, use 8 decimal places
+    return numPrice.toFixed(8);
+}
+
+// Format date for display
+function formatDate(dateString) {
+    if (!dateString) return "N/A";
+    
+    try {
+        const date = new Date(dateString);
+        if (isNaN(date.getTime())) return "Invalid Date";
+        
+        // Format as: "Apr 21, 2025, 16:10"
+        return date.toLocaleString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    } catch (error) {
+        console.error(`Error formatting date: ${dateString}`, error);
+        return "Date Error";
+    }
+}
+
+// Function to send backtested signal to subscribers
+async function sendBacktestedSignalToSubscribers(twitterAccount, signal, bestPnL, exitPrice, reasoning, documentId) {
+    try {
+        // Connect to databases
+        const client = await connect();
+        const signalFlowDb = client.db('ctxbt-signal-flow');
+        const backtestingDb = client.db(dbName);
+        const influencersCollection = signalFlowDb.collection('influencers');
+        const resultsCollection = backtestingDb.collection(collectionName);
+        
+        // Get the influencer document to fetch subscribers
+        const influencer = await influencersCollection.findOne({ twitterHandle: twitterAccount });
+        
+        if (!influencer || !influencer.subscribers || influencer.subscribers.length === 0) {
+            console.log(`No subscribers found for ${twitterAccount}`);
+            await closeConnection(client);
+            return;
+        }
+        
+        // Create backtested signal message
+        const signalType = signal["Signal Message"];
+        const tokenId = signal["Token ID"];
+        const entryPrice = parseFloat(signal["Price at Tweet"]);
+        const formattedDate = formatDate(signal["Signal Generation Date"]);
+        const backtestMessage = `
+🔄 BACKTESTING RESULT 🔄
+
+Token: ${tokenId}
+Signal Type: ${signalType}
+Signal Date: ${formattedDate}
+Entry Price: $${formatCryptoPrice(entryPrice)}
+Exit Price: $${formatCryptoPrice(exitPrice)}
+P&L: ${bestPnL}
+
+📊 Analysis: ${reasoning}
+`;
+        
+        // Initialize or get existing document with message status
+        const backtestResult = await resultsCollection.findOne({ _id: documentId });
+        if (!backtestResult || !backtestResult.subscribers) {
+            // Initialize subscribers array with sent status if it doesn't exist
+            await resultsCollection.updateOne(
+                { _id: documentId },
+                { 
+                    $set: { 
+                        subscribers: influencer.subscribers.map(subscriber => ({
+                            username: subscriber,
+                            sent: false
+                        })),
+                        messageSent: false 
+                    } 
+                },
+                { upsert: true } // Add upsert option to create document if it doesn't exist
+            );
+        }
+        
+        // Get updated document with subscribers
+        const updatedDoc = await resultsCollection.findOne({ _id: documentId });
+        const subscribers = updatedDoc.subscribers || [];
+        
+        // Send message to each subscriber who hasn't received it yet
+        for (const subscriber of subscribers) {
+            // Skip if this subscriber has already received the message
+            if (subscriber.sent === true) {
+                continue;
+            }
+            
+            // Handle different subscriber formats (string or object)
+            const username = typeof subscriber === 'string' ? subscriber : 
+                           (subscriber.username ? subscriber.username : 
+                           (typeof subscriber === 'object' ? JSON.stringify(subscriber) : 'unknown'));
+            
+            try {
+                const payload = {
+                    username: username,
+                    message: backtestMessage
+                };
+                
+                // Retry logic with timeout
+                const maxRetries = 3;
+                let retries = 0;
+                let success = false;
+                
+                while (retries < maxRetries && !success) {
+                    try {
+                        await axios.post(
+                            'https://telegram-msg-sender.maxxit.ai/api/telegram/send', 
+                            payload,
+                            { timeout: 10000 } // 10 second timeout
+                        );
+                        success = true;
+                        console.log(`Backtested signal sent to ${username} for ${tokenId}`);
+                        
+                        // Update the sent status for this specific subscriber
+                        await resultsCollection.updateOne(
+                            { _id: documentId, "subscribers.username": username },
+                            { $set: { "subscribers.$.sent": true } }
+                        );
+                    } catch (retryError) {
+                        retries++;
+                        if (retries >= maxRetries) {
+                            throw retryError; // Rethrow if max retries reached
+                        }
+                        console.log(`Retry ${retries}/${maxRetries} for ${username}`);
+                        // Exponential backoff
+                        await new Promise(resolve => setTimeout(resolve, 1000 * retries));
+                    }
+                }
+            } catch (error) {
+                console.error(`Failed to send backtested signal to ${username}:`, error.message);
+            }
+        }
+        
+        // Check if all subscribers have received the message
+        const updatedSubscribers = (await resultsCollection.findOne({ _id: documentId })).subscribers || [];
+        const allSubscribersSent = updatedSubscribers.every(sub => sub.sent === true);
+        
+        if (allSubscribersSent) {
+            await resultsCollection.updateOne(
+                { _id: documentId },
+                { $set: { messageSent: true } }
+            );
+            console.log(`All subscribers have received backtested signal for ${tokenId}`);
+        }
+        
+        await closeConnection(client);
+    } catch (error) {
+        console.error('Error sending backtested signal to subscribers:', error);
     }
 }
 
@@ -363,6 +530,16 @@ async function processSignals() {
                     'Best Strategy': bestStrategy,
                     'Reasoning': reasoning
                 } }
+            );
+
+            // Send backtested signal to subscribers
+            await sendBacktestedSignalToSubscribers(
+                twitterAccount, 
+                signal, 
+                bestPnL.toFixed(2) + "%", 
+                bestExitPrice,
+                reasoning,
+                insertResult.insertedId
             );
 
             // Prepare minimal object for IPFS
