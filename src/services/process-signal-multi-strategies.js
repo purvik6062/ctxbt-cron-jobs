@@ -133,7 +133,7 @@ async function sendBacktestedSignalToSubscribers(twitterAccount, signal, bestPnL
         const entryPrice = parseFloat(signal["Price at Tweet"]);
         const formattedDate = formatDate(signal["Signal Generation Date"]);
         const backtestMessage = `
-🔄 BACKTESTING RESULT 🔄
+SIGNAL ANALYSIS & RESULT
 
 Token: ${tokenId}
 Signal Type: ${signalType}
@@ -142,7 +142,7 @@ Entry Price: $${formatCryptoPrice(entryPrice)}
 Exit Price: $${formatCryptoPrice(exitPrice)}
 P&L: ${bestPnL}
 
-📊 Analysis: ${reasoning}
+Analysis: ${reasoning}
 `;
         
         // Initialize or get existing document with message status
