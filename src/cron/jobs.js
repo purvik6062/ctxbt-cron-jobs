@@ -37,9 +37,9 @@ function startCronJobs() {
         await fetchAndUpdateCoins();
     });
 
-    // messageSender will run every 20 minutes
+    // messageSender will run every 2 hours
     let isProcessing = false;
-    cron.schedule('*/20 * * * *', async () => {
+    cron.schedule('0 */2 * * *', async () => {
         if (isProcessing) {
             console.log('Previous processTweets job is still running, skipping this run');
             return;
