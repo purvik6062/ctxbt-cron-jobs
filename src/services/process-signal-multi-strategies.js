@@ -132,12 +132,13 @@ async function sendBacktestedSignalToSubscribers(twitterAccount, signal, bestPnL
         const tokenId = signal["Token ID"];
         const entryPrice = parseFloat(signal["Price at Tweet"]);
         const formattedDate = formatDate(signal["Signal Generation Date"]);
-        const profitIndicator = bestPnL > 0 ? '🟢' : '🔴';
+        const profitIndicator = parseFloat(bestPnL) > 0 ? '🟢' : '🔴';
+        const profitArrow = parseFloat(bestPnL) > 0 ? '📈' : '📉';
         const backtestMessage = `
-${profitIndicator} **SIGNAL ANALYSIS & RESULT**
+${profitIndicator} **SIGNAL ANALYSIS & RESULT** ${profitIndicator}
 
 🏛️ **Token:** *${tokenId}*
-📈 **Signal:** *${signalType}*
+${profitArrow} **Signal:** *${signalType}*
 💰 **Entry Price:** *$${formatCryptoPrice(entryPrice)}*
 🎯 **Exit Price:** *$${formatCryptoPrice(exitPrice)}*
 📊 **P&L:** *${bestPnL}*
