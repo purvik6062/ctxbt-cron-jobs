@@ -25,8 +25,8 @@ class PnLNormalizationService {
             const pnlData = await this.backtestingDb.collection('backtesting_results_with_reasoning')
                 .find({
                     "Signal Generation Date": {
-                        $gte: startDate.toISOString(),
-                        $lte: endDate.toISOString()
+                        $gte: startDate,
+                        $lte: endDate
                     }
                 })
                 .toArray();
@@ -37,6 +37,7 @@ class PnLNormalizationService {
             pnlData.forEach(entry => {
                 const account = entry["Twitter Account"];
                 const pnlStr = entry["Final P&L"];
+                
                 // Convert percentage string to number
                 let pnl = 0;
                 if (pnlStr && typeof pnlStr === 'string') {
@@ -98,8 +99,20 @@ class PnLNormalizationService {
                 const newImpactFactorRaw = currentImpactFactor * (1 + (normalizedPnL * 0.1)); // 10% adjustment factor
                 const boundedImpactFactorRaw = Math.max(0.5, Math.min(2.0, newImpactFactorRaw));
                 
-                // Scale from 0.5-2.0 to 1-100 range
-                const scaledImpactFactor = Math.round(((boundedImpactFactorRaw - 0.5) / 1.5) * 99 + 1);
+                // Scale from 0.5-2.0 to 1-1000 range with a practical max around 600
+                // Using a logarithmic curve to ensure gradual growth
+                const BASE_FACTOR = 1;
+                const MAX_PRACTICAL_FACTOR = 600;
+                const CURVE_STEEPNESS = 4;
+                
+                // Normalize to 0-1 range first
+                const normalizedValue = (boundedImpactFactorRaw - 0.5) / 1.5;
+                
+                // Apply logarithmic scaling to make it harder to reach the maximum
+                const logValue = Math.log(normalizedValue * CURVE_STEEPNESS + 1) / Math.log(CURVE_STEEPNESS + 1);
+                
+                // Scale to desired range
+                const scaledImpactFactor = Math.round(BASE_FACTOR + logValue * (MAX_PRACTICAL_FACTOR - BASE_FACTOR));
 
                 updates.push({
                     updateOne: {
