@@ -15,25 +15,17 @@ class PnLNormalizationService {
         this.signalFlowDb = this.client.db("ctxbt-signal-flow");
     }
 
-    async calculateWeeklyPnL() {
+    async calculateOverallPnL() {
         try {
-            // Calculate date range for the last week
-            const endDate = new Date(new Date().setDate(new Date().getDate() - 7));
-            const startDate = new Date(new Date().setDate(new Date().getDate() - 14));
-            
-            // Fetch PnL data from the database for the last week
+            // Fetch all PnL data from the database (no date filtering)
             const pnlData = await this.backtestingDb.collection('backtesting_results_with_reasoning')
-                .find({
-                    "Signal Generation Date": {
-                        $gte: startDate,
-                        $lte: endDate
-                    }
-                })
+                .find({})
                 .toArray();
-            console.log("pnlData for last week", pnlData.length, "records from", startDate.toISOString(), "to", endDate.toISOString());
+            console.log("Overall pnlData", pnlData.length, "total records");
             
-            // Group PnL by Twitter Account and calculate sum
+            // Group PnL by Twitter Account and calculate sum and signal count
             const accountPnL = {};
+            const accountSignalCount = {};
             pnlData.forEach(entry => {
                 const account = entry["Twitter Account"];
                 const pnlStr = entry["Final P&L"];
@@ -48,40 +40,38 @@ class PnLNormalizationService {
                 
                 if (!accountPnL[account]) {
                     accountPnL[account] = 0;
+                    accountSignalCount[account] = 0;
                 }
                 accountPnL[account] += pnl; // Sum the P&L for each account
+                accountSignalCount[account] += 1; // Count signals for each account
             });
             
-            // Store weekly PnL data
-            const weeklyPnL = {
+            // Store overall PnL data for record keeping
+            const overallPnL = {
                 timestamp: new Date(),
-                startDate: startDate,
-                endDate: endDate,
-                data: accountPnL
+                calculationType: 'overall',
+                data: accountPnL,
+                signalCounts: accountSignalCount
             };
 
-            await this.backtestingDb.collection(this.weeklyPnLCollection).insertOne(weeklyPnL);
-            return accountPnL;
+            await this.backtestingDb.collection(this.weeklyPnLCollection).insertOne(overallPnL);
+            return { accountPnL, accountSignalCount };
         } catch (error) {
-            console.error('Error calculating weekly PnL:', error);
+            console.error('Error calculating overall PnL:', error);
             throw error;
         }
     }
 
-    async normalizePnL(accountPnL) {
+    async normalizePnL(accountPnL, accountSignalCount) {
         try {
             // Get all influencers
             const influencers = await this.signalFlowDb.collection(this.influencersCollection)
                 .find({})
                 .toArray();
 
-            // Calculate normalization factors
-            const totalPnL = Object.values(accountPnL).reduce((sum, pnl) => sum + pnl, 0);
-            const averagePnL = totalPnL / Object.keys(accountPnL).length;
-
-            // Normalize PnL and update impact factors
+            // Update impact factors using new formula
             const updates = [];
-            for (const [account, pnl] of Object.entries(accountPnL)) {
+            for (const [account, totalPnL] of Object.entries(accountPnL)) {
                 // Find the influencer by twitterHandle
                 const twitterHandle = account.replace('@', '');
                 const influencer = influencers.find(f => f.twitterHandle === twitterHandle);
@@ -92,34 +82,33 @@ class PnLNormalizationService {
                     continue;
                 }
                 
-                const currentImpactFactor = influencer.impactFactor || 1;
+                // Get signal count for this account
+                const signalCount = accountSignalCount[account] || 1; // Prevent division by zero
                 
-                // Calculate new impact factor in 0.5-2.0 range
-                const normalizedPnL = pnl / averagePnL;
-                const newImpactFactorRaw = currentImpactFactor * (1 + (normalizedPnL * 0.1)); // 10% adjustment factor
-                const boundedImpactFactorRaw = Math.max(0.5, Math.min(2.0, newImpactFactorRaw));
+                // Calculate impact factor using new formula: total PnL / number of signals
+                const pnlPerSignal = totalPnL / signalCount;
                 
-                // Scale from 0.5-2.0 to 1-1000 range with a practical max around 600
-                // Using a logarithmic curve to ensure gradual growth
-                const BASE_FACTOR = 1;
-                const MAX_PRACTICAL_FACTOR = 600;
-                const CURVE_STEEPNESS = 4;
-                
-                // Normalize to 0-1 range first
-                const normalizedValue = (boundedImpactFactorRaw - 0.5) / 1.5;
-                
-                // Apply logarithmic scaling to make it harder to reach the maximum
-                const logValue = Math.log(normalizedValue * CURVE_STEEPNESS + 1) / Math.log(CURVE_STEEPNESS + 1);
-                
-                // Scale to desired range
-                const scaledImpactFactor = Math.round(BASE_FACTOR + logValue * (MAX_PRACTICAL_FACTOR - BASE_FACTOR));
+                let newImpactFactor;
+                if (totalPnL > 0) {
+                    // Positive total PnL: calculate positive impact factor
+                    // Scale the pnlPerSignal to a reasonable range (1-1000+)
+                    // Using a scaling factor to convert percentage-based PnL to impact factor range
+                    const SCALING_FACTOR = 10; // Adjust this to fine-tune the sensitivity
+                    newImpactFactor = Math.max(1, Math.round(1 + Math.abs(pnlPerSignal) * SCALING_FACTOR));
+                } else {
+                    // Negative or zero total PnL: set minimum impact factor
+                    newImpactFactor = 10 // Minimum impact factor for poor performance
+                }
 
                 updates.push({
                     updateOne: {
                         filter: { twitterHandle },
                         update: { 
                             $set: { 
-                                impactFactor: scaledImpactFactor,
+                                impactFactor: newImpactFactor,
+                                totalPnL: totalPnL,
+                                signalCount: signalCount,
+                                pnlPerSignal: pnlPerSignal,
                                 updatedAt: new Date()
                             }
                         }
@@ -134,7 +123,10 @@ class PnLNormalizationService {
 
             return updates.map(u => ({
                 twitterHandle: u.updateOne.filter.twitterHandle,
-                newImpactFactor: u.updateOne.update.$set.impactFactor
+                newImpactFactor: u.updateOne.update.$set.impactFactor,
+                totalPnL: u.updateOne.update.$set.totalPnL,
+                signalCount: u.updateOne.update.$set.signalCount,
+                pnlPerSignal: u.updateOne.update.$set.pnlPerSignal
             }));
         } catch (error) {
             console.error('Error normalizing PnL and updating influencers:', error);
@@ -142,13 +134,13 @@ class PnLNormalizationService {
         }
     }
 
-    async processWeeklyNormalization() {
+    async processOverallNormalization() {
         try {
             await this.initialize();
-            const accountPnL = await this.calculateWeeklyPnL();
-            const updatedInfluencers = await this.normalizePnL(accountPnL);
+            const { accountPnL, accountSignalCount } = await this.calculateOverallPnL();
+            const updatedInfluencers = await this.normalizePnL(accountPnL, accountSignalCount);
             
-            console.log('Weekly PnL normalization completed:', {
+            console.log('Overall PnL normalization completed:', {
                 timestamp: new Date(),
                 updatedAccounts: updatedInfluencers.length,
                 sampleUpdate: updatedInfluencers[0]
@@ -161,7 +153,7 @@ class PnLNormalizationService {
 
             return updatedInfluencers;
         } catch (error) {
-            console.error('Error in weekly normalization process:', error);
+            console.error('Error in overall normalization process:', error);
             throw error;
         }
     }
@@ -172,10 +164,10 @@ class PnLNormalizationService {
 //     (async () => {
 //         const service = new PnLNormalizationService();
 //         try {
-//             const updatedInfluencers = await service.processWeeklyNormalization();
+//             const updatedInfluencers = await service.processOverallNormalization();
 //             console.log('Updated Influencers:', updatedInfluencers);
 //         } catch (error) {
-//             console.error('Failed to process weekly normalization:', error);
+//             console.error('Failed to process overall normalization:', error);
 //         } finally {
 //             process.exit(); // Exit the process after completion
 //         }

@@ -29,6 +29,23 @@ function parseDateToTimestamp(dateStr) {
     return date.getTime();
 }
 
+// Function to calculate days difference between two dates
+function calculateDaysDifference(startDateStr, endDateStr) {
+    if (!startDateStr || !endDateStr) return 0;
+    
+    const startDate = new Date(startDateStr);
+    const endDate = new Date(endDateStr);
+    
+    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+        return 0;
+    }
+    
+    const timeDifferenceMs = endDate.getTime() - startDate.getTime();
+    const daysDifference = Math.floor(timeDifferenceMs / (1000 * 60 * 60 * 24));
+    
+    return daysDifference;
+}
+
 // Function to fetch 365-day price data from CoinGecko
 async function fetchPriceData(coinId) {
     const url = `https://www.coingecko.com/price_charts/${coinId}/usd/365_days.json`;
@@ -273,6 +290,18 @@ async function processSignals() {
         for (const signal of signals) {
             const tokenId = signal["Token ID"];
             console.log(`Processing signal for token ${tokenId}`);
+
+            // Check for minimum 3-day window between Signal Generation Date and Max Exit Time
+            const signalGenerationDate = signal["Signal Generation Date"];
+            const maxExitTime = signal["Max Exit Time"];
+            const daysDifference = calculateDaysDifference(signalGenerationDate, maxExitTime);
+            
+            if (daysDifference < 3) {
+                console.log(`Signal for token ${tokenId} has insufficient time window (${daysDifference} days), minimum 3 days required. Skipping.`);
+                continue;
+            }
+            
+            console.log(`Signal for token ${tokenId} has ${daysDifference} days window, proceeding with processing.`);
 
             if (signal["Final Exit Price"]) {
                 console.log(`Signal for token ${tokenId} already has an exit price, skipping`);

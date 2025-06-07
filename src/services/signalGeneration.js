@@ -5,6 +5,63 @@ const axios = require('axios');
 
 const cryptoService = new CryptoService();
 
+// Bitcoin-focused signal accounts
+const BITCOIN_SIGNAL_ACCOUNTS = [
+    '100trillionUSD',
+    'woonomic',
+    'WClementeIII',
+    'Pentosh1',
+    'rektcapital',
+    'CryptoDonAlt',
+    'CryptoCred',
+    'CryptoCapo_',
+    'CryptoYoda',
+    'PeterLBrandt'
+];
+
+// Ethereum-focused signal accounts
+const ETHEREUM_SIGNAL_ACCOUNTS = [
+    'SmartContracter',
+    'CryptoMichNL',
+    'ali_charts',
+    'scottmelker',
+    'AshCryptoReal',
+    'lookonchain',
+    'CryptoKaleo',
+    'OnChainWizard',
+    'Trader_XO',
+    'TraderMayne'
+];
+
+// Bitcoin identifiers (common coin IDs for Bitcoin)
+const BITCOIN_COIN_IDS = ['bitcoin', 'btc', 'BTC'];
+
+// Ethereum identifiers (common coin IDs for Ethereum)
+const ETHEREUM_COIN_IDS = ['ethereum', 'eth', 'ETH'];
+
+/**
+ * Checks if a coin should be processed based on the influencer's specialization.
+ * @param {string} twitterHandle - The influencer's Twitter handle.
+ * @param {string} coinId - The coin ID to check.
+ * @returns {boolean} - True if the coin should be processed, false otherwise.
+ */
+function shouldProcessCoinForInfluencer(twitterHandle, coinId) {
+    const coinIdLower = coinId.toLowerCase();
+    
+    // Check if this is a Bitcoin-focused account
+    if (BITCOIN_SIGNAL_ACCOUNTS.includes(twitterHandle)) {
+        return BITCOIN_COIN_IDS.some(btcId => coinIdLower.includes(btcId.toLowerCase()));
+    }
+    
+    // Check if this is an Ethereum-focused account
+    if (ETHEREUM_SIGNAL_ACCOUNTS.includes(twitterHandle)) {
+        return ETHEREUM_COIN_IDS.some(ethId => coinIdLower.includes(ethId.toLowerCase()));
+    }
+    
+    // For accounts not in the specialized lists, process all coins
+    return true;
+}
+
 /**
  * Generates a markdown-formatted trading signal message from JSON data.
  * @param {Object} data - JSON object containing trading parameters.
@@ -157,7 +214,31 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
 
             for (const tweet of tweetsToProcess) {
                 try {
-                    for (const coinId of tweet.coins) {
+                    // Filter coins based on influencer specialization
+                    const coinsToProcess = tweet.coins.filter(coinId => 
+                        shouldProcessCoinForInfluencer(twitterHandle, coinId)
+                    );
+                    
+                    if (coinsToProcess.length === 0) {
+                        console.log(`No eligible coins for ${twitterHandle} in tweet ${tweet.tweet_id} (specialization filter applied)`);
+                        // Still mark as processed since we've evaluated it
+                        await influencerCollection.updateOne(
+                            { twitterHandle, 'tweets.tweet_id': tweet.tweet_id },
+                            {
+                                $set: {
+                                    'tweets.$.signalsGenerated': true,
+                                    'tweets.$.processedAt': new Date(),
+                                    'tweets.$.analysisStatus': 'skipped_specialization_filter'
+                                },
+                                $inc: { 'tweets.$.processingAttempts': 1 }
+                            }
+                        );
+                        continue;
+                    }
+                    
+                    console.log(`Processing ${coinsToProcess.length} eligible coins for ${twitterHandle} in tweet ${tweet.tweet_id}`);
+                    
+                    for (const coinId of coinsToProcess) {
                         try {
                             const marketData = await cryptoService.getHistoricalTokenDataFromCustomEndpoints(
                                 coinId,
