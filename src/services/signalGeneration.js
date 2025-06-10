@@ -77,13 +77,14 @@ function generateMessage(data) {
     const targets = data.targets.map((t, i) => `TP${i + 1}: $${t}`).join('\n');
     const stopLoss = data.stopLoss != null ? `🛑 **Stop Loss**: $${data.stopLoss}` : '';
     const timeline = data.timeline ? `⏳ **Timeline:** ${data.timeline}` : '';
+    const entryPrice = data.currentPrice ? `💰 **Entry Price**: $${data.currentPrice.toFixed(5)}` : '';
 
     return `
 ${heading}
 
 🏛️ **Token**: ${data.token}
 📈 **Signal**: ${data.signal}
-💰 **Entry Price**: $${data.currentPrice}
+${entryPrice}
 🎯 **Targets**:
 ${targets}
 ${stopLoss}
