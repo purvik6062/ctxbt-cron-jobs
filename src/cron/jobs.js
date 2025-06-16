@@ -7,7 +7,7 @@ const { messageSender } = require('../services/messageSender');
 const { addSubscriber } = require('../services/addSubscribers');
 const { processSignals } = require('../services/process-signal-multi-strategies');
 const { updateInfluencerScores } = require('../services/updateInfluencerScores');
-const { pnlNormalization } = require('../services/pnlNormalization');
+const pnlNormalization = require('../services/pnlNormalization');
 const { verifyAndUpdateAllUsersFollow } = require('../services/verifyFollows');
 const { verifyAndUpdateAllUsersRetweet } = require('../services/verifyRetweets');
 const { calculateMonthlyPayouts } = require('../services/payoutService');
@@ -71,7 +71,7 @@ function startCronJobs() {
     // pnl normalization job will run every 4 hours
     cron.schedule('* */4 * * *', async () => {
         console.log('Starting PnL normalization job at:', new Date().toISOString());
-        await pnlNormalization.processWeeklyNormalization();
+        await pnlNormalization.processOverallNormalization();
         console.log('Completed PnL normalization job at:', new Date().toISOString());
     });
 
