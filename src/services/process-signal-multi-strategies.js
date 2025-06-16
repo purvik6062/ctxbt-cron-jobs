@@ -576,6 +576,7 @@ async function processSignals() {
 
             // Prepare minimal object for IPFS
             const ipfsDoc = {
+                "AuthorID": twitterAccount,
                 "Signal Generation Date": signal["Signal Generation Date"],
                 "Signal Type": signalType,
                 "Entry Price": signal["Price at Tweet"],
