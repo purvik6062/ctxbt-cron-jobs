@@ -26,5 +26,8 @@ module.exports = {
         apiKey: process.env.PERPLEXITY_API_KEY,
         endpoint: 'https://api.perplexity.ai/v1/completions',
     },
-    tweetScoutApiKey: process.env.TWEETSCOUT_API_KEY
+    tweetScoutApiKey: process.env.TWEETSCOUT_API_KEY,
+    telegram: {
+        botToken: process.env.TELEGRAM_BOT_TOKEN
+    }
 };

@@ -13,10 +13,14 @@ const { verifyAndUpdateAllUsersRetweet } = require('../services/verifyRetweets')
 const { calculateMonthlyPayouts } = require('../services/payoutService');
 const { resetAllUsersCredits } = require('../services/resetCredits');
 const { cleanupCSVFiles } = require('./clean-csv-files');
+const { telegramBotListener } = require('../services/telegramBotListener');
 
 function startCronJobs() {
     // One-time cleanup of CSV files when the application starts
     // cleanupCSVFiles();
+
+    // Start Telegram bot listener for welcome messages
+    telegramBotListener.startListening();
 
     // updateInfluencerScores Every Sunday at midnight
     cron.schedule('0 0 0 * * 0', async () => {
