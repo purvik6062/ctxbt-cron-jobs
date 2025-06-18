@@ -147,9 +147,9 @@ class PnLNormalizationService {
             });
 
             // Close database connection
-            if (this.client) {
-                await this.client.close();
-            }
+            // if (this.client) {
+            //     await this.client.close();
+            // }
 
             return updatedInfluencers;
         } catch (error) {

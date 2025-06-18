@@ -43,7 +43,7 @@ function startCronJobs() {
 
     // messageSender will run every 2 hours
     let isProcessing = false;
-    cron.schedule('0 */2 * * *', async () => {
+    cron.schedule('*/30 * * * *', async () => {
         if (isProcessing) {
             console.log('Previous processTweets job is still running, skipping this run');
             return;
