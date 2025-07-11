@@ -42,7 +42,7 @@ async function processTweets() {
                 account: doc.twitterHandle // Pass the account name for impact factor lookup
             };
 
-            const result = await scrapeTwitterAccount(subscription, { timeout: 180000 });
+            const result = await scrapeTwitterAccount(subscription, { timeout: 300000 });
             if (result.success) {
                 // Pass the account information to the processing functions
                 await processAndStoreTweetsForHandle(
