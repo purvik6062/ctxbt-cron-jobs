@@ -8,13 +8,21 @@ async function processAndSendTradingSignalMessage() {
         const db = client.db(dbName);
         const tradingSignalsCollection = db.collection(tradingSignalsCollectionName);
 
+        const now = new Date();
+        const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
         // Step 1: Fetch documents where at least one subscriber hasn't received the message
         const documents = await tradingSignalsCollection
             .find({
-                $or: [
-                    { messageSent: { $exists: false } },
-                    { messageSent: false },
-                    { "subscribers.sent": { $ne: true } }
+                $and: [
+                    { generatedAt: { $gte: startOfToday } },
+                    {
+                        $or: [
+                            { messageSent: { $exists: false } },
+                            { messageSent: false },
+                            { "subscribers.sent": { $ne: true } }
+                        ]
+                    }
                 ]
             })
             .toArray();
