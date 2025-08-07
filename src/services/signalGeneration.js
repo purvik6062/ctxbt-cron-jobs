@@ -1,9 +1,23 @@
 const { connect, closeConnection } = require('../db');
 const { dbName, influencerCollectionName, perplexity, tradingSignalsCollectionName } = require('../config/config');
 const CryptoService = require('./cryptoService');
-const axios = require('axios');
+const { processAndSendSignal } = require('./hyperliquidSignalService');
 
 const cryptoService = new CryptoService();
+
+// Top 10 influencers who are allowed to send signals to Hyperliquid vault
+const TOP_10_INFLUENCERS = [
+    'RiddlerDeFi',
+    'AltcoinLevi',
+    'TradeMogulPro',
+    'dippy_eth',
+    'CryptoHeroTA',
+    'CryptoEnact',
+    'CryptoTraderRai',
+    'Ashikur1589',
+    'MuroCrypto',
+    'BenjiGanar'
+];
 
 // Bitcoin-focused signal accounts
 const BITCOIN_SIGNAL_ACCOUNTS = [
@@ -38,6 +52,15 @@ const BITCOIN_COIN_IDS = ['bitcoin', 'btc', 'BTC'];
 
 // Ethereum identifiers (common coin IDs for Ethereum)
 const ETHEREUM_COIN_IDS = ['ethereum', 'eth', 'ETH'];
+
+/**
+ * Checks if an influencer is in the top 10 list and should send signals to Hyperliquid vault
+ * @param {string} twitterHandle - The influencer's Twitter handle
+ * @returns {boolean} - True if the influencer is in the top 10 list, false otherwise
+ */
+function isTop10Influencer(twitterHandle) {
+    return TOP_10_INFLUENCERS.includes(twitterHandle);
+}
 
 /**
  * Checks if a coin should be processed based on the influencer's specialization.
@@ -183,6 +206,8 @@ async function callPerplexityAPI(prompt) {
     }
 }
 
+
+
 /**
  * Processes tweets for a given Twitter handle and generates trading signals.
  * @param {string} twitterHandle - The influencer's Twitter handle.
@@ -306,6 +331,32 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                                 'backtesting_done': false
                             });
 
+                            // Send signal to Hyperliquid API for position creation (only for top 10 influencers)
+                            if (isTop10Influencer(twitterHandle)) {
+                                try {
+                                    const signalPayload = {
+                                        signal: data.signal,
+                                        tokenMentioned: tokenMentioned,
+                                        targets: data.targets || [],
+                                        stopLoss: data.stopLoss,
+                                        currentPrice: marketData.current_data.price_usd,
+                                        maxExitTime: data.maxExitTime
+                                    };
+                                    
+                                    const apiResponse = await processAndSendSignal(signalPayload);
+                                    
+                                    if (apiResponse.status === 'success') {
+                                        console.log(`Successfully sent signal to Hyperliquid API for ${tokenMentioned} from top 10 influencer ${twitterHandle}`);
+                                    } else {
+                                        console.error(`Failed to send signal to Hyperliquid API for ${tokenMentioned} from ${twitterHandle}:`, apiResponse.error);
+                                    }
+                                } catch (apiError) {
+                                    console.error(`Error sending signal to Hyperliquid API for ${tokenMentioned} from ${twitterHandle}:`, apiError);
+                                }
+                            } else {
+                                console.log(`Skipping Hyperliquid API for ${tokenMentioned} - ${twitterHandle} is not in top 10 influencers list`);
+                            }
+
                             console.log(`Generated signal for ${coinId} in tweet ${tweet.tweet_id}`);
                         } catch (coinError) {
                             console.error(`Error processing coin ${coinId} for tweet ${tweet.tweet_id}:`, coinError);
@@ -344,4 +395,8 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
     }
 }
 
-module.exports = { processAndGenerateSignalsForTweets };
+module.exports = { 
+    processAndGenerateSignalsForTweets,
+    isTop10Influencer,
+    TOP_10_INFLUENCERS
+};

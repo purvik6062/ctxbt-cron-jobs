@@ -29,5 +29,9 @@ module.exports = {
     tweetScoutApiKey: process.env.TWEETSCOUT_API_KEY,
     telegram: {
         botToken: process.env.TELEGRAM_BOT_TOKEN
+    },
+    hyperliquid: {
+        apiUrl: process.env.HYPERLIQUID_API_URL || 'http://localhost:5000/signal',
+        timeout: parseInt(process.env.HYPERLIQUID_API_TIMEOUT) || 10000
     }
 };
