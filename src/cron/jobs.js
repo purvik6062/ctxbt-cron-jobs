@@ -43,7 +43,7 @@ function startCronJobs() {
 
     // messageSender will run every 2 hours
     let isProcessing = false;
-    cron.schedule('*/30 * * * *', async () => {
+    cron.schedule('0 */3 * * *', async () => {
         if (isProcessing) {
             console.log('Previous processTweets job is still running, skipping this run');
             return;
@@ -73,7 +73,7 @@ function startCronJobs() {
     });
 
     // pnl normalization job will run every 4 hours
-    cron.schedule('* */4 * * *', async () => {
+    cron.schedule('0 */4 * * *', async () => {
         console.log('Starting PnL normalization job at:', new Date().toISOString());
         await pnlNormalization.processOverallNormalization();
         console.log('Completed PnL normalization job at:', new Date().toISOString());

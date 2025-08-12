@@ -2,6 +2,7 @@ const { connect, closeConnection } = require('../db');
 const { dbName, influencerCollectionName, perplexity, tradingSignalsCollectionName } = require('../config/config');
 const CryptoService = require('./cryptoService');
 const { processAndSendSignal } = require('./hyperliquidSignalService');
+const axios = require('axios');
 
 const cryptoService = new CryptoService();
 
@@ -100,7 +101,7 @@ function generateMessage(data) {
     const targets = data.targets.map((t, i) => `TP${i + 1}: $${t}`).join('\n');
     const stopLoss = data.stopLoss != null ? `🛑 **Stop Loss**: $${data.stopLoss}` : '';
     const timeline = data.timeline ? `⏳ **Timeline:** ${data.timeline}` : '';
-    const entryPrice = data.currentPrice ? `💰 **Entry Price**: $${data.currentPrice.toFixed(5)}` : '';
+    const entryPrice = data.currentPrice ? `💰 **Entry Price**: $${Number(data.currentPrice).toFixed(2)}` : '';
 
     return `
 ${heading}
