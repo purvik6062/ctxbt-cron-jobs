@@ -26,9 +26,15 @@ async function sendSignalToHyperliquidAPI(signalData) {
 
         console.log(`Sending signal to Hyperliquid API: ${JSON.stringify(payload, null, 2)}`);
 
+        // Require header-based auth for sending signals
+        if (!hyperliquid.authToken) {
+            throw new Error('Missing HYPERLIQUID_SIGNAL_AUTH_TOKEN environment variable required for Hyperliquid auth');
+        }
+
         const response = await axios.post(hyperliquid.apiUrl, payload, {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-Auth-Token': hyperliquid.authToken
             },
             timeout: hyperliquid.timeout
         });
