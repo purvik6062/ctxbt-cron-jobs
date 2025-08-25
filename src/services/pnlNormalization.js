@@ -33,9 +33,23 @@ class PnLNormalizationService {
                 // Convert percentage string to number
                 let pnl = 0;
                 if (pnlStr && typeof pnlStr === 'string') {
-                    pnl = parseFloat(pnlStr.replace('%', ''));
+                    // Remove % and parse, handle edge cases
+                    const cleanPnL = pnlStr.replace('%', '').trim();
+                    pnl = parseFloat(cleanPnL);
+                    
+                    // Validate that we got a finite number
+                    if (!isFinite(pnl)) {
+                        console.warn(`Invalid PnL value for account ${account}: "${pnlStr}", setting to 0`);
+                        pnl = 0;
+                    }
                 } else if (typeof pnlStr === 'number') {
-                    pnl = pnlStr;
+                    // Validate that the number is finite
+                    if (!isFinite(pnlStr)) {
+                        console.warn(`Invalid PnL value for account ${account}: ${pnlStr}, setting to 0`);
+                        pnl = 0;
+                    } else {
+                        pnl = pnlStr;
+                    }
                 }
                 
                 if (!accountPnL[account]) {
@@ -62,6 +76,15 @@ class PnLNormalizationService {
         }
     }
 
+    // Helper function to validate and sanitize numeric values
+    validateNumericValue(value, fieldName, defaultValue = 0) {
+        if (!isFinite(value)) {
+            console.warn(`Invalid ${fieldName} value: ${value}, setting to ${defaultValue}`);
+            return defaultValue;
+        }
+        return value;
+    }
+
     async normalizePnL(accountPnL, accountSignalCount) {
         try {
             // Get all influencers
@@ -86,7 +109,10 @@ class PnLNormalizationService {
                 const signalCount = accountSignalCount[account] || 1; // Prevent division by zero
                 
                 // Calculate impact factor using new formula: total PnL / number of signals
-                const pnlPerSignal = totalPnL / signalCount;
+                let pnlPerSignal = totalPnL / signalCount;
+                
+                // Validate that pnlPerSignal is a finite number
+                pnlPerSignal = this.validateNumericValue(pnlPerSignal, 'pnlPerSignal', 0);
                 
                 let newImpactFactor;
                 if (totalPnL > 0) {
@@ -99,6 +125,12 @@ class PnLNormalizationService {
                     // Negative or zero total PnL: set minimum impact factor
                     newImpactFactor = 10 // Minimum impact factor for poor performance
                 }
+                
+                // Validate that impactFactor is a finite number
+                newImpactFactor = this.validateNumericValue(newImpactFactor, 'impactFactor', 10);
+                
+                // Validate totalPnL as well
+                const validatedTotalPnL = this.validateNumericValue(totalPnL, 'totalPnL', 0);
 
                 updates.push({
                     updateOne: {
@@ -106,7 +138,7 @@ class PnLNormalizationService {
                         update: { 
                             $set: { 
                                 impactFactor: newImpactFactor,
-                                totalPnL: totalPnL,
+                                totalPnL: validatedTotalPnL,
                                 signalCount: signalCount,
                                 pnlPerSignal: pnlPerSignal,
                                 updatedAt: new Date()

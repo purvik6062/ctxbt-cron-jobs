@@ -6,20 +6,6 @@ const axios = require('axios');
 
 const cryptoService = new CryptoService();
 
-// Top 10 influencers who are allowed to send signals to Hyperliquid vault
-const TOP_10_INFLUENCERS = [
-    'RiddlerDeFi',
-    'AltcoinLevi',
-    'TradeMogulPro',
-    'dippy_eth',
-    'CryptoHeroTA',
-    'CryptoEnact',
-    'CryptoTraderRai',
-    'Ashikur1589',
-    'MuroCrypto',
-    'BenjiGanar'
-];
-
 // Bitcoin-focused signal accounts
 const BITCOIN_SIGNAL_ACCOUNTS = [
     '100trillionUSD',
@@ -54,13 +40,142 @@ const BITCOIN_COIN_IDS = ['bitcoin', 'btc', 'BTC'];
 // Ethereum identifiers (common coin IDs for Ethereum)
 const ETHEREUM_COIN_IDS = ['ethereum', 'eth', 'ETH'];
 
+// Cache for top influencers to avoid repeated database calls
+let topInfluencersCache = {
+    top10: null,
+    top30: null,
+    lastUpdated: null,
+    cacheDuration: 5 * 60 * 1000 // 5 minutes
+};
+
 /**
- * Checks if an influencer is in the top 10 list and should send signals to Hyperliquid vault
+ * Fetches top influencers from the database based on impact factor
+ * @param {number} limit - Number of top influencers to fetch
+ * @returns {Array} - Array of influencer objects sorted by impact factor
+ */
+async function getTopInfluencersByImpactFactor(limit = 30) {
+    try {
+        const client = await connect();
+        const signalFlowDb = client.db("ctxbt-signal-flow");
+        const influencersCollection = signalFlowDb.collection('influencers');
+        
+        // Fetch top influencers sorted by impact factor (descending)
+        const topInfluencers = await influencersCollection
+            .find({ 
+                impactFactor: { $exists: true, $ne: null },
+                // Filter out influencers with invalid impact factors
+                $and: [
+                    { impactFactor: { $ne: Infinity } },
+                    { impactFactor: { $ne: -Infinity } },
+                    { impactFactor: { $ne: NaN } }
+                ]
+            })
+            .sort({ impactFactor: -1 })
+            .limit(limit)
+            .project({ 
+                twitterHandle: 1, 
+                impactFactor: 1, 
+                totalPnL: 1, 
+                signalCount: 1 
+            })
+            .toArray();
+        
+        console.log(`Fetched top ${topInfluencers.length} influencers by impact factor`);
+        return topInfluencers;
+    } catch (error) {
+        console.error('Error fetching top influencers by impact factor:', error);
+        return [];
+    }
+}
+
+/**
+ * Gets cached top influencers or fetches fresh data if cache is expired
+ * @param {number} limit - Number of top influencers to fetch
+ * @returns {Array} - Array of top influencer objects
+ */
+async function getCachedTopInfluencers(limit = 30) {
+    const now = Date.now();
+    const cacheKey = limit === 10 ? 'top10' : 'top30';
+    
+    // Check if cache is valid
+    if (topInfluencersCache[cacheKey] && 
+        topInfluencersCache.lastUpdated && 
+        (now - topInfluencersCache.lastUpdated) < topInfluencersCache.cacheDuration) {
+        return topInfluencersCache[cacheKey];
+    }
+    
+    // Fetch fresh data
+    const topInfluencers = getTopInfluencersByImpactFactor(limit);
+    
+    // Update cache
+    topInfluencersCache[cacheKey] = topInfluencers;
+    topInfluencersCache.lastUpdated = now;
+    
+    return topInfluencers;
+}
+
+/**
+ * Gets top 10 influencers by impact factor
+ * @returns {Array} - Array of top 10 influencer objects
+ */
+async function getTop10Influencers() {
+    return getCachedTopInfluencers(10);
+}
+
+/**
+ * Gets top 30 influencers by impact factor
+ * @returns {Array} - Array of top 30 influencer objects
+ */
+async function getTop30Influencers() {
+    return getCachedTopInfluencers(30);
+}
+
+/**
+ * Checks if an influencer is in the top 10 list based on impact factor
  * @param {string} twitterHandle - The influencer's Twitter handle
  * @returns {boolean} - True if the influencer is in the top 10 list, false otherwise
  */
-function isTop10Influencer(twitterHandle) {
-    return TOP_10_INFLUENCERS.includes(twitterHandle);
+async function isTop10Influencer(twitterHandle) {
+    const top10 = getTop10Influencers();
+    return top10.some(influencer => influencer.twitterHandle === twitterHandle);
+}
+
+/**
+ * Checks if an influencer is in the top 30 list based on impact factor
+ * @param {string} twitterHandle - The influencer's Twitter handle
+ * @returns {boolean} - True if the influencer is in the top 30 list, false otherwise
+ */
+async function isTop30Influencer(twitterHandle) {
+    const top30 = getTop30Influencers();
+    return top30.some(influencer => influencer.twitterHandle === twitterHandle);
+}
+
+/**
+ * Determines if a signal should be sent to Hyperliquid based on influencer rank and token type
+ * @param {string} twitterHandle - The influencer's Twitter handle
+ * @param {string} tokenId - The token ID
+ * @returns {Object} - Object with shouldSend and reason properties
+ */
+async function shouldSendToHyperliquid(twitterHandle, tokenId) {
+    const tokenIdLower = tokenId.toLowerCase();
+    const isBTC = BITCOIN_COIN_IDS.some(btcId => tokenIdLower.includes(btcId.toLowerCase()));
+    const isETH = ETHEREUM_COIN_IDS.some(ethId => tokenIdLower.includes(ethId.toLowerCase()));
+    
+    // For BTC/ETH tokens, only top 10 influencers can send signals
+    if (isBTC || isETH) {
+        const isTop10 = isTop10Influencer(twitterHandle);
+        return {
+            shouldSend: isTop10,
+            reason: isTop10 ? 'Top 10 influencer for BTC/ETH token' : 'BTC/ETH tokens restricted to top 10 influencers only'
+        };
+    }
+    
+    // For other tokens, top 30 influencers can send signals
+    const isTop30 = isTop30Influencer(twitterHandle);
+    return {
+        shouldSend: isTop30,
+        reason: isTop30 ? 'Top 30 influencer for non-BTC/ETH token' : 'Not in top 30 influencers list'
+    };
 }
 
 /**
@@ -333,7 +448,8 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                             });
 
                             // Send signal to Hyperliquid API for position creation (only for top 10 influencers)
-                            if (isTop10Influencer(twitterHandle)) {
+                            const { shouldSend, reason } = await shouldSendToHyperliquid(twitterHandle, tokenId);
+                            if (shouldSend) {
                                 try {
                                     const signalPayload = {
                                         signal: data.signal,
@@ -347,15 +463,15 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                                     const apiResponse = await processAndSendSignal(signalPayload);
                                     
                                     if (apiResponse.status === 'success') {
-                                        console.log(`Successfully sent signal to Hyperliquid API for ${tokenMentioned} from top 10 influencer ${twitterHandle}`);
+                                        console.log(`Successfully sent signal to Hyperliquid API for ${tokenMentioned} from ${twitterHandle} (${reason})`);
                                     } else {
-                                        console.error(`Failed to send signal to Hyperliquid API for ${tokenMentioned} from ${twitterHandle}:`, apiResponse.error);
+                                        console.error(`Failed to send signal to Hyperliquid API for ${tokenMentioned} from ${twitterHandle} (${reason}):`, apiResponse.error);
                                     }
                                 } catch (apiError) {
-                                    console.error(`Error sending signal to Hyperliquid API for ${tokenMentioned} from ${twitterHandle}:`, apiError);
+                                    console.error(`Error sending signal to Hyperliquid API for ${tokenMentioned} from ${twitterHandle} (${reason}):`, apiError);
                                 }
                             } else {
-                                console.log(`Skipping Hyperliquid API for ${tokenMentioned} - ${twitterHandle} is not in top 10 influencers list`);
+                                console.log(`Skipping Hyperliquid API for ${tokenMentioned} - ${twitterHandle} (${reason})`);
                             }
 
                             console.log(`Generated signal for ${coinId} in tweet ${tweet.tweet_id}`);
@@ -396,8 +512,101 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
     }
 }
 
+/**
+ * Utility function to get current top influencers for debugging/monitoring
+ * @returns {Object} - Object containing top 10 and top 30 influencers
+ */
+async function getCurrentTopInfluencers() {
+    try {
+        const top10 = getTop10Influencers();
+        const top30 = getTop30Influencers();
+        
+        return {
+            top10: top10.map(inf => ({
+                twitterHandle: inf.twitterHandle,
+                impactFactor: inf.impactFactor,
+                totalPnL: inf.totalPnL,
+                signalCount: inf.signalCount
+            })),
+            top30: top30.map(inf => ({
+                twitterHandle: inf.twitterHandle,
+                impactFactor: inf.impactFactor,
+                totalPnL: inf.totalPnL,
+                signalCount: inf.signalCount
+            })),
+            cacheInfo: {
+                lastUpdated: topInfluencersCache.lastUpdated,
+                cacheAge: topInfluencersCache.lastUpdated ? 
+                    Math.round((Date.now() - topInfluencersCache.lastUpdated) / 1000) + 's ago' : 'Never'
+            }
+        };
+    } catch (error) {
+        console.error('Error getting current top influencers:', error);
+        return { error: error.message };
+    }
+}
+
+/**
+ * Utility function to clear the influencer cache (useful for testing)
+ */
+function clearInfluencerCache() {
+    topInfluencersCache = {
+        top10: null,
+        top30: null,
+        lastUpdated: null,
+        cacheDuration: 5 * 60 * 1000
+    };
+    console.log('Influencer cache cleared');
+}
+
+/**
+ * Utility function to check if an influencer can send signals for a specific token
+ * @param {string} twitterHandle - The influencer's Twitter handle
+ * @param {string} tokenId - The token ID
+ * @returns {Object} - Detailed information about the influencer's eligibility
+ */
+async function checkInfluencerEligibility(twitterHandle, tokenId) {
+    try {
+        const top10 = getTop10Influencers();
+        const top30 = getTop30Influencers();
+        
+        const isInTop10 = top10.some(inf => inf.twitterHandle === twitterHandle);
+        const isInTop30 = top30.some(inf => inf.twitterHandle === twitterHandle);
+        
+        const tokenIdLower = tokenId.toLowerCase();
+        const isBTC = BITCOIN_COIN_IDS.some(btcId => tokenIdLower.includes(btcId.toLowerCase()));
+        const isETH = ETHEREUM_COIN_IDS.some(ethId => tokenIdLower.includes(ethId.toLowerCase()));
+        
+        const { shouldSend, reason } = await shouldSendToHyperliquid(twitterHandle, tokenId);
+        
+        return {
+            twitterHandle,
+            tokenId,
+            isBTC,
+            isETH,
+            isInTop10,
+            isInTop30,
+            shouldSend,
+            reason,
+            ranking: {
+                top10Rank: isInTop10 ? top10.findIndex(inf => inf.twitterHandle === twitterHandle) + 1 : null,
+                top30Rank: isInTop30 ? top30.findIndex(inf => inf.twitterHandle === twitterHandle) + 1 : null
+            }
+        };
+    } catch (error) {
+        console.error('Error checking influencer eligibility:', error);
+        return { error: error.message };
+    }
+}
+
 module.exports = { 
     processAndGenerateSignalsForTweets,
     isTop10Influencer,
-    TOP_10_INFLUENCERS
+    isTop30Influencer,
+    getTop10Influencers,
+    getTop30Influencers,
+    getCurrentTopInfluencers,
+    clearInfluencerCache,
+    checkInfluencerEligibility,
+    shouldSendToHyperliquid
 };

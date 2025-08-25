@@ -524,9 +524,12 @@ async function processSignals() {
                 strategyPnLs[name] = pnl.toFixed(2) + "%";
             }
 
-            let bestPnL = -Infinity;
+            // Initialize with the first strategy's PnL instead of -Infinity
+            let bestPnL = 0;
             let bestExitPrice = null;
             let bestStrategy = null;
+            
+            // Find the best performing strategy
             for (const [name, state] of exitedStrategies) {
                 let pnl;
                 if (state.isPutOptions) {
@@ -534,11 +537,24 @@ async function processSignals() {
                 } else {
                     pnl = ((state.exitPrice - priceAtTweet) / priceAtTweet) * 100;
                 }
-                if (pnl > bestPnL) {
+                
+                // Update best PnL if this strategy performed better
+                if (bestExitPrice === null || pnl > bestPnL) {
                     bestPnL = pnl;
                     bestExitPrice = state.exitPrice;
                     bestStrategy = name;
                 }
+            }
+            
+            // Validate that we have valid values before proceeding
+            if (bestExitPrice === null || bestStrategy === null) {
+                console.log(`Invalid exit data for token ${tokenId}, skipping`);
+                continue;
+            }
+            
+            // Ensure bestPnL is a finite number
+            if (!isFinite(bestPnL)) {
+                console.log(`Invalid PnL value for token ${tokenId}: ${bestPnL}, setting to 0`);
             }
             document['Final Exit Price'] = bestExitPrice;
             document['Final P&L'] = bestPnL.toFixed(2) + "%";
