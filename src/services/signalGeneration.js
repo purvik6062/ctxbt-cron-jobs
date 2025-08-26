@@ -6,39 +6,16 @@ const axios = require('axios');
 
 const cryptoService = new CryptoService();
 
-// Bitcoin-focused signal accounts
-const BITCOIN_SIGNAL_ACCOUNTS = [
-    '100trillionUSD',
-    'woonomic',
-    'WClementeIII',
-    'Pentosh1',
-    'rektcapital',
-    'CryptoDonAlt',
-    'CryptoCred',
-    'CryptoCapo_',
-    'CryptoYoda',
-    'PeterLBrandt'
-];
 
-// Ethereum-focused signal accounts
-const ETHEREUM_SIGNAL_ACCOUNTS = [
-    'SmartContracter',
-    'CryptoMichNL',
-    'ali_charts',
-    'scottmelker',
-    'AshCryptoReal',
-    'lookonchain',
-    'CryptoKaleo',
-    'OnChainWizard',
-    'Trader_XO',
-    'TraderMayne'
-];
 
 // Bitcoin identifiers (common coin IDs for Bitcoin)
 const BITCOIN_COIN_IDS = ['bitcoin', 'btc', 'BTC'];
 
 // Ethereum identifiers (common coin IDs for Ethereum)
 const ETHEREUM_COIN_IDS = ['ethereum', 'eth', 'ETH'];
+
+// Solana identifiers (common coin IDs for Solana)
+const SOLANA_COIN_IDS = ['solana', 'sol', 'SOL'];
 
 // Cache for top influencers to avoid repeated database calls
 let topInfluencersCache = {
@@ -160,21 +137,23 @@ async function shouldSendToHyperliquid(twitterHandle, tokenId) {
     const tokenIdLower = tokenId.toLowerCase();
     const isBTC = BITCOIN_COIN_IDS.some(btcId => tokenIdLower.includes(btcId.toLowerCase()));
     const isETH = ETHEREUM_COIN_IDS.some(ethId => tokenIdLower.includes(ethId.toLowerCase()));
+    const isSOL = SOLANA_COIN_IDS.some(solId => tokenIdLower.includes(solId.toLowerCase()));
     
-    // For BTC/ETH tokens, only top 10 influencers can send signals
-    if (isBTC || isETH) {
-        const isTop10 = isTop10Influencer(twitterHandle);
+    // For BTC/ETH/SOL tokens, only top 10 influencers can send signals
+    if (isBTC || isETH || isSOL) {
+        const isTop10 = await isTop10Influencer(twitterHandle);
+        const tokenType = isBTC ? 'BTC' : isETH ? 'ETH' : 'SOL';
         return {
             shouldSend: isTop10,
-            reason: isTop10 ? 'Top 10 influencer for BTC/ETH token' : 'BTC/ETH tokens restricted to top 10 influencers only'
+            reason: isTop10 ? `Top 10 influencer for ${tokenType} token` : `${tokenType} tokens restricted to top 10 influencers only`
         };
     }
     
     // For other tokens, top 30 influencers can send signals
-    const isTop30 = isTop30Influencer(twitterHandle);
+    const isTop30 = await isTop30Influencer(twitterHandle);
     return {
         shouldSend: isTop30,
-        reason: isTop30 ? 'Top 30 influencer for non-BTC/ETH token' : 'Not in top 30 influencers list'
+        reason: isTop30 ? 'Top 30 influencer for non-BTC/ETH/SOL token' : 'Not in top 30 influencers list'
     };
 }
 
@@ -182,23 +161,27 @@ async function shouldSendToHyperliquid(twitterHandle, tokenId) {
  * Checks if a coin should be processed based on the influencer's specialization.
  * @param {string} twitterHandle - The influencer's Twitter handle.
  * @param {string} coinId - The coin ID to check.
- * @returns {boolean} - True if the coin should be processed, false otherwise.
+ * @returns {Promise<boolean>} - True if the coin should be processed, false otherwise.
  */
-function shouldProcessCoinForInfluencer(twitterHandle, coinId) {
+async function shouldProcessCoinForInfluencer(twitterHandle, coinId) {
     const coinIdLower = coinId.toLowerCase();
     
-    // Check if this is a Bitcoin-focused account
-    if (BITCOIN_SIGNAL_ACCOUNTS.includes(twitterHandle)) {
-        return BITCOIN_COIN_IDS.some(btcId => coinIdLower.includes(btcId.toLowerCase()));
+    // Check if this is a Bitcoin-related coin
+    const isBTC = BITCOIN_COIN_IDS.some(btcId => coinIdLower.includes(btcId.toLowerCase()));
+    // Check if this is an Ethereum-related coin
+    const isETH = ETHEREUM_COIN_IDS.some(ethId => coinIdLower.includes(ethId.toLowerCase()));
+    // Check if this is a Solana-related coin
+    const isSOL = SOLANA_COIN_IDS.some(solId => coinIdLower.includes(solId.toLowerCase()));
+    
+    // For BTC, ETH, and SOL tokens, only top 10 influencers can process them
+    if (isBTC || isETH || isSOL) {
+        const isTop10 = await isTop10Influencer(twitterHandle);
+        return isTop10;
     }
     
-    // Check if this is an Ethereum-focused account
-    if (ETHEREUM_SIGNAL_ACCOUNTS.includes(twitterHandle)) {
-        return ETHEREUM_COIN_IDS.some(ethId => coinIdLower.includes(ethId.toLowerCase()));
-    }
-    
-    // For accounts not in the specialized lists, process all coins
-    return true;
+    // For other tokens, top 30 influencers can process them
+    const isTop30 = await isTop30Influencer(twitterHandle);
+    return isTop30;
 }
 
 /**
@@ -357,9 +340,13 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
             for (const tweet of tweetsToProcess) {
                 try {
                     // Filter coins based on influencer specialization
-                    const coinsToProcess = tweet.coins.filter(coinId => 
-                        shouldProcessCoinForInfluencer(twitterHandle, coinId)
-                    );
+                    const coinsToProcess = [];
+                    for (const coinId of tweet.coins) {
+                        const shouldProcess = await shouldProcessCoinForInfluencer(twitterHandle, coinId);
+                        if (shouldProcess) {
+                            coinsToProcess.push(coinId);
+                        }
+                    }
                     
                     if (coinsToProcess.length === 0) {
                         console.log(`No eligible coins for ${twitterHandle} in tweet ${tweet.tweet_id} (specialization filter applied)`);
@@ -576,6 +563,7 @@ async function checkInfluencerEligibility(twitterHandle, tokenId) {
         const tokenIdLower = tokenId.toLowerCase();
         const isBTC = BITCOIN_COIN_IDS.some(btcId => tokenIdLower.includes(btcId.toLowerCase()));
         const isETH = ETHEREUM_COIN_IDS.some(ethId => tokenIdLower.includes(ethId.toLowerCase()));
+        const isSOL = SOLANA_COIN_IDS.some(solId => tokenIdLower.includes(solId.toLowerCase()));
         
         const { shouldSend, reason } = await shouldSendToHyperliquid(twitterHandle, tokenId);
         
@@ -584,6 +572,7 @@ async function checkInfluencerEligibility(twitterHandle, tokenId) {
             tokenId,
             isBTC,
             isETH,
+            isSOL,
             isInTop10,
             isInTop30,
             shouldSend,
