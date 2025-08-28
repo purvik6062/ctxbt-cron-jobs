@@ -82,7 +82,7 @@ async function getCachedTopInfluencers(limit = 30) {
     }
     
     // Fetch fresh data
-    const topInfluencers = getTopInfluencersByImpactFactor(limit);
+    const topInfluencers = await getTopInfluencersByImpactFactor(limit);
     
     // Update cache
     topInfluencersCache[cacheKey] = topInfluencers;
@@ -113,7 +113,7 @@ async function getTop30Influencers() {
  * @returns {boolean} - True if the influencer is in the top 10 list, false otherwise
  */
 async function isTop10Influencer(twitterHandle) {
-    const top10 = getTop10Influencers();
+    const top10 = await getTop10Influencers();
     return top10.some(influencer => influencer.twitterHandle === twitterHandle);
 }
 
@@ -123,7 +123,7 @@ async function isTop10Influencer(twitterHandle) {
  * @returns {boolean} - True if the influencer is in the top 30 list, false otherwise
  */
 async function isTop30Influencer(twitterHandle) {
-    const top30 = getTop30Influencers();
+    const top30 = await getTop30Influencers();
     return top30.some(influencer => influencer.twitterHandle === twitterHandle);
 }
 
@@ -505,8 +505,8 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
  */
 async function getCurrentTopInfluencers() {
     try {
-        const top10 = getTop10Influencers();
-        const top30 = getTop30Influencers();
+        const top10 = await getTop10Influencers();
+        const top30 = await getTop30Influencers();
         
         return {
             top10: top10.map(inf => ({
@@ -554,8 +554,8 @@ function clearInfluencerCache() {
  */
 async function checkInfluencerEligibility(twitterHandle, tokenId) {
     try {
-        const top10 = getTop10Influencers();
-        const top30 = getTop30Influencers();
+        const top10 = await getTop10Influencers();
+        const top30 = await getTop30Influencers();
         
         const isInTop10 = top10.some(inf => inf.twitterHandle === twitterHandle);
         const isInTop30 = top30.some(inf => inf.twitterHandle === twitterHandle);
