@@ -117,35 +117,60 @@ async function processTweets() {
         // Process only twitter handles with active subscribers
         const docs = await influencerCollection.find({ subscribers: { $exists: true, $ne: [] } }).toArray();
 
-        for (const doc of docs) {
+        console.log(`🚀 Starting incremental tweet processing for ${docs.length} influencers...`);
+
+        for (let i = 0; i < docs.length; i++) {
+            const doc = docs[i];
             const subscription = {
                 twitterHandleUsername: doc.twitterHandle,
                 account: doc.twitterHandle // Pass the account name for impact factor lookup
             };
+
+            console.log(`📊 Processing ${i + 1}/${docs.length}: ${subscription.twitterHandleUsername}`);
 
             const result = await scrapeTwitterAccount(subscription, {
                 timeout: 240000,    // 4 minutes per request
                 maxRetries: 3,      // Try up to 3 times
                 retryDelay: 10000   // Wait 10 seconds between retries
             });
+
             if (result.success) {
-                // Pass the account information to the processing functions
+                console.log(`✅ Successfully scraped tweets for ${subscription.twitterHandleUsername}`);
+
+                // Process tweets for this handle
                 await processAndStoreTweetsForHandle(
                     subscription.twitterHandleUsername,
                     doc.subscribers,
                     result.data,
                     subscription.account
                 );
+
+                // Generate signals for this handle
                 await processAndGenerateSignalsForTweets(
                     subscription.twitterHandleUsername,
                     subscription.account
                 );
+
+                // Immediately send signals for this handle to spread them out over time
+                console.log(`📤 Sending signals for ${subscription.twitterHandleUsername} immediately...`);
+                const sendResult = await processAndSendTradingSignalMessage({
+                    handleFilter: subscription.twitterHandleUsername
+                });
+                console.log(`📊 Signals sent for ${subscription.twitterHandleUsername}: ${sendResult.successful || 0} successful, ${sendResult.failed || 0} failed`);
+
+            } else {
+                console.log(`❌ Failed to scrape tweets for ${subscription.twitterHandleUsername}: ${result.error}`);
             }
-            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Small delay between handles to avoid overwhelming the system
+            if (i < docs.length - 1) {
+                console.log(`⏳ Waiting 1 second before next handle...`);
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
         }
 
-        // Send messages only once after processing all handles
-        await processAndSendTradingSignalMessage();
+        console.log(`✅ Completed incremental processing of ${docs.length} influencers`);
+
     } catch (error) {
         console.error('Error processing tweets:', error);
     } finally {

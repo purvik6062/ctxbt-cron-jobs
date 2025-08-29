@@ -106,12 +106,15 @@ async function processBatch(batch, tradingSignalsCollection) {
 
 /**
  * Main function to process and send trading signal messages progressively
+ * @param {Object} options - Configuration options
+ * @param {string} options.handleFilter - Optional Twitter handle to filter signals by
  * @returns {Object} - Delivery summary
  */
-async function processAndSendTradingSignalMessage() {
+async function processAndSendTradingSignalMessage(options = {}) {
+    const { handleFilter } = options;
     const startTime = Date.now();
     const client = await connect();
-    
+
     try {
         const db = client.db(dbName);
         const tradingSignalsCollection = db.collection(tradingSignalsCollectionName);
@@ -119,29 +122,39 @@ async function processAndSendTradingSignalMessage() {
         const now = new Date();
         const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
+        // Build query conditions
+        const queryConditions = [
+            { generatedAt: { $gte: startOfToday } },
+            {
+                $or: [
+                    { messageSent: { $exists: false } },
+                    { messageSent: false },
+                    { "subscribers.sent": { $ne: true } }
+                ]
+            }
+        ];
+
+        // Add handle filter if provided
+        if (handleFilter) {
+            queryConditions.push({ twitterHandle: handleFilter });
+        }
+
         // Step 1: Fetch documents where at least one subscriber hasn't received the message
         const documents = await tradingSignalsCollection
             .find({
-                $and: [
-                    { generatedAt: { $gte: startOfToday } },
-                    {
-                        $or: [
-                            { messageSent: { $exists: false } },
-                            { messageSent: false },
-                            { "subscribers.sent": { $ne: true } }
-                        ]
-                    }
-                ]
+                $and: queryConditions
             })
             .sort({ generatedAt: 1 }) // Process oldest signals first
             .toArray();
 
         if (documents.length === 0) {
-            console.log('📭 No pending signals to send');
+            const filterMsg = handleFilter ? ` for handle @${handleFilter}` : '';
+            console.log(`📭 No pending signals to send${filterMsg}`);
             return { total: 0, batches: 0, deliveryTime: 0 };
         }
 
-        console.log(`🚀 Starting progressive delivery of ${documents.length} signals...`);
+        const filterMsg = handleFilter ? ` for handle @${handleFilter}` : '';
+        console.log(`🚀 Starting progressive delivery of ${documents.length} signals${filterMsg}...`);
         console.log(`⚙️  Configuration: ${DELIVERY_CONFIG.batchSize} signals per batch, ${DELIVERY_CONFIG.delayBetweenBatches / 1000}s between batches`);
 
         // Step 2: Split documents into batches
