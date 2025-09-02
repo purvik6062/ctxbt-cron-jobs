@@ -4,6 +4,111 @@ const CryptoService = require('./cryptoService');
 const { processAndSendSignal } = require('./hyperliquidSignalService');
 const axios = require('axios');
 
+/**
+ * Gets the safe address for a user from the safe-deployment-service database
+ * @param {string} username - Subscriber identifier (telegramId from tradingSignalsCollection)
+ * @returns {string|null} - The safe address for arbitrum (pref) or arbitrum_sepolia, or null if not found
+ */
+async function getSafeAddressForUser(username) {
+    let client;
+    try {
+        client = await connect();
+
+        // Resolve twitterId by looking up the user via telegramId (username from tradingSignalsCollection)
+        const signalFlowDb = client.db("ctxbt-signal-flow");
+        const usersCollection = signalFlowDb.collection("users");
+
+        // Try multiple identifiers just in case: telegramId (primary), twitterUsername (fallback)
+        const userDoc = await usersCollection.findOne({
+            $or: [
+                { telegramId: username },
+                { twitterUsername: username }
+            ]
+        });
+
+        if (!userDoc) {
+            console.log(`No user found in users collection for identifier ${username}`);
+            return null;
+        }
+
+        if (!userDoc.twitterId) {
+            console.log(`No twitterId found for identifier ${username}`);
+            return null;
+        }
+
+        const twitterId = userDoc.twitterId.toString();
+
+        // Now get safe address from safe-deployment-service db using twitterId = safes.userInfo.userId
+        const safeDeploymentDb = client.db("safe-deployment-service");
+        const safesCollection = safeDeploymentDb.collection("safes");
+
+        const safeDoc = await safesCollection.findOne({
+            "userInfo.userId": twitterId
+        });
+
+        if (!safeDoc || !safeDoc.deployments) {
+            console.log(`No safe deployments found for twitterId ${twitterId} (identifier ${username})`);
+            return null;
+        }
+
+        // Prefer mainnet arbitrum, fall back to arbitrum_sepolia
+        const arbMainnet = safeDoc.deployments.arbitrum && safeDoc.deployments.arbitrum.address;
+        // const arbSepolia = safeDoc.deployments.arbitrum_sepolia && safeDoc.deployments.arbitrum_sepolia.address;
+
+        const safeAddress = arbMainnet || null;
+        if (!safeAddress) {
+            console.log(`No arbitrum safe address found for twitterId ${twitterId} (identifier ${username})`);
+            return null;
+        }
+
+        console.log(`Found safe address ${safeAddress} for identifier ${username} (twitterId ${twitterId})`);
+        return safeAddress;
+
+    } catch (error) {
+        console.error(`Error getting safe address for user ${username}:`, error);
+        return null;
+    }
+}
+
+/**
+ * Sends signal to the trading API for a subscriber
+ * @param {Object} signalData - The signal data
+ * @param {string} username - The subscriber's username
+ * @param {string} safeAddress - The subscriber's safe address
+ */
+async function sendSignalToGMXAPI(signalData, username, safeAddress) {
+    try {
+        const payload = {
+            "Signal Message": signalData.signal,
+            "Token Mentioned": signalData.tokenMentioned,
+            "TP1": signalData.targets && signalData.targets.length > 0 ? signalData.targets[0] : null,
+            "TP2": signalData.targets && signalData.targets.length > 1 ? signalData.targets[1] : null,
+            "SL": signalData.stopLoss || null,
+            "Current Price": signalData.currentPrice,
+            "Max Exit Time": signalData.maxExitTime ? { "$date": signalData.maxExitTime } : null,
+            "username": username,
+            "safeAddress": safeAddress,
+            "autoExecute": true
+        };
+
+        console.log(`Sending signal to API for user ${username}:`, JSON.stringify(payload, null, 2));
+
+        const response = await axios.post(process.env.GMX_API_URL + '/position/create-with-tp-sl', payload, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            timeout: 60000
+        });
+
+        console.log(`Successfully sent signal to API for user ${username}:`, response.data);
+        return { success: true, response: response.data };
+
+    } catch (error) {
+        console.error(`Failed to send signal to API for user ${username}:`, error.response?.data || error.message);
+        return { success: false, error: error.response?.data || error.message };
+    }
+}
+
 const cryptoService = new CryptoService();
 
 
@@ -413,6 +518,79 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                                 tweet_link: tweet.tweet_link,
                                 messageSent: false
                             });
+
+                            // Send signal to GMX API
+                            console.log(`Sending signal to GMX API for ${twitterHandle}'s tweet ${tweet.tweet_id}`);
+
+                            // Get users collection to check subscriptions
+                            // const signalFlowDb = client.db("ctxbt-signal-flow");
+                            // const usersCollection = signalFlowDb.collection("users");
+
+                            // Get the stored document to access subscribers as objects
+                            const storedSignal = await tradingSignalsCollection.findOne({
+                                tweet_id: tweet.tweet_id,
+                                twitterHandle
+                            });
+
+                            if (!storedSignal || !storedSignal.subscribers) {
+                                console.log(`No stored signal found for tweet ${tweet.tweet_id}, skipping GMX API calls`);
+                                return;
+                            }
+
+                            console.log(`Subscribers: ${storedSignal.subscribers.map(s => s.username).join(',')}`);
+
+                            for (const subscriber of storedSignal.subscribers) {
+                                try {
+                                    const username = subscriber.username;
+                                    console.log(`Sending signal to GMX API for ${username}`);
+
+                                    // Check if user is subscribed to this twitter handle from tradingSignalsCollection
+                                    const signalDoc = await tradingSignalsCollection.findOne({
+                                        tweet_id: tweet.tweet_id,
+                                        twitterHandle,
+                                        "subscribers.username": username
+                                    });
+
+                                    if (!signalDoc) {
+                                        console.log(`User ${username} is not found in tradingSignalsCollection for ${twitterHandle}, skipping API call`);
+                                        continue;
+                                    }
+
+                                    // // Additional check: verify subscription is still active in users collection
+                                    // const userDoc = await usersCollection.findOne({
+                                    //     twitterUsername: username,
+                                    //     "subscribedAccounts.twitterHandle": twitterHandle
+                                    // });
+
+                                    // if (!userDoc) {
+                                    //     console.log(`User ${username} is not subscribed to ${twitterHandle} in users collection, skipping API call`);
+                                    //     continue;
+                                    // }
+
+                                    console.log(`User ${username} is subscribed to ${twitterHandle} and found in tradingSignalsCollection`);
+
+                                    // Get safe address for the user
+                                    const safeAddress = await getSafeAddressForUser(username);
+                                    if (!safeAddress) {
+                                        console.log(`No safe address found for user ${username}, skipping API call`);
+                                        continue;
+                                    }
+
+                                    // Send signal to GMX API
+                                    const apiResult = await sendSignalToGMXAPI(enhancedSignalData, username, safeAddress);
+
+                                    if (apiResult.success) {
+                                        console.log(`Successfully sent signal to API for GMX ${username}`);
+                                    } else {
+                                        console.error(`Failed to send signal to API for GMX ${username}:`, apiResult.error);
+                                    }
+
+                                } catch (subscriberError) {
+                                    console.error(`Error processing GMX ${subscriber.username}:`, subscriberError);
+                                }
+                            }
+
+                            console.log(`Completed sending signals to all subscribers for ${twitterHandle}'s tweet ${tweet.tweet_id}`);
 
                             // Store in backtesting database
                             const backtestingDb = client.db('backtesting_db');

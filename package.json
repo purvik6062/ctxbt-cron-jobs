@@ -5,6 +5,11 @@
   "main": "main.js",
   "scripts": {
     "test": "jest",
+    "test-signal": "node test-signal-flow.js",
+    "test-safe-address": "node test-signal-flow.js safe-address",
+    "test-gmx-api": "node test-signal-flow.js gmx-api --mock",
+    "test-full-flow": "node test-signal-flow.js full-flow --mock",
+    "test-mock": "node test-signal-flow.js mock-flow",
     "lint": "eslint src/",
     "build": "echo 'Build completed'",
     "security-check": "npm audit"
