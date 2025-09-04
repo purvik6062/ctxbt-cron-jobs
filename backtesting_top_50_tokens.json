@@ -1,0 +1,352 @@
+[
+    {
+        "_id": {
+            "$oid": "689bb91dae7ae2a17bcd62ec"
+        },
+        "Token Mentioned": "SKL",
+        "Final P&L": "97.64%"
+    },
+    {
+        "_id": {
+            "$oid": "680a00895172cf3e97e665fc"
+        },
+        "Token Mentioned": "APU",
+        "Final P&L": "96.50%"
+    },
+    {
+        "_id": {
+            "$oid": "6824487b937fdd3ac28e59e2"
+        },
+        "Token Mentioned": "OMNI",
+        "Final P&L": "92.12%"
+    },
+    {
+        "_id": {
+            "$oid": "6809b774a039a0c863bed85d"
+        },
+        "Token Mentioned": "ETH",
+        "Final P&L": "9.97%"
+    },
+    {
+        "_id": {
+            "$oid": "6809b77ea039a0c863bed867"
+        },
+        "Token Mentioned": "BTC",
+        "Final P&L": "9.97%"
+    },
+    {
+        "_id": {
+            "$oid": "6852e7cb1388f843c6acac60"
+        },
+        "Token Mentioned": "PEPE",
+        "Final P&L": "9.95%"
+    },
+    {
+        "_id": {
+            "$oid": "68aa357d7f3f29097eaa8e8c"
+        },
+        "Token Mentioned": "PERP",
+        "Final P&L": "9.92%"
+    },
+    {
+        "_id": {
+            "$oid": "6830bfcc1fff7a6184f090d2"
+        },
+        "Token Mentioned": "AB",
+        "Final P&L": "9.92%"
+    },
+    {
+        "_id": {
+            "$oid": "68033cc74e378d129d3464eb"
+        },
+        "Token Mentioned": "NPC",
+        "Final P&L": "9.91%"
+    },
+    {
+        "_id": {
+            "$oid": "680a00895172cf3e97e6657e"
+        },
+        "Token Mentioned": "SQD",
+        "Final P&L": "9.90%"
+    },
+    {
+        "_id": {
+            "$oid": "68033cb34e378d129d3464d3"
+        },
+        "Token Mentioned": "HYPE",
+        "Final P&L": "9.89%"
+    },
+    {
+        "_id": {
+            "$oid": "6809a96ba039a0c863bed850"
+        },
+        "Token Mentioned": "SOL",
+        "Final P&L": "9.84%"
+    },
+    {
+        "_id": {
+            "$oid": "6823b8d2e09acd81a1f07170"
+        },
+        "Token Mentioned": "WCT",
+        "Final P&L": "9.80%"
+    },
+    {
+        "_id": {
+            "$oid": "6845420be5d38f38c61f0a12"
+        },
+        "Token Mentioned": "BABY",
+        "Final P&L": "9.79%"
+    },
+    {
+        "_id": {
+            "$oid": "689ddee1d2ea94d8f650d4cb"
+        },
+        "Token Mentioned": "EVER",
+        "Final P&L": "9.74%"
+    },
+    {
+        "_id": {
+            "$oid": "6842b471a720d3f1a8c03bfc"
+        },
+        "Token Mentioned": "ARC",
+        "Final P&L": "9.72%"
+    },
+    {
+        "_id": {
+            "$oid": "68a617a6bfc732baf58238a4"
+        },
+        "Token Mentioned": "CHESS",
+        "Final P&L": "9.71%"
+    },
+    {
+        "_id": {
+            "$oid": "6841930ea720d3f1a8c038f7"
+        },
+        "Token Mentioned": "KNIGHT",
+        "Final P&L": "9.68%"
+    },
+    {
+        "_id": {
+            "$oid": "6882590d09f2d70ef35d8878"
+        },
+        "Token Mentioned": "SAHARA",
+        "Final P&L": "9.63%"
+    },
+    {
+        "_id": {
+            "$oid": "684ab42833e860375c5c8c0d"
+        },
+        "Token Mentioned": "BOTIFY",
+        "Final P&L": "9.54%"
+    },
+    {
+        "_id": {
+            "$oid": "68a5ec50bfc732baf582384b"
+        },
+        "Token Mentioned": "CATI",
+        "Final P&L": "9.48%"
+    },
+    {
+        "_id": {
+            "$oid": "682ae2cd1fff7a6184f08c78"
+        },
+        "Token Mentioned": "PHA",
+        "Final P&L": "9.45%"
+    },
+    {
+        "_id": {
+            "$oid": "68281de3f327f092a1a56665"
+        },
+        "Token Mentioned": "HIFI",
+        "Final P&L": "9.40%"
+    },
+    {
+        "_id": {
+            "$oid": "68091615a039a0c863bed79e"
+        },
+        "Token Mentioned": "ANYONE",
+        "Final P&L": "9.35%"
+    },
+    {
+        "_id": {
+            "$oid": "68473356e5d38f38c61f0d68"
+        },
+        "Token Mentioned": "CAH",
+        "Final P&L": "9.34%"
+    },
+    {
+        "_id": {
+            "$oid": "684587f8e5d38f38c61f0a5d"
+        },
+        "Token Mentioned": "AAA",
+        "Final P&L": "9.32%"
+    },
+    {
+        "_id": {
+            "$oid": "68a91efa7f3f29097eaa8d64"
+        },
+        "Token Mentioned": "PEAQ",
+        "Final P&L": "9.29%"
+    },
+    {
+        "_id": {
+            "$oid": "68acb79f8c4a3165324ed8c5"
+        },
+        "Token Mentioned": "FLM",
+        "Final P&L": "9.28%"
+    },
+    {
+        "_id": {
+            "$oid": "6825f036f327f092a1a5647c"
+        },
+        "Token Mentioned": "UMA",
+        "Final P&L": "9.27%"
+    },
+    {
+        "_id": {
+            "$oid": "6809942ba039a0c863bed831"
+        },
+        "Token Mentioned": "DOGE",
+        "Final P&L": "9.22%"
+    },
+    {
+        "_id": {
+            "$oid": "6841b8c0a720d3f1a8c0395b"
+        },
+        "Token Mentioned": "AVA",
+        "Final P&L": "9.20%"
+    },
+    {
+        "_id": {
+            "$oid": "68225366e09acd81a1f0702d"
+        },
+        "Token Mentioned": "FUN",
+        "Final P&L": "9.16%"
+    },
+    {
+        "_id": {
+            "$oid": "683b3235a720d3f1a8c0330c"
+        },
+        "Token Mentioned": "ANTIRUG",
+        "Final P&L": "9.14%"
+    },
+    {
+        "_id": {
+            "$oid": "683f8913a720d3f1a8c036f3"
+        },
+        "Token Mentioned": "ALGO",
+        "Final P&L": "9.05%"
+    },
+    {
+        "_id": {
+            "$oid": "682860c0f327f092a1a566b4"
+        },
+        "Token Mentioned": "SYS",
+        "Final P&L": "9.05%"
+    },
+    {
+        "_id": {
+            "$oid": "689cecbbd2ea94d8f650d3c8"
+        },
+        "Token Mentioned": "ASTRA",
+        "Final P&L": "9.05%"
+    },
+    {
+        "_id": {
+            "$oid": "68150aa73210ced4948bbe9b"
+        },
+        "Token Mentioned": "SPX",
+        "Final P&L": "9.04%"
+    },
+    {
+        "_id": {
+            "$oid": "683fc2c1a720d3f1a8c03714"
+        },
+        "Token Mentioned": "MAGIC",
+        "Final P&L": "9.02%"
+    },
+    {
+        "_id": {
+            "$oid": "680a00895172cf3e97e66472"
+        },
+        "Token Mentioned": "LNQ",
+        "Final P&L": "87.82%"
+    },
+    {
+        "_id": {
+            "$oid": "68a57e43bfc732baf5823773"
+        },
+        "Token Mentioned": "MON",
+        "Final P&L": "85.36%"
+    },
+    {
+        "_id": {
+            "$oid": "689cd43ad2ea94d8f650d386"
+        },
+        "Token Mentioned": "OKB",
+        "Final P&L": "82.55%"
+    },
+    {
+        "_id": {
+            "$oid": "68033c4d4e378d129d346461"
+        },
+        "Token Mentioned": "SLING",
+        "Final P&L": "81.09%"
+    },
+    {
+        "_id": {
+            "$oid": "689ed54ad2ea94d8f650d5cb"
+        },
+        "Token Mentioned": "TST",
+        "Final P&L": "80.39%"
+    },
+    {
+        "_id": {
+            "$oid": "683e7628a720d3f1a8c035cd"
+        },
+        "Token Mentioned": "EOS",
+        "Final P&L": "8.98%"
+    },
+    {
+        "_id": {
+            "$oid": "684a921133e860375c5c8beb"
+        },
+        "Token Mentioned": "PORTAL",
+        "Final P&L": "8.97%"
+    },
+    {
+        "_id": {
+            "$oid": "680a5284565bd8881391d963"
+        },
+        "Token Mentioned": "POPCAT",
+        "Final P&L": "8.93%"
+    },
+    {
+        "_id": {
+            "$oid": "6842184aa720d3f1a8c03aaf"
+        },
+        "Token Mentioned": "SOLALA",
+        "Final P&L": "8.88%"
+    },
+    {
+        "_id": {
+            "$oid": "684a1d1633e860375c5c8b7c"
+        },
+        "Token Mentioned": "H1",
+        "Final P&L": "8.86%"
+    },
+    {
+        "_id": {
+            "$oid": "681207063210ced4948bbc95"
+        },
+        "Token Mentioned": "QUBIC",
+        "Final P&L": "8.85%"
+    },
+    {
+        "_id": {
+            "$oid": "6846f20be5d38f38c61f0c8a"
+        },
+        "Token Mentioned": "PARTI",
+        "Final P&L": "8.84%"
+    }
+]

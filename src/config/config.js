@@ -12,6 +12,8 @@ module.exports = {
     userCollectionName: 'users',
     influencerCollectionName: 'influencers',
     tradingSignalsCollectionName: 'trading-signals',
+    lunarcrushCollectionName: 'lunarcrush',
+    lunarcrushTokensCollectionName: 'lunarcrush-tokens',
     scrapeEndpoint: 'https://tweets-scraper.maxxit.ai/scrape',
     scraperCredentials: {
         user: "",

@@ -1,0 +1,5686 @@
+[
+  {
+    "_id": {
+      "$oid": "689bb91dae7ae2a17bcd62ec"
+    },
+    "Token Mentioned": "SKL",
+    "Final P&L": "97.64%"
+  },
+  {
+    "_id": {
+      "$oid": "680a00895172cf3e97e665fc"
+    },
+    "Token Mentioned": "APU",
+    "Final P&L": "96.50%"
+  },
+  {
+    "_id": {
+      "$oid": "6824487b937fdd3ac28e59e2"
+    },
+    "Token Mentioned": "OMNI",
+    "Final P&L": "92.12%"
+  },
+  {
+    "_id": {
+      "$oid": "6809b774a039a0c863bed85d"
+    },
+    "Token Mentioned": "ETH",
+    "Final P&L": "9.97%"
+  },
+  {
+    "_id": {
+      "$oid": "6809b77ea039a0c863bed867"
+    },
+    "Token Mentioned": "BTC",
+    "Final P&L": "9.97%"
+  },
+  {
+    "_id": {
+      "$oid": "6852e7cb1388f843c6acac60"
+    },
+    "Token Mentioned": "PEPE",
+    "Final P&L": "9.95%"
+  },
+  {
+    "_id": {
+      "$oid": "68aa357d7f3f29097eaa8e8c"
+    },
+    "Token Mentioned": "PERP",
+    "Final P&L": "9.92%"
+  },
+  {
+    "_id": {
+      "$oid": "6830bfcc1fff7a6184f090d2"
+    },
+    "Token Mentioned": "AB",
+    "Final P&L": "9.92%"
+  },
+  {
+    "_id": {
+      "$oid": "68033cc74e378d129d3464eb"
+    },
+    "Token Mentioned": "NPC",
+    "Final P&L": "9.91%"
+  },
+  {
+    "_id": {
+      "$oid": "680a00895172cf3e97e6657e"
+    },
+    "Token Mentioned": "SQD",
+    "Final P&L": "9.90%"
+  },
+  {
+    "_id": {
+      "$oid": "68033cb34e378d129d3464d3"
+    },
+    "Token Mentioned": "HYPE",
+    "Final P&L": "9.89%"
+  },
+  {
+    "_id": {
+      "$oid": "6809a96ba039a0c863bed850"
+    },
+    "Token Mentioned": "SOL",
+    "Final P&L": "9.84%"
+  },
+  {
+    "_id": {
+      "$oid": "6823b8d2e09acd81a1f07170"
+    },
+    "Token Mentioned": "WCT",
+    "Final P&L": "9.80%"
+  },
+  {
+    "_id": {
+      "$oid": "6845420be5d38f38c61f0a12"
+    },
+    "Token Mentioned": "BABY",
+    "Final P&L": "9.79%"
+  },
+  {
+    "_id": {
+      "$oid": "689ddee1d2ea94d8f650d4cb"
+    },
+    "Token Mentioned": "EVER",
+    "Final P&L": "9.74%"
+  },
+  {
+    "_id": {
+      "$oid": "6842b471a720d3f1a8c03bfc"
+    },
+    "Token Mentioned": "ARC",
+    "Final P&L": "9.72%"
+  },
+  {
+    "_id": {
+      "$oid": "68a617a6bfc732baf58238a4"
+    },
+    "Token Mentioned": "CHESS",
+    "Final P&L": "9.71%"
+  },
+  {
+    "_id": {
+      "$oid": "6841930ea720d3f1a8c038f7"
+    },
+    "Token Mentioned": "KNIGHT",
+    "Final P&L": "9.68%"
+  },
+  {
+    "_id": {
+      "$oid": "6882590d09f2d70ef35d8878"
+    },
+    "Token Mentioned": "SAHARA",
+    "Final P&L": "9.63%"
+  },
+  {
+    "_id": {
+      "$oid": "684ab42833e860375c5c8c0d"
+    },
+    "Token Mentioned": "BOTIFY",
+    "Final P&L": "9.54%"
+  },
+  {
+    "_id": {
+      "$oid": "68a5ec50bfc732baf582384b"
+    },
+    "Token Mentioned": "CATI",
+    "Final P&L": "9.48%"
+  },
+  {
+    "_id": {
+      "$oid": "682ae2cd1fff7a6184f08c78"
+    },
+    "Token Mentioned": "PHA",
+    "Final P&L": "9.45%"
+  },
+  {
+    "_id": {
+      "$oid": "68281de3f327f092a1a56665"
+    },
+    "Token Mentioned": "HIFI",
+    "Final P&L": "9.40%"
+  },
+  {
+    "_id": {
+      "$oid": "68091615a039a0c863bed79e"
+    },
+    "Token Mentioned": "ANYONE",
+    "Final P&L": "9.35%"
+  },
+  {
+    "_id": {
+      "$oid": "68473356e5d38f38c61f0d68"
+    },
+    "Token Mentioned": "CAH",
+    "Final P&L": "9.34%"
+  },
+  {
+    "_id": {
+      "$oid": "684587f8e5d38f38c61f0a5d"
+    },
+    "Token Mentioned": "AAA",
+    "Final P&L": "9.32%"
+  },
+  {
+    "_id": {
+      "$oid": "68a91efa7f3f29097eaa8d64"
+    },
+    "Token Mentioned": "PEAQ",
+    "Final P&L": "9.29%"
+  },
+  {
+    "_id": {
+      "$oid": "68acb79f8c4a3165324ed8c5"
+    },
+    "Token Mentioned": "FLM",
+    "Final P&L": "9.28%"
+  },
+  {
+    "_id": {
+      "$oid": "6825f036f327f092a1a5647c"
+    },
+    "Token Mentioned": "UMA",
+    "Final P&L": "9.27%"
+  },
+  {
+    "_id": {
+      "$oid": "6809942ba039a0c863bed831"
+    },
+    "Token Mentioned": "DOGE",
+    "Final P&L": "9.22%"
+  },
+  {
+    "_id": {
+      "$oid": "6841b8c0a720d3f1a8c0395b"
+    },
+    "Token Mentioned": "AVA",
+    "Final P&L": "9.20%"
+  },
+  {
+    "_id": {
+      "$oid": "68225366e09acd81a1f0702d"
+    },
+    "Token Mentioned": "FUN",
+    "Final P&L": "9.16%"
+  },
+  {
+    "_id": {
+      "$oid": "683b3235a720d3f1a8c0330c"
+    },
+    "Token Mentioned": "ANTIRUG",
+    "Final P&L": "9.14%"
+  },
+  {
+    "_id": {
+      "$oid": "683f8913a720d3f1a8c036f3"
+    },
+    "Token Mentioned": "ALGO",
+    "Final P&L": "9.05%"
+  },
+  {
+    "_id": {
+      "$oid": "682860c0f327f092a1a566b4"
+    },
+    "Token Mentioned": "SYS",
+    "Final P&L": "9.05%"
+  },
+  {
+    "_id": {
+      "$oid": "689cecbbd2ea94d8f650d3c8"
+    },
+    "Token Mentioned": "ASTRA",
+    "Final P&L": "9.05%"
+  },
+  {
+    "_id": {
+      "$oid": "68150aa73210ced4948bbe9b"
+    },
+    "Token Mentioned": "SPX",
+    "Final P&L": "9.04%"
+  },
+  {
+    "_id": {
+      "$oid": "683fc2c1a720d3f1a8c03714"
+    },
+    "Token Mentioned": "MAGIC",
+    "Final P&L": "9.02%"
+  },
+  {
+    "_id": {
+      "$oid": "680a00895172cf3e97e66472"
+    },
+    "Token Mentioned": "LNQ",
+    "Final P&L": "87.82%"
+  },
+  {
+    "_id": {
+      "$oid": "68a57e43bfc732baf5823773"
+    },
+    "Token Mentioned": "MON",
+    "Final P&L": "85.36%"
+  },
+  {
+    "_id": {
+      "$oid": "689cd43ad2ea94d8f650d386"
+    },
+    "Token Mentioned": "OKB",
+    "Final P&L": "82.55%"
+  },
+  {
+    "_id": {
+      "$oid": "68033c4d4e378d129d346461"
+    },
+    "Token Mentioned": "SLING",
+    "Final P&L": "81.09%"
+  },
+  {
+    "_id": {
+      "$oid": "689ed54ad2ea94d8f650d5cb"
+    },
+    "Token Mentioned": "TST",
+    "Final P&L": "80.39%"
+  },
+  {
+    "_id": {
+      "$oid": "683e7628a720d3f1a8c035cd"
+    },
+    "Token Mentioned": "EOS",
+    "Final P&L": "8.98%"
+  },
+  {
+    "_id": {
+      "$oid": "684a921133e860375c5c8beb"
+    },
+    "Token Mentioned": "PORTAL",
+    "Final P&L": "8.97%"
+  },
+  {
+    "_id": {
+      "$oid": "680a5284565bd8881391d963"
+    },
+    "Token Mentioned": "POPCAT",
+    "Final P&L": "8.93%"
+  },
+  {
+    "_id": {
+      "$oid": "6842184aa720d3f1a8c03aaf"
+    },
+    "Token Mentioned": "SOLALA",
+    "Final P&L": "8.88%"
+  },
+  {
+    "_id": {
+      "$oid": "684a1d1633e860375c5c8b7c"
+    },
+    "Token Mentioned": "H1",
+    "Final P&L": "8.86%"
+  },
+  {
+    "_id": {
+      "$oid": "681207063210ced4948bbc95"
+    },
+    "Token Mentioned": "QUBIC",
+    "Final P&L": "8.85%"
+  },
+  {
+    "_id": {
+      "$oid": "6846f20be5d38f38c61f0c8a"
+    },
+    "Token Mentioned": "PARTI",
+    "Final P&L": "8.84%"
+  },
+  {
+    "_id": {
+      "$oid": "681a2726715b6d1ef1b818b1"
+    },
+    "Token Mentioned": "TRX",
+    "Final P&L": "8.82%"
+  },
+  {
+    "_id": {
+      "$oid": "683ceaffa720d3f1a8c0348a"
+    },
+    "Token Mentioned": "AAVE",
+    "Final P&L": "8.80%"
+  },
+  {
+    "_id": {
+      "$oid": "6831da4c1fff7a6184f091be"
+    },
+    "Token Mentioned": "HARD",
+    "Final P&L": "8.79%"
+  },
+  {
+    "_id": {
+      "$oid": "68a56b70bfc732baf5823753"
+    },
+    "Token Mentioned": "KERNEL",
+    "Final P&L": "8.79%"
+  },
+  {
+    "_id": {
+      "$oid": "68abd8f67f3f29097eaa9048"
+    },
+    "Token Mentioned": "ENA",
+    "Final P&L": "8.78%"
+  },
+  {
+    "_id": {
+      "$oid": "683e7647a720d3f1a8c035d1"
+    },
+    "Token Mentioned": "FOR",
+    "Final P&L": "8.76%"
+  },
+  {
+    "_id": {
+      "$oid": "681a18cc715b6d1ef1b818ad"
+    },
+    "Token Mentioned": "TIBBIR",
+    "Final P&L": "8.75%"
+  },
+  {
+    "_id": {
+      "$oid": "680a6507565bd8881391d987"
+    },
+    "Token Mentioned": "TRUMP",
+    "Final P&L": "8.72%"
+  },
+  {
+    "_id": {
+      "$oid": "68aadf357f3f29097eaa8f0d"
+    },
+    "Token Mentioned": "MAV",
+    "Final P&L": "8.68%"
+  },
+  {
+    "_id": {
+      "$oid": "684b11e133e860375c5c8c89"
+    },
+    "Token Mentioned": "HBAR",
+    "Final P&L": "8.67%"
+  },
+  {
+    "_id": {
+      "$oid": "682dfcd31fff7a6184f08ddb"
+    },
+    "Token Mentioned": "LOOM",
+    "Final P&L": "8.60%"
+  },
+  {
+    "_id": {
+      "$oid": "682fbb8b1fff7a6184f08f75"
+    },
+    "Token Mentioned": "OP",
+    "Final P&L": "8.60%"
+  },
+  {
+    "_id": {
+      "$oid": "684587e8e5d38f38c61f0a5b"
+    },
+    "Token Mentioned": "MAMO",
+    "Final P&L": "8.55%"
+  },
+  {
+    "_id": {
+      "$oid": "683d575aa720d3f1a8c034be"
+    },
+    "Token Mentioned": "ICX",
+    "Final P&L": "8.53%"
+  },
+  {
+    "_id": {
+      "$oid": "6875fee37a21af0c1fa9689e"
+    },
+    "Token Mentioned": "SUI",
+    "Final P&L": "8.51%"
+  },
+  {
+    "_id": {
+      "$oid": "682aebd81fff7a6184f08c95"
+    },
+    "Token Mentioned": "CVP",
+    "Final P&L": "8.49%"
+  },
+  {
+    "_id": {
+      "$oid": "689c30ebae7ae2a17bcd6358"
+    },
+    "Token Mentioned": "CVX",
+    "Final P&L": "8.48%"
+  },
+  {
+    "_id": {
+      "$oid": "6842f13ca720d3f1a8c03c35"
+    },
+    "Token Mentioned": "RVN",
+    "Final P&L": "8.46%"
+  },
+  {
+    "_id": {
+      "$oid": "6812a0243210ced4948bbd4d"
+    },
+    "Token Mentioned": "SPEC",
+    "Final P&L": "8.46%"
+  },
+  {
+    "_id": {
+      "$oid": "689e3e18d2ea94d8f650d560"
+    },
+    "Token Mentioned": "SBR",
+    "Final P&L": "8.44%"
+  },
+  {
+    "_id": {
+      "$oid": "682618c4f327f092a1a564af"
+    },
+    "Token Mentioned": "MELANIA",
+    "Final P&L": "8.44%"
+  },
+  {
+    "_id": {
+      "$oid": "682ae3241fff7a6184f08c7e"
+    },
+    "Token Mentioned": "WOO",
+    "Final P&L": "8.44%"
+  },
+  {
+    "_id": {
+      "$oid": "684174f3a720d3f1a8c03867"
+    },
+    "Token Mentioned": "ZBCN",
+    "Final P&L": "8.38%"
+  },
+  {
+    "_id": {
+      "$oid": "680bff21565bd8881391d9d8"
+    },
+    "Token Mentioned": "TALK",
+    "Final P&L": "8.37%"
+  },
+  {
+    "_id": {
+      "$oid": "68480dbc33e860375c5c87c5"
+    },
+    "Token Mentioned": "ETHDYDX",
+    "Final P&L": "8.37%"
+  },
+  {
+    "_id": {
+      "$oid": "680a00895172cf3e97e6665a"
+    },
+    "Token Mentioned": "TRAC",
+    "Final P&L": "8.37%"
+  },
+  {
+    "_id": {
+      "$oid": "689f5707d2ea94d8f650d642"
+    },
+    "Token Mentioned": "LAZIO",
+    "Final P&L": "8.34%"
+  },
+  {
+    "_id": {
+      "$oid": "689de7d8d2ea94d8f650d4db"
+    },
+    "Token Mentioned": "OMNIS",
+    "Final P&L": "8.34%"
+  },
+  {
+    "_id": {
+      "$oid": "6810b14b4f210ae8cf7a8540"
+    },
+    "Token Mentioned": "S",
+    "Final P&L": "8.31%"
+  },
+  {
+    "_id": {
+      "$oid": "68a73ec54c30fb038aefc20a"
+    },
+    "Token Mentioned": "BONK",
+    "Final P&L": "8.29%"
+  },
+  {
+    "_id": {
+      "$oid": "6844742ba720d3f1a8c03e96"
+    },
+    "Token Mentioned": "INJ",
+    "Final P&L": "8.21%"
+  },
+  {
+    "_id": {
+      "$oid": "682ed6e51fff7a6184f08e81"
+    },
+    "Token Mentioned": "LISTA",
+    "Final P&L": "8.13%"
+  },
+  {
+    "_id": {
+      "$oid": "682dbff11fff7a6184f08d8b"
+    },
+    "Token Mentioned": "DODO",
+    "Final P&L": "8.12%"
+  },
+  {
+    "_id": {
+      "$oid": "683b07c7a720d3f1a8c03302"
+    },
+    "Token Mentioned": "AXL",
+    "Final P&L": "8.12%"
+  },
+  {
+    "_id": {
+      "$oid": "689ddcddd2ea94d8f650d4c1"
+    },
+    "Token Mentioned": "OGN",
+    "Final P&L": "8.10%"
+  },
+  {
+    "_id": {
+      "$oid": "684b092633e860375c5c8c7b"
+    },
+    "Token Mentioned": "KAIA",
+    "Final P&L": "8.10%"
+  },
+  {
+    "_id": {
+      "$oid": "6812c09c3210ced4948bbd5c"
+    },
+    "Token Mentioned": "ZIG",
+    "Final P&L": "8.08%"
+  },
+  {
+    "_id": {
+      "$oid": "683e3ca7a720d3f1a8c0359d"
+    },
+    "Token Mentioned": "IOTA",
+    "Final P&L": "8.06%"
+  },
+  {
+    "_id": {
+      "$oid": "68224109e09acd81a1f06fbc"
+    },
+    "Token Mentioned": "CLAY",
+    "Final P&L": "8.02%"
+  },
+  {
+    "_id": {
+      "$oid": "6819a7d8715b6d1ef1b8185c"
+    },
+    "Token Mentioned": "COOKIE",
+    "Final P&L": "79.23%"
+  },
+  {
+    "_id": {
+      "$oid": "680a00895172cf3e97e66628"
+    },
+    "Token Mentioned": "XMW",
+    "Final P&L": "78.47%"
+  },
+  {
+    "_id": {
+      "$oid": "680a23d0565bd8881391d941"
+    },
+    "Token Mentioned": "FUKU",
+    "Final P&L": "77.56%"
+  },
+  {
+    "_id": {
+      "$oid": "682dfcc21fff7a6184f08dd9"
+    },
+    "Token Mentioned": "TIA",
+    "Final P&L": "76.10%"
+  },
+  {
+    "_id": {
+      "$oid": "68033c2e4e378d129d346443"
+    },
+    "Token Mentioned": "FARTCOIN",
+    "Final P&L": "76.00%"
+  },
+  {
+    "_id": {
+      "$oid": "68033c344e378d129d346447"
+    },
+    "Token Mentioned": "VIRAL",
+    "Final P&L": "75.94%"
+  },
+  {
+    "_id": {
+      "$oid": "681483703210ced4948bbe3b"
+    },
+    "Token Mentioned": "HADES",
+    "Final P&L": "72.89%"
+  },
+  {
+    "_id": {
+      "$oid": "68224782e09acd81a1f06fe2"
+    },
+    "Token Mentioned": "KENDU",
+    "Final P&L": "72.34%"
+  },
+  {
+    "_id": {
+      "$oid": "689d8c7fd2ea94d8f650d487"
+    },
+    "Token Mentioned": "CHO",
+    "Final P&L": "71.74%"
+  },
+  {
+    "_id": {
+      "$oid": "68117d224f210ae8cf7a8552"
+    },
+    "Token Mentioned": "MLG",
+    "Final P&L": "71.20%"
+  },
+  {
+    "_id": {
+      "$oid": "68a8966c7f3f29097eaa8c2b"
+    },
+    "Token Mentioned": "TKO",
+    "Final P&L": "7.99%"
+  },
+  {
+    "_id": {
+      "$oid": "6824ab8d937fdd3ac28e5a24"
+    },
+    "Token Mentioned": "PNUT",
+    "Final P&L": "7.97%"
+  },
+  {
+    "_id": {
+      "$oid": "6828d0a51fff7a6184f08a9e"
+    },
+    "Token Mentioned": "VET",
+    "Final P&L": "7.94%"
+  },
+  {
+    "_id": {
+      "$oid": "689e036bd2ea94d8f650d4fd"
+    },
+    "Token Mentioned": "GMX",
+    "Final P&L": "7.86%"
+  },
+  {
+    "_id": {
+      "$oid": "682f121a1fff7a6184f08eaf"
+    },
+    "Token Mentioned": "DENT",
+    "Final P&L": "7.84%"
+  },
+  {
+    "_id": {
+      "$oid": "68b470acee27058bf19a6167"
+    },
+    "Token Mentioned": "LRC",
+    "Final P&L": "7.81%"
+  },
+  {
+    "_id": {
+      "$oid": "68425dada720d3f1a8c03b47"
+    },
+    "Token Mentioned": "HAEDAL",
+    "Final P&L": "7.78%"
+  },
+  {
+    "_id": {
+      "$oid": "6809da9fa039a0c863bed88a"
+    },
+    "Token Mentioned": "POWR",
+    "Final P&L": "7.78%"
+  },
+  {
+    "_id": {
+      "$oid": "68a913ca7f3f29097eaa8d1f"
+    },
+    "Token Mentioned": "NEO",
+    "Final P&L": "7.76%"
+  },
+  {
+    "_id": {
+      "$oid": "6841c1d1a720d3f1a8c03990"
+    },
+    "Token Mentioned": "SUSHI",
+    "Final P&L": "7.76%"
+  },
+  {
+    "_id": {
+      "$oid": "684b872433e860375c5c8dc3"
+    },
+    "Token Mentioned": "IOTX",
+    "Final P&L": "7.74%"
+  },
+  {
+    "_id": {
+      "$oid": "689bdf5bae7ae2a17bcd6325"
+    },
+    "Token Mentioned": "XAI",
+    "Final P&L": "7.73%"
+  },
+  {
+    "_id": {
+      "$oid": "6829f2341fff7a6184f08b44"
+    },
+    "Token Mentioned": "KAS",
+    "Final P&L": "7.67%"
+  },
+  {
+    "_id": {
+      "$oid": "689c55eeae7ae2a17bcd636d"
+    },
+    "Token Mentioned": "VELO",
+    "Final P&L": "7.65%"
+  },
+  {
+    "_id": {
+      "$oid": "683d990ca720d3f1a8c034ef"
+    },
+    "Token Mentioned": "ICP",
+    "Final P&L": "7.64%"
+  },
+  {
+    "_id": {
+      "$oid": "68aa03847f3f29097eaa8e3f"
+    },
+    "Token Mentioned": "CFG",
+    "Final P&L": "7.58%"
+  },
+  {
+    "_id": {
+      "$oid": "68277893f327f092a1a565db"
+    },
+    "Token Mentioned": "BOBA",
+    "Final P&L": "7.56%"
+  },
+  {
+    "_id": {
+      "$oid": "683c348aa720d3f1a8c033fc"
+    },
+    "Token Mentioned": "PVS",
+    "Final P&L": "7.53%"
+  },
+  {
+    "_id": {
+      "$oid": "6829068c1fff7a6184f08abb"
+    },
+    "Token Mentioned": "EDU",
+    "Final P&L": "7.50%"
+  },
+  {
+    "_id": {
+      "$oid": "682e1f4c1fff7a6184f08e00"
+    },
+    "Token Mentioned": "XMR",
+    "Final P&L": "7.48%"
+  },
+  {
+    "_id": {
+      "$oid": "683d5ee6a720d3f1a8c034c5"
+    },
+    "Token Mentioned": "REQ",
+    "Final P&L": "7.47%"
+  },
+  {
+    "_id": {
+      "$oid": "6847334ae5d38f38c61f0d66"
+    },
+    "Token Mentioned": "QS",
+    "Final P&L": "7.38%"
+  },
+  {
+    "_id": {
+      "$oid": "6826ca0cf327f092a1a5654d"
+    },
+    "Token Mentioned": "PENDLE",
+    "Final P&L": "7.33%"
+  },
+  {
+    "_id": {
+      "$oid": "68033c4b4e378d129d34645f"
+    },
+    "Token Mentioned": "AUTOS",
+    "Final P&L": "7.32%"
+  },
+  {
+    "_id": {
+      "$oid": "68a74e004c30fb038aefc21d"
+    },
+    "Token Mentioned": "DOT",
+    "Final P&L": "7.30%"
+  },
+  {
+    "_id": {
+      "$oid": "685302881388f843c6acaca7"
+    },
+    "Token Mentioned": "TEL",
+    "Final P&L": "7.25%"
+  },
+  {
+    "_id": {
+      "$oid": "680915aba039a0c863bed742"
+    },
+    "Token Mentioned": "CRV",
+    "Final P&L": "7.22%"
+  },
+  {
+    "_id": {
+      "$oid": "68224030e09acd81a1f06fb6"
+    },
+    "Token Mentioned": "PI",
+    "Final P&L": "7.22%"
+  },
+  {
+    "_id": {
+      "$oid": "689b835aae7ae2a17bcd626d"
+    },
+    "Token Mentioned": "LINK",
+    "Final P&L": "7.21%"
+  },
+  {
+    "_id": {
+      "$oid": "683afcd3a720d3f1a8c032e6"
+    },
+    "Token Mentioned": "WIF",
+    "Final P&L": "7.12%"
+  },
+  {
+    "_id": {
+      "$oid": "680a00895172cf3e97e665d4"
+    },
+    "Token Mentioned": "TLM",
+    "Final P&L": "7.12%"
+  },
+  {
+    "_id": {
+      "$oid": "6841c176a720d3f1a8c0398a"
+    },
+    "Token Mentioned": "ADA",
+    "Final P&L": "7.11%"
+  },
+  {
+    "_id": {
+      "$oid": "68a8f04f7f3f29097eaa8cec"
+    },
+    "Token Mentioned": "PENGU",
+    "Final P&L": "7.02%"
+  },
+  {
+    "_id": {
+      "$oid": "6824c664937fdd3ac28e5a45"
+    },
+    "Token Mentioned": "ETHFI",
+    "Final P&L": "7.02%"
+  },
+  {
+    "_id": {
+      "$oid": "6844fa76e5d38f38c61f09a8"
+    },
+    "Token Mentioned": "GAMES",
+    "Final P&L": "7.00%"
+  },
+  {
+    "_id": {
+      "$oid": "689c5cfaae7ae2a17bcd637d"
+    },
+    "Token Mentioned": "AIOT",
+    "Final P&L": "69.93%"
+  },
+  {
+    "_id": {
+      "$oid": "680a00895172cf3e97e66606"
+    },
+    "Token Mentioned": "PROPS",
+    "Final P&L": "68.17%"
+  },
+  {
+    "_id": {
+      "$oid": "683065531fff7a6184f09044"
+    },
+    "Token Mentioned": "COMBO",
+    "Final P&L": "678.89%"
+  },
+  {
+    "_id": {
+      "$oid": "68460cf3e5d38f38c61f0b2e"
+    },
+    "Token Mentioned": "GLS",
+    "Final P&L": "61.78%"
+  },
+  {
+    "_id": {
+      "$oid": "683dcffea720d3f1a8c03526"
+    },
+    "Token Mentioned": "FET",
+    "Final P&L": "6.94%"
+  },
+  {
+    "_id": {
+      "$oid": "682e32001fff7a6184f08e21"
+    },
+    "Token Mentioned": "ORDI",
+    "Final P&L": "6.94%"
+  },
+  {
+    "_id": {
+      "$oid": "689eda6dd2ea94d8f650d5d5"
+    },
+    "Token Mentioned": "ARB",
+    "Final P&L": "6.91%"
+  },
+  {
+    "_id": {
+      "$oid": "680c92ca565bd8881391d9e6"
+    },
+    "Token Mentioned": "BEAM",
+    "Final P&L": "6.90%"
+  },
+  {
+    "_id": {
+      "$oid": "689cbaf5d2ea94d8f650d36e"
+    },
+    "Token Mentioned": "BAT",
+    "Final P&L": "6.89%"
+  },
+  {
+    "_id": {
+      "$oid": "682905261fff7a6184f08ab5"
+    },
+    "Token Mentioned": "QUANT",
+    "Final P&L": "6.89%"
+  },
+  {
+    "_id": {
+      "$oid": "683d83e6a720d3f1a8c034d9"
+    },
+    "Token Mentioned": "HOLD",
+    "Final P&L": "6.85%"
+  },
+  {
+    "_id": {
+      "$oid": "683f4892a720d3f1a8c036a0"
+    },
+    "Token Mentioned": "ALCH",
+    "Final P&L": "6.82%"
+  },
+  {
+    "_id": {
+      "$oid": "68a6941dbfc732baf582391f"
+    },
+    "Token Mentioned": "SAGA",
+    "Final P&L": "6.75%"
+  },
+  {
+    "_id": {
+      "$oid": "68309f541fff7a6184f090bf"
+    },
+    "Token Mentioned": "AGLD",
+    "Final P&L": "6.74%"
+  },
+  {
+    "_id": {
+      "$oid": "6813b9523210ced4948bbde3"
+    },
+    "Token Mentioned": "WHITE",
+    "Final P&L": "6.74%"
+  },
+  {
+    "_id": {
+      "$oid": "683104901fff7a6184f09139"
+    },
+    "Token Mentioned": "API3",
+    "Final P&L": "6.70%"
+  },
+  {
+    "_id": {
+      "$oid": "68419cbaa720d3f1a8c03911"
+    },
+    "Token Mentioned": "VIRTUAL",
+    "Final P&L": "6.68%"
+  },
+  {
+    "_id": {
+      "$oid": "68033bfc4e378d129d346407"
+    },
+    "Token Mentioned": "XRP",
+    "Final P&L": "6.67%"
+  },
+  {
+    "_id": {
+      "$oid": "6841b96da720d3f1a8c0396b"
+    },
+    "Token Mentioned": "QI",
+    "Final P&L": "6.67%"
+  },
+  {
+    "_id": {
+      "$oid": "689f6991d2ea94d8f650d673"
+    },
+    "Token Mentioned": "SEI",
+    "Final P&L": "6.67%"
+  },
+  {
+    "_id": {
+      "$oid": "6843930ea720d3f1a8c03d72"
+    },
+    "Token Mentioned": "STEEM",
+    "Final P&L": "6.66%"
+  },
+  {
+    "_id": {
+      "$oid": "6825bb5c937fdd3ac28e5b37"
+    },
+    "Token Mentioned": "SAI",
+    "Final P&L": "6.62%"
+  },
+  {
+    "_id": {
+      "$oid": "684163fba720d3f1a8c03811"
+    },
+    "Token Mentioned": "CPOOL",
+    "Final P&L": "6.61%"
+  },
+  {
+    "_id": {
+      "$oid": "6830652e1fff7a6184f0903d"
+    },
+    "Token Mentioned": "PYR",
+    "Final P&L": "6.53%"
+  },
+  {
+    "_id": {
+      "$oid": "682383cce09acd81a1f07134"
+    },
+    "Token Mentioned": "PEOPLE",
+    "Final P&L": "6.41%"
+  },
+  {
+    "_id": {
+      "$oid": "6841be16a720d3f1a8c0397b"
+    },
+    "Token Mentioned": "NEAR",
+    "Final P&L": "6.39%"
+  },
+  {
+    "_id": {
+      "$oid": "68aa05e17f3f29097eaa8e4d"
+    },
+    "Token Mentioned": "GAI",
+    "Final P&L": "6.37%"
+  },
+  {
+    "_id": {
+      "$oid": "6875ef4f7a21af0c1fa96859"
+    },
+    "Token Mentioned": "NFP",
+    "Final P&L": "6.36%"
+  },
+  {
+    "_id": {
+      "$oid": "68305e791fff7a6184f09012"
+    },
+    "Token Mentioned": "LPT",
+    "Final P&L": "6.34%"
+  },
+  {
+    "_id": {
+      "$oid": "6829c6711fff7a6184f08b34"
+    },
+    "Token Mentioned": "SYRUP",
+    "Final P&L": "6.21%"
+  },
+  {
+    "_id": {
+      "$oid": "68a863c57f3f29097eaa8bc0"
+    },
+    "Token Mentioned": "FORM",
+    "Final P&L": "6.21%"
+  },
+  {
+    "_id": {
+      "$oid": "680a00895172cf3e97e66657"
+    },
+    "Token Mentioned": "CNCT",
+    "Final P&L": "6.12%"
+  },
+  {
+    "_id": {
+      "$oid": "68092aa9a039a0c863bed7e9"
+    },
+    "Token Mentioned": "UTK",
+    "Final P&L": "6.08%"
+  },
+  {
+    "_id": {
+      "$oid": "689b28ef3eb66cda9fe134ba"
+    },
+    "Token Mentioned": "SUN",
+    "Final P&L": "6.05%"
+  },
+  {
+    "_id": {
+      "$oid": "68121dfc3210ced4948bbd13"
+    },
+    "Token Mentioned": "ALPACA",
+    "Final P&L": "59.61%"
+  },
+  {
+    "_id": {
+      "$oid": "68a718f44c30fb038aefc1b7"
+    },
+    "Token Mentioned": "NAYM",
+    "Final P&L": "59.30%"
+  },
+  {
+    "_id": {
+      "$oid": "6849129e33e860375c5c8960"
+    },
+    "Token Mentioned": "MUMU",
+    "Final P&L": "57.06%"
+  },
+  {
+    "_id": {
+      "$oid": "68425907a720d3f1a8c03b41"
+    },
+    "Token Mentioned": "BRIX",
+    "Final P&L": "56.40%"
+  },
+  {
+    "_id": {
+      "$oid": "680a00895172cf3e97e6665f"
+    },
+    "Token Mentioned": "HASHAI",
+    "Final P&L": "55.99%"
+  },
+  {
+    "_id": {
+      "$oid": "68a84bdf7f3f29097eaa8b8e"
+    },
+    "Token Mentioned": "MOMO",
+    "Final P&L": "55.82%"
+  },
+  {
+    "_id": {
+      "$oid": "68228257e09acd81a1f0706b"
+    },
+    "Token Mentioned": "DUPE",
+    "Final P&L": "54.46%"
+  },
+  {
+    "_id": {
+      "$oid": "68459f6fe5d38f38c61f0ab6"
+    },
+    "Token Mentioned": "HLO",
+    "Final P&L": "53.49%"
+  },
+  {
+    "_id": {
+      "$oid": "680a1eed565bd8881391d939"
+    },
+    "Token Mentioned": "AITECH",
+    "Final P&L": "53.45%"
+  },
+  {
+    "_id": {
+      "$oid": "681a303a715b6d1ef1b818ba"
+    },
+    "Token Mentioned": "VANRY",
+    "Final P&L": "52.55%"
+  },
+  {
+    "_id": {
+      "$oid": "680a00895172cf3e97e664fd"
+    },
+    "Token Mentioned": "TAO",
+    "Final P&L": "50.78%"
+  },
+  {
+    "_id": {
+      "$oid": "68a6f741bfc732baf5823962"
+    },
+    "Token Mentioned": "MAN",
+    "Final P&L": "5.98%"
+  },
+  {
+    "_id": {
+      "$oid": "6822f7e0e09acd81a1f070a0"
+    },
+    "Token Mentioned": "BNT",
+    "Final P&L": "5.98%"
+  },
+  {
+    "_id": {
+      "$oid": "682d75491fff7a6184f08d01"
+    },
+    "Token Mentioned": "DCK",
+    "Final P&L": "5.89%"
+  },
+  {
+    "_id": {
+      "$oid": "68b150d0ee27058bf19a602f"
+    },
+    "Token Mentioned": "CHR",
+    "Final P&L": "5.88%"
+  },
+  {
+    "_id": {
+      "$oid": "68ad29af8c4a3165324ed9c0"
+    },
+    "Token Mentioned": "ZEC",
+    "Final P&L": "5.88%"
+  },
+  {
+    "_id": {
+      "$oid": "689e807dd2ea94d8f650d590"
+    },
+    "Token Mentioned": "POL",
+    "Final P&L": "5.87%"
+  },
+  {
+    "_id": {
+      "$oid": "68293ea01fff7a6184f08aec"
+    },
+    "Token Mentioned": "LQTY",
+    "Final P&L": "5.87%"
+  },
+  {
+    "_id": {
+      "$oid": "682a3ad71fff7a6184f08b94"
+    },
+    "Token Mentioned": "KSM",
+    "Final P&L": "5.85%"
+  },
+  {
+    "_id": {
+      "$oid": "689d3261d2ea94d8f650d428"
+    },
+    "Token Mentioned": "KNC",
+    "Final P&L": "5.82%"
+  },
+  {
+    "_id": {
+      "$oid": "68a5c1d4bfc732baf5823811"
+    },
+    "Token Mentioned": "GHST",
+    "Final P&L": "5.73%"
+  },
+  {
+    "_id": {
+      "$oid": "681064cb47bcca7f0e48afeb"
+    },
+    "Token Mentioned": "BUDDY",
+    "Final P&L": "5.68%"
+  },
+  {
+    "_id": {
+      "$oid": "682dbb1e1fff7a6184f08d83"
+    },
+    "Token Mentioned": "SIGN",
+    "Final P&L": "5.60%"
+  },
+  {
+    "_id": {
+      "$oid": "682f82641fff7a6184f08f47"
+    },
+    "Token Mentioned": "STORJ",
+    "Final P&L": "5.57%"
+  },
+  {
+    "_id": {
+      "$oid": "68a8b5c47f3f29097eaa8c7c"
+    },
+    "Token Mentioned": "BLOCK",
+    "Final P&L": "5.55%"
+  },
+  {
+    "_id": {
+      "$oid": "683bd170a720d3f1a8c033bd"
+    },
+    "Token Mentioned": "GLM",
+    "Final P&L": "5.54%"
+  },
+  {
+    "_id": {
+      "$oid": "68a5ec3dbfc732baf5823849"
+    },
+    "Token Mentioned": "ONT",
+    "Final P&L": "5.52%"
+  },
+  {
+    "_id": {
+      "$oid": "6829067d1fff7a6184f08ab9"
+    },
+    "Token Mentioned": "GRT",
+    "Final P&L": "5.52%"
+  },
+  {
+    "_id": {
+      "$oid": "6809160aa039a0c863bed796"
+    },
+    "Token Mentioned": "ACE",
+    "Final P&L": "5.50%"
+  },
+  {
+    "_id": {
+      "$oid": "682e685a1fff7a6184f08e3c"
+    },
+    "Token Mentioned": "TRU",
+    "Final P&L": "5.49%"
+  },
+  {
+    "_id": {
+      "$oid": "6809e8a6a039a0c863bed8ba"
+    },
+    "Token Mentioned": "RAD",
+    "Final P&L": "5.48%"
+  },
+  {
+    "_id": {
+      "$oid": "682d75551fff7a6184f08d03"
+    },
+    "Token Mentioned": "PZP",
+    "Final P&L": "5.47%"
+  },
+  {
+    "_id": {
+      "$oid": "683104a11fff7a6184f0913b"
+    },
+    "Token Mentioned": "ATOM",
+    "Final P&L": "5.45%"
+  },
+  {
+    "_id": {
+      "$oid": "68293eef1fff7a6184f08aee"
+    },
+    "Token Mentioned": "WBTC",
+    "Final P&L": "5.45%"
+  },
+  {
+    "_id": {
+      "$oid": "6853593e1388f843c6acad5d"
+    },
+    "Token Mentioned": "ARDR",
+    "Final P&L": "5.45%"
+  },
+  {
+    "_id": {
+      "$oid": "688b933709f2d70ef35d9268"
+    },
+    "Token Mentioned": "PUMP",
+    "Final P&L": "5.41%"
+  },
+  {
+    "_id": {
+      "$oid": "6812504e3210ced4948bbd25"
+    },
+    "Token Mentioned": "DRIFT",
+    "Final P&L": "5.37%"
+  },
+  {
+    "_id": {
+      "$oid": "689b7329ae7ae2a17bcd6261"
+    },
+    "Token Mentioned": "NAKA",
+    "Final P&L": "5.31%"
+  },
+  {
+    "_id": {
+      "$oid": "6853d56a1388f843c6acadf2"
+    },
+    "Token Mentioned": "JASMY",
+    "Final P&L": "5.19%"
+  },
+  {
+    "_id": {
+      "$oid": "683bd0e9a720d3f1a8c033af"
+    },
+    "Token Mentioned": "HOOK",
+    "Final P&L": "5.18%"
+  },
+  {
+    "_id": {
+      "$oid": "682906971fff7a6184f08abd"
+    },
+    "Token Mentioned": "CTXC",
+    "Final P&L": "5.17%"
+  },
+  {
+    "_id": {
+      "$oid": "6855614cf1a11ded2dccd287"
+    },
+    "Token Mentioned": "OG",
+    "Final P&L": "5.16%"
+  },
+  {
+    "_id": {
+      "$oid": "68a693f0bfc732baf582391b"
+    },
+    "Token Mentioned": "LSK",
+    "Final P&L": "5.15%"
+  },
+  {
+    "_id": {
+      "$oid": "683c4792a720d3f1a8c0341c"
+    },
+    "Token Mentioned": "WAN",
+    "Final P&L": "5.14%"
+  },
+  {
+    "_id": {
+      "$oid": "683b7e8da720d3f1a8c03366"
+    },
+    "Token Mentioned": "QKC",
+    "Final P&L": "5.13%"
+  },
+  {
+    "_id": {
+      "$oid": "68470b19e5d38f38c61f0d05"
+    },
+    "Token Mentioned": "BOBO",
+    "Final P&L": "5.06%"
+  },
+  {
+    "_id": {
+      "$oid": "6841c6a6a720d3f1a8c039b3"
+    },
+    "Token Mentioned": "CTK",
+    "Final P&L": "5.06%"
+  },
+  {
+    "_id": {
+      "$oid": "68a5c215bfc732baf5823817"
+    },
+    "Token Mentioned": "G",
+    "Final P&L": "5.06%"
+  },
+  {
+    "_id": {
+      "$oid": "68237fc1e09acd81a1f0712b"
+    },
+    "Token Mentioned": "FITCOIN",
+    "Final P&L": "49.55%"
+  },
+  {
+    "_id": {
+      "$oid": "6821e1e5dc7a7ff9c11d9e11"
+    },
+    "Token Mentioned": "NAI",
+    "Final P&L": "49.25%"
+  },
+  {
+    "_id": {
+      "$oid": "682e54ab1fff7a6184f08e2a"
+    },
+    "Token Mentioned": "GURU",
+    "Final P&L": "49.02%"
+  },
+  {
+    "_id": {
+      "$oid": "68421fb2a720d3f1a8c03b0b"
+    },
+    "Token Mentioned": "OPAI",
+    "Final P&L": "46.28%"
+  },
+  {
+    "_id": {
+      "$oid": "68a60f45bfc732baf582387e"
+    },
+    "Token Mentioned": "ULTIMA",
+    "Final P&L": "46.04%"
+  },
+  {
+    "_id": {
+      "$oid": "682d774c1fff7a6184f08d09"
+    },
+    "Token Mentioned": "TAI",
+    "Final P&L": "45.82%"
+  },
+  {
+    "_id": {
+      "$oid": "68aca9908c4a3165324ed893"
+    },
+    "Token Mentioned": "ETHY",
+    "Final P&L": "43.86%"
+  },
+  {
+    "_id": {
+      "$oid": "684441d6a720d3f1a8c03e6a"
+    },
+    "Token Mentioned": "SPACEM",
+    "Final P&L": "43.46%"
+  },
+  {
+    "_id": {
+      "$oid": "68223ffde09acd81a1f06fb2"
+    },
+    "Token Mentioned": "BRETT",
+    "Final P&L": "42.54%"
+  },
+  {
+    "_id": {
+      "$oid": "682a5ff81fff7a6184f08bc4"
+    },
+    "Token Mentioned": "VIX",
+    "Final P&L": "41.37%"
+  },
+  {
+    "_id": {
+      "$oid": "68439f15a720d3f1a8c03db1"
+    },
+    "Token Mentioned": "NOOB",
+    "Final P&L": "41.24%"
+  },
+  {
+    "_id": {
+      "$oid": "6842ff45a720d3f1a8c03c6c"
+    },
+    "Token Mentioned": "PATEX",
+    "Final P&L": "40.37%"
+  },
+  {
+    "_id": {
+      "$oid": "68033c954e378d129d3464b1"
+    },
+    "Token Mentioned": "UFD",
+    "Final P&L": "40.32%"
+  },
+  {
+    "_id": {
+      "$oid": "681632314c462675f87a0120"
+    },
+    "Token Mentioned": "AI16Z",
+    "Final P&L": "4.97%"
+  },
+  {
+    "_id": {
+      "$oid": "68a5a7f9bfc732baf58237ce"
+    },
+    "Token Mentioned": "SDEX",
+    "Final P&L": "4.97%"
+  },
+  {
+    "_id": {
+      "$oid": "680a653e565bd8881391d98b"
+    },
+    "Token Mentioned": "FTT",
+    "Final P&L": "4.96%"
+  },
+  {
+    "_id": {
+      "$oid": "68433f26a720d3f1a8c03ce9"
+    },
+    "Token Mentioned": "SANTOS",
+    "Final P&L": "4.95%"
+  },
+  {
+    "_id": {
+      "$oid": "68416f6fa720d3f1a8c0383d"
+    },
+    "Token Mentioned": "COS",
+    "Final P&L": "4.94%"
+  },
+  {
+    "_id": {
+      "$oid": "68439e7fa720d3f1a8c03da1"
+    },
+    "Token Mentioned": "DECHAT",
+    "Final P&L": "4.93%"
+  },
+  {
+    "_id": {
+      "$oid": "683cac65a720d3f1a8c03465"
+    },
+    "Token Mentioned": "DF",
+    "Final P&L": "4.92%"
+  },
+  {
+    "_id": {
+      "$oid": "68b2790eee27058bf19a60de"
+    },
+    "Token Mentioned": "ZK",
+    "Final P&L": "4.92%"
+  },
+  {
+    "_id": {
+      "$oid": "689e8091d2ea94d8f650d592"
+    },
+    "Token Mentioned": "REI",
+    "Final P&L": "4.91%"
+  },
+  {
+    "_id": {
+      "$oid": "683dfe70a720d3f1a8c0355c"
+    },
+    "Token Mentioned": "MKR",
+    "Final P&L": "4.90%"
+  },
+  {
+    "_id": {
+      "$oid": "684392fea720d3f1a8c03d70"
+    },
+    "Token Mentioned": "JST",
+    "Final P&L": "4.87%"
+  },
+  {
+    "_id": {
+      "$oid": "682a65371fff7a6184f08bd4"
+    },
+    "Token Mentioned": "SAROS",
+    "Final P&L": "4.84%"
+  },
+  {
+    "_id": {
+      "$oid": "68488ddf33e860375c5c8887"
+    },
+    "Token Mentioned": "FOMO",
+    "Final P&L": "4.81%"
+  },
+  {
+    "_id": {
+      "$oid": "680a0c63565bd8881391d921"
+    },
+    "Token Mentioned": "GRASS",
+    "Final P&L": "4.79%"
+  },
+  {
+    "_id": {
+      "$oid": "682a3ae91fff7a6184f08b96"
+    },
+    "Token Mentioned": "PHB",
+    "Final P&L": "4.66%"
+  },
+  {
+    "_id": {
+      "$oid": "68416fa6a720d3f1a8c03841"
+    },
+    "Token Mentioned": "WNXM",
+    "Final P&L": "4.63%"
+  },
+  {
+    "_id": {
+      "$oid": "683b0756a720d3f1a8c032f8"
+    },
+    "Token Mentioned": "ETC",
+    "Final P&L": "4.62%"
+  },
+  {
+    "_id": {
+      "$oid": "689c871fd2ea94d8f650d2df"
+    },
+    "Token Mentioned": "REZ",
+    "Final P&L": "4.58%"
+  },
+  {
+    "_id": {
+      "$oid": "682e1dab1fff7a6184f08dee"
+    },
+    "Token Mentioned": "RFC",
+    "Final P&L": "4.50%"
+  },
+  {
+    "_id": {
+      "$oid": "680915b1a039a0c863bed748"
+    },
+    "Token Mentioned": "BNB",
+    "Final P&L": "4.41%"
+  },
+  {
+    "_id": {
+      "$oid": "681356bb3210ced4948bbd95"
+    },
+    "Token Mentioned": "ICE",
+    "Final P&L": "4.37%"
+  },
+  {
+    "_id": {
+      "$oid": "682a40a71fff7a6184f08bb2"
+    },
+    "Token Mentioned": "TROY",
+    "Final P&L": "4.36%"
+  },
+  {
+    "_id": {
+      "$oid": "6826779cf327f092a1a5650d"
+    },
+    "Token Mentioned": "JUV",
+    "Final P&L": "4.35%"
+  },
+  {
+    "_id": {
+      "$oid": "682ae2ae1fff7a6184f08c76"
+    },
+    "Token Mentioned": "DYDX",
+    "Final P&L": "4.34%"
+  },
+  {
+    "_id": {
+      "$oid": "68578a99f1a11ded2dccd580"
+    },
+    "Token Mentioned": "XLM",
+    "Final P&L": "4.32%"
+  },
+  {
+    "_id": {
+      "$oid": "683b0764a720d3f1a8c032fa"
+    },
+    "Token Mentioned": "MBL",
+    "Final P&L": "4.23%"
+  },
+  {
+    "_id": {
+      "$oid": "682dbb081fff7a6184f08d81"
+    },
+    "Token Mentioned": "SUPER",
+    "Final P&L": "4.22%"
+  },
+  {
+    "_id": {
+      "$oid": "682d89f21fff7a6184f08d3c"
+    },
+    "Token Mentioned": "COTI",
+    "Final P&L": "4.19%"
+  },
+  {
+    "_id": {
+      "$oid": "682891511fff7a6184f08a4a"
+    },
+    "Token Mentioned": "DEXE",
+    "Final P&L": "4.18%"
+  },
+  {
+    "_id": {
+      "$oid": "6825e1dcf327f092a1a5643f"
+    },
+    "Token Mentioned": "RIO",
+    "Final P&L": "4.12%"
+  },
+  {
+    "_id": {
+      "$oid": "683b45a5a720d3f1a8c03348"
+    },
+    "Token Mentioned": "JOE",
+    "Final P&L": "4.12%"
+  },
+  {
+    "_id": {
+      "$oid": "682252b0e09acd81a1f0701b"
+    },
+    "Token Mentioned": "XVG",
+    "Final P&L": "4.10%"
+  },
+  {
+    "_id": {
+      "$oid": "68298dc21fff7a6184f08b12"
+    },
+    "Token Mentioned": "DEGO",
+    "Final P&L": "4.08%"
+  },
+  {
+    "_id": {
+      "$oid": "689ce401d2ea94d8f650d3b8"
+    },
+    "Token Mentioned": "LDO",
+    "Final P&L": "4.03%"
+  },
+  {
+    "_id": {
+      "$oid": "6804ccaf4e378d129d346637"
+    },
+    "Token Mentioned": "GUN",
+    "Final P&L": "4.00%"
+  },
+  {
+    "_id": {
+      "$oid": "680a1a38565bd8881391d931"
+    },
+    "Token Mentioned": "SERV",
+    "Final P&L": "39.81%"
+  },
+  {
+    "_id": {
+      "$oid": "68442c9aa720d3f1a8c03e49"
+    },
+    "Token Mentioned": "KTA",
+    "Final P&L": "39.23%"
+  },
+  {
+    "_id": {
+      "$oid": "6812d8a13210ced4948bbd69"
+    },
+    "Token Mentioned": "EMP",
+    "Final P&L": "36.78%"
+  },
+  {
+    "_id": {
+      "$oid": "68033c464e378d129d346459"
+    },
+    "Token Mentioned": "PIN",
+    "Final P&L": "36.67%"
+  },
+  {
+    "_id": {
+      "$oid": "683c76e7a720d3f1a8c03440"
+    },
+    "Token Mentioned": "ACT",
+    "Final P&L": "36.35%"
+  },
+  {
+    "_id": {
+      "$oid": "68033c644e378d129d34647d"
+    },
+    "Token Mentioned": "GAS",
+    "Final P&L": "35.78%"
+  },
+  {
+    "_id": {
+      "$oid": "683bcabba720d3f1a8c033a1"
+    },
+    "Token Mentioned": "JTO",
+    "Final P&L": "34.52%"
+  },
+  {
+    "_id": {
+      "$oid": "682aebcd1fff7a6184f08c93"
+    },
+    "Token Mentioned": "DOCK",
+    "Final P&L": "34.50%"
+  },
+  {
+    "_id": {
+      "$oid": "68439f2aa720d3f1a8c03db5"
+    },
+    "Token Mentioned": "COMP",
+    "Final P&L": "34.50%"
+  },
+  {
+    "_id": {
+      "$oid": "68ab71157f3f29097eaa8fbd"
+    },
+    "Token Mentioned": "NEON",
+    "Final P&L": "34.35%"
+  },
+  {
+    "_id": {
+      "$oid": "68aff34980284e08b0a6259b"
+    },
+    "Token Mentioned": "ORY",
+    "Final P&L": "33.01%"
+  },
+  {
+    "_id": {
+      "$oid": "680a00895172cf3e97e6644f"
+    },
+    "Token Mentioned": "GIGA",
+    "Final P&L": "32.91%"
+  },
+  {
+    "_id": {
+      "$oid": "68a87a2f7f3f29097eaa8bf1"
+    },
+    "Token Mentioned": "ARIA",
+    "Final P&L": "32.07%"
+  },
+  {
+    "_id": {
+      "$oid": "689baeb0ae7ae2a17bcd62c8"
+    },
+    "Token Mentioned": "FOX",
+    "Final P&L": "31.97%"
+  },
+  {
+    "_id": {
+      "$oid": "680a00895172cf3e97e665e7"
+    },
+    "Token Mentioned": "RON",
+    "Final P&L": "31.92%"
+  },
+  {
+    "_id": {
+      "$oid": "68033c454e378d129d346457"
+    },
+    "Token Mentioned": "DSYNC",
+    "Final P&L": "31.24%"
+  },
+  {
+    "_id": {
+      "$oid": "682ae3361fff7a6184f08c80"
+    },
+    "Token Mentioned": "MUBARAK",
+    "Final P&L": "30.60%"
+  },
+  {
+    "_id": {
+      "$oid": "6813ece53210ced4948bbe09"
+    },
+    "Token Mentioned": "PEAS",
+    "Final P&L": "30.07%"
+  },
+  {
+    "_id": {
+      "$oid": "683b777ca720d3f1a8c0335e"
+    },
+    "Token Mentioned": "SOLV",
+    "Final P&L": "3.98%"
+  },
+  {
+    "_id": {
+      "$oid": "683f0ba5a720d3f1a8c0364a"
+    },
+    "Token Mentioned": "ARA",
+    "Final P&L": "3.97%"
+  },
+  {
+    "_id": {
+      "$oid": "6829066c1fff7a6184f08ab7"
+    },
+    "Token Mentioned": "MLN",
+    "Final P&L": "3.96%"
+  },
+  {
+    "_id": {
+      "$oid": "683dc911a720d3f1a8c03519"
+    },
+    "Token Mentioned": "STRK",
+    "Final P&L": "3.85%"
+  },
+  {
+    "_id": {
+      "$oid": "6828d0811fff7a6184f08a9a"
+    },
+    "Token Mentioned": "PORTO",
+    "Final P&L": "3.84%"
+  },
+  {
+    "_id": {
+      "$oid": "682d93481fff7a6184f08d60"
+    },
+    "Token Mentioned": "SAND",
+    "Final P&L": "3.83%"
+  },
+  {
+    "_id": {
+      "$oid": "6828986e1fff7a6184f08a67"
+    },
+    "Token Mentioned": "GALA",
+    "Final P&L": "3.76%"
+  },
+  {
+    "_id": {
+      "$oid": "6847884be5d38f38c61f0de8"
+    },
+    "Token Mentioned": "FLOKI",
+    "Final P&L": "3.73%"
+  },
+  {
+    "_id": {
+      "$oid": "68283c12f327f092a1a56682"
+    },
+    "Token Mentioned": "SHELL",
+    "Final P&L": "3.70%"
+  },
+  {
+    "_id": {
+      "$oid": "6830651c1fff7a6184f0903a"
+    },
+    "Token Mentioned": "VGX",
+    "Final P&L": "3.66%"
+  },
+  {
+    "_id": {
+      "$oid": "68033c394e378d129d34644f"
+    },
+    "Token Mentioned": "QUIL",
+    "Final P&L": "3.63%"
+  },
+  {
+    "_id": {
+      "$oid": "68ad29fe8c4a3165324ed9c6"
+    },
+    "Token Mentioned": "ZIL",
+    "Final P&L": "3.60%"
+  },
+  {
+    "_id": {
+      "$oid": "684bc13833e860375c5c8e3c"
+    },
+    "Token Mentioned": "FIRE",
+    "Final P&L": "3.58%"
+  },
+  {
+    "_id": {
+      "$oid": "682edd2b1fff7a6184f08e91"
+    },
+    "Token Mentioned": "LOKA",
+    "Final P&L": "3.56%"
+  },
+  {
+    "_id": {
+      "$oid": "68421808a720d3f1a8c03aa7"
+    },
+    "Token Mentioned": "AUDIO",
+    "Final P&L": "3.55%"
+  },
+  {
+    "_id": {
+      "$oid": "685da55af4feaa0849e3eb32"
+    },
+    "Token Mentioned": "APT",
+    "Final P&L": "3.54%"
+  },
+  {
+    "_id": {
+      "$oid": "682898921fff7a6184f08a6b"
+    },
+    "Token Mentioned": "DIA",
+    "Final P&L": "3.44%"
+  },
+  {
+    "_id": {
+      "$oid": "6844799da720d3f1a8c03ea9"
+    },
+    "Token Mentioned": "MOB",
+    "Final P&L": "3.41%"
+  },
+  {
+    "_id": {
+      "$oid": "683ab9371fff7a6184f092d5"
+    },
+    "Token Mentioned": "ID",
+    "Final P&L": "3.37%"
+  },
+  {
+    "_id": {
+      "$oid": "680a00895172cf3e97e665d6"
+    },
+    "Token Mentioned": "GPS",
+    "Final P&L": "3.36%"
+  },
+  {
+    "_id": {
+      "$oid": "68acc5648c4a3165324ed902"
+    },
+    "Token Mentioned": "TSLA",
+    "Final P&L": "3.24%"
+  },
+  {
+    "_id": {
+      "$oid": "682d8a161fff7a6184f08d3e"
+    },
+    "Token Mentioned": "TUT",
+    "Final P&L": "3.23%"
+  },
+  {
+    "_id": {
+      "$oid": "68439322a720d3f1a8c03d74"
+    },
+    "Token Mentioned": "STG",
+    "Final P&L": "3.18%"
+  },
+  {
+    "_id": {
+      "$oid": "682594ca937fdd3ac28e5af0"
+    },
+    "Token Mentioned": "LTC",
+    "Final P&L": "3.17%"
+  },
+  {
+    "_id": {
+      "$oid": "683e2a09a720d3f1a8c0358c"
+    },
+    "Token Mentioned": "ZEN",
+    "Final P&L": "3.12%"
+  },
+  {
+    "_id": {
+      "$oid": "683d231fa720d3f1a8c034a5"
+    },
+    "Token Mentioned": "IOST",
+    "Final P&L": "3.08%"
+  },
+  {
+    "_id": {
+      "$oid": "683d5fada720d3f1a8c034cb"
+    },
+    "Token Mentioned": "ALPINE",
+    "Final P&L": "3.07%"
+  },
+  {
+    "_id": {
+      "$oid": "683c475fa720d3f1a8c03418"
+    },
+    "Token Mentioned": "ILV",
+    "Final P&L": "3.02%"
+  },
+  {
+    "_id": {
+      "$oid": "682edd411fff7a6184f08e93"
+    },
+    "Token Mentioned": "ALICE",
+    "Final P&L": "29.66%"
+  },
+  {
+    "_id": {
+      "$oid": "68a647f1bfc732baf58238ed"
+    },
+    "Token Mentioned": "BB",
+    "Final P&L": "29.57%"
+  },
+  {
+    "_id": {
+      "$oid": "684ab53633e860375c5c8c19"
+    },
+    "Token Mentioned": "ZEUS",
+    "Final P&L": "29.25%"
+  },
+  {
+    "_id": {
+      "$oid": "68428060a720d3f1a8c03bc5"
+    },
+    "Token Mentioned": "VIRGEN",
+    "Final P&L": "28.55%"
+  },
+  {
+    "_id": {
+      "$oid": "684c0ee733e860375c5c8ea3"
+    },
+    "Token Mentioned": "MNRY",
+    "Final P&L": "27.25%"
+  },
+  {
+    "_id": {
+      "$oid": "68417727a720d3f1a8c03891"
+    },
+    "Token Mentioned": "HUMA",
+    "Final P&L": "27.14%"
+  },
+  {
+    "_id": {
+      "$oid": "680923a7a039a0c863bed7d1"
+    },
+    "Token Mentioned": "WELF",
+    "Final P&L": "26.82%"
+  },
+  {
+    "_id": {
+      "$oid": "68a9c5097f3f29097eaa8dfe"
+    },
+    "Token Mentioned": "ORDER",
+    "Final P&L": "26.71%"
+  },
+  {
+    "_id": {
+      "$oid": "689b35893eb66cda9fe1351a"
+    },
+    "Token Mentioned": "GRIFT",
+    "Final P&L": "26.66%"
+  },
+  {
+    "_id": {
+      "$oid": "68460e64e5d38f38c61f0b4e"
+    },
+    "Token Mentioned": "WAV",
+    "Final P&L": "26.51%"
+  },
+  {
+    "_id": {
+      "$oid": "68a722c64c30fb038aefc1d7"
+    },
+    "Token Mentioned": "QTUM",
+    "Final P&L": "26.33%"
+  },
+  {
+    "_id": {
+      "$oid": "68421f10a720d3f1a8c03b03"
+    },
+    "Token Mentioned": "NEVER",
+    "Final P&L": "26.04%"
+  },
+  {
+    "_id": {
+      "$oid": "6825f049f327f092a1a5647e"
+    },
+    "Token Mentioned": "ASR",
+    "Final P&L": "26.00%"
+  },
+  {
+    "_id": {
+      "$oid": "689b34a03eb66cda9fe13508"
+    },
+    "Token Mentioned": "XYRO",
+    "Final P&L": "25.93%"
+  },
+  {
+    "_id": {
+      "$oid": "68033bff4e378d129d34640b"
+    },
+    "Token Mentioned": "DCR",
+    "Final P&L": "25.42%"
+  },
+  {
+    "_id": {
+      "$oid": "68033c3c4e378d129d346453"
+    },
+    "Token Mentioned": "BURGER",
+    "Final P&L": "25.36%"
+  },
+  {
+    "_id": {
+      "$oid": "683dc934a720d3f1a8c0351d"
+    },
+    "Token Mentioned": "RPL",
+    "Final P&L": "25.16%"
+  },
+  {
+    "_id": {
+      "$oid": "689b6797ae7ae2a17bcd623f"
+    },
+    "Token Mentioned": "DOAI",
+    "Final P&L": "24.66%"
+  },
+  {
+    "_id": {
+      "$oid": "68033c034e378d129d34640f"
+    },
+    "Token Mentioned": "CORE",
+    "Final P&L": "24.64%"
+  },
+  {
+    "_id": {
+      "$oid": "6846f972e5d38f38c61f0cb8"
+    },
+    "Token Mentioned": "SYNTH",
+    "Final P&L": "24.05%"
+  },
+  {
+    "_id": {
+      "$oid": "689b33593eb66cda9fe134ee"
+    },
+    "Token Mentioned": "CIRUS",
+    "Final P&L": "23.85%"
+  },
+  {
+    "_id": {
+      "$oid": "68a5babdbfc732baf5823801"
+    },
+    "Token Mentioned": "CLIPPY",
+    "Final P&L": "23.81%"
+  },
+  {
+    "_id": {
+      "$oid": "680923aea039a0c863bed7d7"
+    },
+    "Token Mentioned": "PIXEL",
+    "Final P&L": "23.61%"
+  },
+  {
+    "_id": {
+      "$oid": "682aaaba1fff7a6184f08c3d"
+    },
+    "Token Mentioned": "HIGH",
+    "Final P&L": "23.09%"
+  },
+  {
+    "_id": {
+      "$oid": "6814d3983210ced4948bbe69"
+    },
+    "Token Mentioned": "STPT",
+    "Final P&L": "22.70%"
+  },
+  {
+    "_id": {
+      "$oid": "680a00895172cf3e97e66457"
+    },
+    "Token Mentioned": "PROPC",
+    "Final P&L": "22.48%"
+  },
+  {
+    "_id": {
+      "$oid": "68b0020680284e08b0a625dc"
+    },
+    "Token Mentioned": "USELESS",
+    "Final P&L": "22.45%"
+  },
+  {
+    "_id": {
+      "$oid": "68488eb133e860375c5c889d"
+    },
+    "Token Mentioned": "ROOBEE",
+    "Final P&L": "22.39%"
+  },
+  {
+    "_id": {
+      "$oid": "68ab54d07f3f29097eaa8f74"
+    },
+    "Token Mentioned": "XDOG",
+    "Final P&L": "22.32%"
+  },
+  {
+    "_id": {
+      "$oid": "68b598d9308d5a92b1943568"
+    },
+    "Token Mentioned": "WLFI",
+    "Final P&L": "22.13%"
+  },
+  {
+    "_id": {
+      "$oid": "6852d5491388f843c6acac20"
+    },
+    "Token Mentioned": "ALT",
+    "Final P&L": "21.86%"
+  },
+  {
+    "_id": {
+      "$oid": "68033c084e378d129d346415"
+    },
+    "Token Mentioned": "USUAL",
+    "Final P&L": "21.32%"
+  },
+  {
+    "_id": {
+      "$oid": "68499e1a33e860375c5c8a3d"
+    },
+    "Token Mentioned": "ZEX",
+    "Final P&L": "21.31%"
+  },
+  {
+    "_id": {
+      "$oid": "684b38f833e860375c5c8cd6"
+    },
+    "Token Mentioned": "SSE",
+    "Final P&L": "20.95%"
+  },
+  {
+    "_id": {
+      "$oid": "689b35dc3eb66cda9fe13520"
+    },
+    "Token Mentioned": "BRAWL",
+    "Final P&L": "20.94%"
+  },
+  {
+    "_id": {
+      "$oid": "6809a968a039a0c863bed84c"
+    },
+    "Token Mentioned": "DEXTF",
+    "Final P&L": "20.93%"
+  },
+  {
+    "_id": {
+      "$oid": "6857a250f1a11ded2dccd586"
+    },
+    "Token Mentioned": "GNS",
+    "Final P&L": "20.83%"
+  },
+  {
+    "_id": {
+      "$oid": "689b6d21ae7ae2a17bcd6249"
+    },
+    "Token Mentioned": "CYBER",
+    "Final P&L": "20.26%"
+  },
+  {
+    "_id": {
+      "$oid": "68a84baf7f3f29097eaa8b8c"
+    },
+    "Token Mentioned": "FLOCK",
+    "Final P&L": "20.25%"
+  },
+  {
+    "_id": {
+      "$oid": "68434ceda720d3f1a8c03d32"
+    },
+    "Token Mentioned": "LA",
+    "Final P&L": "20.14%"
+  },
+  {
+    "_id": {
+      "$oid": "684398b9a720d3f1a8c03d9f"
+    },
+    "Token Mentioned": "WING",
+    "Final P&L": "2.95%"
+  },
+  {
+    "_id": {
+      "$oid": "68224e7fe09acd81a1f07013"
+    },
+    "Token Mentioned": "LLM",
+    "Final P&L": "2.91%"
+  },
+  {
+    "_id": {
+      "$oid": "683c0404a720d3f1a8c033d4"
+    },
+    "Token Mentioned": "KAVA",
+    "Final P&L": "2.85%"
+  },
+  {
+    "_id": {
+      "$oid": "68420deba720d3f1a8c03a83"
+    },
+    "Token Mentioned": "CAKE",
+    "Final P&L": "2.77%"
+  },
+  {
+    "_id": {
+      "$oid": "683c0413a720d3f1a8c033d6"
+    },
+    "Token Mentioned": "NKN",
+    "Final P&L": "2.58%"
+  },
+  {
+    "_id": {
+      "$oid": "6848623233e860375c5c8820"
+    },
+    "Token Mentioned": "ORAI",
+    "Final P&L": "2.54%"
+  },
+  {
+    "_id": {
+      "$oid": "6844216ba720d3f1a8c03e13"
+    },
+    "Token Mentioned": "LUNC",
+    "Final P&L": "2.51%"
+  },
+  {
+    "_id": {
+      "$oid": "683d22fba720d3f1a8c034a1"
+    },
+    "Token Mentioned": "OM",
+    "Final P&L": "2.47%"
+  },
+  {
+    "_id": {
+      "$oid": "6828cacd1fff7a6184f08a93"
+    },
+    "Token Mentioned": "JUP",
+    "Final P&L": "2.46%"
+  },
+  {
+    "_id": {
+      "$oid": "683c477fa720d3f1a8c0341a"
+    },
+    "Token Mentioned": "RAY",
+    "Final P&L": "2.45%"
+  },
+  {
+    "_id": {
+      "$oid": "68464da9e5d38f38c61f0b71"
+    },
+    "Token Mentioned": "LAUNCH",
+    "Final P&L": "2.44%"
+  },
+  {
+    "_id": {
+      "$oid": "6819a77e715b6d1ef1b81858"
+    },
+    "Token Mentioned": "FLOW",
+    "Final P&L": "2.38%"
+  },
+  {
+    "_id": {
+      "$oid": "68442130a720d3f1a8c03e0f"
+    },
+    "Token Mentioned": "DASH",
+    "Final P&L": "2.38%"
+  },
+  {
+    "_id": {
+      "$oid": "682898811fff7a6184f08a69"
+    },
+    "Token Mentioned": "AXS",
+    "Final P&L": "2.30%"
+  },
+  {
+    "_id": {
+      "$oid": "683b44f2a720d3f1a8c03338"
+    },
+    "Token Mentioned": "ANKR",
+    "Final P&L": "2.26%"
+  },
+  {
+    "_id": {
+      "$oid": "680a1eca565bd8881391d937"
+    },
+    "Token Mentioned": "PALM",
+    "Final P&L": "2.16%"
+  },
+  {
+    "_id": {
+      "$oid": "682269afe09acd81a1f07051"
+    },
+    "Token Mentioned": "OMG",
+    "Final P&L": "2.13%"
+  },
+  {
+    "_id": {
+      "$oid": "683b778aa720d3f1a8c03360"
+    },
+    "Token Mentioned": "SLF",
+    "Final P&L": "2.12%"
+  },
+  {
+    "_id": {
+      "$oid": "682faec91fff7a6184f08f55"
+    },
+    "Token Mentioned": "42",
+    "Final P&L": "2.11%"
+  },
+  {
+    "_id": {
+      "$oid": "682d8a601fff7a6184f08d42"
+    },
+    "Token Mentioned": "PSG",
+    "Final P&L": "2.09%"
+  },
+  {
+    "_id": {
+      "$oid": "6822b884e09acd81a1f07088"
+    },
+    "Token Mentioned": "PLUME",
+    "Final P&L": "2.07%"
+  },
+  {
+    "_id": {
+      "$oid": "68458d6fe5d38f38c61f0a63"
+    },
+    "Token Mentioned": "NEXO",
+    "Final P&L": "2.01%"
+  },
+  {
+    "_id": {
+      "$oid": "682d8ac01fff7a6184f08d4a"
+    },
+    "Token Mentioned": "ORCA",
+    "Final P&L": "19.41%"
+  },
+  {
+    "_id": {
+      "$oid": "68305daf1fff7a6184f0900a"
+    },
+    "Token Mentioned": "DOOD",
+    "Final P&L": "19.23%"
+  },
+  {
+    "_id": {
+      "$oid": "68b0c7a480284e08b0a62640"
+    },
+    "Token Mentioned": "DOLO",
+    "Final P&L": "19.09%"
+  },
+  {
+    "_id": {
+      "$oid": "68a8b5677f3f29097eaa8c7a"
+    },
+    "Token Mentioned": "MLMX",
+    "Final P&L": "186.97%"
+  },
+  {
+    "_id": {
+      "$oid": "6812505c3210ced4948bbd27"
+    },
+    "Token Mentioned": "AKT",
+    "Final P&L": "18.91%"
+  },
+  {
+    "_id": {
+      "$oid": "682ed59d1fff7a6184f08e7f"
+    },
+    "Token Mentioned": "IO",
+    "Final P&L": "18.70%"
+  },
+  {
+    "_id": {
+      "$oid": "68499e5533e860375c5c8a41"
+    },
+    "Token Mentioned": "MGT",
+    "Final P&L": "18.69%"
+  },
+  {
+    "_id": {
+      "$oid": "684869b233e860375c5c882e"
+    },
+    "Token Mentioned": "PRIVIX",
+    "Final P&L": "18.57%"
+  },
+  {
+    "_id": {
+      "$oid": "68b150e5ee27058bf19a6031"
+    },
+    "Token Mentioned": "W",
+    "Final P&L": "18.49%"
+  },
+  {
+    "_id": {
+      "$oid": "68237da0e09acd81a1f0711f"
+    },
+    "Token Mentioned": "CSWAP",
+    "Final P&L": "18.27%"
+  },
+  {
+    "_id": {
+      "$oid": "680a00895172cf3e97e66637"
+    },
+    "Token Mentioned": "TAOBOT",
+    "Final P&L": "18.24%"
+  },
+  {
+    "_id": {
+      "$oid": "680a6998565bd8881391d993"
+    },
+    "Token Mentioned": "TGT",
+    "Final P&L": "18.23%"
+  },
+  {
+    "_id": {
+      "$oid": "680a00895172cf3e97e66477"
+    },
+    "Token Mentioned": "PAAL",
+    "Final P&L": "18.07%"
+  },
+  {
+    "_id": {
+      "$oid": "689dfd63d2ea94d8f650d4e5"
+    },
+    "Token Mentioned": "MNT",
+    "Final P&L": "17.88%"
+  },
+  {
+    "_id": {
+      "$oid": "68033d564e378d129d346595"
+    },
+    "Token Mentioned": "STRAX",
+    "Final P&L": "17.86%"
+  },
+  {
+    "_id": {
+      "$oid": "68099433a039a0c863bed837"
+    },
+    "Token Mentioned": "SIGMA",
+    "Final P&L": "17.79%"
+  },
+  {
+    "_id": {
+      "$oid": "68a831ca7f3f29097eaa8b67"
+    },
+    "Token Mentioned": "VERTAI",
+    "Final P&L": "17.74%"
+  },
+  {
+    "_id": {
+      "$oid": "689f5f05d2ea94d8f650d65f"
+    },
+    "Token Mentioned": "OBI",
+    "Final P&L": "17.38%"
+  },
+  {
+    "_id": {
+      "$oid": "689ddef7d2ea94d8f650d4cd"
+    },
+    "Token Mentioned": "WIN",
+    "Final P&L": "17.30%"
+  },
+  {
+    "_id": {
+      "$oid": "6828bc151fff7a6184f08a72"
+    },
+    "Token Mentioned": "KAITO",
+    "Final P&L": "17.06%"
+  },
+  {
+    "_id": {
+      "$oid": "689c5ce1ae7ae2a17bcd637b"
+    },
+    "Token Mentioned": "LONG",
+    "Final P&L": "16.97%"
+  },
+  {
+    "_id": {
+      "$oid": "682e9b121fff7a6184f08e65"
+    },
+    "Token Mentioned": "BANANA",
+    "Final P&L": "16.85%"
+  },
+  {
+    "_id": {
+      "$oid": "68a5d731bfc732baf5823837"
+    },
+    "Token Mentioned": "LAND",
+    "Final P&L": "16.75%"
+  },
+  {
+    "_id": {
+      "$oid": "683f51e0a720d3f1a8c036c3"
+    },
+    "Token Mentioned": "TRB",
+    "Final P&L": "16.72%"
+  },
+  {
+    "_id": {
+      "$oid": "689c8f5dd2ea94d8f650d2ff"
+    },
+    "Token Mentioned": "FCON",
+    "Final P&L": "16.53%"
+  },
+  {
+    "_id": {
+      "$oid": "689c5603ae7ae2a17bcd636f"
+    },
+    "Token Mentioned": "SHX",
+    "Final P&L": "16.17%"
+  },
+  {
+    "_id": {
+      "$oid": "6829945d1fff7a6184f08b20"
+    },
+    "Token Mentioned": "NULS",
+    "Final P&L": "15.85%"
+  },
+  {
+    "_id": {
+      "$oid": "680a00895172cf3e97e6665b"
+    },
+    "Token Mentioned": "CHERRY",
+    "Final P&L": "15.75%"
+  },
+  {
+    "_id": {
+      "$oid": "682e9b1f1fff7a6184f08e67"
+    },
+    "Token Mentioned": "EIGEN",
+    "Final P&L": "15.62%"
+  },
+  {
+    "_id": {
+      "$oid": "68044e1d4e378d129d34661d"
+    },
+    "Token Mentioned": "EUL",
+    "Final P&L": "15.53%"
+  },
+  {
+    "_id": {
+      "$oid": "6828d0e01fff7a6184f08aa0"
+    },
+    "Token Mentioned": "CVC",
+    "Final P&L": "15.53%"
+  },
+  {
+    "_id": {
+      "$oid": "68478f1be5d38f38c61f0e2a"
+    },
+    "Token Mentioned": "KMNO",
+    "Final P&L": "15.47%"
+  },
+  {
+    "_id": {
+      "$oid": "689b32203eb66cda9fe134dc"
+    },
+    "Token Mentioned": "RESOLV",
+    "Final P&L": "15.30%"
+  },
+  {
+    "_id": {
+      "$oid": "681483613210ced4948bbe39"
+    },
+    "Token Mentioned": "MONK",
+    "Final P&L": "1487.32%"
+  },
+  {
+    "_id": {
+      "$oid": "6843985ba720d3f1a8c03d93"
+    },
+    "Token Mentioned": "KMD",
+    "Final P&L": "14.84%"
+  },
+  {
+    "_id": {
+      "$oid": "68ac5ffb8c4a3165324ed85c"
+    },
+    "Token Mentioned": "CTSI",
+    "Final P&L": "14.83%"
+  },
+  {
+    "_id": {
+      "$oid": "689c3104ae7ae2a17bcd635a"
+    },
+    "Token Mentioned": "RXD",
+    "Final P&L": "14.52%"
+  },
+  {
+    "_id": {
+      "$oid": "68472a87e5d38f38c61f0d3e"
+    },
+    "Token Mentioned": "LMWR",
+    "Final P&L": "14.50%"
+  },
+  {
+    "_id": {
+      "$oid": "6830bfbb1fff7a6184f090d0"
+    },
+    "Token Mentioned": "MEW",
+    "Final P&L": "14.38%"
+  },
+  {
+    "_id": {
+      "$oid": "68470b90e5d38f38c61f0d0f"
+    },
+    "Token Mentioned": "SUNDOG",
+    "Final P&L": "14.36%"
+  },
+  {
+    "_id": {
+      "$oid": "6824ef96937fdd3ac28e5a98"
+    },
+    "Token Mentioned": "MEME",
+    "Final P&L": "14.34%"
+  },
+  {
+    "_id": {
+      "$oid": "68a835117f3f29097eaa8b69"
+    },
+    "Token Mentioned": "TROLL",
+    "Final P&L": "14.29%"
+  },
+  {
+    "_id": {
+      "$oid": "683dc959a720d3f1a8c03521"
+    },
+    "Token Mentioned": "MASK",
+    "Final P&L": "14.12%"
+  },
+  {
+    "_id": {
+      "$oid": "68033c5e4e378d129d346477"
+    },
+    "Token Mentioned": "ORA",
+    "Final P&L": "14.02%"
+  },
+  {
+    "_id": {
+      "$oid": "68a5a924bfc732baf58237e4"
+    },
+    "Token Mentioned": "MARU",
+    "Final P&L": "13.90%"
+  },
+  {
+    "_id": {
+      "$oid": "689f0053d2ea94d8f650d5f0"
+    },
+    "Token Mentioned": "WAVES",
+    "Final P&L": "13.65%"
+  },
+  {
+    "_id": {
+      "$oid": "68429ef0a720d3f1a8c03be7"
+    },
+    "Token Mentioned": "KDA",
+    "Final P&L": "13.63%"
+  },
+  {
+    "_id": {
+      "$oid": "6842149ca720d3f1a8c03a97"
+    },
+    "Token Mentioned": "CFX",
+    "Final P&L": "13.55%"
+  },
+  {
+    "_id": {
+      "$oid": "6814c0593210ced4948bbe5b"
+    },
+    "Token Mentioned": "AERGO",
+    "Final P&L": "13.16%"
+  },
+  {
+    "_id": {
+      "$oid": "6824c69b937fdd3ac28e5a49"
+    },
+    "Token Mentioned": "NEIRO",
+    "Final P&L": "13.05%"
+  },
+  {
+    "_id": {
+      "$oid": "6814e9ee3210ced4948bbe79"
+    },
+    "Token Mentioned": "MOVE",
+    "Final P&L": "13.04%"
+  },
+  {
+    "_id": {
+      "$oid": "681412113210ced4948bbe12"
+    },
+    "Token Mentioned": "FWOG",
+    "Final P&L": "121.45%"
+  },
+  {
+    "_id": {
+      "$oid": "6852f2341388f843c6acac9a"
+    },
+    "Token Mentioned": "T",
+    "Final P&L": "12.88%"
+  },
+  {
+    "_id": {
+      "$oid": "6830923b1fff7a6184f090a3"
+    },
+    "Token Mentioned": "TGMETRICS",
+    "Final P&L": "12.69%"
+  },
+  {
+    "_id": {
+      "$oid": "689f51e8d2ea94d8f650d61e"
+    },
+    "Token Mentioned": "AERO",
+    "Final P&L": "12.51%"
+  },
+  {
+    "_id": {
+      "$oid": "6828ba8e1fff7a6184f08a6e"
+    },
+    "Token Mentioned": "FRAX",
+    "Final P&L": "12.32%"
+  },
+  {
+    "_id": {
+      "$oid": "6812074b3210ced4948bbc9d"
+    },
+    "Token Mentioned": "QNT",
+    "Final P&L": "12.30%"
+  },
+  {
+    "_id": {
+      "$oid": "6830cdb21fff7a6184f090ff"
+    },
+    "Token Mentioned": "VIC",
+    "Final P&L": "12.12%"
+  },
+  {
+    "_id": {
+      "$oid": "6842fd82a720d3f1a8c03c60"
+    },
+    "Token Mentioned": "STND",
+    "Final P&L": "12.03%"
+  },
+  {
+    "_id": {
+      "$oid": "68470b6fe5d38f38c61f0d0b"
+    },
+    "Token Mentioned": "PONKE",
+    "Final P&L": "12.02%"
+  },
+  {
+    "_id": {
+      "$oid": "6809a22fa039a0c863bed841"
+    },
+    "Token Mentioned": "RENDER",
+    "Final P&L": "12.01%"
+  },
+  {
+    "_id": {
+      "$oid": "68a57e81bfc732baf5823779"
+    },
+    "Token Mentioned": "ZELIX",
+    "Final P&L": "11.81%"
+  },
+  {
+    "_id": {
+      "$oid": "683eada7a720d3f1a8c035fd"
+    },
+    "Token Mentioned": "HYPER",
+    "Final P&L": "11.67%"
+  },
+  {
+    "_id": {
+      "$oid": "682e32311fff7a6184f08e27"
+    },
+    "Token Mentioned": "STX",
+    "Final P&L": "11.59%"
+  },
+  {
+    "_id": {
+      "$oid": "68434500a720d3f1a8c03cff"
+    },
+    "Token Mentioned": "WBETH",
+    "Final P&L": "11.44%"
+  },
+  {
+    "_id": {
+      "$oid": "6847300be5d38f38c61f0d4a"
+    },
+    "Token Mentioned": "LOFI",
+    "Final P&L": "11.31%"
+  },
+  {
+    "_id": {
+      "$oid": "68033d2d4e378d129d346565"
+    },
+    "Token Mentioned": "FHE",
+    "Final P&L": "11.23%"
+  },
+  {
+    "_id": {
+      "$oid": "681632444c462675f87a0122"
+    },
+    "Token Mentioned": "TURBO",
+    "Final P&L": "11.15%"
+  },
+  {
+    "_id": {
+      "$oid": "68a73ef24c30fb038aefc20c"
+    },
+    "Token Mentioned": "NUX",
+    "Final P&L": "11.10%"
+  },
+  {
+    "_id": {
+      "$oid": "68033c2a4e378d129d34643d"
+    },
+    "Token Mentioned": "SPELL",
+    "Final P&L": "11.10%"
+  },
+  {
+    "_id": {
+      "$oid": "682dfbb91fff7a6184f08dd7"
+    },
+    "Token Mentioned": "SWARMS",
+    "Final P&L": "11.02%"
+  },
+  {
+    "_id": {
+      "$oid": "6819b7c3715b6d1ef1b81868"
+    },
+    "Token Mentioned": "RED",
+    "Final P&L": "10.97%"
+  },
+  {
+    "_id": {
+      "$oid": "68b0019d80284e08b0a625d4"
+    },
+    "Token Mentioned": "NMR",
+    "Final P&L": "10.94%"
+  },
+  {
+    "_id": {
+      "$oid": "682f6f351fff7a6184f08f11"
+    },
+    "Token Mentioned": "WAL",
+    "Final P&L": "10.93%"
+  },
+  {
+    "_id": {
+      "$oid": "684538e2e5d38f38c61f09e2"
+    },
+    "Token Mentioned": "XVS",
+    "Final P&L": "10.75%"
+  },
+  {
+    "_id": {
+      "$oid": "6814e9fa3210ced4948bbe7b"
+    },
+    "Token Mentioned": "ZBU",
+    "Final P&L": "10.64%"
+  },
+  {
+    "_id": {
+      "$oid": "689b2ff53eb66cda9fe134d8"
+    },
+    "Token Mentioned": "ONDO",
+    "Final P&L": "10.52%"
+  },
+  {
+    "_id": {
+      "$oid": "684538bbe5d38f38c61f09de"
+    },
+    "Token Mentioned": "BAND",
+    "Final P&L": "10.32%"
+  },
+  {
+    "_id": {
+      "$oid": "6824c67e937fdd3ac28e5a47"
+    },
+    "Token Mentioned": "MOODENG",
+    "Final P&L": "10.21%"
+  },
+  {
+    "_id": {
+      "$oid": "68224e59e09acd81a1f0700f"
+    },
+    "Token Mentioned": "SNAI",
+    "Final P&L": "10.19%"
+  },
+  {
+    "_id": {
+      "$oid": "6822f7d1e09acd81a1f0709e"
+    },
+    "Token Mentioned": "HFT",
+    "Final P&L": "10.13%"
+  },
+  {
+    "_id": {
+      "$oid": "6831002a1fff7a6184f09135"
+    },
+    "Token Mentioned": "SWARM",
+    "Final P&L": "1.91%"
+  },
+  {
+    "_id": {
+      "$oid": "684a74ee33e860375c5c8bd4"
+    },
+    "Token Mentioned": "PAXG",
+    "Final P&L": "1.83%"
+  },
+  {
+    "_id": {
+      "$oid": "689b8cf8ae7ae2a17bcd629f"
+    },
+    "Token Mentioned": "CGPT",
+    "Final P&L": "1.81%"
+  },
+  {
+    "_id": {
+      "$oid": "68421a63a720d3f1a8c03af1"
+    },
+    "Token Mentioned": "BULL",
+    "Final P&L": "1.67%"
+  },
+  {
+    "_id": {
+      "$oid": "681632274c462675f87a011e"
+    },
+    "Token Mentioned": "WEMIX",
+    "Final P&L": "1.61%"
+  },
+  {
+    "_id": {
+      "$oid": "682898491fff7a6184f08a63"
+    },
+    "Token Mentioned": "BIFI",
+    "Final P&L": "1.53%"
+  },
+  {
+    "_id": {
+      "$oid": "68286069f327f092a1a566b0"
+    },
+    "Token Mentioned": "BTS",
+    "Final P&L": "1.45%"
+  },
+  {
+    "_id": {
+      "$oid": "6844214ba720d3f1a8c03e11"
+    },
+    "Token Mentioned": "PUNDIX",
+    "Final P&L": "1.38%"
+  },
+  {
+    "_id": {
+      "$oid": "68acfbf98c4a3165324ed973"
+    },
+    "Token Mentioned": "CMETH",
+    "Final P&L": "1.21%"
+  },
+  {
+    "_id": {
+      "$oid": "6842f6a2a720d3f1a8c03c42"
+    },
+    "Token Mentioned": "OSMO",
+    "Final P&L": "1.17%"
+  },
+  {
+    "_id": {
+      "$oid": "680a651e565bd8881391d989"
+    },
+    "Token Mentioned": "MORPHO",
+    "Final P&L": "1.14%"
+  },
+  {
+    "_id": {
+      "$oid": "683dfe9da720d3f1a8c03562"
+    },
+    "Token Mentioned": "CHZ",
+    "Final P&L": "1.08%"
+  },
+  {
+    "_id": {
+      "$oid": "682478e6937fdd3ac28e59f4"
+    },
+    "Token Mentioned": "FARM",
+    "Final P&L": "1.05%"
+  },
+  {
+    "_id": {
+      "$oid": "6816320c4c462675f87a011a"
+    },
+    "Token Mentioned": "FLR",
+    "Final P&L": "1.04%"
+  },
+  {
+    "_id": {
+      "$oid": "6827791ff327f092a1a565e7"
+    },
+    "Token Mentioned": "AARK",
+    "Final P&L": "1.03%"
+  },
+  {
+    "_id": {
+      "$oid": "68298dd61fff7a6184f08b14"
+    },
+    "Token Mentioned": "ANIME",
+    "Final P&L": "1.00%"
+  },
+  {
+    "_id": {
+      "$oid": "6822a128e09acd81a1f0707c"
+    },
+    "Token Mentioned": "SCRT",
+    "Final P&L": "0.85%"
+  },
+  {
+    "_id": {
+      "$oid": "689caf51d2ea94d8f650d341"
+    },
+    "Token Mentioned": "ADM",
+    "Final P&L": "0.79%"
+  },
+  {
+    "_id": {
+      "$oid": "682aebec1fff7a6184f08c97"
+    },
+    "Token Mentioned": "WDC",
+    "Final P&L": "0.79%"
+  },
+  {
+    "_id": {
+      "$oid": "6841d5a4a720d3f1a8c039d4"
+    },
+    "Token Mentioned": "WHAT",
+    "Final P&L": "0.79%"
+  },
+  {
+    "_id": {
+      "$oid": "68a874267f3f29097eaa8be3"
+    },
+    "Token Mentioned": "MAX",
+    "Final P&L": "0.79%"
+  },
+  {
+    "_id": {
+      "$oid": "683d5729a720d3f1a8c034ba"
+    },
+    "Token Mentioned": "BANANAS31",
+    "Final P&L": "0.64%"
+  },
+  {
+    "_id": {
+      "$oid": "68439364a720d3f1a8c03d78"
+    },
+    "Token Mentioned": "AEUR",
+    "Final P&L": "0.59%"
+  },
+  {
+    "_id": {
+      "$oid": "68459adfe5d38f38c61f0a76"
+    },
+    "Token Mentioned": "IMT",
+    "Final P&L": "0.45%"
+  },
+  {
+    "_id": {
+      "$oid": "6852f2431388f843c6acac9c"
+    },
+    "Token Mentioned": "BMT",
+    "Final P&L": "0.45%"
+  },
+  {
+    "_id": {
+      "$oid": "683f4c14a720d3f1a8c036ae"
+    },
+    "Token Mentioned": "AQUA",
+    "Final P&L": "0.38%"
+  },
+  {
+    "_id": {
+      "$oid": "682ab28d1fff7a6184f08c4d"
+    },
+    "Token Mentioned": "ADX",
+    "Final P&L": "0.28%"
+  },
+  {
+    "_id": {
+      "$oid": "68a9e0d77f3f29097eaa8e2f"
+    },
+    "Token Mentioned": "AVAX",
+    "Final P&L": "0.27%"
+  },
+  {
+    "_id": {
+      "$oid": "68224771e09acd81a1f06fe0"
+    },
+    "Token Mentioned": "HIPPO",
+    "Final P&L": "0.25%"
+  },
+  {
+    "_id": {
+      "$oid": "689c5f26ae7ae2a17bcd6385"
+    },
+    "Token Mentioned": "ONE",
+    "Final P&L": "0.22%"
+  },
+  {
+    "_id": {
+      "$oid": "6825f05df327f092a1a56480"
+    },
+    "Token Mentioned": "BCH",
+    "Final P&L": "0.22%"
+  },
+  {
+    "_id": {
+      "$oid": "68285e16f327f092a1a566a2"
+    },
+    "Token Mentioned": "MINA",
+    "Final P&L": "0.21%"
+  },
+  {
+    "_id": {
+      "$oid": "68120b0f3210ced4948bbceb"
+    },
+    "Token Mentioned": "USDT",
+    "Final P&L": "0.12%"
+  },
+  {
+    "_id": {
+      "$oid": "68295e231fff7a6184f08af5"
+    },
+    "Token Mentioned": "VTHO",
+    "Final P&L": "0.11%"
+  },
+  {
+    "_id": {
+      "$oid": "682d925d1fff7a6184f08d56"
+    },
+    "Token Mentioned": "CITY",
+    "Final P&L": "0.10%"
+  },
+  {
+    "_id": {
+      "$oid": "6828f3691fff7a6184f08aa5"
+    },
+    "Token Mentioned": "TATSU",
+    "Final P&L": "0.08%"
+  },
+  {
+    "_id": {
+      "$oid": "68488afb33e860375c5c8871"
+    },
+    "Token Mentioned": "PNDR",
+    "Final P&L": "0.07%"
+  },
+  {
+    "_id": {
+      "$oid": "68033c284e378d129d34643b"
+    },
+    "Token Mentioned": "MIM",
+    "Final P&L": "0.07%"
+  },
+  {
+    "_id": {
+      "$oid": "689b33b73eb66cda9fe134f6"
+    },
+    "Token Mentioned": "WAI",
+    "Final P&L": "0.04%"
+  },
+  {
+    "_id": {
+      "$oid": "68439868a720d3f1a8c03d95"
+    },
+    "Token Mentioned": "AMB",
+    "Final P&L": "0.04%"
+  },
+  {
+    "_id": {
+      "$oid": "682ab31b1fff7a6184f08c5b"
+    },
+    "Token Mentioned": "WTC",
+    "Final P&L": "0.04%"
+  },
+  {
+    "_id": {
+      "$oid": "689b1a518b48a7f5ab235937"
+    },
+    "Token Mentioned": "SBET",
+    "Final P&L": "0.04%"
+  },
+  {
+    "_id": {
+      "$oid": "688af18d09f2d70ef35d91d2"
+    },
+    "Token Mentioned": "NVDA",
+    "Final P&L": "0.03%"
+  },
+  {
+    "_id": {
+      "$oid": "6854baed1388f843c6acaf0c"
+    },
+    "Token Mentioned": "PIX",
+    "Final P&L": "0.02%"
+  },
+  {
+    "_id": {
+      "$oid": "683bd1a0a720d3f1a8c033bf"
+    },
+    "Token Mentioned": "POLYX",
+    "Final P&L": "0.02%"
+  },
+  {
+    "_id": {
+      "$oid": "68431057a720d3f1a8c03cac"
+    },
+    "Token Mentioned": "MUSK",
+    "Final P&L": "0.02%"
+  },
+  {
+    "_id": {
+      "$oid": "689d995fd2ea94d8f650d48e"
+    },
+    "Token Mentioned": "USDC",
+    "Final P&L": "0.02%"
+  },
+  {
+    "_id": {
+      "$oid": "682a75371fff7a6184f08be9"
+    },
+    "Token Mentioned": "QUICK",
+    "Final P&L": "0.02%"
+  },
+  {
+    "_id": {
+      "$oid": "6828cadf1fff7a6184f08a95"
+    },
+    "Token Mentioned": "SNX",
+    "Final P&L": "0.01%"
+  },
+  {
+    "_id": {
+      "$oid": "6813d6793210ced4948bbe03"
+    },
+    "Token Mentioned": "USD1",
+    "Final P&L": "0.00%"
+  },
+  {
+    "_id": {
+      "$oid": "68265a3df327f092a1a564f3"
+    },
+    "Token Mentioned": "MSTR",
+    "Final P&L": "0.00%"
+  },
+  {
+    "_id": {
+      "$oid": "683eb8b1a720d3f1a8c0361a"
+    },
+    "Token Mentioned": "ANT",
+    "Final P&L": "0.00%"
+  },
+  {
+    "_id": {
+      "$oid": "68a6eeedbfc732baf582395c"
+    },
+    "Token Mentioned": "DAPP",
+    "Final P&L": "0.00%"
+  },
+  {
+    "_id": {
+      "$oid": "68aff6b480284e08b0a625b9"
+    },
+    "Token Mentioned": "FACY",
+    "Final P&L": "-9.98%"
+  },
+  {
+    "_id": {
+      "$oid": "68a8df357f3f29097eaa8cc7"
+    },
+    "Token Mentioned": "HEU",
+    "Final P&L": "-9.95%"
+  },
+  {
+    "_id": {
+      "$oid": "68417bfca720d3f1a8c038a1"
+    },
+    "Token Mentioned": "AMU",
+    "Final P&L": "-9.89%"
+  },
+  {
+    "_id": {
+      "$oid": "684201b2a720d3f1a8c03a14"
+    },
+    "Token Mentioned": "STARTUP",
+    "Final P&L": "-9.87%"
+  },
+  {
+    "_id": {
+      "$oid": "682778f0f327f092a1a565e3"
+    },
+    "Token Mentioned": "PRCL",
+    "Final P&L": "-9.85%"
+  },
+  {
+    "_id": {
+      "$oid": "684971f933e860375c5c89e2"
+    },
+    "Token Mentioned": "SFI",
+    "Final P&L": "-9.74%"
+  },
+  {
+    "_id": {
+      "$oid": "68488e0433e860375c5c8889"
+    },
+    "Token Mentioned": "ARTY",
+    "Final P&L": "-9.67%"
+  },
+  {
+    "_id": {
+      "$oid": "6827a346f327f092a1a56601"
+    },
+    "Token Mentioned": "CRTAI",
+    "Final P&L": "-9.66%"
+  },
+  {
+    "_id": {
+      "$oid": "689cc227d2ea94d8f650d37c"
+    },
+    "Token Mentioned": "XYO",
+    "Final P&L": "-9.61%"
+  },
+  {
+    "_id": {
+      "$oid": "680a6111565bd8881391d97d"
+    },
+    "Token Mentioned": "QF",
+    "Final P&L": "-9.52%"
+  },
+  {
+    "_id": {
+      "$oid": "689dfd4fd2ea94d8f650d4e3"
+    },
+    "Token Mentioned": "METH",
+    "Final P&L": "-9.44%"
+  },
+  {
+    "_id": {
+      "$oid": "68166f384c462675f87a014a"
+    },
+    "Token Mentioned": "GORK",
+    "Final P&L": "-9.41%"
+  },
+  {
+    "_id": {
+      "$oid": "683fc92ba720d3f1a8c03721"
+    },
+    "Token Mentioned": "ACH",
+    "Final P&L": "-9.39%"
+  },
+  {
+    "_id": {
+      "$oid": "68494cb033e860375c5c897a"
+    },
+    "Token Mentioned": "SSV",
+    "Final P&L": "-9.26%"
+  },
+  {
+    "_id": {
+      "$oid": "689d1564d2ea94d8f650d3fb"
+    },
+    "Token Mentioned": "ONO",
+    "Final P&L": "-9.25%"
+  },
+  {
+    "_id": {
+      "$oid": "685464c61388f843c6acaeb8"
+    },
+    "Token Mentioned": "OMIRA",
+    "Final P&L": "-9.22%"
+  },
+  {
+    "_id": {
+      "$oid": "6819a487715b6d1ef1b817d4"
+    },
+    "Token Mentioned": "SPECTRE",
+    "Final P&L": "-9.21%"
+  },
+  {
+    "_id": {
+      "$oid": "68310a551fff7a6184f09148"
+    },
+    "Token Mentioned": "1INCH",
+    "Final P&L": "-9.12%"
+  },
+  {
+    "_id": {
+      "$oid": "68b0a70680284e08b0a62631"
+    },
+    "Token Mentioned": "CELR",
+    "Final P&L": "-9.11%"
+  },
+  {
+    "_id": {
+      "$oid": "68a57dffbfc732baf582376d"
+    },
+    "Token Mentioned": "MTS",
+    "Final P&L": "-9.11%"
+  },
+  {
+    "_id": {
+      "$oid": "689da93bd2ea94d8f650d49a"
+    },
+    "Token Mentioned": "GOAT",
+    "Final P&L": "-9.08%"
+  },
+  {
+    "_id": {
+      "$oid": "68ab39197f3f29097eaa8f68"
+    },
+    "Token Mentioned": "ISP",
+    "Final P&L": "-9.06%"
+  },
+  {
+    "_id": {
+      "$oid": "689b28673eb66cda9fe134ae"
+    },
+    "Token Mentioned": "ZRO",
+    "Final P&L": "-9.05%"
+  },
+  {
+    "_id": {
+      "$oid": "68298db01fff7a6184f08b10"
+    },
+    "Token Mentioned": "MANTA",
+    "Final P&L": "-9.04%"
+  },
+  {
+    "_id": {
+      "$oid": "68aff3f580284e08b0a625a7"
+    },
+    "Token Mentioned": "WOJAK",
+    "Final P&L": "-9.04%"
+  },
+  {
+    "_id": {
+      "$oid": "68472c58e5d38f38c61f0d42"
+    },
+    "Token Mentioned": "TON",
+    "Final P&L": "-9.00%"
+  },
+  {
+    "_id": {
+      "$oid": "6825551a937fdd3ac28e5ad0"
+    },
+    "Token Mentioned": "INFRA",
+    "Final P&L": "-8.98%"
+  },
+  {
+    "_id": {
+      "$oid": "68a56b84bfc732baf5823755"
+    },
+    "Token Mentioned": "EGLD",
+    "Final P&L": "-8.97%"
+  },
+  {
+    "_id": {
+      "$oid": "689c9d9bd2ea94d8f650d319"
+    },
+    "Token Mentioned": "KNCL",
+    "Final P&L": "-8.96%"
+  },
+  {
+    "_id": {
+      "$oid": "689b42e63eb66cda9fe13546"
+    },
+    "Token Mentioned": "ALVA",
+    "Final P&L": "-8.92%"
+  },
+  {
+    "_id": {
+      "$oid": "6841d4cca720d3f1a8c039d2"
+    },
+    "Token Mentioned": "PACE",
+    "Final P&L": "-8.87%"
+  },
+  {
+    "_id": {
+      "$oid": "682367c5e09acd81a1f070fc"
+    },
+    "Token Mentioned": "DGB",
+    "Final P&L": "-8.83%"
+  },
+  {
+    "_id": {
+      "$oid": "6825a7fa937fdd3ac28e5b2a"
+    },
+    "Token Mentioned": "TRISIG",
+    "Final P&L": "-8.70%"
+  },
+  {
+    "_id": {
+      "$oid": "684673ede5d38f38c61f0bb7"
+    },
+    "Token Mentioned": "SOPH",
+    "Final P&L": "-8.66%"
+  },
+  {
+    "_id": {
+      "$oid": "684878a633e860375c5c8854"
+    },
+    "Token Mentioned": "AR",
+    "Final P&L": "-8.65%"
+  },
+  {
+    "_id": {
+      "$oid": "6812055a3210ced4948bbc77"
+    },
+    "Token Mentioned": "BABYBNB",
+    "Final P&L": "-8.61%"
+  },
+  {
+    "_id": {
+      "$oid": "689bd7f1ae7ae2a17bcd630f"
+    },
+    "Token Mentioned": "GHX",
+    "Final P&L": "-8.61%"
+  },
+  {
+    "_id": {
+      "$oid": "6829bfef1fff7a6184f08b2c"
+    },
+    "Token Mentioned": "STO",
+    "Final P&L": "-8.54%"
+  },
+  {
+    "_id": {
+      "$oid": "6813b9303210ced4948bbddf"
+    },
+    "Token Mentioned": "AIXBT",
+    "Final P&L": "-8.53%"
+  },
+  {
+    "_id": {
+      "$oid": "689b8370ae7ae2a17bcd626f"
+    },
+    "Token Mentioned": "ZORA",
+    "Final P&L": "-8.51%"
+  },
+  {
+    "_id": {
+      "$oid": "68430197a720d3f1a8c03c94"
+    },
+    "Token Mentioned": "RIZ",
+    "Final P&L": "-8.49%"
+  },
+  {
+    "_id": {
+      "$oid": "683030841fff7a6184f08fd9"
+    },
+    "Token Mentioned": "WAXP",
+    "Final P&L": "-8.41%"
+  },
+  {
+    "_id": {
+      "$oid": "689d8c25d2ea94d8f650d481"
+    },
+    "Token Mentioned": "SYN",
+    "Final P&L": "-8.40%"
+  },
+  {
+    "_id": {
+      "$oid": "68b0025b80284e08b0a625e2"
+    },
+    "Token Mentioned": "GMT",
+    "Final P&L": "-8.39%"
+  },
+  {
+    "_id": {
+      "$oid": "683f4964a720d3f1a8c036a2"
+    },
+    "Token Mentioned": "DOG",
+    "Final P&L": "-8.38%"
+  },
+  {
+    "_id": {
+      "$oid": "689d5d2ad2ea94d8f650d448"
+    },
+    "Token Mentioned": "ROSE",
+    "Final P&L": "-8.37%"
+  },
+  {
+    "_id": {
+      "$oid": "68425dcea720d3f1a8c03b49"
+    },
+    "Token Mentioned": "ASTR",
+    "Final P&L": "-8.37%"
+  },
+  {
+    "_id": {
+      "$oid": "681206343210ced4948bbc87"
+    },
+    "Token Mentioned": "PSPS",
+    "Final P&L": "-8.36%"
+  },
+  {
+    "_id": {
+      "$oid": "6809162da039a0c863bed7b2"
+    },
+    "Token Mentioned": "HOMO",
+    "Final P&L": "-8.34%"
+  },
+  {
+    "_id": {
+      "$oid": "68232e93e09acd81a1f070c6"
+    },
+    "Token Mentioned": "LUMIA",
+    "Final P&L": "-8.33%"
+  },
+  {
+    "_id": {
+      "$oid": "689d6526d2ea94d8f650d453"
+    },
+    "Token Mentioned": "NEX",
+    "Final P&L": "-8.31%"
+  },
+  {
+    "_id": {
+      "$oid": "689b9b3cae7ae2a17bcd62b7"
+    },
+    "Token Mentioned": "LAYER",
+    "Final P&L": "-8.20%"
+  },
+  {
+    "_id": {
+      "$oid": "68033d424e378d129d34657f"
+    },
+    "Token Mentioned": "IP",
+    "Final P&L": "-8.18%"
+  },
+  {
+    "_id": {
+      "$oid": "689d8c6ed2ea94d8f650d485"
+    },
+    "Token Mentioned": "GARI",
+    "Final P&L": "-8.12%"
+  },
+  {
+    "_id": {
+      "$oid": "682edd171fff7a6184f08e8f"
+    },
+    "Token Mentioned": "FLUX",
+    "Final P&L": "-8.12%"
+  },
+  {
+    "_id": {
+      "$oid": "682f3bf31fff7a6184f08eca"
+    },
+    "Token Mentioned": "BERA",
+    "Final P&L": "-8.04%"
+  },
+  {
+    "_id": {
+      "$oid": "683c76cea720d3f1a8c0343c"
+    },
+    "Token Mentioned": "TNSR",
+    "Final P&L": "-8.04%"
+  },
+  {
+    "_id": {
+      "$oid": "68459ca1e5d38f38c61f0a90"
+    },
+    "Token Mentioned": "POWER",
+    "Final P&L": "-8.02%"
+  },
+  {
+    "_id": {
+      "$oid": "684b1ad633e860375c5c8ca7"
+    },
+    "Token Mentioned": "ROOT",
+    "Final P&L": "-7.99%"
+  },
+  {
+    "_id": {
+      "$oid": "680342ed4e378d129d3465be"
+    },
+    "Token Mentioned": "FORTH",
+    "Final P&L": "-7.98%"
+  },
+  {
+    "_id": {
+      "$oid": "68237494e09acd81a1f07105"
+    },
+    "Token Mentioned": "CHEX",
+    "Final P&L": "-7.97%"
+  },
+  {
+    "_id": {
+      "$oid": "682f37081fff7a6184f08ebe"
+    },
+    "Token Mentioned": "NCN",
+    "Final P&L": "-7.96%"
+  },
+  {
+    "_id": {
+      "$oid": "6824ba93937fdd3ac28e5a3f"
+    },
+    "Token Mentioned": "ENJ",
+    "Final P&L": "-7.96%"
+  },
+  {
+    "_id": {
+      "$oid": "689b34cf3eb66cda9fe1350c"
+    },
+    "Token Mentioned": "SYLO",
+    "Final P&L": "-7.93%"
+  },
+  {
+    "_id": {
+      "$oid": "68277905f327f092a1a565e5"
+    },
+    "Token Mentioned": "ZKL",
+    "Final P&L": "-7.91%"
+  },
+  {
+    "_id": {
+      "$oid": "684b99c333e860375c5c8e06"
+    },
+    "Token Mentioned": "AEG",
+    "Final P&L": "-7.90%"
+  },
+  {
+    "_id": {
+      "$oid": "68033ce84e378d129d346511"
+    },
+    "Token Mentioned": "DOP",
+    "Final P&L": "-7.82%"
+  },
+  {
+    "_id": {
+      "$oid": "689c8742d2ea94d8f650d2e3"
+    },
+    "Token Mentioned": "RLC",
+    "Final P&L": "-7.81%"
+  },
+  {
+    "_id": {
+      "$oid": "682fb4fb1fff7a6184f08f6f"
+    },
+    "Token Mentioned": "DYM",
+    "Final P&L": "-7.78%"
+  },
+  {
+    "_id": {
+      "$oid": "6856ab44f1a11ded2dccd444"
+    },
+    "Token Mentioned": "XZK",
+    "Final P&L": "-7.75%"
+  },
+  {
+    "_id": {
+      "$oid": "681205f03210ced4948bbc83"
+    },
+    "Token Mentioned": "BSW",
+    "Final P&L": "-7.70%"
+  },
+  {
+    "_id": {
+      "$oid": "6825ea57f327f092a1a56472"
+    },
+    "Token Mentioned": "RPC",
+    "Final P&L": "-7.68%"
+  },
+  {
+    "_id": {
+      "$oid": "68b002c780284e08b0a625ea"
+    },
+    "Token Mentioned": "ATA",
+    "Final P&L": "-7.66%"
+  },
+  {
+    "_id": {
+      "$oid": "68283b28f327f092a1a56676"
+    },
+    "Token Mentioned": "BAR",
+    "Final P&L": "-7.56%"
+  },
+  {
+    "_id": {
+      "$oid": "68a9c7e77f3f29097eaa8e10"
+    },
+    "Token Mentioned": "BOME",
+    "Final P&L": "-7.54%"
+  },
+  {
+    "_id": {
+      "$oid": "6830206c1fff7a6184f08fc6"
+    },
+    "Token Mentioned": "FIDA",
+    "Final P&L": "-7.46%"
+  },
+  {
+    "_id": {
+      "$oid": "68310a641fff7a6184f0914a"
+    },
+    "Token Mentioned": "POLS",
+    "Final P&L": "-7.45%"
+  },
+  {
+    "_id": {
+      "$oid": "683f5177a720d3f1a8c036b9"
+    },
+    "Token Mentioned": "C98",
+    "Final P&L": "-7.42%"
+  },
+  {
+    "_id": {
+      "$oid": "6819fce5715b6d1ef1b8189c"
+    },
+    "Token Mentioned": "HOUSE",
+    "Final P&L": "-7.39%"
+  },
+  {
+    "_id": {
+      "$oid": "681483863210ced4948bbe3f"
+    },
+    "Token Mentioned": "SERAPH",
+    "Final P&L": "-7.33%"
+  },
+  {
+    "_id": {
+      "$oid": "682fbb691fff7a6184f08f71"
+    },
+    "Token Mentioned": "APE",
+    "Final P&L": "-7.25%"
+  },
+  {
+    "_id": {
+      "$oid": "6856aafcf1a11ded2dccd442"
+    },
+    "Token Mentioned": "OBT",
+    "Final P&L": "-7.22%"
+  },
+  {
+    "_id": {
+      "$oid": "6824c64c937fdd3ac28e5a43"
+    },
+    "Token Mentioned": "AMP",
+    "Final P&L": "-7.20%"
+  },
+  {
+    "_id": {
+      "$oid": "68ad0a408c4a3165324ed9aa"
+    },
+    "Token Mentioned": "ZRX",
+    "Final P&L": "-7.11%"
+  },
+  {
+    "_id": {
+      "$oid": "68a8e4997f3f29097eaa8cde"
+    },
+    "Token Mentioned": "ENS",
+    "Final P&L": "-7.03%"
+  },
+  {
+    "_id": {
+      "$oid": "68a6290fbfc732baf58238b8"
+    },
+    "Token Mentioned": "RWAX",
+    "Final P&L": "-7.00%"
+  },
+  {
+    "_id": {
+      "$oid": "68ab73807f3f29097eaa8fc9"
+    },
+    "Token Mentioned": "HOME",
+    "Final P&L": "-6.98%"
+  },
+  {
+    "_id": {
+      "$oid": "6824cdbb937fdd3ac28e5a5e"
+    },
+    "Token Mentioned": "SEKOIA",
+    "Final P&L": "-6.97%"
+  },
+  {
+    "_id": {
+      "$oid": "6846f9b9e5d38f38c61f0cbe"
+    },
+    "Token Mentioned": "OTK",
+    "Final P&L": "-6.95%"
+  },
+  {
+    "_id": {
+      "$oid": "689b892dae7ae2a17bcd6291"
+    },
+    "Token Mentioned": "ANITA",
+    "Final P&L": "-6.93%"
+  },
+  {
+    "_id": {
+      "$oid": "68aa118d7f3f29097eaa8e67"
+    },
+    "Token Mentioned": "ATM",
+    "Final P&L": "-6.88%"
+  },
+  {
+    "_id": {
+      "$oid": "683d1c7ca720d3f1a8c0349b"
+    },
+    "Token Mentioned": "HEI",
+    "Final P&L": "-6.79%"
+  },
+  {
+    "_id": {
+      "$oid": "683ab1c61fff7a6184f092c5"
+    },
+    "Token Mentioned": "ALCX",
+    "Final P&L": "-6.78%"
+  },
+  {
+    "_id": {
+      "$oid": "689d2af3d2ea94d8f650d412"
+    },
+    "Token Mentioned": "WMC",
+    "Final P&L": "-6.77%"
+  },
+  {
+    "_id": {
+      "$oid": "6849740133e860375c5c89f6"
+    },
+    "Token Mentioned": "WAXL",
+    "Final P&L": "-6.75%"
+  },
+  {
+    "_id": {
+      "$oid": "689c639bae7ae2a17bcd63a1"
+    },
+    "Token Mentioned": "TSUGT",
+    "Final P&L": "-6.73%"
+  },
+  {
+    "_id": {
+      "$oid": "68a9d99a7f3f29097eaa8e21"
+    },
+    "Token Mentioned": "SAL",
+    "Final P&L": "-6.68%"
+  },
+  {
+    "_id": {
+      "$oid": "68a8b9957f3f29097eaa8c88"
+    },
+    "Token Mentioned": "VOXEL",
+    "Final P&L": "-6.65%"
+  },
+  {
+    "_id": {
+      "$oid": "689d8831d2ea94d8f650d473"
+    },
+    "Token Mentioned": "MTL",
+    "Final P&L": "-6.64%"
+  },
+  {
+    "_id": {
+      "$oid": "689c0881ae7ae2a17bcd6343"
+    },
+    "Token Mentioned": "MBOX",
+    "Final P&L": "-6.61%"
+  },
+  {
+    "_id": {
+      "$oid": "6847887de5d38f38c61f0dec"
+    },
+    "Token Mentioned": "CELO",
+    "Final P&L": "-6.56%"
+  },
+  {
+    "_id": {
+      "$oid": "684262e4a720d3f1a8c03b65"
+    },
+    "Token Mentioned": "UNFI",
+    "Final P&L": "-6.43%"
+  },
+  {
+    "_id": {
+      "$oid": "684788a8e5d38f38c61f0df0"
+    },
+    "Token Mentioned": "BICO",
+    "Final P&L": "-6.42%"
+  },
+  {
+    "_id": {
+      "$oid": "6852c8791388f843c6acabe7"
+    },
+    "Token Mentioned": "HBUD",
+    "Final P&L": "-6.42%"
+  },
+  {
+    "_id": {
+      "$oid": "6831da7c1fff7a6184f091c2"
+    },
+    "Token Mentioned": "RDNT",
+    "Final P&L": "-6.41%"
+  },
+  {
+    "_id": {
+      "$oid": "683087fa1fff7a6184f0907f"
+    },
+    "Token Mentioned": "SOONX",
+    "Final P&L": "-6.38%"
+  },
+  {
+    "_id": {
+      "$oid": "6846497fe5d38f38c61f0b6d"
+    },
+    "Token Mentioned": "OCTA",
+    "Final P&L": "-6.38%"
+  },
+  {
+    "_id": {
+      "$oid": "689e5d7bd2ea94d8f650d57f"
+    },
+    "Token Mentioned": "RARE",
+    "Final P&L": "-6.27%"
+  },
+  {
+    "_id": {
+      "$oid": "68a5c1adbfc732baf582380d"
+    },
+    "Token Mentioned": "MOVR",
+    "Final P&L": "-6.24%"
+  },
+  {
+    "_id": {
+      "$oid": "689b34e63eb66cda9fe1350e"
+    },
+    "Token Mentioned": "MAT",
+    "Final P&L": "-6.11%"
+  },
+  {
+    "_id": {
+      "$oid": "68a744244c30fb038aefc217"
+    },
+    "Token Mentioned": "EAGLES",
+    "Final P&L": "-6.08%"
+  },
+  {
+    "_id": {
+      "$oid": "683f88cca720d3f1a8c036ed"
+    },
+    "Token Mentioned": "DREP",
+    "Final P&L": "-6.01%"
+  },
+  {
+    "_id": {
+      "$oid": "68a8e03f7f3f29097eaa8ccd"
+    },
+    "Token Mentioned": "SPARK",
+    "Final P&L": "-5.98%"
+  },
+  {
+    "_id": {
+      "$oid": "682a752e1fff7a6184f08be7"
+    },
+    "Token Mentioned": "HIVE",
+    "Final P&L": "-5.97%"
+  },
+  {
+    "_id": {
+      "$oid": "6825e08ff327f092a1a56439"
+    },
+    "Token Mentioned": "SYNT",
+    "Final P&L": "-5.91%"
+  },
+  {
+    "_id": {
+      "$oid": "682edcb11fff7a6184f08e8b"
+    },
+    "Token Mentioned": "RUNE",
+    "Final P&L": "-5.91%"
+  },
+  {
+    "_id": {
+      "$oid": "6814b6413210ced4948bbe53"
+    },
+    "Token Mentioned": "GENI",
+    "Final P&L": "-5.89%"
+  },
+  {
+    "_id": {
+      "$oid": "68a8b9c17f3f29097eaa8c8a"
+    },
+    "Token Mentioned": "CKB",
+    "Final P&L": "-5.88%"
+  },
+  {
+    "_id": {
+      "$oid": "680407ce4e378d129d34660d"
+    },
+    "Token Mentioned": "LGCT",
+    "Final P&L": "-5.75%"
+  },
+  {
+    "_id": {
+      "$oid": "684878f133e860375c5c885a"
+    },
+    "Token Mentioned": "RSR",
+    "Final P&L": "-5.75%"
+  },
+  {
+    "_id": {
+      "$oid": "683f5166a720d3f1a8c036b7"
+    },
+    "Token Mentioned": "MANA",
+    "Final P&L": "-5.73%"
+  },
+  {
+    "_id": {
+      "$oid": "682feeec1fff7a6184f08f99"
+    },
+    "Token Mentioned": "VANA",
+    "Final P&L": "-5.65%"
+  },
+  {
+    "_id": {
+      "$oid": "68aa03d57f3f29097eaa8e47"
+    },
+    "Token Mentioned": "M",
+    "Final P&L": "-5.59%"
+  },
+  {
+    "_id": {
+      "$oid": "68578929f1a11ded2dccd57e"
+    },
+    "Token Mentioned": "WLD",
+    "Final P&L": "-5.57%"
+  },
+  {
+    "_id": {
+      "$oid": "6830d3ab1fff7a6184f0910b"
+    },
+    "Token Mentioned": "ETHUP",
+    "Final P&L": "-5.54%"
+  },
+  {
+    "_id": {
+      "$oid": "68b49d59ee27058bf19a616a"
+    },
+    "Token Mentioned": "LEVER",
+    "Final P&L": "-5.54%"
+  },
+  {
+    "_id": {
+      "$oid": "682f50b61fff7a6184f08f01"
+    },
+    "Token Mentioned": "ONG",
+    "Final P&L": "-5.51%"
+  },
+  {
+    "_id": {
+      "$oid": "683eacbca720d3f1a8c035e9"
+    },
+    "Token Mentioned": "SXP",
+    "Final P&L": "-5.43%"
+  },
+  {
+    "_id": {
+      "$oid": "68033d6a4e378d129d3465ad"
+    },
+    "Token Mentioned": "XEM",
+    "Final P&L": "-5.36%"
+  },
+  {
+    "_id": {
+      "$oid": "68142a343210ced4948bbe1b"
+    },
+    "Token Mentioned": "XENO",
+    "Final P&L": "-5.36%"
+  },
+  {
+    "_id": {
+      "$oid": "682aacaf1fff7a6184f08c49"
+    },
+    "Token Mentioned": "LTO",
+    "Final P&L": "-5.34%"
+  },
+  {
+    "_id": {
+      "$oid": "683087e01fff7a6184f0907d"
+    },
+    "Token Mentioned": "KOLZ",
+    "Final P&L": "-5.32%"
+  },
+  {
+    "_id": {
+      "$oid": "682de6821fff7a6184f08d9a"
+    },
+    "Token Mentioned": "VRA",
+    "Final P&L": "-5.30%"
+  },
+  {
+    "_id": {
+      "$oid": "68417036a720d3f1a8c0384d"
+    },
+    "Token Mentioned": "GTC",
+    "Final P&L": "-5.30%"
+  },
+  {
+    "_id": {
+      "$oid": "689c94acd2ea94d8f650d309"
+    },
+    "Token Mentioned": "PRO",
+    "Final P&L": "-5.20%"
+  },
+  {
+    "_id": {
+      "$oid": "6822f7bee09acd81a1f0709c"
+    },
+    "Token Mentioned": "BAKE",
+    "Final P&L": "-5.19%"
+  },
+  {
+    "_id": {
+      "$oid": "683fc952a720d3f1a8c03725"
+    },
+    "Token Mentioned": "TVK",
+    "Final P&L": "-5.17%"
+  },
+  {
+    "_id": {
+      "$oid": "689da8a4d2ea94d8f650d490"
+    },
+    "Token Mentioned": "QE",
+    "Final P&L": "-5.16%"
+  },
+  {
+    "_id": {
+      "$oid": "68530f811388f843c6acacd7"
+    },
+    "Token Mentioned": "MUTE",
+    "Final P&L": "-5.04%"
+  },
+  {
+    "_id": {
+      "$oid": "68234bfee09acd81a1f070ed"
+    },
+    "Token Mentioned": "D",
+    "Final P&L": "-5.03%"
+  },
+  {
+    "_id": {
+      "$oid": "68430021a720d3f1a8c03c7a"
+    },
+    "Token Mentioned": "FRM",
+    "Final P&L": "-43.37%"
+  },
+  {
+    "_id": {
+      "$oid": "689b6517ae7ae2a17bcd6235"
+    },
+    "Token Mentioned": "XNO",
+    "Final P&L": "-40.55%"
+  },
+  {
+    "_id": {
+      "$oid": "684b473b33e860375c5c8d23"
+    },
+    "Token Mentioned": "AIPUMP",
+    "Final P&L": "-40.21%"
+  },
+  {
+    "_id": {
+      "$oid": "68a748f14c30fb038aefc219"
+    },
+    "Token Mentioned": "BIO",
+    "Final P&L": "-4.98%"
+  },
+  {
+    "_id": {
+      "$oid": "682f513c1fff7a6184f08f09"
+    },
+    "Token Mentioned": "CRM",
+    "Final P&L": "-4.91%"
+  },
+  {
+    "_id": {
+      "$oid": "68419229a720d3f1a8c038e1"
+    },
+    "Token Mentioned": "REGENT",
+    "Final P&L": "-4.86%"
+  },
+  {
+    "_id": {
+      "$oid": "689bd7acae7ae2a17bcd6309"
+    },
+    "Token Mentioned": "DEVVE",
+    "Final P&L": "-4.81%"
+  },
+  {
+    "_id": {
+      "$oid": "683d991fa720d3f1a8c034f1"
+    },
+    "Token Mentioned": "FIL",
+    "Final P&L": "-4.76%"
+  },
+  {
+    "_id": {
+      "$oid": "6830cdbf1fff7a6184f09102"
+    },
+    "Token Mentioned": "PYTH",
+    "Final P&L": "-4.69%"
+  },
+  {
+    "_id": {
+      "$oid": "68a8a3d17f3f29097eaa8c49"
+    },
+    "Token Mentioned": "NOTAI",
+    "Final P&L": "-4.61%"
+  },
+  {
+    "_id": {
+      "$oid": "683b0744a720d3f1a8c032f6"
+    },
+    "Token Mentioned": "MDT",
+    "Final P&L": "-4.56%"
+  },
+  {
+    "_id": {
+      "$oid": "68aa03977f3f29097eaa8e41"
+    },
+    "Token Mentioned": "BDX",
+    "Final P&L": "-4.53%"
+  },
+  {
+    "_id": {
+      "$oid": "6841589da720d3f1a8c037e7"
+    },
+    "Token Mentioned": "A47",
+    "Final P&L": "-4.50%"
+  },
+  {
+    "_id": {
+      "$oid": "68a9c5ea7f3f29097eaa8e06"
+    },
+    "Token Mentioned": "SYNK",
+    "Final P&L": "-4.50%"
+  },
+  {
+    "_id": {
+      "$oid": "6830c18c1fff7a6184f090dc"
+    },
+    "Token Mentioned": "AGC",
+    "Final P&L": "-4.47%"
+  },
+  {
+    "_id": {
+      "$oid": "6841bf11a720d3f1a8c03985"
+    },
+    "Token Mentioned": "SFP",
+    "Final P&L": "-4.42%"
+  },
+  {
+    "_id": {
+      "$oid": "683f521ba720d3f1a8c036c7"
+    },
+    "Token Mentioned": "INIT",
+    "Final P&L": "-4.40%"
+  },
+  {
+    "_id": {
+      "$oid": "681a0b97715b6d1ef1b818a5"
+    },
+    "Token Mentioned": "FIS",
+    "Final P&L": "-4.37%"
+  },
+  {
+    "_id": {
+      "$oid": "689b40ed3eb66cda9fe13542"
+    },
+    "Token Mentioned": "NEURAL",
+    "Final P&L": "-4.29%"
+  },
+  {
+    "_id": {
+      "$oid": "68468a3de5d38f38c61f0bc7"
+    },
+    "Token Mentioned": "GLMR",
+    "Final P&L": "-4.21%"
+  },
+  {
+    "_id": {
+      "$oid": "682f827d1fff7a6184f08f49"
+    },
+    "Token Mentioned": "REN",
+    "Final P&L": "-4.20%"
+  },
+  {
+    "_id": {
+      "$oid": "68496eef33e860375c5c89d1"
+    },
+    "Token Mentioned": "UNI",
+    "Final P&L": "-4.17%"
+  },
+  {
+    "_id": {
+      "$oid": "689e335ad2ea94d8f650d54a"
+    },
+    "Token Mentioned": "BTT",
+    "Final P&L": "-4.15%"
+  },
+  {
+    "_id": {
+      "$oid": "68a961507f3f29097eaa8da3"
+    },
+    "Token Mentioned": "ACX",
+    "Final P&L": "-4.15%"
+  },
+  {
+    "_id": {
+      "$oid": "68a737e94c30fb038aefc1e9"
+    },
+    "Token Mentioned": "ZFI",
+    "Final P&L": "-4.11%"
+  },
+  {
+    "_id": {
+      "$oid": "682242fbe09acd81a1f06fcc"
+    },
+    "Token Mentioned": "WOLF",
+    "Final P&L": "-4.11%"
+  },
+  {
+    "_id": {
+      "$oid": "68166ac34c462675f87a0146"
+    },
+    "Token Mentioned": "EPT",
+    "Final P&L": "-4.11%"
+  },
+  {
+    "_id": {
+      "$oid": "68286080f327f092a1a566b2"
+    },
+    "Token Mentioned": "MULTI",
+    "Final P&L": "-4.04%"
+  },
+  {
+    "_id": {
+      "$oid": "68033cf04e378d129d34651b"
+    },
+    "Token Mentioned": "BIG",
+    "Final P&L": "-4.02%"
+  },
+  {
+    "_id": {
+      "$oid": "6848adbd33e860375c5c88c7"
+    },
+    "Token Mentioned": "HODL",
+    "Final P&L": "-4.00%"
+  },
+  {
+    "_id": {
+      "$oid": "684ab47133e860375c5c8c11"
+    },
+    "Token Mentioned": "PROMPT",
+    "Final P&L": "-31.28%"
+  },
+  {
+    "_id": {
+      "$oid": "684441bca720d3f1a8c03e68"
+    },
+    "Token Mentioned": "MCT",
+    "Final P&L": "-31.18%"
+  },
+  {
+    "_id": {
+      "$oid": "689e175cd2ea94d8f650d520"
+    },
+    "Token Mentioned": "VIDT",
+    "Final P&L": "-31.17%"
+  },
+  {
+    "_id": {
+      "$oid": "684a8fbb33e860375c5c8be4"
+    },
+    "Token Mentioned": "VISION",
+    "Final P&L": "-30.96%"
+  },
+  {
+    "_id": {
+      "$oid": "684788bee5d38f38c61f0df2"
+    },
+    "Token Mentioned": "1000SATS",
+    "Final P&L": "-3.88%"
+  },
+  {
+    "_id": {
+      "$oid": "6829cd021fff7a6184f08b3a"
+    },
+    "Token Mentioned": "OXT",
+    "Final P&L": "-3.86%"
+  },
+  {
+    "_id": {
+      "$oid": "68ab58147f3f29097eaa8f7e"
+    },
+    "Token Mentioned": "PROOF",
+    "Final P&L": "-3.84%"
+  },
+  {
+    "_id": {
+      "$oid": "68298df21fff7a6184f08b16"
+    },
+    "Token Mentioned": "NIL",
+    "Final P&L": "-3.80%"
+  },
+  {
+    "_id": {
+      "$oid": "68a6481bbfc732baf58238f1"
+    },
+    "Token Mentioned": "DUSK",
+    "Final P&L": "-3.78%"
+  },
+  {
+    "_id": {
+      "$oid": "6849cc6533e860375c5c8a77"
+    },
+    "Token Mentioned": "AMINO",
+    "Final P&L": "-3.76%"
+  },
+  {
+    "_id": {
+      "$oid": "683df6a8a720d3f1a8c03550"
+    },
+    "Token Mentioned": "ASRR",
+    "Final P&L": "-3.75%"
+  },
+  {
+    "_id": {
+      "$oid": "6812507d3210ced4948bbd2b"
+    },
+    "Token Mentioned": "DEEP",
+    "Final P&L": "-3.69%"
+  },
+  {
+    "_id": {
+      "$oid": "6830cd6e1fff7a6184f090f3"
+    },
+    "Token Mentioned": "POND",
+    "Final P&L": "-3.62%"
+  },
+  {
+    "_id": {
+      "$oid": "683f2316a720d3f1a8c0367a"
+    },
+    "Token Mentioned": "FIO",
+    "Final P&L": "-3.53%"
+  },
+  {
+    "_id": {
+      "$oid": "682e9b461fff7a6184f08e6b"
+    },
+    "Token Mentioned": "CETUS",
+    "Final P&L": "-3.32%"
+  },
+  {
+    "_id": {
+      "$oid": "681631f94c462675f87a0118"
+    },
+    "Token Mentioned": "FLZ",
+    "Final P&L": "-3.31%"
+  },
+  {
+    "_id": {
+      "$oid": "683eb91aa720d3f1a8c03622"
+    },
+    "Token Mentioned": "ORN",
+    "Final P&L": "-3.28%"
+  },
+  {
+    "_id": {
+      "$oid": "68283b32f327f092a1a56678"
+    },
+    "Token Mentioned": "YFI",
+    "Final P&L": "-3.13%"
+  },
+  {
+    "_id": {
+      "$oid": "68460dace5d38f38c61f0b38"
+    },
+    "Token Mentioned": "HQ",
+    "Final P&L": "-3.12%"
+  },
+  {
+    "_id": {
+      "$oid": "683b4563a720d3f1a8c03340"
+    },
+    "Token Mentioned": "GAL",
+    "Final P&L": "-3.11%"
+  },
+  {
+    "_id": {
+      "$oid": "680923a9a039a0c863bed7d3"
+    },
+    "Token Mentioned": "DISTRIBUTE",
+    "Final P&L": "-3.09%"
+  },
+  {
+    "_id": {
+      "$oid": "68a59fadbfc732baf58237c2"
+    },
+    "Token Mentioned": "GX",
+    "Final P&L": "-3.07%"
+  },
+  {
+    "_id": {
+      "$oid": "6828ff731fff7a6184f08ab2"
+    },
+    "Token Mentioned": "ALPHA",
+    "Final P&L": "-3.00%"
+  },
+  {
+    "_id": {
+      "$oid": "689e6712d2ea94d8f650d585"
+    },
+    "Token Mentioned": "KIKI",
+    "Final P&L": "-29.91%"
+  },
+  {
+    "_id": {
+      "$oid": "68a5a8aebfc732baf58237da"
+    },
+    "Token Mentioned": "TKUS",
+    "Final P&L": "-28.73%"
+  },
+  {
+    "_id": {
+      "$oid": "684188fea720d3f1a8c038d2"
+    },
+    "Token Mentioned": "BLOCX",
+    "Final P&L": "-28.17%"
+  },
+  {
+    "_id": {
+      "$oid": "68417bc5a720d3f1a8c0389d"
+    },
+    "Token Mentioned": "SILLY",
+    "Final P&L": "-26.14%"
+  },
+  {
+    "_id": {
+      "$oid": "68470b5ae5d38f38c61f0d09"
+    },
+    "Token Mentioned": "SHRUB",
+    "Final P&L": "-24.70%"
+  },
+  {
+    "_id": {
+      "$oid": "6848d4e233e860375c5c88ef"
+    },
+    "Token Mentioned": "NXRA",
+    "Final P&L": "-24.69%"
+  },
+  {
+    "_id": {
+      "$oid": "689de803d2ea94d8f650d4dd"
+    },
+    "Token Mentioned": "STUPID",
+    "Final P&L": "-24.61%"
+  },
+  {
+    "_id": {
+      "$oid": "68499eab33e860375c5c8a49"
+    },
+    "Token Mentioned": "RPK",
+    "Final P&L": "-24.27%"
+  },
+  {
+    "_id": {
+      "$oid": "689f6b98d2ea94d8f650d679"
+    },
+    "Token Mentioned": "CREDI",
+    "Final P&L": "-24.24%"
+  },
+  {
+    "_id": {
+      "$oid": "682a3a5b1fff7a6184f08b8e"
+    },
+    "Token Mentioned": "1MBABYDOGE",
+    "Final P&L": "-23.69%"
+  },
+  {
+    "_id": {
+      "$oid": "684972e033e860375c5c89ea"
+    },
+    "Token Mentioned": "MYRIA",
+    "Final P&L": "-23.12%"
+  },
+  {
+    "_id": {
+      "$oid": "689c9db8d2ea94d8f650d31b"
+    },
+    "Token Mentioned": "ANDY",
+    "Final P&L": "-22.53%"
+  },
+  {
+    "_id": {
+      "$oid": "68459c47e5d38f38c61f0a88"
+    },
+    "Token Mentioned": "PONCH",
+    "Final P&L": "-22.08%"
+  },
+  {
+    "_id": {
+      "$oid": "689baec4ae7ae2a17bcd62ca"
+    },
+    "Token Mentioned": "NET",
+    "Final P&L": "-22.06%"
+  },
+  {
+    "_id": {
+      "$oid": "689b34b73eb66cda9fe1350a"
+    },
+    "Token Mentioned": "RCADE",
+    "Final P&L": "-21.70%"
+  },
+  {
+    "_id": {
+      "$oid": "6821e12fdc7a7ff9c11d9e0d"
+    },
+    "Token Mentioned": "SKYA",
+    "Final P&L": "-21.65%"
+  },
+  {
+    "_id": {
+      "$oid": "68a8b5267f3f29097eaa8c76"
+    },
+    "Token Mentioned": "COIN",
+    "Final P&L": "-21.46%"
+  },
+  {
+    "_id": {
+      "$oid": "68a5a95abfc732baf58237e8"
+    },
+    "Token Mentioned": "RATO",
+    "Final P&L": "-21.03%"
+  },
+  {
+    "_id": {
+      "$oid": "689ea479d2ea94d8f650d5a2"
+    },
+    "Token Mentioned": "IOTAI",
+    "Final P&L": "-20.97%"
+  },
+  {
+    "_id": {
+      "$oid": "682f056d1fff7a6184f08ea0"
+    },
+    "Token Mentioned": "APEX",
+    "Final P&L": "-20.83%"
+  },
+  {
+    "_id": {
+      "$oid": "689b9d12ae7ae2a17bcd62bb"
+    },
+    "Token Mentioned": "DEXT",
+    "Final P&L": "-20.81%"
+  },
+  {
+    "_id": {
+      "$oid": "684b38b633e860375c5c8cd0"
+    },
+    "Token Mentioned": "VOID",
+    "Final P&L": "-20.59%"
+  },
+  {
+    "_id": {
+      "$oid": "689baf18ae7ae2a17bcd62d0"
+    },
+    "Token Mentioned": "PXETH",
+    "Final P&L": "-2.98%"
+  },
+  {
+    "_id": {
+      "$oid": "68417be4a720d3f1a8c0389f"
+    },
+    "Token Mentioned": "QUILL",
+    "Final P&L": "-2.96%"
+  },
+  {
+    "_id": {
+      "$oid": "683e36c7a720d3f1a8c03598"
+    },
+    "Token Mentioned": "A",
+    "Final P&L": "-2.87%"
+  },
+  {
+    "_id": {
+      "$oid": "683c47cea720d3f1a8c03422"
+    },
+    "Token Mentioned": "AGIX",
+    "Final P&L": "-2.79%"
+  },
+  {
+    "_id": {
+      "$oid": "6803cf904e378d129d3465f5"
+    },
+    "Token Mentioned": "XCN",
+    "Final P&L": "-2.70%"
+  },
+  {
+    "_id": {
+      "$oid": "689e433ed2ea94d8f650d569"
+    },
+    "Token Mentioned": "SSR",
+    "Final P&L": "-2.66%"
+  },
+  {
+    "_id": {
+      "$oid": "682938841fff7a6184f08adc"
+    },
+    "Token Mentioned": "BEL",
+    "Final P&L": "-2.65%"
+  },
+  {
+    "_id": {
+      "$oid": "68033c974e378d129d3464b3"
+    },
+    "Token Mentioned": "COLLAT",
+    "Final P&L": "-2.64%"
+  },
+  {
+    "_id": {
+      "$oid": "6822f80fe09acd81a1f070a4"
+    },
+    "Token Mentioned": "IDEX",
+    "Final P&L": "-2.58%"
+  },
+  {
+    "_id": {
+      "$oid": "6841b993a720d3f1a8c0396f"
+    },
+    "Token Mentioned": "TWT",
+    "Final P&L": "-2.52%"
+  },
+  {
+    "_id": {
+      "$oid": "6803ac664e378d129d3465e2"
+    },
+    "Token Mentioned": "DIONE",
+    "Final P&L": "-2.22%"
+  },
+  {
+    "_id": {
+      "$oid": "683c47aca720d3f1a8c0341e"
+    },
+    "Token Mentioned": "OCEAN",
+    "Final P&L": "-2.20%"
+  },
+  {
+    "_id": {
+      "$oid": "6845fe80e5d38f38c61f0aee"
+    },
+    "Token Mentioned": "ARK",
+    "Final P&L": "-2.16%"
+  },
+  {
+    "_id": {
+      "$oid": "682fbb9e1fff7a6184f08f77"
+    },
+    "Token Mentioned": "CLV",
+    "Final P&L": "-2.04%"
+  },
+  {
+    "_id": {
+      "$oid": "68233d6ae09acd81a1f070ca"
+    },
+    "Token Mentioned": "MSCP",
+    "Final P&L": "-2.04%"
+  },
+  {
+    "_id": {
+      "$oid": "68a5a9a7bfc732baf58237ee"
+    },
+    "Token Mentioned": "RITA",
+    "Final P&L": "-19.73%"
+  },
+  {
+    "_id": {
+      "$oid": "68470dd7e5d38f38c61f0d18"
+    },
+    "Token Mentioned": "TOR",
+    "Final P&L": "-19.71%"
+  },
+  {
+    "_id": {
+      "$oid": "6810630e47bcca7f0e48afdd"
+    },
+    "Token Mentioned": "AUKI",
+    "Final P&L": "-19.70%"
+  },
+  {
+    "_id": {
+      "$oid": "684c125233e860375c5c8eb3"
+    },
+    "Token Mentioned": "FURY",
+    "Final P&L": "-18.31%"
+  },
+  {
+    "_id": {
+      "$oid": "6846f9a1e5d38f38c61f0cbc"
+    },
+    "Token Mentioned": "STAGE",
+    "Final P&L": "-17.97%"
+  },
+  {
+    "_id": {
+      "$oid": "683f4860a720d3f1a8c0369c"
+    },
+    "Token Mentioned": "NKP",
+    "Final P&L": "-17.46%"
+  },
+  {
+    "_id": {
+      "$oid": "684b45de33e860375c5c8d15"
+    },
+    "Token Mentioned": "XTM",
+    "Final P&L": "-17.39%"
+  },
+  {
+    "_id": {
+      "$oid": "680a1e8c565bd8881391d933"
+    },
+    "Token Mentioned": "RDD",
+    "Final P&L": "-17.29%"
+  },
+  {
+    "_id": {
+      "$oid": "6849fdee33e860375c5c8b1e"
+    },
+    "Token Mentioned": "KIP",
+    "Final P&L": "-17.23%"
+  },
+  {
+    "_id": {
+      "$oid": "684ab25f33e860375c5c8c01"
+    },
+    "Token Mentioned": "SMITH",
+    "Final P&L": "-17.21%"
+  },
+  {
+    "_id": {
+      "$oid": "684ab48833e860375c5c8c13"
+    },
+    "Token Mentioned": "GPU",
+    "Final P&L": "-17.18%"
+  },
+  {
+    "_id": {
+      "$oid": "682399e1e09acd81a1f07151"
+    },
+    "Token Mentioned": "TOSHI",
+    "Final P&L": "-16.93%"
+  },
+  {
+    "_id": {
+      "$oid": "6841ffd0a720d3f1a8c03a06"
+    },
+    "Token Mentioned": "AIC",
+    "Final P&L": "-16.78%"
+  },
+  {
+    "_id": {
+      "$oid": "6852e0d41388f843c6acac4a"
+    },
+    "Token Mentioned": "YEE",
+    "Final P&L": "-16.61%"
+  },
+  {
+    "_id": {
+      "$oid": "6848d3d833e860375c5c88e7"
+    },
+    "Token Mentioned": "$GIB",
+    "Final P&L": "-16.13%"
+  },
+  {
+    "_id": {
+      "$oid": "682fb4cd1fff7a6184f08f69"
+    },
+    "Token Mentioned": "THETA",
+    "Final P&L": "-15.82%"
+  },
+  {
+    "_id": {
+      "$oid": "689c62e1ae7ae2a17bcd6391"
+    },
+    "Token Mentioned": "SNEK",
+    "Final P&L": "-15.71%"
+  },
+  {
+    "_id": {
+      "$oid": "6844af24e5d38f38c61f095f"
+    },
+    "Token Mentioned": "SNIBBU",
+    "Final P&L": "-15.64%"
+  },
+  {
+    "_id": {
+      "$oid": "689f7746d2ea94d8f650d67f"
+    },
+    "Token Mentioned": "MYX",
+    "Final P&L": "-15.46%"
+  },
+  {
+    "_id": {
+      "$oid": "684188cda720d3f1a8c038cc"
+    },
+    "Token Mentioned": "METIS",
+    "Final P&L": "-15.04%"
+  },
+  {
+    "_id": {
+      "$oid": "68033c204e378d129d346433"
+    },
+    "Token Mentioned": "LOOPY",
+    "Final P&L": "-14.95%"
+  },
+  {
+    "_id": {
+      "$oid": "684653f4e5d38f38c61f0b8a"
+    },
+    "Token Mentioned": "XEC",
+    "Final P&L": "-14.75%"
+  },
+  {
+    "_id": {
+      "$oid": "6846f7f1e5d38f38c61f0c98"
+    },
+    "Token Mentioned": "KOS",
+    "Final P&L": "-14.70%"
+  },
+  {
+    "_id": {
+      "$oid": "68a63b56bfc732baf58238d1"
+    },
+    "Token Mentioned": "VVV",
+    "Final P&L": "-14.34%"
+  },
+  {
+    "_id": {
+      "$oid": "684ac92433e860375c5c8c27"
+    },
+    "Token Mentioned": "NEWT",
+    "Final P&L": "-14.06%"
+  },
+  {
+    "_id": {
+      "$oid": "68277878f327f092a1a565d9"
+    },
+    "Token Mentioned": "ACM",
+    "Final P&L": "-13.96%"
+  },
+  {
+    "_id": {
+      "$oid": "684ae55d33e860375c5c8c2d"
+    },
+    "Token Mentioned": "ZKML",
+    "Final P&L": "-13.86%"
+  },
+  {
+    "_id": {
+      "$oid": "683145011fff7a6184f0919b"
+    },
+    "Token Mentioned": "LUNA",
+    "Final P&L": "-13.26%"
+  },
+  {
+    "_id": {
+      "$oid": "681483783210ced4948bbe3d"
+    },
+    "Token Mentioned": "MISATO",
+    "Final P&L": "-13.22%"
+  },
+  {
+    "_id": {
+      "$oid": "68a59fc1bfc732baf58237c4"
+    },
+    "Token Mentioned": "BRISE",
+    "Final P&L": "-13.06%"
+  },
+  {
+    "_id": {
+      "$oid": "68a8a77c7f3f29097eaa8c51"
+    },
+    "Token Mentioned": "SIMMI",
+    "Final P&L": "-12.74%"
+  },
+  {
+    "_id": {
+      "$oid": "689d5633d2ea94d8f650d440"
+    },
+    "Token Mentioned": "QBIT",
+    "Final P&L": "-12.72%"
+  },
+  {
+    "_id": {
+      "$oid": "68a57254bfc732baf582375d"
+    },
+    "Token Mentioned": "OMNIA",
+    "Final P&L": "-12.51%"
+  },
+  {
+    "_id": {
+      "$oid": "68b09b1e80284e08b0a62625"
+    },
+    "Token Mentioned": "VVS",
+    "Final P&L": "-12.47%"
+  },
+  {
+    "_id": {
+      "$oid": "683088aa1fff7a6184f09085"
+    },
+    "Token Mentioned": "OPTR",
+    "Final P&L": "-12.46%"
+  },
+  {
+    "_id": {
+      "$oid": "680a00895172cf3e97e66493"
+    },
+    "Token Mentioned": "THE",
+    "Final P&L": "-12.30%"
+  },
+  {
+    "_id": {
+      "$oid": "68a59f9bbfc732baf58237c0"
+    },
+    "Token Mentioned": "ASI",
+    "Final P&L": "-12.10%"
+  },
+  {
+    "_id": {
+      "$oid": "689c636eae7ae2a17bcd639d"
+    },
+    "Token Mentioned": "PFVS",
+    "Final P&L": "-12.10%"
+  },
+  {
+    "_id": {
+      "$oid": "6830922c1fff7a6184f090a1"
+    },
+    "Token Mentioned": "VINE",
+    "Final P&L": "-12.05%"
+  },
+  {
+    "_id": {
+      "$oid": "68a5a86cbfc732baf58237d4"
+    },
+    "Token Mentioned": "ABSTER",
+    "Final P&L": "-11.72%"
+  },
+  {
+    "_id": {
+      "$oid": "68aff78e80284e08b0a625c5"
+    },
+    "Token Mentioned": "JAV",
+    "Final P&L": "-11.68%"
+  },
+  {
+    "_id": {
+      "$oid": "689bd793ae7ae2a17bcd6307"
+    },
+    "Token Mentioned": "QTC",
+    "Final P&L": "-11.56%"
+  },
+  {
+    "_id": {
+      "$oid": "684bc66e33e860375c5c8e46"
+    },
+    "Token Mentioned": "UXLINK",
+    "Final P&L": "-11.34%"
+  },
+  {
+    "_id": {
+      "$oid": "68559828f1a11ded2dccd2c9"
+    },
+    "Token Mentioned": "TEVA",
+    "Final P&L": "-11.15%"
+  },
+  {
+    "_id": {
+      "$oid": "6841b379a720d3f1a8c0394b"
+    },
+    "Token Mentioned": "RISE",
+    "Final P&L": "-11.00%"
+  },
+  {
+    "_id": {
+      "$oid": "689b5bf1ae7ae2a17bcd6220"
+    },
+    "Token Mentioned": "INSP",
+    "Final P&L": "-10.82%"
+  },
+  {
+    "_id": {
+      "$oid": "68239de6e09acd81a1f07159"
+    },
+    "Token Mentioned": "COW",
+    "Final P&L": "-10.72%"
+  },
+  {
+    "_id": {
+      "$oid": "68b05d9980284e08b0a6260b"
+    },
+    "Token Mentioned": "KIWI",
+    "Final P&L": "-10.67%"
+  },
+  {
+    "_id": {
+      "$oid": "6849ff8133e860375c5c8b3c"
+    },
+    "Token Mentioned": "BFC",
+    "Final P&L": "-10.58%"
+  },
+  {
+    "_id": {
+      "$oid": "68a5a89cbfc732baf58237d8"
+    },
+    "Token Mentioned": "GASS",
+    "Final P&L": "-10.24%"
+  },
+  {
+    "_id": {
+      "$oid": "68a5a8c1bfc732baf58237dc"
+    },
+    "Token Mentioned": "BERRY",
+    "Final P&L": "-10.14%"
+  },
+  {
+    "_id": {
+      "$oid": "680915f7a039a0c863bed784"
+    },
+    "Token Mentioned": "SOS",
+    "Final P&L": "-10.04%"
+  },
+  {
+    "_id": {
+      "$oid": "68276c05f327f092a1a565c5"
+    },
+    "Token Mentioned": "ALF",
+    "Final P&L": "-10.04%"
+  },
+  {
+    "_id": {
+      "$oid": "68b001f280284e08b0a625da"
+    },
+    "Token Mentioned": "ACA",
+    "Final P&L": "-1.89%"
+  },
+  {
+    "_id": {
+      "$oid": "68488e1033e860375c5c888b"
+    },
+    "Token Mentioned": "BUN",
+    "Final P&L": "-1.80%"
+  },
+  {
+    "_id": {
+      "$oid": "683f22cda720d3f1a8c03674"
+    },
+    "Token Mentioned": "SC",
+    "Final P&L": "-1.71%"
+  },
+  {
+    "_id": {
+      "$oid": "6819a56d715b6d1ef1b817e4"
+    },
+    "Token Mentioned": "BOOP",
+    "Final P&L": "-1.70%"
+  },
+  {
+    "_id": {
+      "$oid": "68b002f580284e08b0a625ec"
+    },
+    "Token Mentioned": "BLUR",
+    "Final P&L": "-1.68%"
+  },
+  {
+    "_id": {
+      "$oid": "6828919b1fff7a6184f08a52"
+    },
+    "Token Mentioned": "TFUEL",
+    "Final P&L": "-1.61%"
+  },
+  {
+    "_id": {
+      "$oid": "6848d4c533e860375c5c88eb"
+    },
+    "Token Mentioned": "EZ",
+    "Final P&L": "-1.60%"
+  },
+  {
+    "_id": {
+      "$oid": "682906b31fff7a6184f08abf"
+    },
+    "Token Mentioned": "NTRN",
+    "Final P&L": "-1.50%"
+  },
+  {
+    "_id": {
+      "$oid": "684174e0a720d3f1a8c03865"
+    },
+    "Token Mentioned": "POKT",
+    "Final P&L": "-1.46%"
+  },
+  {
+    "_id": {
+      "$oid": "683bd12ba720d3f1a8c033b5"
+    },
+    "Token Mentioned": "PROM",
+    "Final P&L": "-1.19%"
+  },
+  {
+    "_id": {
+      "$oid": "683c0bb6a720d3f1a8c033d8"
+    },
+    "Token Mentioned": "YGG",
+    "Final P&L": "-1.09%"
+  },
+  {
+    "_id": {
+      "$oid": "68478862e5d38f38c61f0dea"
+    },
+    "Token Mentioned": "1000CAT",
+    "Final P&L": "-1.09%"
+  },
+  {
+    "_id": {
+      "$oid": "68a8709b7f3f29097eaa8bdb"
+    },
+    "Token Mentioned": "XBO",
+    "Final P&L": "-0.93%"
+  },
+  {
+    "_id": {
+      "$oid": "68308c7d1fff7a6184f09089"
+    },
+    "Token Mentioned": "NAVX",
+    "Final P&L": "-0.88%"
+  },
+  {
+    "_id": {
+      "$oid": "6812508a3210ced4948bbd2d"
+    },
+    "Token Mentioned": "SAFE",
+    "Final P&L": "-0.70%"
+  },
+  {
+    "_id": {
+      "$oid": "680342f04e378d129d3465c0"
+    },
+    "Token Mentioned": "CMCX",
+    "Final P&L": "-0.69%"
+  },
+  {
+    "_id": {
+      "$oid": "6842e08da720d3f1a8c03c07"
+    },
+    "Token Mentioned": "QRL",
+    "Final P&L": "-0.65%"
+  },
+  {
+    "_id": {
+      "$oid": "683098271fff7a6184f090b3"
+    },
+    "Token Mentioned": "ARKM",
+    "Final P&L": "-0.48%"
+  },
+  {
+    "_id": {
+      "$oid": "682a064a1fff7a6184f08b75"
+    },
+    "Token Mentioned": "EPX",
+    "Final P&L": "-0.28%"
+  },
+  {
+    "_id": {
+      "$oid": "682921611fff7a6184f08acb"
+    },
+    "Token Mentioned": "PIVX",
+    "Final P&L": "-0.14%"
+  },
+  {
+    "_id": {
+      "$oid": "6829ffcb1fff7a6184f08b6c"
+    },
+    "Token Mentioned": "HMSTR",
+    "Final P&L": "-0.05%"
+  },
+  {
+    "_id": {
+      "$oid": "685cf64ff4feaa0849e3ea6f"
+    },
+    "Token Mentioned": "OSCA",
+    "Final P&L": "-0.03%"
+  },
+  {
+    "_id": {
+      "$oid": "6812711a3210ced4948bbd39"
+    },
+    "Token Mentioned": "PYUSD",
+    "Final P&L": "-0.03%"
+  }
+]

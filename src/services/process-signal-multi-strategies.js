@@ -14,6 +14,13 @@ const sourceCollectionName = 'trading_signals_backtesting';
 const collectionName = 'backtesting_results_with_reasoning';
 const tradesCollectionName = 'trades';
 
+// Configuration for progressive backtesting message delivery
+const BACKTEST_DELIVERY_CONFIG = {
+    batchSize: 6,                  // Number of subscribers per batch
+    delayBetweenBatches: 1 * 60 * 1000, // 1 minute between batches
+    delayBetweenSignals: 10 * 1000      // 10 seconds between individual messages
+};
+
 // OpenAI API setup
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -187,57 +194,84 @@ ${profitArrow} **Signal:** *${signalType}*
         // Get updated document with subscribers
         const updatedDoc = await resultsCollection.findOne({ _id: documentId });
         const subscribers = updatedDoc.subscribers || [];
-        
-        // Send message to each subscriber who hasn't received it yet
-        for (const subscriber of subscribers) {
-            // Skip if this subscriber has already received the message
-            if (subscriber.sent === true) {
-                continue;
-            }
-            
-            // Handle different subscriber formats (string or object)
-            const username = typeof subscriber === 'string' ? subscriber : 
-                           (subscriber.username ? subscriber.username : 
-                           (typeof subscriber === 'object' ? JSON.stringify(subscriber) : 'unknown'));
-            
-            try {
-                const payload = {
-                    username: username,
-                    message: backtestMessage
-                };
-                
-                // Retry logic with timeout
-                const maxRetries = 3;
-                let retries = 0;
-                let success = false;
-                
-                while (retries < maxRetries && !success) {
-                    try {
-                        await axios.post(
-                            'https://telegram-msg-sender.maxxit.ai/api/telegram/send', 
-                            payload,
-                            { timeout: 10000 } // 10 second timeout
-                        );
-                        success = true;
-                        console.log(`Backtested signal sent to ${username} for ${tokenId}`);
-                        
-                        // Update the sent status for this specific subscriber
-                        await resultsCollection.updateOne(
-                            { _id: documentId, "subscribers.username": username },
-                            { $set: { "subscribers.$.sent": true } }
-                        );
-                    } catch (retryError) {
-                        retries++;
-                        if (retries >= maxRetries) {
-                            throw retryError; // Rethrow if max retries reached
-                        }
-                        console.log(`Retry ${retries}/${maxRetries} for ${username}`);
-                        // Exponential backoff
-                        await new Promise(resolve => setTimeout(resolve, 1000 * retries));
-                    }
+
+        // Split subscribers into batches
+        const batches = [];
+        for (let i = 0; i < subscribers.length; i += BACKTEST_DELIVERY_CONFIG.batchSize) {
+            batches.push(subscribers.slice(i, i + BACKTEST_DELIVERY_CONFIG.batchSize));
+        }
+
+        console.log(`Starting progressive backtesting delivery: ${subscribers.length} subscribers, ${batches.length} batches`);
+
+        // Process batches sequentially with delays
+        for (let batchIndex = 0; batchIndex < batches.length; batchIndex++) {
+            const batch = batches[batchIndex];
+            console.log(`Processing backtesting batch ${batchIndex + 1}/${batches.length} (${batch.length} subscribers)`);
+
+            // Send to each subscriber in the batch with delay
+            for (let i = 0; i < batch.length; i++) {
+                const subscriber = batch[i];
+
+                // Skip if already sent
+                if (subscriber.sent === true) {
+                    continue;
                 }
-            } catch (error) {
-                console.error(`Failed to send backtested signal to ${username}:`, error.message);
+
+                const username = typeof subscriber === 'string' ? subscriber :
+                    (subscriber.username ? subscriber.username :
+                        (typeof subscriber === 'object' ? JSON.stringify(subscriber) : 'unknown'));
+
+                try {
+                    const payload = {
+                        username: username,
+                        message: backtestMessage
+                    };
+
+                    // Retry logic with timeout
+                    const maxRetries = 3;
+                    let retries = 0;
+                    let success = false;
+
+                    while (retries < maxRetries && !success) {
+                        try {
+                            await axios.post(
+                                'https://telegram-msg-sender.maxxit.ai/api/telegram/send',
+                                payload,
+                                { timeout: 10000 }
+                            );
+                            success = true;
+                            console.log(`Backtested signal sent to ${username} for ${tokenId}`);
+
+                            // Update the sent status for this specific subscriber
+                            await resultsCollection.updateOne(
+                                { _id: documentId, "subscribers.username": username },
+                                { $set: { "subscribers.$.sent": true } }
+                            );
+                        } catch (retryError) {
+                            retries++;
+                            if (retries >= maxRetries) {
+                                throw retryError;
+                            }
+                            console.log(`Retry ${retries}/${maxRetries} for ${username}`);
+                            await new Promise(resolve => setTimeout(resolve, 1000 * retries));
+                        }
+                    }
+                } catch (error) {
+                    console.error(`Failed to send backtested signal to ${username}:`, error.message);
+                }
+
+                // Delay between individual messages, except after the last message of the last batch
+                const isLastMessage = (batchIndex === batches.length - 1) && (i === batch.length - 1);
+                if (!isLastMessage) {
+                    console.log(`Waiting ${BACKTEST_DELIVERY_CONFIG.delayBetweenSignals / 1000}s before next backtesting message...`);
+                    await new Promise(resolve => setTimeout(resolve, BACKTEST_DELIVERY_CONFIG.delayBetweenSignals));
+                }
+            }
+
+            // Delay between batches, except after the last batch
+            if (batchIndex < batches.length - 1) {
+                console.log(`Waiting ${BACKTEST_DELIVERY_CONFIG.delayBetweenBatches / 1000 / 60} minutes before next backtesting batch...`);
+                await new Promise(resolve => setTimeout(resolve, BACKTEST_DELIVERY_CONFIG.delayBetweenBatches));
             }
         }
         

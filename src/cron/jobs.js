@@ -14,6 +14,7 @@ const { calculateMonthlyPayouts } = require('../services/payoutService');
 const { resetAllUsersCredits } = require('../services/resetCredits');
 const { cleanupCSVFiles } = require('./clean-csv-files');
 const { telegramBotListener } = require('../services/telegramBotListener');
+const { processAllTokens } = require('../services/lunarCrush');
 
 function startCronJobs() {
     // One-time cleanup of CSV files when the application starts
@@ -79,6 +80,17 @@ function startCronJobs() {
         console.log('Completed PnL normalization job at:', new Date().toISOString());
     });
 
+    // LunarCrush data aggregator - run daily at 00:10 UTC
+    cron.schedule('10 0 * * *', async () => {
+        console.log('Starting LunarCrush aggregation job at:', new Date().toISOString());
+        try {
+            await processAllTokens();
+            console.log('Completed LunarCrush aggregation job at:', new Date().toISOString());
+        } catch (error) {
+            console.error('Error in LunarCrush aggregation job:', error);
+        }
+    });
+
     // verifyFollows will run once every month (on the 1st day of the month at 00:00)
     cron.schedule('0 0 1 * *', async () => {
         console.log('Starting verifyFollows job at:', new Date().toISOString());
@@ -118,6 +130,9 @@ function startCronJobs() {
     // updateInfluencerScores();
     // console.log('Starting monthly payout calculation at:', new Date().toISOString());
     // calculateMonthlyPayouts();
+
+    // console.log('Starting LunarCrush aggregation job at:', new Date().toISOString());
+    // processAllTokens();   
 
     // const twitterHandles = [
     //     "Steve_Cryptoo",
