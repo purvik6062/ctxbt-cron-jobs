@@ -9,9 +9,14 @@ async function resetAllUsersCredits() {
   try {
     const db = client.db("ctxbt-signal-flow");
     const usersCollection = db.collection("users");
+    const signalsCollection = db.collection("trading-signals");
+
+    // Get all users to remove them from subscribers arrays
+    const users = await usersCollection.find({}, { projection: { username: 1 } }).toArray();
+    const usernames = users.map(user => user.username);
 
     // Update all users to set credits to 0
-    const result = await usersCollection.updateMany(
+    const userUpdateResult = await usersCollection.updateMany(
       {},
       {
         $set: {
@@ -21,10 +26,26 @@ async function resetAllUsersCredits() {
       }
     );
 
-    console.log("Credits reset for all users:", result);
-    return result;
+    // Remove all users from subscribers arrays in trading-signals
+    const signalsUpdateResult = await signalsCollection.updateMany(
+      {},
+      {
+        $pull: {
+          subscribers: {
+            username: { $in: usernames }
+          }
+        }
+      }
+    );
+
+    console.log("Credits reset for all users:", userUpdateResult);
+    console.log("Users removed from trading-signals subscribers:", signalsUpdateResult);
+    return {
+      userUpdateResult,
+      signalsUpdateResult
+    };
   } catch (error) {
-    console.error("Error resetting credits:", error);
+    console.error("Error resetting credits and removing subscribers:", error);
     throw error;
   } finally {
     await closeConnection(client);

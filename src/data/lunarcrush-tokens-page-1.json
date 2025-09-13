@@ -1,0 +1,7225 @@
+{
+  "page": 1,
+  "total_tokens": 1000,
+  "timestamp": "2025-09-11T09:52:37.290Z",
+  "tokens": [
+    {
+      "symbol": "TWSC",
+      "name": "\"Trump will save crypto\"",
+      "type": "memecoin",
+      "market_cap_rank": 7327,
+      "market_cap": 0
+    },
+    {
+      "symbol": "KITH",
+      "name": "KITH",
+      "type": "memecoin",
+      "market_cap_rank": 7326,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WANCE",
+      "name": "JD WANCE",
+      "type": "memecoin",
+      "market_cap_rank": 7325,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BATCAT",
+      "name": "Savior Of The Trenches",
+      "type": "memecoin",
+      "market_cap_rank": 7324,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GEN",
+      "name": "DAOstack",
+      "type": "memecoin",
+      "market_cap_rank": 7323,
+      "market_cap": 0,
+      "categories": "dao"
+    },
+    {
+      "symbol": "MOLANG",
+      "name": "molang",
+      "type": "memecoin",
+      "market_cap_rank": 7322,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MILIO",
+      "name": "MILIO",
+      "type": "memecoin",
+      "market_cap_rank": 7321,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NEU",
+      "name": "Neumark",
+      "type": "memecoin",
+      "market_cap_rank": 7320,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RIPETH",
+      "name": "RIPETH",
+      "type": "memecoin",
+      "market_cap_rank": 7319,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NVIDIA",
+      "name": "NVIDIA",
+      "type": "memecoin",
+      "market_cap_rank": 7318,
+      "market_cap": 0
+    },
+    {
+      "symbol": "T1",
+      "name": "Trump Mobile",
+      "type": "memecoin",
+      "market_cap_rank": 7317,
+      "market_cap": 0
+    },
+    {
+      "symbol": "VRD",
+      "name": "Viridis Network",
+      "type": "memecoin",
+      "market_cap_rank": 7316,
+      "market_cap": 0,
+      "categories": "real-world-assets,depin"
+    },
+    {
+      "symbol": "WORBI",
+      "name": "Orbi's Wife",
+      "type": "memecoin",
+      "market_cap_rank": 7315,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FLY",
+      "name": "Fluidity",
+      "type": "memecoin",
+      "market_cap_rank": 7314,
+      "market_cap": 0,
+      "categories": "arbitrum"
+    },
+    {
+      "symbol": "IG",
+      "name": "IGToken",
+      "type": "memecoin",
+      "market_cap_rank": 7313,
+      "market_cap": 0
+    },
+    {
+      "symbol": "AIM2",
+      "name": "ModiHost",
+      "type": "memecoin",
+      "market_cap_rank": 7312,
+      "market_cap": 0,
+      "categories": "ai"
+    },
+    {
+      "symbol": "AXPR",
+      "name": "aXpire",
+      "type": "memecoin",
+      "market_cap_rank": 7311,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DPEPE",
+      "name": "DeepSeek Pepe",
+      "type": "memecoin",
+      "market_cap_rank": 7310,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MAX",
+      "name": "MAX",
+      "type": "memecoin",
+      "market_cap_rank": 7309,
+      "market_cap": 0,
+      "categories": "ai-agents,stacks-ecosystem,pump-fun,meme"
+    },
+    {
+      "symbol": "PRISCILA",
+      "name": "PRISCILA",
+      "type": "memecoin",
+      "market_cap_rank": 7308,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LOGE",
+      "name": "LOGE",
+      "type": "memecoin",
+      "market_cap_rank": 7307,
+      "market_cap": 0,
+      "categories": "bsc,defi,meme"
+    },
+    {
+      "symbol": "LABUBU",
+      "name": "LABUBU",
+      "type": "memecoin",
+      "market_cap_rank": 7306,
+      "market_cap": 0
+    },
+    {
+      "symbol": "COLOURS",
+      "name": "Raise The Colours",
+      "type": "memecoin",
+      "market_cap_rank": 7305,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BWEATHE",
+      "name": "I CAN'T BWEATHE",
+      "type": "memecoin",
+      "market_cap_rank": 7304,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NOMARK",
+      "name": "Project Nomark",
+      "type": "memecoin",
+      "market_cap_rank": 7303,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GIGASTACY",
+      "name": "GIGASTACY",
+      "type": "memecoin",
+      "market_cap_rank": 7302,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ENOUGH",
+      "name": "Enough is enough",
+      "type": "memecoin",
+      "market_cap_rank": 7301,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LPOOL",
+      "name": "Launchpool",
+      "type": "major coin",
+      "market_cap_rank": 7300,
+      "market_cap": 0,
+      "categories": "defi,arbitrum"
+    },
+    {
+      "symbol": "MDX",
+      "name": "MultiDEX AI",
+      "type": "memecoin",
+      "market_cap_rank": 7299,
+      "market_cap": 0,
+      "categories": "ai"
+    },
+    {
+      "symbol": "SAYLOR",
+      "name": "Michael Saylor",
+      "type": "memecoin",
+      "market_cap_rank": 7298,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ZAILGO",
+      "name": "Z?A?I?L?G?O?",
+      "type": "memecoin",
+      "market_cap_rank": 7297,
+      "market_cap": 0,
+      "categories": "solana-ecosystem"
+    },
+    {
+      "symbol": "USEDTESLA",
+      "name": "A Gently Used Tesla",
+      "type": "memecoin",
+      "market_cap_rank": 7296,
+      "market_cap": 0
+    },
+    {
+      "symbol": "KRW",
+      "name": "KingDeFi",
+      "type": "memecoin",
+      "market_cap_rank": 7295,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HIPENGUINS",
+      "name": "hiPENGUINS",
+      "type": "memecoin",
+      "market_cap_rank": 7294,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DECAT",
+      "name": "DECAT",
+      "type": "memecoin",
+      "market_cap_rank": 7293,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CRACK",
+      "name": "Snowfall",
+      "type": "memecoin",
+      "market_cap_rank": 7292,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GIRLIES",
+      "name": "Blockchain For Girlies",
+      "type": "memecoin",
+      "market_cap_rank": 7291,
+      "market_cap": 0
+    },
+    {
+      "symbol": "VALUELESS",
+      "name": "Valueless Coin",
+      "type": "memecoin",
+      "market_cap_rank": 7290,
+      "market_cap": 0
+    },
+    {
+      "symbol": "IDH",
+      "name": "indaHash",
+      "type": "memecoin",
+      "market_cap_rank": 7289,
+      "market_cap": 0
+    },
+    {
+      "symbol": "APEFOOLS",
+      "name": "Ape Fools Day",
+      "type": "memecoin",
+      "market_cap_rank": 7288,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PEPSI",
+      "name": "Pepsi Max",
+      "type": "memecoin",
+      "market_cap_rank": 7287,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CZCAT",
+      "name": "CZ Cat",
+      "type": "memecoin",
+      "market_cap_rank": 7286,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HOBBES",
+      "name": "Hobbes",
+      "type": "memecoin",
+      "market_cap_rank": 7285,
+      "market_cap": 0,
+      "categories": "defi,meme"
+    },
+    {
+      "symbol": "BONKPUTER",
+      "name": "Bonkputer",
+      "type": "memecoin",
+      "market_cap_rank": 7284,
+      "market_cap": 0
+    },
+    {
+      "symbol": "UNCLESAM",
+      "name": "The symbol of America",
+      "type": "memecoin",
+      "market_cap_rank": 7283,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TAYLOR",
+      "name": "TAYLOR",
+      "type": "memecoin",
+      "market_cap_rank": 7282,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WOLFIE",
+      "name": "The Wolf of ETH Street",
+      "type": "memecoin",
+      "market_cap_rank": 7281,
+      "market_cap": 0
+    },
+    {
+      "symbol": "REGRET",
+      "name": "REGRET",
+      "type": "memecoin",
+      "market_cap_rank": 7280,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DGC",
+      "name": "DailyGoat.com",
+      "type": "memecoin",
+      "market_cap_rank": 7279,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PUCKY",
+      "name": "Pucky",
+      "type": "memecoin",
+      "market_cap_rank": 7278,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MOONKEY",
+      "name": "Moonkey",
+      "type": "memecoin",
+      "market_cap_rank": 7277,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PRIMECHAT",
+      "name": "PRIMECHAT",
+      "type": "memecoin",
+      "market_cap_rank": 7276,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SHORTTHEWORLD",
+      "name": "SHORT•THE•WORLD",
+      "type": "memecoin",
+      "market_cap_rank": 7275,
+      "market_cap": 0,
+      "categories": "runes"
+    },
+    {
+      "symbol": "ZIPT",
+      "name": "Zippie",
+      "type": "memecoin",
+      "market_cap_rank": 7274,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FARTBABY",
+      "name": "FARTBABY",
+      "type": "memecoin",
+      "market_cap_rank": 7273,
+      "market_cap": 0
+    },
+    {
+      "symbol": "O1",
+      "name": "O1",
+      "type": "memecoin",
+      "market_cap_rank": 7272,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BABYBRETT",
+      "name": "Baby Brett",
+      "type": "memecoin",
+      "market_cap_rank": 7271,
+      "market_cap": 0,
+      "categories": "meme,base-ecosystem"
+    },
+    {
+      "symbol": "MRTWEET",
+      "name": "Mr. Tweet",
+      "type": "memecoin",
+      "market_cap_rank": 7270,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CUBEB",
+      "name": "CubeBase",
+      "type": "major coin",
+      "market_cap_rank": 7269,
+      "market_cap": 0,
+      "categories": "bsc,defi"
+    },
+    {
+      "symbol": "BOT",
+      "name": "Bot",
+      "type": "major coin",
+      "market_cap_rank": 7268,
+      "market_cap": 0,
+      "categories": "defi,nft"
+    },
+    {
+      "symbol": "ALISHER",
+      "name": "ALISHER 14.02.25",
+      "type": "memecoin",
+      "market_cap_rank": 7267,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MADA",
+      "name": "MADA",
+      "type": "memecoin",
+      "market_cap_rank": 7266,
+      "market_cap": 0
+    },
+    {
+      "symbol": "VANECK",
+      "name": "VanEck",
+      "type": "memecoin",
+      "market_cap_rank": 7265,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TYGA",
+      "name": "TYGA",
+      "type": "memecoin",
+      "market_cap_rank": 7264,
+      "market_cap": 0
+    },
+    {
+      "symbol": "STRAWHAT",
+      "name": "Rebel Flag",
+      "type": "memecoin",
+      "market_cap_rank": 7263,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SOLMAXX",
+      "name": "SOLMAXX",
+      "type": "memecoin",
+      "market_cap_rank": 7262,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MISTRAL AI",
+      "name": "Mistral",
+      "type": "memecoin",
+      "market_cap_rank": 7261,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FARTBALL",
+      "name": "fartball",
+      "type": "memecoin",
+      "market_cap_rank": 7260,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SARATOGA",
+      "name": "Saratoga Spring Water",
+      "type": "memecoin",
+      "market_cap_rank": 7259,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GORKXBT",
+      "name": "Gorkxbt",
+      "type": "memecoin",
+      "market_cap_rank": 7258,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ANIPLUS",
+      "name": "Ani Grok Plus Companion",
+      "type": "memecoin",
+      "market_cap_rank": 7257,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MEWYEARS",
+      "name": "MEWYEARS",
+      "type": "memecoin",
+      "market_cap_rank": 7256,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ESCAPEY",
+      "name": "ESCAPEY",
+      "type": "memecoin",
+      "market_cap_rank": 7255,
+      "market_cap": 0
+    },
+    {
+      "symbol": "U2U",
+      "name": "U2U Network",
+      "type": "major coin",
+      "market_cap_rank": 7254,
+      "market_cap": 0,
+      "categories": "defi,depin"
+    },
+    {
+      "symbol": "EAGLES",
+      "name": "EAGLES MMXXV",
+      "type": "memecoin",
+      "market_cap_rank": 7253,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FLOKKO",
+      "name": "Flokko",
+      "type": "memecoin",
+      "market_cap_rank": 7252,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TARIFF",
+      "name": "Tariff Coin",
+      "type": "memecoin",
+      "market_cap_rank": 7251,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WTRUMP",
+      "name": "Wrapped Trump",
+      "type": "memecoin",
+      "market_cap_rank": 7250,
+      "market_cap": 0
+    },
+    {
+      "symbol": "STRAIGHT",
+      "name": "Straight Coin",
+      "type": "memecoin",
+      "market_cap_rank": 7249,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CNJR",
+      "name": "Conjure AI",
+      "type": "memecoin",
+      "market_cap_rank": 7248,
+      "market_cap": 0
+    },
+    {
+      "symbol": "STITCH",
+      "name": "STITCH",
+      "type": "memecoin",
+      "market_cap_rank": 7247,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RMDN",
+      "name": "Ramadan",
+      "type": "memecoin",
+      "market_cap_rank": 7246,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SHARKS",
+      "name": "The Sharks Fan Token",
+      "type": "memecoin",
+      "market_cap_rank": 7245,
+      "market_cap": 0,
+      "categories": "meme,fan"
+    },
+    {
+      "symbol": "BOING",
+      "name": "Boing",
+      "type": "memecoin",
+      "market_cap_rank": 7244,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BOSSLESS",
+      "name": "work for yourself",
+      "type": "memecoin",
+      "market_cap_rank": 7243,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CALLMEBABY",
+      "name": "1-833-YUR-GORK",
+      "type": "memecoin",
+      "market_cap_rank": 7242,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TROMP2025",
+      "name": "Donuhld Tromp",
+      "type": "memecoin",
+      "market_cap_rank": 7241,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LOCUST",
+      "name": "locust",
+      "type": "memecoin",
+      "market_cap_rank": 7240,
+      "market_cap": 0
+    },
+    {
+      "symbol": "POTY",
+      "name": "PERSON OF THE YEAR",
+      "type": "memecoin",
+      "market_cap_rank": 7239,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GREED 3",
+      "name": "GREED 3.   This time we all win",
+      "type": "memecoin",
+      "market_cap_rank": 7238,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ROOROO",
+      "name": "Legless Dog",
+      "type": "memecoin",
+      "market_cap_rank": 7237,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SX",
+      "name": "SportX",
+      "type": "major coin",
+      "market_cap_rank": 7236,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "TROLLCOIN",
+      "name": "TROLL COIN",
+      "type": "memecoin",
+      "market_cap_rank": 7235,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DSTAG",
+      "name": "DSTAG",
+      "type": "memecoin",
+      "market_cap_rank": 7234,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CCL",
+      "name": "CYCLEAN",
+      "type": "memecoin",
+      "market_cap_rank": 7233,
+      "market_cap": 0,
+      "categories": "energy"
+    },
+    {
+      "symbol": "FATCOIN",
+      "name": "fatcoin",
+      "type": "memecoin",
+      "market_cap_rank": 7232,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SAPU",
+      "name": "Ski Mask Apu",
+      "type": "memecoin",
+      "market_cap_rank": 7231,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DVF",
+      "name": "rhinoFi",
+      "type": "major coin",
+      "market_cap_rank": 7230,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "JUJO",
+      "name": "JUJO",
+      "type": "memecoin",
+      "market_cap_rank": 7229,
+      "market_cap": 0
+    },
+    {
+      "symbol": "POPE267",
+      "name": "Pope Leo XIV",
+      "type": "memecoin",
+      "market_cap_rank": 7228,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PROMETHEUS",
+      "name": "Prometheus Pantheon",
+      "type": "memecoin",
+      "market_cap_rank": 7227,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LOFIGIRL",
+      "name": "LOFIGIRL",
+      "type": "memecoin",
+      "market_cap_rank": 7226,
+      "market_cap": 0
+    },
+    {
+      "symbol": "AC",
+      "name": "ACoconut",
+      "type": "major coin",
+      "market_cap_rank": 7225,
+      "market_cap": 0,
+      "categories": "bsc,defi"
+    },
+    {
+      "symbol": "SICKO",
+      "name": "SICKO",
+      "type": "memecoin",
+      "market_cap_rank": 7224,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MUSHY",
+      "name": "MUSHY",
+      "type": "memecoin",
+      "market_cap_rank": 7223,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GGT",
+      "name": "Go Game Token",
+      "type": "memecoin",
+      "market_cap_rank": 7222,
+      "market_cap": 0,
+      "categories": "move-to-earn,gaming"
+    },
+    {
+      "symbol": "QUA2",
+      "name": "Quarashi Network",
+      "type": "major coin",
+      "market_cap_rank": 7221,
+      "market_cap": 0,
+      "categories": "bsc,defi"
+    },
+    {
+      "symbol": "TRUMPINU",
+      "name": "Trump Inu",
+      "type": "major coin",
+      "market_cap_rank": 7220,
+      "market_cap": 0,
+      "categories": "bsc,defi"
+    },
+    {
+      "symbol": "TINYAI",
+      "name": "TINYAI",
+      "type": "memecoin",
+      "market_cap_rank": 7219,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WOOKI",
+      "name": "Wooki",
+      "type": "memecoin",
+      "market_cap_rank": 7218,
+      "market_cap": 0
+    },
+    {
+      "symbol": "VLK",
+      "name": "Vulkania",
+      "type": "major coin",
+      "market_cap_rank": 7217,
+      "market_cap": 0,
+      "categories": "bsc,defi"
+    },
+    {
+      "symbol": "ELYSIUM",
+      "name": "ELYSIUM",
+      "type": "memecoin",
+      "market_cap_rank": 7216,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PAWKER",
+      "name": "Peter PAWker",
+      "type": "memecoin",
+      "market_cap_rank": 7215,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MOOCHII",
+      "name": "Moochii",
+      "type": "major coin",
+      "market_cap_rank": 7214,
+      "market_cap": 0,
+      "categories": "bsc,defi,nft"
+    },
+    {
+      "symbol": "TZIUMEI",
+      "name": "FART ATTACK HIPPO",
+      "type": "memecoin",
+      "market_cap_rank": 7213,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WSB",
+      "name": "WSB Coin",
+      "type": "memecoin",
+      "market_cap_rank": 7212,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "#CARP",
+      "name": "X Carp Cult",
+      "type": "memecoin",
+      "market_cap_rank": 7211,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MIGA",
+      "name": "MAKE IRAN GREAT AGAIN",
+      "type": "memecoin",
+      "market_cap_rank": 7210,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MR BEAST",
+      "name": "OFFICIAL MR BEAST",
+      "type": "memecoin",
+      "market_cap_rank": 7209,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GIGAFART",
+      "name": "GIGAFART",
+      "type": "memecoin",
+      "market_cap_rank": 7208,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CLAUDIUS",
+      "name": "CLAUDIUS",
+      "type": "memecoin",
+      "market_cap_rank": 7207,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ELTCOIN",
+      "name": "ELTCOIN",
+      "type": "memecoin",
+      "market_cap_rank": 7206,
+      "market_cap": 0
+    },
+    {
+      "symbol": "QMUBARAK",
+      "name": "Queenyi Mubarak",
+      "type": "memecoin",
+      "market_cap_rank": 7205,
+      "market_cap": 0
+    },
+    {
+      "symbol": "EIQT",
+      "name": "eIQT Token",
+      "type": "memecoin",
+      "market_cap_rank": 7204,
+      "market_cap": 0,
+      "categories": "prediction"
+    },
+    {
+      "symbol": "ZURO",
+      "name": "ZURO",
+      "type": "memecoin",
+      "market_cap_rank": 7203,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MBAPPE",
+      "name": "MBAPPE",
+      "type": "memecoin",
+      "market_cap_rank": 7202,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TESTICLE",
+      "name": "The Lost Testicle",
+      "type": "memecoin",
+      "market_cap_rank": 7201,
+      "market_cap": 0
+    },
+    {
+      "symbol": "EPICEPICEPICEPIC",
+      "name": "EPIC•EPIC•EPIC•EPIC",
+      "type": "major coin",
+      "market_cap_rank": 7200,
+      "market_cap": 0,
+      "categories": "runes,bitcoin-ecosystem"
+    },
+    {
+      "symbol": "XNPCS",
+      "name": "NPCS AI",
+      "type": "memecoin",
+      "market_cap_rank": 7199,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "JELLYBOSS",
+      "name": "jelly-boss-jelly",
+      "type": "memecoin",
+      "market_cap_rank": 7198,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NETFLIX",
+      "name": "Netflix Cult",
+      "type": "memecoin",
+      "market_cap_rank": 7197,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CHG",
+      "name": "Charg Coin",
+      "type": "memecoin",
+      "market_cap_rank": 7196,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ORG",
+      "name": "Dont panic its organic",
+      "type": "memecoin",
+      "market_cap_rank": 7195,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LLJEFFY",
+      "name": "vitafin",
+      "type": "memecoin",
+      "market_cap_rank": 7194,
+      "market_cap": 0
+    },
+    {
+      "symbol": "AUTISMLGBT",
+      "name": "Autism",
+      "type": "memecoin",
+      "market_cap_rank": 7193,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RIPHU",
+      "name": "Rest In Peace Hulezhi",
+      "type": "memecoin",
+      "market_cap_rank": 7192,
+      "market_cap": 0
+    },
+    {
+      "symbol": "COKEBEAR",
+      "name": "COKEBEAR",
+      "type": "memecoin",
+      "market_cap_rank": 7191,
+      "market_cap": 0
+    },
+    {
+      "symbol": "STKATOM",
+      "name": "pSTAKE Staked ATOM",
+      "type": "major coin",
+      "market_cap_rank": 7190,
+      "market_cap": 0,
+      "categories": "liquid-staking-tokens"
+    },
+    {
+      "symbol": "UNLUCKYGUY",
+      "name": "Just an unlucky guy",
+      "type": "memecoin",
+      "market_cap_rank": 7189,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LUA",
+      "name": "LuaSwap",
+      "type": "major coin",
+      "market_cap_rank": 7188,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "DAVO",
+      "name": "Davo",
+      "type": "memecoin",
+      "market_cap_rank": 7187,
+      "market_cap": 0
+    },
+    {
+      "symbol": "XRP6900",
+      "name": "XRP6900",
+      "type": "memecoin",
+      "market_cap_rank": 7186,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SIA",
+      "name": "Youngest Solana Artist",
+      "type": "memecoin",
+      "market_cap_rank": 7185,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MEKABU",
+      "name": "Frog Wif Hat",
+      "type": "memecoin",
+      "market_cap_rank": 7184,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DIGGAI",
+      "name": "DIGGER AI",
+      "type": "memecoin",
+      "market_cap_rank": 7183,
+      "market_cap": 0,
+      "categories": "analytics,solana-ecosystem"
+    },
+    {
+      "symbol": "STINKDEX",
+      "name": "STINKDEX",
+      "type": "memecoin",
+      "market_cap_rank": 7182,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WGRT",
+      "name": "WaykiChain Governance Coin",
+      "type": "major coin",
+      "market_cap_rank": 7181,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "RUNEALPHACOOK",
+      "name": "RUNE•ALPHA•COOK",
+      "type": "memecoin",
+      "market_cap_rank": 7180,
+      "market_cap": 0,
+      "categories": "runes"
+    },
+    {
+      "symbol": "MOOWAAN",
+      "name": "MOOWAAN",
+      "type": "memecoin",
+      "market_cap_rank": 7179,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NSD",
+      "name": "Nasdacoin",
+      "type": "memecoin",
+      "market_cap_rank": 7178,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BROWNHOUSE",
+      "name": "Brownhouse",
+      "type": "memecoin",
+      "market_cap_rank": 7177,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LEMON3",
+      "name": "lemon3",
+      "type": "memecoin",
+      "market_cap_rank": 7176,
+      "market_cap": 0
+    },
+    {
+      "symbol": "250",
+      "name": "TRUMPBILL",
+      "type": "memecoin",
+      "market_cap_rank": 7175,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HLSCOPE",
+      "name": "Hamilton Lane Senior Credit Opportunities Securitize Fund",
+      "type": "memecoin",
+      "market_cap_rank": 7174,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MNDE",
+      "name": "Marinade",
+      "type": "memecoin",
+      "market_cap_rank": 7173,
+      "market_cap": 0,
+      "categories": "dao,solana-ecosystem"
+    },
+    {
+      "symbol": "HAMSTER",
+      "name": "HAMSTER",
+      "type": "memecoin",
+      "market_cap_rank": 7172,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BOLZ",
+      "name": "BOLZ",
+      "type": "memecoin",
+      "market_cap_rank": 7171,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SGUY",
+      "name": "SGUY",
+      "type": "memecoin",
+      "market_cap_rank": 7170,
+      "market_cap": 0
+    },
+    {
+      "symbol": "YAXIS",
+      "name": "yAxis",
+      "type": "major coin",
+      "market_cap_rank": 7169,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "RSICSEASONTWO",
+      "name": "RSIC•SEASON•TWO",
+      "type": "memecoin",
+      "market_cap_rank": 7168,
+      "market_cap": 0,
+      "categories": "runes"
+    },
+    {
+      "symbol": "TRONDOG",
+      "name": "TRONDOG",
+      "type": "memecoin",
+      "market_cap_rank": 7167,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "WIFSANTA",
+      "name": "WIFSANTA",
+      "type": "memecoin",
+      "market_cap_rank": 7166,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FOCAI",
+      "name": "FOCAI",
+      "type": "memecoin",
+      "market_cap_rank": 7165,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "ALLSTAR",
+      "name": "ALLSTAR Coin ??????",
+      "type": "memecoin",
+      "market_cap_rank": 7164,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ZENS",
+      "name": "ZENS",
+      "type": "memecoin",
+      "market_cap_rank": 7163,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CTAP",
+      "name": "CTAP",
+      "type": "memecoin",
+      "market_cap_rank": 7162,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MONTOYA",
+      "name": "Montoya por favor",
+      "type": "memecoin",
+      "market_cap_rank": 7161,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MXYZ",
+      "name": "mobile.xyz",
+      "type": "memecoin",
+      "market_cap_rank": 7160,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MOYA",
+      "name": "MOYA",
+      "type": "memecoin",
+      "market_cap_rank": 7159,
+      "market_cap": 0,
+      "categories": "solana-ecosystem"
+    },
+    {
+      "symbol": "SHEETS",
+      "name": "Sprite Sheets",
+      "type": "memecoin",
+      "market_cap_rank": 7158,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SUSDOG",
+      "name": "SUSDOG",
+      "type": "memecoin",
+      "market_cap_rank": 7157,
+      "market_cap": 0
+    },
+    {
+      "symbol": "F1C",
+      "name": "Future1coin",
+      "type": "memecoin",
+      "market_cap_rank": 7156,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BLID",
+      "name": "Bolide",
+      "type": "memecoin",
+      "market_cap_rank": 7155,
+      "market_cap": 0
+    },
+    {
+      "symbol": "POKESOL",
+      "name": "PokeSol",
+      "type": "memecoin",
+      "market_cap_rank": 7154,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DONCHO",
+      "name": "hispanic doge",
+      "type": "memecoin",
+      "market_cap_rank": 7153,
+      "market_cap": 0,
+      "categories": "solana-ecosystem,meme"
+    },
+    {
+      "symbol": "GLONK",
+      "name": "Glonk",
+      "type": "memecoin",
+      "market_cap_rank": 7152,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WORTI",
+      "name": "Worti AI",
+      "type": "memecoin",
+      "market_cap_rank": 7151,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NOTE",
+      "name": "DNotes",
+      "type": "memecoin",
+      "market_cap_rank": 7150,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FITRI",
+      "name": "Fitri",
+      "type": "memecoin",
+      "market_cap_rank": 7149,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WUB",
+      "name": "WUB",
+      "type": "memecoin",
+      "market_cap_rank": 7148,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MSWAP",
+      "name": "Marswap",
+      "type": "major coin",
+      "market_cap_rank": 7147,
+      "market_cap": 0,
+      "categories": "defi,nft"
+    },
+    {
+      "symbol": "SHIKOKU",
+      "name": "SHIKOKU",
+      "type": "memecoin",
+      "market_cap_rank": 7146,
+      "market_cap": 0
+    },
+    {
+      "symbol": "AIKIRA",
+      "name": "Aikira",
+      "type": "memecoin",
+      "market_cap_rank": 7145,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ZPHR",
+      "name": "Zephyros Genesis",
+      "type": "memecoin",
+      "market_cap_rank": 7144,
+      "market_cap": 0
+    },
+    {
+      "symbol": "J1TFYI",
+      "name": "J1T.FYI",
+      "type": "memecoin",
+      "market_cap_rank": 7143,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FULA",
+      "name": "Functionland",
+      "type": "memecoin",
+      "market_cap_rank": 7142,
+      "market_cap": 0,
+      "categories": "depin,storage,base-ecosystem"
+    },
+    {
+      "symbol": "GROOVE",
+      "name": "GROOVE",
+      "type": "memecoin",
+      "market_cap_rank": 7141,
+      "market_cap": 0,
+      "categories": "base-ecosystem"
+    },
+    {
+      "symbol": "HASHTAG",
+      "name": "Hashtag United Fan Token",
+      "type": "memecoin",
+      "market_cap_rank": 7140,
+      "market_cap": 0,
+      "categories": "fan"
+    },
+    {
+      "symbol": "INDEXSY",
+      "name": "INDEXSY COIN",
+      "type": "memecoin",
+      "market_cap_rank": 7139,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SOKU",
+      "name": "SokuSwap",
+      "type": "major coin",
+      "market_cap_rank": 7138,
+      "market_cap": 0,
+      "categories": "bsc,defi,nft"
+    },
+    {
+      "symbol": "EV",
+      "name": "Evai",
+      "type": "memecoin",
+      "market_cap_rank": 7137,
+      "market_cap": 0,
+      "categories": "ai"
+    },
+    {
+      "symbol": "MAGICINTERNETMONEY",
+      "name": "MAGIC•INTERNET•MONEY",
+      "type": "memecoin",
+      "market_cap_rank": 7136,
+      "market_cap": 0,
+      "categories": "runes"
+    },
+    {
+      "symbol": "SURFER",
+      "name": "Subway Surfers on Solana",
+      "type": "memecoin",
+      "market_cap_rank": 7135,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DEMS-13",
+      "name": "DeMS-13",
+      "type": "memecoin",
+      "market_cap_rank": 7134,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GIGIL",
+      "name": "GIGIL",
+      "type": "memecoin",
+      "market_cap_rank": 7133,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HUMANIZE",
+      "name": "humanize",
+      "type": "memecoin",
+      "market_cap_rank": 7132,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PAPERCLIP",
+      "name": "flip this into a house",
+      "type": "memecoin",
+      "market_cap_rank": 7131,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GTA 6 COIN",
+      "name": "GTA6",
+      "type": "memecoin",
+      "market_cap_rank": 7130,
+      "market_cap": 0
+    },
+    {
+      "symbol": "500X",
+      "name": "Game of Olympus",
+      "type": "memecoin",
+      "market_cap_rank": 7129,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MOHAMMAD",
+      "name": "Mohammad Bin Salman Coin",
+      "type": "memecoin",
+      "market_cap_rank": 7128,
+      "market_cap": 0
+    },
+    {
+      "symbol": "POE",
+      "name": "Po.et",
+      "type": "memecoin",
+      "market_cap_rank": 7127,
+      "market_cap": 0
+    },
+    {
+      "symbol": "STONE",
+      "name": "Stone",
+      "type": "memecoin",
+      "market_cap_rank": 7126,
+      "market_cap": 0,
+      "categories": "stacks-ecosystem,nft"
+    },
+    {
+      "symbol": "LEGACY",
+      "name": "LEGACY",
+      "type": "memecoin",
+      "market_cap_rank": 7125,
+      "market_cap": 0
+    },
+    {
+      "symbol": "AQUAGOAT",
+      "name": "Aquagoat",
+      "type": "memecoin",
+      "market_cap_rank": 7124,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "SWIRL",
+      "name": "SwirlToken",
+      "type": "major coin",
+      "market_cap_rank": 7123,
+      "market_cap": 0,
+      "categories": "bsc,defi"
+    },
+    {
+      "symbol": "WOFL",
+      "name": "r/wofl",
+      "type": "memecoin",
+      "market_cap_rank": 7122,
+      "market_cap": 0
+    },
+    {
+      "symbol": "KOSHER",
+      "name": "Kosher Pump",
+      "type": "memecoin",
+      "market_cap_rank": 7121,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WPNUT",
+      "name": "WPNUT",
+      "type": "memecoin",
+      "market_cap_rank": 7120,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SEQUOAI",
+      "name": "SEQUOAI",
+      "type": "memecoin",
+      "market_cap_rank": 7119,
+      "market_cap": 0
+    },
+    {
+      "symbol": "AUTISM",
+      "name": "AUTISM Token",
+      "type": "memecoin",
+      "market_cap_rank": 7118,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "WL",
+      "name": "WL",
+      "type": "memecoin",
+      "market_cap_rank": 7117,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TRUMPYJUMP",
+      "name": "Trumpy Jump",
+      "type": "memecoin",
+      "market_cap_rank": 7116,
+      "market_cap": 0
+    },
+    {
+      "symbol": "REDDO",
+      "name": "REDDO",
+      "type": "memecoin",
+      "market_cap_rank": 7115,
+      "market_cap": 0
+    },
+    {
+      "symbol": "JONESY",
+      "name": "JONESY",
+      "type": "memecoin",
+      "market_cap_rank": 7114,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FAGGOT",
+      "name": "Faggot",
+      "type": "memecoin",
+      "market_cap_rank": 7113,
+      "market_cap": 0
+    },
+    {
+      "symbol": "420AI",
+      "name": "420AI",
+      "type": "memecoin",
+      "market_cap_rank": 7112,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NXPC",
+      "name": "NXPC",
+      "type": "memecoin",
+      "market_cap_rank": 7111,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WCAT",
+      "name": "WCAT",
+      "type": "memecoin",
+      "market_cap_rank": 7110,
+      "market_cap": 0
+    },
+    {
+      "symbol": "EVED",
+      "name": "Evedo",
+      "type": "memecoin",
+      "market_cap_rank": 7109,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NAXAR",
+      "name": "Naxar",
+      "type": "memecoin",
+      "market_cap_rank": 7108,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HOODGOLD",
+      "name": "Robinhood Gold",
+      "type": "memecoin",
+      "market_cap_rank": 7107,
+      "market_cap": 0
+    },
+    {
+      "symbol": "OINC",
+      "name": "OINC",
+      "type": "memecoin",
+      "market_cap_rank": 7106,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BASE @ FARCON 2025",
+      "name": "Base @ FarCon 2025",
+      "type": "memecoin",
+      "market_cap_rank": 7105,
+      "market_cap": 0
+    },
+    {
+      "symbol": "COVID.GOV",
+      "name": "NEW GOV LAB LEAK",
+      "type": "memecoin",
+      "market_cap_rank": 7104,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SIMULA",
+      "name": "SIMULA",
+      "type": "memecoin",
+      "market_cap_rank": 7103,
+      "market_cap": 0
+    },
+    {
+      "symbol": "THOM",
+      "name": "THOM",
+      "type": "memecoin",
+      "market_cap_rank": 7102,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ZYXTH",
+      "name": "Grand ArchiveSpawn ZyxthVariax",
+      "type": "memecoin",
+      "market_cap_rank": 7101,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LNGCAT",
+      "name": "Longcat",
+      "type": "memecoin",
+      "market_cap_rank": 7100,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CVG",
+      "name": "Convergence Finance",
+      "type": "memecoin",
+      "market_cap_rank": 7099,
+      "market_cap": 0,
+      "categories": "dao"
+    },
+    {
+      "symbol": "RUNESTONEPUPS",
+      "name": "RUNESTONE•PUPS",
+      "type": "memecoin",
+      "market_cap_rank": 7098,
+      "market_cap": 0,
+      "categories": "runes"
+    },
+    {
+      "symbol": "XMC",
+      "name": "Monero Classic",
+      "type": "memecoin",
+      "market_cap_rank": 7097,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BLINK",
+      "name": "BLink",
+      "type": "memecoin",
+      "market_cap_rank": 7096,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DOGEALD",
+      "name": "Dogeald Trump",
+      "type": "memecoin",
+      "market_cap_rank": 7095,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LIFEBIRD",
+      "name": "Lifebird Token",
+      "type": "major coin",
+      "market_cap_rank": 7094,
+      "market_cap": 0,
+      "categories": "bsc,defi"
+    },
+    {
+      "symbol": "KOLHAT",
+      "name": "KOLHAT",
+      "type": "memecoin",
+      "market_cap_rank": 7093,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SATFLOWDOTCOM",
+      "name": "SATFLOW•DOT•COM",
+      "type": "memecoin",
+      "market_cap_rank": 7092,
+      "market_cap": 0,
+      "categories": "runes"
+    },
+    {
+      "symbol": "SKINS",
+      "name": "FORTNITIFY",
+      "type": "memecoin",
+      "market_cap_rank": 7091,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TAELS",
+      "name": "TAELS",
+      "type": "memecoin",
+      "market_cap_rank": 7090,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MOKSHA",
+      "name": "MOKSHA",
+      "type": "memecoin",
+      "market_cap_rank": 7089,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FRIDGE",
+      "name": "FRIDGE",
+      "type": "memecoin",
+      "market_cap_rank": 7088,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SHIB0.5",
+      "name": "HALF SHIBA INU",
+      "type": "memecoin",
+      "market_cap_rank": 7087,
+      "market_cap": 0,
+      "categories": "meme,defi"
+    },
+    {
+      "symbol": "QUAK",
+      "name": "Quak Wif Boi",
+      "type": "memecoin",
+      "market_cap_rank": 7086,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MORKL",
+      "name": "MORKL CHARTS",
+      "type": "memecoin",
+      "market_cap_rank": 7085,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SME",
+      "name": "SafeMeme",
+      "type": "memecoin",
+      "market_cap_rank": 7084,
+      "market_cap": 0,
+      "categories": "bsc,defi,meme"
+    },
+    {
+      "symbol": "CHILLMAGA",
+      "name": "CHILLMAGA",
+      "type": "memecoin",
+      "market_cap_rank": 7083,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MILORD",
+      "name": "Milos The Lord of the G-strings",
+      "type": "memecoin",
+      "market_cap_rank": 7082,
+      "market_cap": 0
+    },
+    {
+      "symbol": "AOKUMA",
+      "name": "AOKUMA",
+      "type": "memecoin",
+      "market_cap_rank": 7081,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GARLIC",
+      "name": "Garlicoin",
+      "type": "memecoin",
+      "market_cap_rank": 7080,
+      "market_cap": 0
+    },
+    {
+      "symbol": "KDOE",
+      "name": "Kudoe",
+      "type": "memecoin",
+      "market_cap_rank": 7079,
+      "market_cap": 0,
+      "categories": "nft"
+    },
+    {
+      "symbol": "INFI",
+      "name": "Infinet",
+      "type": "memecoin",
+      "market_cap_rank": 7078,
+      "market_cap": 0,
+      "categories": "depin"
+    },
+    {
+      "symbol": "VIBES",
+      "name": "VIBES",
+      "type": "memecoin",
+      "market_cap_rank": 7077,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HULULU",
+      "name": "HULULU",
+      "type": "memecoin",
+      "market_cap_rank": 7076,
+      "market_cap": 0
+    },
+    {
+      "symbol": "UPONLY",
+      "name": "UPONLY",
+      "type": "memecoin",
+      "market_cap_rank": 7075,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NO",
+      "name": "No! Coin",
+      "type": "memecoin",
+      "market_cap_rank": 7074,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MRSKELLY",
+      "name": "MrSkelly",
+      "type": "memecoin",
+      "market_cap_rank": 7073,
+      "market_cap": 0
+    },
+    {
+      "symbol": "UFP",
+      "name": "Unicorn Fart Plug",
+      "type": "memecoin",
+      "market_cap_rank": 7072,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MAGIC",
+      "name": "Magic-BOT",
+      "type": "major coin",
+      "market_cap_rank": 7071,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "MANCOIN",
+      "name": "mancoin",
+      "type": "memecoin",
+      "market_cap_rank": 7070,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GIBA",
+      "name": "GIGA SHIBA",
+      "type": "memecoin",
+      "market_cap_rank": 7069,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CUPCAT",
+      "name": "cupcat",
+      "type": "memecoin",
+      "market_cap_rank": 7068,
+      "market_cap": 0
+    },
+    {
+      "symbol": "JEJE",
+      "name": "jeje",
+      "type": "memecoin",
+      "market_cap_rank": 7067,
+      "market_cap": 0
+    },
+    {
+      "symbol": "EITLER",
+      "name": "Elon Hitler",
+      "type": "memecoin",
+      "market_cap_rank": 7066,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SPEAKR",
+      "name": "SPEAKR",
+      "type": "memecoin",
+      "market_cap_rank": 7065,
+      "market_cap": 0
+    },
+    {
+      "symbol": "XPA",
+      "name": "XPA",
+      "type": "memecoin",
+      "market_cap_rank": 7064,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HPY",
+      "name": "Hyper Pay",
+      "type": "memecoin",
+      "market_cap_rank": 7063,
+      "market_cap": 0
+    },
+    {
+      "symbol": "JEUR",
+      "name": "Jarvis Synthetic Euro",
+      "type": "major coin",
+      "market_cap_rank": 7062,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "MCAU",
+      "name": "Meld Gold",
+      "type": "memecoin",
+      "market_cap_rank": 7061,
+      "market_cap": 0,
+      "categories": "algorand"
+    },
+    {
+      "symbol": "KAPT",
+      "name": "Gangnam Rose APT",
+      "type": "memecoin",
+      "market_cap_rank": 7060,
+      "market_cap": 0,
+      "categories": "stacks-ecosystem"
+    },
+    {
+      "symbol": "LASTCOIN",
+      "name": "The Last Coin",
+      "type": "memecoin",
+      "market_cap_rank": 7059,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WOMP",
+      "name": "womp womp",
+      "type": "memecoin",
+      "market_cap_rank": 7058,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MUSK IT",
+      "name": "Official Musk Father",
+      "type": "memecoin",
+      "market_cap_rank": 7057,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CATOS",
+      "name": "GOD OF CATS",
+      "type": "memecoin",
+      "market_cap_rank": 7056,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MEDUSA",
+      "name": "Medusa",
+      "type": "memecoin",
+      "market_cap_rank": 7055,
+      "market_cap": 0
+    },
+    {
+      "symbol": "REDNOTE",
+      "name": "Chinese TikTok",
+      "type": "memecoin",
+      "market_cap_rank": 7054,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TRUE",
+      "name": "TrueChain",
+      "type": "memecoin",
+      "market_cap_rank": 7053,
+      "market_cap": 0
+    },
+    {
+      "symbol": "JUST10SEC",
+      "name": "JUST10SEC  ••",
+      "type": "memecoin",
+      "market_cap_rank": 7052,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FRC",
+      "name": "Freicoin",
+      "type": "memecoin",
+      "market_cap_rank": 7051,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WLC",
+      "name": "World Liberty Coin",
+      "type": "memecoin",
+      "market_cap_rank": 7050,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SEEK16Z",
+      "name": "deepseek16z",
+      "type": "memecoin",
+      "market_cap_rank": 7049,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HOTSAUCE",
+      "name": "hot sauce coin",
+      "type": "memecoin",
+      "market_cap_rank": 7048,
+      "market_cap": 0
+    },
+    {
+      "symbol": "AUX",
+      "name": "Auxilium",
+      "type": "memecoin",
+      "market_cap_rank": 7047,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BOB2",
+      "name": "Bobs Repair",
+      "type": "memecoin",
+      "market_cap_rank": 7046,
+      "market_cap": 0
+    },
+    {
+      "symbol": "KWD",
+      "name": "KWD",
+      "type": "memecoin",
+      "market_cap_rank": 7045,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PMP",
+      "name": "Pill Money Podz",
+      "type": "memecoin",
+      "market_cap_rank": 7044,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TALISMAN",
+      "name": "TALISMAN",
+      "type": "memecoin",
+      "market_cap_rank": 7043,
+      "market_cap": 0
+    },
+    {
+      "symbol": "IXT",
+      "name": "iXledger",
+      "type": "memecoin",
+      "market_cap_rank": 7042,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FROGI",
+      "name": "FROGI",
+      "type": "memecoin",
+      "market_cap_rank": 7041,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PROPAGANDA",
+      "name": "Spread lies about this coin",
+      "type": "memecoin",
+      "market_cap_rank": 7040,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BAGUETTE",
+      "name": "france is dead, send this",
+      "type": "memecoin",
+      "market_cap_rank": 7039,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BLORB",
+      "name": "Blorb By ChatGPT",
+      "type": "memecoin",
+      "market_cap_rank": 7038,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NEPRODAM",
+      "name": "NeProdam",
+      "type": "memecoin",
+      "market_cap_rank": 7037,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MOLE",
+      "name": "MOLE",
+      "type": "memecoin",
+      "market_cap_rank": 7036,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HELLOWORLD",
+      "name": "HELLOWORLD",
+      "type": "memecoin",
+      "market_cap_rank": 7035,
+      "market_cap": 0,
+      "categories": "meme,base-ecosystem"
+    },
+    {
+      "symbol": "XORIGINALS",
+      "name": "NEW VINE",
+      "type": "memecoin",
+      "market_cap_rank": 7034,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BRAP",
+      "name": "4Chan Fart Community 2006",
+      "type": "memecoin",
+      "market_cap_rank": 7033,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LINKEDIN",
+      "name": "LINKEDIN COIN ??",
+      "type": "memecoin",
+      "market_cap_rank": 7032,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MOONDOG",
+      "name": "moondog",
+      "type": "memecoin",
+      "market_cap_rank": 7031,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GPT2",
+      "name": "GPT2",
+      "type": "memecoin",
+      "market_cap_rank": 7030,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DORAEMON",
+      "name": "Doraemon",
+      "type": "memecoin",
+      "market_cap_rank": 7029,
+      "market_cap": 0
+    },
+    {
+      "symbol": "JAILMURAD",
+      "name": "JailMurad",
+      "type": "memecoin",
+      "market_cap_rank": 7028,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LAZYCAT",
+      "name": "LAZYCAT",
+      "type": "memecoin",
+      "market_cap_rank": 7027,
+      "market_cap": 0,
+      "categories": "base-ecosystem,meme"
+    },
+    {
+      "symbol": "REMUS",
+      "name": "New Ancient DNA Cloned Wolf",
+      "type": "memecoin",
+      "market_cap_rank": 7026,
+      "market_cap": 0,
+      "categories": "solana-ecosystem,meme"
+    },
+    {
+      "symbol": "SUCCESSKID",
+      "name": "Success Kid",
+      "type": "memecoin",
+      "market_cap_rank": 7025,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SAHUR",
+      "name": "tungtungtung",
+      "type": "memecoin",
+      "market_cap_rank": 7024,
+      "market_cap": 0
+    },
+    {
+      "symbol": "OPTIX",
+      "name": "OPTIX",
+      "type": "memecoin",
+      "market_cap_rank": 7023,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DOGDOGDOGDOGDOG",
+      "name": "DOG•DOG•DOG•DOG•DOG",
+      "type": "memecoin",
+      "market_cap_rank": 7022,
+      "market_cap": 0
+    },
+    {
+      "symbol": "AREPA",
+      "name": "Arepacoin",
+      "type": "memecoin",
+      "market_cap_rank": 7021,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GSCI",
+      "name": "GSCI",
+      "type": "memecoin",
+      "market_cap_rank": 7020,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ZERO",
+      "name": "Analysoor",
+      "type": "memecoin",
+      "market_cap_rank": 7019,
+      "market_cap": 0,
+      "categories": "solana-ecosystem"
+    },
+    {
+      "symbol": "ENDCEX",
+      "name": "Endpoint Cex Fan Token",
+      "type": "memecoin",
+      "market_cap_rank": 7018,
+      "market_cap": 0,
+      "categories": "fan"
+    },
+    {
+      "symbol": "DADENG",
+      "name": "Dadeng",
+      "type": "memecoin",
+      "market_cap_rank": 7017,
+      "market_cap": 0
+    },
+    {
+      "symbol": "KELUP",
+      "name": "KeluPunk",
+      "type": "memecoin",
+      "market_cap_rank": 7016,
+      "market_cap": 0
+    },
+    {
+      "symbol": "JOJI",
+      "name": "JOJI",
+      "type": "memecoin",
+      "market_cap_rank": 7015,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PIZZADELIVERY",
+      "name": "PIZZA•DELIVERY",
+      "type": "memecoin",
+      "market_cap_rank": 7014,
+      "market_cap": 0,
+      "categories": "runes"
+    },
+    {
+      "symbol": "PEPEARMY",
+      "name": "PEPEARMY",
+      "type": "memecoin",
+      "market_cap_rank": 7013,
+      "market_cap": 0,
+      "categories": "defi,nft,meme"
+    },
+    {
+      "symbol": "VDNT",
+      "name": "Verdant",
+      "type": "memecoin",
+      "market_cap_rank": 7012,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SICKB",
+      "name": "SICKB",
+      "type": "memecoin",
+      "market_cap_rank": 7011,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BORDERS",
+      "name": "Borders",
+      "type": "memecoin",
+      "market_cap_rank": 7010,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MUMBAI",
+      "name": "Mumbai Official Coin",
+      "type": "memecoin",
+      "market_cap_rank": 7009,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TRUMP UAP",
+      "name": "Trump &amp; Elon &amp; UAP",
+      "type": "memecoin",
+      "market_cap_rank": 7008,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CRE",
+      "name": "Crypto Real Estate",
+      "type": "memecoin",
+      "market_cap_rank": 7007,
+      "market_cap": 0,
+      "categories": "real-world-assets"
+    },
+    {
+      "symbol": "AEROSPACE",
+      "name": "Aerospace.sh",
+      "type": "memecoin",
+      "market_cap_rank": 7006,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SYNQAI",
+      "name": "SYNQAI",
+      "type": "memecoin",
+      "market_cap_rank": 7005,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RYZE",
+      "name": "Ryze",
+      "type": "memecoin",
+      "market_cap_rank": 7004,
+      "market_cap": 0,
+      "categories": "arbitrum"
+    },
+    {
+      "symbol": "VANCE",
+      "name": "Ghibli Vance",
+      "type": "memecoin",
+      "market_cap_rank": 7003,
+      "market_cap": 0
+    },
+    {
+      "symbol": "VEED",
+      "name": "VIMworld",
+      "type": "major coin",
+      "market_cap_rank": 7002,
+      "market_cap": 0,
+      "categories": "defi,nft"
+    },
+    {
+      "symbol": "SHIBELON",
+      "name": "ShibElon",
+      "type": "memecoin",
+      "market_cap_rank": 7001,
+      "market_cap": 0,
+      "categories": "bsc,meme"
+    },
+    {
+      "symbol": "SHELLIE",
+      "name": "Shellie",
+      "type": "memecoin",
+      "market_cap_rank": 7000,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MOKO",
+      "name": "Moko Cult",
+      "type": "memecoin",
+      "market_cap_rank": 6999,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CHILD AI",
+      "name": "CHILD AI",
+      "type": "memecoin",
+      "market_cap_rank": 6998,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CULO",
+      "name": "CULO",
+      "type": "memecoin",
+      "market_cap_rank": 6997,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "YAKIU",
+      "name": "Japanese Pepe",
+      "type": "memecoin",
+      "market_cap_rank": 6996,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RUNEJESUSONXCOM",
+      "name": "RUNEJESUS•ON•X•COM",
+      "type": "memecoin",
+      "market_cap_rank": 6995,
+      "market_cap": 0,
+      "categories": "runes"
+    },
+    {
+      "symbol": "BONKFIRE",
+      "name": "BONKFIRE",
+      "type": "memecoin",
+      "market_cap_rank": 6994,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WHEX",
+      "name": "Whale Exploder",
+      "type": "major coin",
+      "market_cap_rank": 6993,
+      "market_cap": 0,
+      "categories": "bsc,defi"
+    },
+    {
+      "symbol": "MEGS",
+      "name": "MEGS",
+      "type": "memecoin",
+      "market_cap_rank": 6992,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DATAI",
+      "name": "Datai",
+      "type": "memecoin",
+      "market_cap_rank": 6991,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DEEPSEEK",
+      "name": "DeepSeek",
+      "type": "memecoin",
+      "market_cap_rank": 6990,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MINKY",
+      "name": "MINKY",
+      "type": "memecoin",
+      "market_cap_rank": 6989,
+      "market_cap": 0,
+      "categories": "meme,base-ecosystem"
+    },
+    {
+      "symbol": "WADDLEWADDLEPENGU",
+      "name": "WADDLE•WADDLE•PENGU",
+      "type": "major coin",
+      "market_cap_rank": 6988,
+      "market_cap": 0,
+      "categories": "runes,bitcoin-ecosystem"
+    },
+    {
+      "symbol": "TNFT",
+      "name": "TreasureNFT",
+      "type": "memecoin",
+      "market_cap_rank": 6987,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BEGE",
+      "name": "BegeCoin",
+      "type": "memecoin",
+      "market_cap_rank": 6986,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TRMUS",
+      "name": "TRMUS",
+      "type": "memecoin",
+      "market_cap_rank": 6985,
+      "market_cap": 0
+    },
+    {
+      "symbol": "URMOM",
+      "name": "urmom",
+      "type": "memecoin",
+      "market_cap_rank": 6984,
+      "market_cap": 0
+    },
+    {
+      "symbol": "C-DAO",
+      "name": "Cyber-DAO",
+      "type": "major coin",
+      "market_cap_rank": 6983,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "MODI",
+      "name": "Doland Modi",
+      "type": "memecoin",
+      "market_cap_rank": 6982,
+      "market_cap": 0
+    },
+    {
+      "symbol": "2025",
+      "name": "2025",
+      "type": "memecoin",
+      "market_cap_rank": 6981,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ENI",
+      "name": "Enume AI",
+      "type": "memecoin",
+      "market_cap_rank": 6980,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TANUKI",
+      "name": "Tanuki Inu",
+      "type": "memecoin",
+      "market_cap_rank": 6979,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GMEC",
+      "name": "GMEC",
+      "type": "memecoin",
+      "market_cap_rank": 6978,
+      "market_cap": 0
+    },
+    {
+      "symbol": "EDGT",
+      "name": "Edgecoin",
+      "type": "memecoin",
+      "market_cap_rank": 6977,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RENZEC",
+      "name": "renZEC",
+      "type": "memecoin",
+      "market_cap_rank": 6976,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SUCHIR",
+      "name": "SUCHIR",
+      "type": "memecoin",
+      "market_cap_rank": 6975,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PNUTMAS",
+      "name": "PNUTMAS",
+      "type": "memecoin",
+      "market_cap_rank": 6974,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CHERRY",
+      "name": "CHERRY",
+      "type": "memecoin",
+      "market_cap_rank": 6973,
+      "market_cap": 0
+    },
+    {
+      "symbol": "EMAX",
+      "name": "EthereumMax",
+      "type": "memecoin",
+      "market_cap_rank": 6972,
+      "market_cap": 0,
+      "categories": "arbitrum"
+    },
+    {
+      "symbol": "GRUM",
+      "name": "Grumpy",
+      "type": "memecoin",
+      "market_cap_rank": 6971,
+      "market_cap": 0,
+      "categories": "brc20"
+    },
+    {
+      "symbol": "LILI",
+      "name": "DeepSeek First AI Agent",
+      "type": "memecoin",
+      "market_cap_rank": 6970,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GOBTC",
+      "name": "goBTC",
+      "type": "memecoin",
+      "market_cap_rank": 6969,
+      "market_cap": 0,
+      "categories": "algorand"
+    },
+    {
+      "symbol": "N-G-L",
+      "name": "N-G-L",
+      "type": "memecoin",
+      "market_cap_rank": 6968,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WEE",
+      "name": "WEE",
+      "type": "memecoin",
+      "market_cap_rank": 6967,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BRONIFY",
+      "name": "Bronify",
+      "type": "memecoin",
+      "market_cap_rank": 6966,
+      "market_cap": 0
+    },
+    {
+      "symbol": "USDTZ",
+      "name": "USDtez",
+      "type": "major coin",
+      "market_cap_rank": 6965,
+      "market_cap": 0,
+      "categories": "stablecoin,defi,nft"
+    },
+    {
+      "symbol": "GROK AI",
+      "name": "GROK AI",
+      "type": "memecoin",
+      "market_cap_rank": 6964,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "PPIZZA",
+      "name": "P Pizza",
+      "type": "memecoin",
+      "market_cap_rank": 6963,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "PANICAN",
+      "name": "PANICAN",
+      "type": "memecoin",
+      "market_cap_rank": 6962,
+      "market_cap": 0
+    },
+    {
+      "symbol": "OWB",
+      "name": "OWB",
+      "type": "memecoin",
+      "market_cap_rank": 6961,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RUNES",
+      "name": "Runes Coin",
+      "type": "memecoin",
+      "market_cap_rank": 6960,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BSSB",
+      "name": "BitStable Finance",
+      "type": "major coin",
+      "market_cap_rank": 6959,
+      "market_cap": 0,
+      "categories": "brc20,bitcoin-ecosystem"
+    },
+    {
+      "symbol": "MACROHARD",
+      "name": "Macrohard",
+      "type": "memecoin",
+      "market_cap_rank": 6958,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CHAT4PT",
+      "name": "Chat4pt",
+      "type": "memecoin",
+      "market_cap_rank": 6957,
+      "market_cap": 0
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Pool",
+      "type": "major coin",
+      "market_cap_rank": 6956,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "SKYLAR",
+      "name": "SKYLAR",
+      "type": "memecoin",
+      "market_cap_rank": 6955,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GRINCH",
+      "name": "GRINCH",
+      "type": "memecoin",
+      "market_cap_rank": 6954,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HOLDEX",
+      "name": "Holdex Finance",
+      "type": "major coin",
+      "market_cap_rank": 6953,
+      "market_cap": 0,
+      "categories": "bsc,defi"
+    },
+    {
+      "symbol": "PWUG",
+      "name": "PWUG",
+      "type": "memecoin",
+      "market_cap_rank": 6952,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DPP",
+      "name": "Depopulation",
+      "type": "memecoin",
+      "market_cap_rank": 6951,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NOKI",
+      "name": "NOKI",
+      "type": "memecoin",
+      "market_cap_rank": 6950,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CAPYBARA",
+      "name": "CAPYBARA",
+      "type": "memecoin",
+      "market_cap_rank": 6949,
+      "market_cap": 0
+    },
+    {
+      "symbol": "79TH",
+      "name": "Trump's Birthday",
+      "type": "memecoin",
+      "market_cap_rank": 6948,
+      "market_cap": 0
+    },
+    {
+      "symbol": "UNFUCKED",
+      "name": "UNFUCKED",
+      "type": "memecoin",
+      "market_cap_rank": 6947,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HOLOQ",
+      "name": "HOLO-Q",
+      "type": "memecoin",
+      "market_cap_rank": 6946,
+      "market_cap": 0
+    },
+    {
+      "symbol": "USDZ",
+      "name": "Zedxion",
+      "type": "major coin",
+      "market_cap_rank": 6945,
+      "market_cap": 0,
+      "categories": "stablecoin"
+    },
+    {
+      "symbol": "AIRBNB",
+      "name": "AirbnbCoin",
+      "type": "memecoin",
+      "market_cap_rank": 6944,
+      "market_cap": 0
+    },
+    {
+      "symbol": "KLKS",
+      "name": "Kalkulus",
+      "type": "memecoin",
+      "market_cap_rank": 6943,
+      "market_cap": 0
+    },
+    {
+      "symbol": "UTYA",
+      "name": "Utya",
+      "type": "memecoin",
+      "market_cap_rank": 6942,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "CCRU",
+      "name": "CCRU",
+      "type": "memecoin",
+      "market_cap_rank": 6941,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LOLZZZ",
+      "name": "MEME STOCK MARKET",
+      "type": "memecoin",
+      "market_cap_rank": 6940,
+      "market_cap": 0
+    },
+    {
+      "symbol": "JCHF",
+      "name": "Jarvis Synthetic Swiss Franc",
+      "type": "major coin",
+      "market_cap_rank": 6939,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "BYG",
+      "name": "Black Eye Galaxy",
+      "type": "memecoin",
+      "market_cap_rank": 6938,
+      "market_cap": 0
+    },
+    {
+      "symbol": "OVERSEER",
+      "name": "OVERSEER",
+      "type": "memecoin",
+      "market_cap_rank": 6937,
+      "market_cap": 0
+    },
+    {
+      "symbol": "AISHA256",
+      "name": "AiSHA256",
+      "type": "memecoin",
+      "market_cap_rank": 6936,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LEBARBIE",
+      "name": "LeBron James Barbie",
+      "type": "memecoin",
+      "market_cap_rank": 6935,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ETHMASCOT",
+      "name": "ethmascot",
+      "type": "memecoin",
+      "market_cap_rank": 6934,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BUX",
+      "name": "BUXCOIN",
+      "type": "memecoin",
+      "market_cap_rank": 6933,
+      "market_cap": 0,
+      "categories": "bsc"
+    },
+    {
+      "symbol": "DUAPIPA",
+      "name": "Dua Pipa",
+      "type": "memecoin",
+      "market_cap_rank": 6932,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SRS500",
+      "name": "Solana Recovery System 500",
+      "type": "memecoin",
+      "market_cap_rank": 6931,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FUCKCOIN",
+      "name": "fuckcoin",
+      "type": "memecoin",
+      "market_cap_rank": 6930,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BILLIE",
+      "name": "Big Sis Billie",
+      "type": "memecoin",
+      "market_cap_rank": 6929,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DX",
+      "name": "DxChain",
+      "type": "memecoin",
+      "market_cap_rank": 6928,
+      "market_cap": 0,
+      "categories": "ai"
+    },
+    {
+      "symbol": "MEOW.",
+      "name": "Meow.",
+      "type": "memecoin",
+      "market_cap_rank": 6927,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SIYA",
+      "name": "Siya.AI",
+      "type": "memecoin",
+      "market_cap_rank": 6926,
+      "market_cap": 0
+    },
+    {
+      "symbol": "INTEL",
+      "name": "intel",
+      "type": "memecoin",
+      "market_cap_rank": 6925,
+      "market_cap": 0
+    },
+    {
+      "symbol": "XIAO",
+      "name": "XIAO",
+      "type": "memecoin",
+      "market_cap_rank": 6924,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FLOTH",
+      "name": "FLOTH",
+      "type": "memecoin",
+      "market_cap_rank": 6923,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GWART",
+      "name": "GWART",
+      "type": "memecoin",
+      "market_cap_rank": 6922,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SIB",
+      "name": "SIBCoin",
+      "type": "memecoin",
+      "market_cap_rank": 6921,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GACHA",
+      "name": "GACHA",
+      "type": "memecoin",
+      "market_cap_rank": 6920,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SKULL",
+      "name": "Skull Coin",
+      "type": "memecoin",
+      "market_cap_rank": 6919,
+      "market_cap": 0,
+      "categories": "stacks-ecosystem"
+    },
+    {
+      "symbol": "STICKHOUSE",
+      "name": "Stickhouse",
+      "type": "memecoin",
+      "market_cap_rank": 6918,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BETCH",
+      "name": "BETCH",
+      "type": "memecoin",
+      "market_cap_rank": 6917,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DIFX",
+      "name": "Digital Financial Exchange",
+      "type": "memecoin",
+      "market_cap_rank": 6916,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FREAK",
+      "name": "FREAK DUDES",
+      "type": "memecoin",
+      "market_cap_rank": 6915,
+      "market_cap": 0
+    },
+    {
+      "symbol": "KDX",
+      "name": "Kaidex",
+      "type": "major coin",
+      "market_cap_rank": 6914,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "SMON",
+      "name": "StarMon Token",
+      "type": "major coin",
+      "market_cap_rank": 6913,
+      "market_cap": 0,
+      "categories": "bsc,defi,nft,gaming"
+    },
+    {
+      "symbol": "AGC",
+      "name": "Argocoin",
+      "type": "major coin",
+      "market_cap_rank": 6912,
+      "market_cap": 0,
+      "categories": "made-in-usa,layer-1,base-ecosystem"
+    },
+    {
+      "symbol": "VIBEGUY",
+      "name": "VIBEGUY",
+      "type": "memecoin",
+      "market_cap_rank": 6911,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CATGO",
+      "name": "CATGO",
+      "type": "memecoin",
+      "market_cap_rank": 6910,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TROLLBOOK",
+      "name": "Book of Troll",
+      "type": "memecoin",
+      "market_cap_rank": 6909,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SKITRUMP",
+      "name": "Ski Mask Trump",
+      "type": "memecoin",
+      "market_cap_rank": 6908,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MUSD",
+      "name": "Mad USD",
+      "type": "major coin",
+      "market_cap_rank": 6907,
+      "market_cap": 0,
+      "categories": "stablecoin"
+    },
+    {
+      "symbol": "GREED2",
+      "name": "Greed2",
+      "type": "memecoin",
+      "market_cap_rank": 6906,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TUBE",
+      "name": "BitTube",
+      "type": "memecoin",
+      "market_cap_rank": 6905,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PUMPGUY",
+      "name": "Just A Pump Guy",
+      "type": "memecoin",
+      "market_cap_rank": 6904,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HANNA",
+      "name": "HANNA",
+      "type": "memecoin",
+      "market_cap_rank": 6903,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SUSDT",
+      "name": "Bridged Tether (Alex Bridge)",
+      "type": "major coin",
+      "market_cap_rank": 6902,
+      "market_cap": 0,
+      "categories": "stablecoin,stacks-ecosystem"
+    },
+    {
+      "symbol": "DOGEUS",
+      "name": "DOGEUS",
+      "type": "memecoin",
+      "market_cap_rank": 6901,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CNT",
+      "name": "Cryption Network",
+      "type": "major coin",
+      "market_cap_rank": 6900,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "XTD",
+      "name": "XTD",
+      "type": "memecoin",
+      "market_cap_rank": 6899,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CTRL2XY",
+      "name": "Control2XY",
+      "type": "major coin",
+      "market_cap_rank": 6898,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "NUCLEAR",
+      "name": "NUCLEAR",
+      "type": "memecoin",
+      "market_cap_rank": 6897,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BULLTOBER",
+      "name": "BULLTOBER",
+      "type": "memecoin",
+      "market_cap_rank": 6896,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LUCRA",
+      "name": "LUCRA",
+      "type": "memecoin",
+      "market_cap_rank": 6895,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FWAG",
+      "name": "FWAG",
+      "type": "memecoin",
+      "market_cap_rank": 6894,
+      "market_cap": 0
+    },
+    {
+      "symbol": "1000X",
+      "name": "1000X",
+      "type": "memecoin",
+      "market_cap_rank": 6893,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ANAL",
+      "name": "ANAL",
+      "type": "memecoin",
+      "market_cap_rank": 6892,
+      "market_cap": 0
+    },
+    {
+      "symbol": "XING",
+      "name": "Xing Xing",
+      "type": "memecoin",
+      "market_cap_rank": 6891,
+      "market_cap": 0,
+      "categories": "brc20"
+    },
+    {
+      "symbol": "SWG",
+      "name": "Swirge",
+      "type": "major coin",
+      "market_cap_rank": 6890,
+      "market_cap": 0,
+      "categories": "bsc,defi"
+    },
+    {
+      "symbol": "CRAZYFROG",
+      "name": "Crazy Frog",
+      "type": "memecoin",
+      "market_cap_rank": 6889,
+      "market_cap": 0
+    },
+    {
+      "symbol": "REDLIGHT",
+      "name": "REDLIGHT",
+      "type": "memecoin",
+      "market_cap_rank": 6888,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CRUISE",
+      "name": "Tom Cruise",
+      "type": "memecoin",
+      "market_cap_rank": 6887,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CANCELPUNK",
+      "name": "Cancel MrPunk",
+      "type": "memecoin",
+      "market_cap_rank": 6886,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PREDO",
+      "name": "PREDO",
+      "type": "memecoin",
+      "market_cap_rank": 6885,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SPEEDRUN",
+      "name": "World Record Fastest $100M Run",
+      "type": "memecoin",
+      "market_cap_rank": 6884,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CHILLG",
+      "name": "CHILLG",
+      "type": "memecoin",
+      "market_cap_rank": 6883,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DEEPSHIT",
+      "name": "DEEPSHIT",
+      "type": "memecoin",
+      "market_cap_rank": 6882,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LUCKYCOIN",
+      "name": "????",
+      "type": "memecoin",
+      "market_cap_rank": 6881,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MEME ASSET",
+      "name": "National Meme Asset",
+      "type": "memecoin",
+      "market_cap_rank": 6880,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PUMPEPE",
+      "name": "PUMP PEPE",
+      "type": "memecoin",
+      "market_cap_rank": 6879,
+      "market_cap": 0
+    },
+    {
+      "symbol": "OREC",
+      "name": "OREC",
+      "type": "memecoin",
+      "market_cap_rank": 6878,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DERRENS",
+      "name": "DERRENS",
+      "type": "memecoin",
+      "market_cap_rank": 6877,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HUZZMAS",
+      "name": "HUZZMAS",
+      "type": "memecoin",
+      "market_cap_rank": 6876,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ZUCKERBERG",
+      "name": "Mark Zuckerberg",
+      "type": "memecoin",
+      "market_cap_rank": 6875,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BONKFATHER",
+      "name": "BonkFather",
+      "type": "memecoin",
+      "market_cap_rank": 6874,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LORDY",
+      "name": "LORDY",
+      "type": "memecoin",
+      "market_cap_rank": 6873,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SPLO",
+      "name": "SPLO",
+      "type": "memecoin",
+      "market_cap_rank": 6872,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "BOMBO",
+      "name": "BOMBO",
+      "type": "memecoin",
+      "market_cap_rank": 6871,
+      "market_cap": 0,
+      "categories": "solana-ecosystem"
+    },
+    {
+      "symbol": "BABYGRINCH",
+      "name": "BABYGRINCH",
+      "type": "memecoin",
+      "market_cap_rank": 6870,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PETERTODD",
+      "name": "PETERTODD",
+      "type": "memecoin",
+      "market_cap_rank": 6869,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PENALDO",
+      "name": "PENALDO",
+      "type": "memecoin",
+      "market_cap_rank": 6868,
+      "market_cap": 0
+    },
+    {
+      "symbol": "QUARM",
+      "name": "quarm",
+      "type": "memecoin",
+      "market_cap_rank": 6867,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MEDDY",
+      "name": "Meddy AI",
+      "type": "memecoin",
+      "market_cap_rank": 6866,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HODLER",
+      "name": "The Little Hodler",
+      "type": "memecoin",
+      "market_cap_rank": 6865,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SWF",
+      "name": "Sovereign Wealth Fund",
+      "type": "memecoin",
+      "market_cap_rank": 6864,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MORON",
+      "name": "Moron Fren",
+      "type": "memecoin",
+      "market_cap_rank": 6863,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TINGUS",
+      "name": "TINGUS",
+      "type": "memecoin",
+      "market_cap_rank": 6862,
+      "market_cap": 0,
+      "categories": "solana-ecosystem,meme"
+    },
+    {
+      "symbol": "OU",
+      "name": "Ou",
+      "type": "memecoin",
+      "market_cap_rank": 6861,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CNCL",
+      "name": "The Ordinals Council",
+      "type": "memecoin",
+      "market_cap_rank": 6860,
+      "market_cap": 0,
+      "categories": "brc20"
+    },
+    {
+      "symbol": "LETHIMCOOK",
+      "name": "LETHIMCOOK",
+      "type": "memecoin",
+      "market_cap_rank": 6859,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HOMDAENG",
+      "name": "HOMDAENG",
+      "type": "memecoin",
+      "market_cap_rank": 6858,
+      "market_cap": 0
+    },
+    {
+      "symbol": "REFUND",
+      "name": "Retard Hedge Fund",
+      "type": "memecoin",
+      "market_cap_rank": 6857,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GROG",
+      "name": "grog",
+      "type": "memecoin",
+      "market_cap_rank": 6856,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ORT",
+      "name": "Omni Real Estate Token",
+      "type": "major coin",
+      "market_cap_rank": 6855,
+      "market_cap": 0,
+      "categories": "bsc,defi,nft"
+    },
+    {
+      "symbol": "ORDO",
+      "name": "Orange Dollar",
+      "type": "memecoin",
+      "market_cap_rank": 6854,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CSGOCAT",
+      "name": "CSGO Cat",
+      "type": "memecoin",
+      "market_cap_rank": 6853,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TENNA",
+      "name": "Tenna",
+      "type": "memecoin",
+      "market_cap_rank": 6852,
+      "market_cap": 0
+    },
+    {
+      "symbol": "VLAD",
+      "name": "Vlad Tenev",
+      "type": "memecoin",
+      "market_cap_rank": 6851,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CDN",
+      "name": "Canada eCoin",
+      "type": "memecoin",
+      "market_cap_rank": 6850,
+      "market_cap": 0
+    },
+    {
+      "symbol": "XQN",
+      "name": "Quotient",
+      "type": "memecoin",
+      "market_cap_rank": 6849,
+      "market_cap": 0
+    },
+    {
+      "symbol": "KEYS",
+      "name": "KEYS",
+      "type": "memecoin",
+      "market_cap_rank": 6848,
+      "market_cap": 0,
+      "categories": "bsc,nft"
+    },
+    {
+      "symbol": "KIA",
+      "name": "Kia Grok Companion",
+      "type": "memecoin",
+      "market_cap_rank": 6847,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BALLOON",
+      "name": "Balloon",
+      "type": "memecoin",
+      "market_cap_rank": 6846,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MERMOD",
+      "name": "MERMOD",
+      "type": "memecoin",
+      "market_cap_rank": 6845,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MUSKAI",
+      "name": "MUSKAI",
+      "type": "memecoin",
+      "market_cap_rank": 6844,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MMS",
+      "name": "Minimals",
+      "type": "major coin",
+      "market_cap_rank": 6843,
+      "market_cap": 0,
+      "categories": "bsc,defi,nft"
+    },
+    {
+      "symbol": "LOCKEDIN",
+      "name": "We don't need a job",
+      "type": "memecoin",
+      "market_cap_rank": 6842,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BABYFLOKI",
+      "name": "Baby Floki (BSC)",
+      "type": "memecoin",
+      "market_cap_rank": 6841,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "CEX",
+      "name": "CatenaX",
+      "type": "major coin",
+      "market_cap_rank": 6840,
+      "market_cap": 0,
+      "categories": "bsc,defi"
+    },
+    {
+      "symbol": "ZHDUN",
+      "name": "The One Who Waits",
+      "type": "memecoin",
+      "market_cap_rank": 6839,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PIPOP",
+      "name": "pip and pop",
+      "type": "memecoin",
+      "market_cap_rank": 6838,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GRIMEX",
+      "name": "SpaceGrime",
+      "type": "memecoin",
+      "market_cap_rank": 6837,
+      "market_cap": 0,
+      "categories": "bsc"
+    },
+    {
+      "symbol": "USDUP",
+      "name": "USDUP",
+      "type": "memecoin",
+      "market_cap_rank": 6836,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CATACLAWS",
+      "name": "CATACLAWS",
+      "type": "memecoin",
+      "market_cap_rank": 6835,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CATO",
+      "name": "CatoCoin",
+      "type": "memecoin",
+      "market_cap_rank": 6834,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GIKOO",
+      "name": "GIKOO",
+      "type": "memecoin",
+      "market_cap_rank": 6833,
+      "market_cap": 0
+    },
+    {
+      "symbol": "STBL",
+      "name": "AlgoStable",
+      "type": "memecoin",
+      "market_cap_rank": 6832,
+      "market_cap": 0,
+      "categories": "algorand"
+    },
+    {
+      "symbol": "FUGGS",
+      "name": "Fugglers",
+      "type": "memecoin",
+      "market_cap_rank": 6831,
+      "market_cap": 0
+    },
+    {
+      "symbol": "STRAWBERRY",
+      "name": "$19 Strawberry",
+      "type": "memecoin",
+      "market_cap_rank": 6830,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PULI",
+      "name": "Puli",
+      "type": "memecoin",
+      "market_cap_rank": 6829,
+      "market_cap": 0,
+      "categories": "bsc,defi,meme"
+    },
+    {
+      "symbol": "BIGBALLS",
+      "name": "Edward Coristine",
+      "type": "memecoin",
+      "market_cap_rank": 6828,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WPS",
+      "name": "World Peace Stacks",
+      "type": "memecoin",
+      "market_cap_rank": 6827,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "THOP",
+      "name": "THOP",
+      "type": "memecoin",
+      "market_cap_rank": 6826,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MURATIAI",
+      "name": "MuratiAI",
+      "type": "memecoin",
+      "market_cap_rank": 6825,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LWR",
+      "name": "Lincoln Was Right",
+      "type": "memecoin",
+      "market_cap_rank": 6824,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PXRP",
+      "name": "PXRP",
+      "type": "memecoin",
+      "market_cap_rank": 6823,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TRU",
+      "name": "TrueBit",
+      "type": "memecoin",
+      "market_cap_rank": 6822,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GP",
+      "name": "Nexus ASA",
+      "type": "memecoin",
+      "market_cap_rank": 6821,
+      "market_cap": 0,
+      "categories": "algorand"
+    },
+    {
+      "symbol": "SZN",
+      "name": "szn",
+      "type": "memecoin",
+      "market_cap_rank": 6820,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "PITCOIN",
+      "name": "pitcoin",
+      "type": "memecoin",
+      "market_cap_rank": 6819,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FLOPPY",
+      "name": "Justice for Floppy",
+      "type": "memecoin",
+      "market_cap_rank": 6818,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TROLLKABOS",
+      "name": "Troll Tokabu Boss",
+      "type": "memecoin",
+      "market_cap_rank": 6817,
+      "market_cap": 0
+    },
+    {
+      "symbol": "UGD",
+      "name": "UGD",
+      "type": "memecoin",
+      "market_cap_rank": 6816,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MEMEWAR",
+      "name": "MEME WAR",
+      "type": "memecoin",
+      "market_cap_rank": 6815,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ZELA",
+      "name": "ZELA",
+      "type": "memecoin",
+      "market_cap_rank": 6814,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RSPACEX",
+      "name": "rSpaceX",
+      "type": "memecoin",
+      "market_cap_rank": 6813,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MUT COIN",
+      "name": "MUTC",
+      "type": "memecoin",
+      "market_cap_rank": 6812,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TRXC",
+      "name": "TRONCLASSIC",
+      "type": "memecoin",
+      "market_cap_rank": 6811,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GROK",
+      "name": "Grok",
+      "type": "memecoin",
+      "market_cap_rank": 6810,
+      "market_cap": 0
+    },
+    {
+      "symbol": "KEEPER",
+      "name": "KEEPER",
+      "type": "memecoin",
+      "market_cap_rank": 6809,
+      "market_cap": 0
+    },
+    {
+      "symbol": "9-5",
+      "name": "9-5 Guy",
+      "type": "memecoin",
+      "market_cap_rank": 6808,
+      "market_cap": 0
+    },
+    {
+      "symbol": "JAJAK",
+      "name": "JAJAK",
+      "type": "memecoin",
+      "market_cap_rank": 6807,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NOOT",
+      "name": "NOOT",
+      "type": "memecoin",
+      "market_cap_rank": 6806,
+      "market_cap": 0,
+      "categories": "defi,nft,meme"
+    },
+    {
+      "symbol": "BONKIFY",
+      "name": "Bonkify",
+      "type": "memecoin",
+      "market_cap_rank": 6805,
+      "market_cap": 0
+    },
+    {
+      "symbol": "KNET",
+      "name": "Kingnet AI",
+      "type": "memecoin",
+      "market_cap_rank": 6804,
+      "market_cap": 0,
+      "categories": "solana-ecosystem"
+    },
+    {
+      "symbol": "CONSENT",
+      "name": "Consent to view this coin",
+      "type": "memecoin",
+      "market_cap_rank": 6803,
+      "market_cap": 0
+    },
+    {
+      "symbol": "VIKTO",
+      "name": "Vikto",
+      "type": "memecoin",
+      "market_cap_rank": 6802,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TRUMPKING",
+      "name": "Trump Crypto King",
+      "type": "memecoin",
+      "market_cap_rank": 6801,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WHAT",
+      "name": "What if we all held",
+      "type": "memecoin",
+      "market_cap_rank": 6800,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PHARTOM",
+      "name": "Farting Phantom",
+      "type": "memecoin",
+      "market_cap_rank": 6799,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SN0",
+      "name": "Staked TAO",
+      "type": "major coin",
+      "market_cap_rank": 6798,
+      "market_cap": 0,
+      "categories": "bittensor-ecosystem,liquid-staking-tokens"
+    },
+    {
+      "symbol": "COOP",
+      "name": "Coop Coin",
+      "type": "memecoin",
+      "market_cap_rank": 6797,
+      "market_cap": 0,
+      "categories": "algorand"
+    },
+    {
+      "symbol": "SXRP",
+      "name": "SXRP",
+      "type": "memecoin",
+      "market_cap_rank": 6796,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WINFO",
+      "name": "WINFO",
+      "type": "memecoin",
+      "market_cap_rank": 6795,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MCGREGOR",
+      "name": "Coinor Mcgregor",
+      "type": "memecoin",
+      "market_cap_rank": 6794,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ELONMA",
+      "name": "elon ma",
+      "type": "memecoin",
+      "market_cap_rank": 6793,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HODLDIAMONDDICK",
+      "name": "HODL•DIAMOND•DICK",
+      "type": "memecoin",
+      "market_cap_rank": 6792,
+      "market_cap": 0,
+      "categories": "runes"
+    },
+    {
+      "symbol": "MRNCF",
+      "name": "MEREN COFFEE",
+      "type": "memecoin",
+      "market_cap_rank": 6791,
+      "market_cap": 0
+    },
+    {
+      "symbol": "VALET",
+      "name": "Valet Agents",
+      "type": "memecoin",
+      "market_cap_rank": 6790,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SORKINCOIN",
+      "name": "Sorkin Coin",
+      "type": "memecoin",
+      "market_cap_rank": 6789,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FHM",
+      "name": "FantOHM DAO",
+      "type": "major coin",
+      "market_cap_rank": 6788,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "MONSTA",
+      "name": "Cake Monster",
+      "type": "memecoin",
+      "market_cap_rank": 6787,
+      "market_cap": 0,
+      "categories": "bsc,defi,nft,meme"
+    },
+    {
+      "symbol": "DEGREE",
+      "name": "Useless Paper",
+      "type": "memecoin",
+      "market_cap_rank": 6786,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MEMEPOOL",
+      "name": "CREATE NEW MEMES FROM THIS",
+      "type": "memecoin",
+      "market_cap_rank": 6785,
+      "market_cap": 0
+    },
+    {
+      "symbol": "JENNER",
+      "name": "Caitlyn Jenner",
+      "type": "memecoin",
+      "market_cap_rank": 6784,
+      "market_cap": 0,
+      "categories": "meme,fan"
+    },
+    {
+      "symbol": "NOKINGS",
+      "name": "No Kings",
+      "type": "memecoin",
+      "market_cap_rank": 6783,
+      "market_cap": 0
+    },
+    {
+      "symbol": "AIGUY",
+      "name": "AIGUY",
+      "type": "memecoin",
+      "market_cap_rank": 6782,
+      "market_cap": 0
+    },
+    {
+      "symbol": "VSOL",
+      "name": "VSolidus",
+      "type": "major coin",
+      "market_cap_rank": 6781,
+      "market_cap": 0,
+      "categories": "bsc,defi"
+    },
+    {
+      "symbol": "MAPU",
+      "name": "MAPU",
+      "type": "memecoin",
+      "market_cap_rank": 6780,
+      "market_cap": 0
+    },
+    {
+      "symbol": "UTE",
+      "name": "UNIVERSAL TRUTH ENGINE",
+      "type": "memecoin",
+      "market_cap_rank": 6779,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HTRUMP",
+      "name": "Holo Trump",
+      "type": "memecoin",
+      "market_cap_rank": 6778,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SUPERJUDGE",
+      "name": "SUPERJUDGE",
+      "type": "memecoin",
+      "market_cap_rank": 6777,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BET",
+      "name": "Betfin token",
+      "type": "memecoin",
+      "market_cap_rank": 6776,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SLINKY",
+      "name": "SLINKY",
+      "type": "memecoin",
+      "market_cap_rank": 6775,
+      "market_cap": 0,
+      "categories": "solana-ecosystem"
+    },
+    {
+      "symbol": "BONGE",
+      "name": "BONGE THE MONKEY",
+      "type": "memecoin",
+      "market_cap_rank": 6774,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BANGUI",
+      "name": "Bangui CentralAfricanRepublic",
+      "type": "memecoin",
+      "market_cap_rank": 6773,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BPLC",
+      "name": "BlackPearl Token",
+      "type": "major coin",
+      "market_cap_rank": 6772,
+      "market_cap": 0,
+      "categories": "exchange-tokens"
+    },
+    {
+      "symbol": "STOOLGUY",
+      "name": "Stool Guy",
+      "type": "memecoin",
+      "market_cap_rank": 6771,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PEDRO",
+      "name": "PEDRO",
+      "type": "memecoin",
+      "market_cap_rank": 6770,
+      "market_cap": 0
+    },
+    {
+      "symbol": "JUSTCUZ",
+      "name": "CUZ",
+      "type": "memecoin",
+      "market_cap_rank": 6769,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RUNA",
+      "name": "Runa Ai",
+      "type": "memecoin",
+      "market_cap_rank": 6768,
+      "market_cap": 0
+    },
+    {
+      "symbol": "KBC",
+      "name": "Karatgold Coin",
+      "type": "memecoin",
+      "market_cap_rank": 6767,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ENJOYOOR",
+      "name": "Memecoin enjoyoor",
+      "type": "memecoin",
+      "market_cap_rank": 6766,
+      "market_cap": 0
+    },
+    {
+      "symbol": "AZURAAI",
+      "name": "Azura by ai16z",
+      "type": "memecoin",
+      "market_cap_rank": 6765,
+      "market_cap": 0
+    },
+    {
+      "symbol": "VINEX",
+      "name": "VineX Coin",
+      "type": "memecoin",
+      "market_cap_rank": 6764,
+      "market_cap": 0
+    },
+    {
+      "symbol": "99",
+      "name": "The 99% Community",
+      "type": "memecoin",
+      "market_cap_rank": 6763,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CORTEX",
+      "name": "CORTEX AI",
+      "type": "memecoin",
+      "market_cap_rank": 6762,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GUY2025",
+      "name": "GUY2025",
+      "type": "memecoin",
+      "market_cap_rank": 6761,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TFT",
+      "name": "ThreeFold Token",
+      "type": "memecoin",
+      "market_cap_rank": 6760,
+      "market_cap": 0,
+      "categories": "depin,storage"
+    },
+    {
+      "symbol": "VOIDAI",
+      "name": "VOID AI",
+      "type": "memecoin",
+      "market_cap_rank": 6759,
+      "market_cap": 0
+    },
+    {
+      "symbol": "EOSDT",
+      "name": "EOSDT",
+      "type": "major coin",
+      "market_cap_rank": 6758,
+      "market_cap": 0,
+      "categories": "stablecoin,defi"
+    },
+    {
+      "symbol": "TWERK",
+      "name": "Shake It",
+      "type": "memecoin",
+      "market_cap_rank": 6757,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BILLIONS",
+      "name": "TARIFF MAN",
+      "type": "memecoin",
+      "market_cap_rank": 6756,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TOOFY",
+      "name": "toofy",
+      "type": "memecoin",
+      "market_cap_rank": 6755,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SLIGHTLY",
+      "name": "Slightly Overweight Girls",
+      "type": "memecoin",
+      "market_cap_rank": 6754,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BTCBULL",
+      "name": "BTC Bull",
+      "type": "memecoin",
+      "market_cap_rank": 6753,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PBJT",
+      "name": "Peanut Butter Jelly Time",
+      "type": "memecoin",
+      "market_cap_rank": 6752,
+      "market_cap": 0
+    },
+    {
+      "symbol": "VEO",
+      "name": "Amoveo",
+      "type": "memecoin",
+      "market_cap_rank": 6751,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DXCT",
+      "name": "DNAxCAT Token",
+      "type": "major coin",
+      "market_cap_rank": 6750,
+      "market_cap": 0,
+      "categories": "bsc,defi,nft,gaming"
+    },
+    {
+      "symbol": "HELD",
+      "name": "pov: you held",
+      "type": "memecoin",
+      "market_cap_rank": 6749,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ZIX",
+      "name": "Coinzix",
+      "type": "memecoin",
+      "market_cap_rank": 6748,
+      "market_cap": 0,
+      "categories": "bsc"
+    },
+    {
+      "symbol": "XBTC",
+      "name": "Wrapped Bitcoin",
+      "type": "memecoin",
+      "market_cap_rank": 6747,
+      "market_cap": 0,
+      "categories": "stacks-ecosystem"
+    },
+    {
+      "symbol": "DEEPER",
+      "name": "DeepSeek Inernet Explorer",
+      "type": "memecoin",
+      "market_cap_rank": 6746,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CHONGKER",
+      "name": "chongker",
+      "type": "memecoin",
+      "market_cap_rank": 6745,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PIG",
+      "name": "Pig Finance",
+      "type": "memecoin",
+      "market_cap_rank": 6744,
+      "market_cap": 0,
+      "categories": "defi,meme"
+    },
+    {
+      "symbol": "RIZZNALDO",
+      "name": "RIZZNALDO",
+      "type": "memecoin",
+      "market_cap_rank": 6743,
+      "market_cap": 0
+    },
+    {
+      "symbol": "4K",
+      "name": "Caught in 4K",
+      "type": "memecoin",
+      "market_cap_rank": 6742,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NOKU",
+      "name": "Noku",
+      "type": "memecoin",
+      "market_cap_rank": 6741,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BRO/ECO",
+      "name": "BRO/ECO",
+      "type": "memecoin",
+      "market_cap_rank": 6740,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ONLYPEACE",
+      "name": "Only Peace",
+      "type": "memecoin",
+      "market_cap_rank": 6739,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SMC TOKEN",
+      "name": "SMC token",
+      "type": "memecoin",
+      "market_cap_rank": 6738,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MARS",
+      "name": "MetaMars",
+      "type": "memecoin",
+      "market_cap_rank": 6737,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RBY",
+      "name": "Rubycoin",
+      "type": "memecoin",
+      "market_cap_rank": 6736,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BONKO",
+      "name": "Bonko",
+      "type": "memecoin",
+      "market_cap_rank": 6735,
+      "market_cap": 0
+    },
+    {
+      "symbol": "STAR",
+      "name": "FileStar",
+      "type": "memecoin",
+      "market_cap_rank": 6734,
+      "market_cap": 0,
+      "categories": "depin"
+    },
+    {
+      "symbol": "SAUS",
+      "name": "SAUS",
+      "type": "memecoin",
+      "market_cap_rank": 6733,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FGC",
+      "name": "FantasyGold",
+      "type": "memecoin",
+      "market_cap_rank": 6732,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MUPPETS",
+      "name": "Muppets",
+      "type": "memecoin",
+      "market_cap_rank": 6731,
+      "market_cap": 0
+    },
+    {
+      "symbol": "VNY",
+      "name": "Vanity",
+      "type": "memecoin",
+      "market_cap_rank": 6730,
+      "market_cap": 0,
+      "categories": "bsc,nft"
+    },
+    {
+      "symbol": "MYDLY",
+      "name": "MyDuckly Token",
+      "type": "memecoin",
+      "market_cap_rank": 6729,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HUZZ",
+      "name": "HUZZ",
+      "type": "memecoin",
+      "market_cap_rank": 6728,
+      "market_cap": 0
+    },
+    {
+      "symbol": "UUU",
+      "name": "U Network",
+      "type": "memecoin",
+      "market_cap_rank": 6727,
+      "market_cap": 0
+    },
+    {
+      "symbol": "THENA",
+      "name": "THENA",
+      "type": "memecoin",
+      "market_cap_rank": 6726,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CTAN",
+      "name": "CTAN",
+      "type": "memecoin",
+      "market_cap_rank": 6725,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ESS",
+      "name": "Earth 2 Essence",
+      "type": "memecoin",
+      "market_cap_rank": 6724,
+      "market_cap": 0,
+      "categories": "entertainment,gaming,gaming"
+    },
+    {
+      "symbol": "BURGERKOIN",
+      "name": "Burger Koin",
+      "type": "memecoin",
+      "market_cap_rank": 6723,
+      "market_cap": 0
+    },
+    {
+      "symbol": "R/GUSTAV",
+      "name": "R/GUSTAV",
+      "type": "memecoin",
+      "market_cap_rank": 6722,
+      "market_cap": 0
+    },
+    {
+      "symbol": "JAILHAYDEN",
+      "name": "Jail Hayden Mark Davis",
+      "type": "memecoin",
+      "market_cap_rank": 6721,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CUPID",
+      "name": "Official Cupid Coin",
+      "type": "memecoin",
+      "market_cap_rank": 6720,
+      "market_cap": 0
+    },
+    {
+      "symbol": "P1GU",
+      "name": "P1GU",
+      "type": "memecoin",
+      "market_cap_rank": 6719,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MARIE",
+      "name": "Marie Rose",
+      "type": "memecoin",
+      "market_cap_rank": 6718,
+      "market_cap": 0
+    },
+    {
+      "symbol": "VISION",
+      "name": "Vision Token",
+      "type": "major coin",
+      "market_cap_rank": 6717,
+      "market_cap": 0,
+      "categories": "defi,gaming"
+    },
+    {
+      "symbol": "BOB",
+      "name": "Built on Bitcoin (BOB)",
+      "type": "memecoin",
+      "market_cap_rank": 6716,
+      "market_cap": 0,
+      "categories": "stacks-ecosystem"
+    },
+    {
+      "symbol": "UPTISM",
+      "name": "uptism",
+      "type": "memecoin",
+      "market_cap_rank": 6715,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DISNEY++",
+      "name": "Disney++",
+      "type": "memecoin",
+      "market_cap_rank": 6714,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WINU",
+      "name": "Walter Inu",
+      "type": "memecoin",
+      "market_cap_rank": 6713,
+      "market_cap": 0,
+      "categories": "bsc,defi,nft,meme"
+    },
+    {
+      "symbol": "ANDREJ",
+      "name": "Andrej Grok Companion",
+      "type": "memecoin",
+      "market_cap_rank": 6712,
+      "market_cap": 0
+    },
+    {
+      "symbol": "AMUSEONX",
+      "name": "amuse on ?",
+      "type": "memecoin",
+      "market_cap_rank": 6711,
+      "market_cap": 0
+    },
+    {
+      "symbol": "Y/N",
+      "name": "Y/N",
+      "type": "memecoin",
+      "market_cap_rank": 6710,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ELONMASK",
+      "name": "elon mask",
+      "type": "memecoin",
+      "market_cap_rank": 6709,
+      "market_cap": 0
+    },
+    {
+      "symbol": "THEO",
+      "name": "Theopetra",
+      "type": "memecoin",
+      "market_cap_rank": 6708,
+      "market_cap": 0,
+      "categories": "real-world-assets"
+    },
+    {
+      "symbol": "CHILLRICH",
+      "name": "CHILLRICH",
+      "type": "memecoin",
+      "market_cap_rank": 6707,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FTON",
+      "name": "FTON",
+      "type": "memecoin",
+      "market_cap_rank": 6706,
+      "market_cap": 0
+    },
+    {
+      "symbol": "7DTR",
+      "name": "7DTR",
+      "type": "memecoin",
+      "market_cap_rank": 6705,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CUBAN",
+      "name": "OFFICIAL CUBAN",
+      "type": "memecoin",
+      "market_cap_rank": 6704,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RAGE3",
+      "name": "Rage Bubble",
+      "type": "memecoin",
+      "market_cap_rank": 6703,
+      "market_cap": 0
+    },
+    {
+      "symbol": "JELLYFUN",
+      "name": "jelly-fun-jelly",
+      "type": "memecoin",
+      "market_cap_rank": 6702,
+      "market_cap": 0
+    },
+    {
+      "symbol": "UBTC",
+      "name": "United Bitcoin",
+      "type": "memecoin",
+      "market_cap_rank": 6701,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RAREWIZARDORB",
+      "name": "RARE•WIZARD•ORB",
+      "type": "memecoin",
+      "market_cap_rank": 6700,
+      "market_cap": 0,
+      "categories": "runes"
+    },
+    {
+      "symbol": "KLARNA",
+      "name": "Ape Now Think Later",
+      "type": "memecoin",
+      "market_cap_rank": 6699,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HFF",
+      "name": "HFF",
+      "type": "memecoin",
+      "market_cap_rank": 6698,
+      "market_cap": 0
+    },
+    {
+      "symbol": "YZI",
+      "name": "Binance Intern",
+      "type": "memecoin",
+      "market_cap_rank": 6697,
+      "market_cap": 0
+    },
+    {
+      "symbol": "URGAY",
+      "name": "urgay",
+      "type": "memecoin",
+      "market_cap_rank": 6696,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ZYNC",
+      "name": "MakeWithZync",
+      "type": "memecoin",
+      "market_cap_rank": 6695,
+      "market_cap": 0
+    },
+    {
+      "symbol": "STAR",
+      "name": "Starbase",
+      "type": "memecoin",
+      "market_cap_rank": 6694,
+      "market_cap": 0
+    },
+    {
+      "symbol": "EID CZHAO",
+      "name": "Eid Czhao",
+      "type": "memecoin",
+      "market_cap_rank": 6693,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SHIRO",
+      "name": "SHIRO",
+      "type": "memecoin",
+      "market_cap_rank": 6692,
+      "market_cap": 0
+    },
+    {
+      "symbol": "STARDM",
+      "name": "Stardom AI",
+      "type": "memecoin",
+      "market_cap_rank": 6691,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GIGANT",
+      "name": "GIGANT",
+      "type": "memecoin",
+      "market_cap_rank": 6690,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CHILLPILL",
+      "name": "chillpill",
+      "type": "memecoin",
+      "market_cap_rank": 6689,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SHARTCOIN",
+      "name": "Shartcoin",
+      "type": "memecoin",
+      "market_cap_rank": 6688,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MRBEAST",
+      "name": "MrBeast FUND",
+      "type": "memecoin",
+      "market_cap_rank": 6687,
+      "market_cap": 0
+    },
+    {
+      "symbol": "KAWS",
+      "name": "Kaws",
+      "type": "memecoin",
+      "market_cap_rank": 6686,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TRUMP3",
+      "name": "TRUMP3",
+      "type": "memecoin",
+      "market_cap_rank": 6685,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ANUS",
+      "name": "gorganus exchange",
+      "type": "memecoin",
+      "market_cap_rank": 6684,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WAVE",
+      "name": "Wavelength",
+      "type": "major coin",
+      "market_cap_rank": 6683,
+      "market_cap": 0,
+      "categories": "defi,nft"
+    },
+    {
+      "symbol": "BOMC",
+      "name": "BOMC",
+      "type": "memecoin",
+      "market_cap_rank": 6682,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GFN",
+      "name": "Graphene",
+      "type": "major coin",
+      "market_cap_rank": 6681,
+      "market_cap": 0,
+      "categories": "bsc,defi"
+    },
+    {
+      "symbol": "GREEDFRAGMENTS",
+      "name": "GREED•FRAGMENTS",
+      "type": "memecoin",
+      "market_cap_rank": 6680,
+      "market_cap": 0,
+      "categories": "runes"
+    },
+    {
+      "symbol": "PKG",
+      "name": "PKG Token",
+      "type": "memecoin",
+      "market_cap_rank": 6679,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FRENCHIE",
+      "name": "Frenchie",
+      "type": "memecoin",
+      "market_cap_rank": 6678,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BABYFLOKICOIN",
+      "name": "Baby Floki Coin",
+      "type": "memecoin",
+      "market_cap_rank": 6677,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "THERUNIXTOKEN",
+      "name": "THE•RUNIX•TOKEN",
+      "type": "major coin",
+      "market_cap_rank": 6676,
+      "market_cap": 0,
+      "categories": "runes,bitcoin-ecosystem"
+    },
+    {
+      "symbol": "ORBI",
+      "name": "Las Vegas Sphere",
+      "type": "memecoin",
+      "market_cap_rank": 6675,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DOWN",
+      "name": "Downism",
+      "type": "memecoin",
+      "market_cap_rank": 6674,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SANTACAT",
+      "name": "SANTACAT",
+      "type": "memecoin",
+      "market_cap_rank": 6673,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LEGOFY",
+      "name": "Lego Cult",
+      "type": "memecoin",
+      "market_cap_rank": 6672,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NIG",
+      "name": "nig",
+      "type": "memecoin",
+      "market_cap_rank": 6671,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NICKY",
+      "name": "The Degen Dog",
+      "type": "memecoin",
+      "market_cap_rank": 6670,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RIP POPE",
+      "name": "RIP POPE FRANCIS",
+      "type": "memecoin",
+      "market_cap_rank": 6669,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GORKLON",
+      "name": "gorklon rust",
+      "type": "memecoin",
+      "market_cap_rank": 6668,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BOBHAT",
+      "name": "BOB Hat",
+      "type": "memecoin",
+      "market_cap_rank": 6667,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DROID",
+      "name": "Droid",
+      "type": "memecoin",
+      "market_cap_rank": 6666,
+      "market_cap": 0,
+      "categories": "stacks-ecosystem,nft,made-in-usa"
+    },
+    {
+      "symbol": "PXG",
+      "name": "PlayGame",
+      "type": "memecoin",
+      "market_cap_rank": 6665,
+      "market_cap": 0
+    },
+    {
+      "symbol": "POOCH",
+      "name": "Pooch",
+      "type": "memecoin",
+      "market_cap_rank": 6664,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "BUDDD",
+      "name": "Bubblebros",
+      "type": "memecoin",
+      "market_cap_rank": 6663,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TRUMPHORIA",
+      "name": "TRUMP FAMILY PUMP EFFECT",
+      "type": "memecoin",
+      "market_cap_rank": 6662,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RIZZGIVIN",
+      "name": "RIZZGIVIN",
+      "type": "memecoin",
+      "market_cap_rank": 6661,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ZHC",
+      "name": "Zero Hour Cash",
+      "type": "major coin",
+      "market_cap_rank": 6660,
+      "market_cap": 0,
+      "categories": "defi,nft"
+    },
+    {
+      "symbol": "DOGEFATHER",
+      "name": "Dogefather",
+      "type": "memecoin",
+      "market_cap_rank": 6659,
+      "market_cap": 0,
+      "categories": "solana-ecosystem"
+    },
+    {
+      "symbol": "RKN",
+      "name": "RAKON",
+      "type": "memecoin",
+      "market_cap_rank": 6658,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SLOPPER",
+      "name": "Slopper",
+      "type": "memecoin",
+      "market_cap_rank": 6657,
+      "market_cap": 0
+    },
+    {
+      "symbol": "UTT",
+      "name": "United Traders Token",
+      "type": "memecoin",
+      "market_cap_rank": 6656,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SUISEI",
+      "name": "Hoshimachi Suisei",
+      "type": "memecoin",
+      "market_cap_rank": 6655,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BUBU",
+      "name": "BUBU",
+      "type": "memecoin",
+      "market_cap_rank": 6654,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "VILLA",
+      "name": "VillaCoin",
+      "type": "memecoin",
+      "market_cap_rank": 6653,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PVE",
+      "name": "PVECOIN",
+      "type": "memecoin",
+      "market_cap_rank": 6652,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LIKES",
+      "name": "likes",
+      "type": "memecoin",
+      "market_cap_rank": 6651,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FACECOIN",
+      "name": "facecoin",
+      "type": "memecoin",
+      "market_cap_rank": 6650,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ARMANI",
+      "name": "ARMANI",
+      "type": "memecoin",
+      "market_cap_rank": 6649,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TOMOE",
+      "name": "TomoChain ERC-20",
+      "type": "memecoin",
+      "market_cap_rank": 6648,
+      "market_cap": 0
+    },
+    {
+      "symbol": "IC",
+      "name": "Ignition",
+      "type": "memecoin",
+      "market_cap_rank": 6647,
+      "market_cap": 0
+    },
+    {
+      "symbol": "8008COIN",
+      "name": "8008coin",
+      "type": "memecoin",
+      "market_cap_rank": 6646,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WILLOW",
+      "name": "WILLOW",
+      "type": "memecoin",
+      "market_cap_rank": 6645,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SHINE",
+      "name": "hine",
+      "type": "memecoin",
+      "market_cap_rank": 6644,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SEXCOIN",
+      "name": "save the world",
+      "type": "memecoin",
+      "market_cap_rank": 6643,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BITO",
+      "name": "BitoPro Exchange Token",
+      "type": "major coin",
+      "market_cap_rank": 6642,
+      "market_cap": 0,
+      "categories": "exchange-tokens"
+    },
+    {
+      "symbol": "SOLMAS",
+      "name": "SOLMAS",
+      "type": "memecoin",
+      "market_cap_rank": 6641,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SHUB",
+      "name": "SimpleHub",
+      "type": "major coin",
+      "market_cap_rank": 6640,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "DARKSTORM",
+      "name": "X Hacker",
+      "type": "memecoin",
+      "market_cap_rank": 6639,
+      "market_cap": 0
+    },
+    {
+      "symbol": "IMHPC",
+      "name": "IMHPC",
+      "type": "memecoin",
+      "market_cap_rank": 6638,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PANTIES",
+      "name": "PANTIES",
+      "type": "memecoin",
+      "market_cap_rank": 6637,
+      "market_cap": 0,
+      "categories": "meme,solana-ecosystem"
+    },
+    {
+      "symbol": "PFPDOG",
+      "name": "profile picture dog",
+      "type": "memecoin",
+      "market_cap_rank": 6636,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MUNCHI",
+      "name": "Munchi the Munchkin Cat",
+      "type": "memecoin",
+      "market_cap_rank": 6635,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NSSOL",
+      "name": "No Sell Sol",
+      "type": "memecoin",
+      "market_cap_rank": 6634,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HAPPYDAD",
+      "name": "HAPPY DAD",
+      "type": "memecoin",
+      "market_cap_rank": 6633,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "PERSIB",
+      "name": "Persib Fan Token",
+      "type": "memecoin",
+      "market_cap_rank": 6632,
+      "market_cap": 0,
+      "categories": "fan"
+    },
+    {
+      "symbol": "KRA",
+      "name": "Korra Finance",
+      "type": "major coin",
+      "market_cap_rank": 6631,
+      "market_cap": 0,
+      "categories": "ai,defi,wallets"
+    },
+    {
+      "symbol": "BADBOY",
+      "name": "BAD BOY BIKINI CLUB",
+      "type": "memecoin",
+      "market_cap_rank": 6630,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BLM",
+      "name": "Black Language Model",
+      "type": "memecoin",
+      "market_cap_rank": 6629,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DOPA",
+      "name": "DOPA",
+      "type": "memecoin",
+      "market_cap_rank": 6628,
+      "market_cap": 0
+    },
+    {
+      "symbol": "INVALID",
+      "name": "?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?",
+      "type": "memecoin",
+      "market_cap_rank": 6627,
+      "market_cap": 0
+    },
+    {
+      "symbol": "JUGS",
+      "name": "Unleash Jugs",
+      "type": "memecoin",
+      "market_cap_rank": 6626,
+      "market_cap": 0
+    },
+    {
+      "symbol": "UPEX",
+      "name": "UPEX LaunchPad",
+      "type": "memecoin",
+      "market_cap_rank": 6625,
+      "market_cap": 0
+    },
+    {
+      "symbol": "XAI7",
+      "name": "X Social Network",
+      "type": "memecoin",
+      "market_cap_rank": 6624,
+      "market_cap": 0,
+      "categories": "bsc"
+    },
+    {
+      "symbol": "NUIT",
+      "name": "nuit",
+      "type": "memecoin",
+      "market_cap_rank": 6623,
+      "market_cap": 0,
+      "categories": "solana-ecosystem"
+    },
+    {
+      "symbol": "BOOG",
+      "name": "BOOG",
+      "type": "memecoin",
+      "market_cap_rank": 6622,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PORNHUB",
+      "name": "PORNHUB",
+      "type": "memecoin",
+      "market_cap_rank": 6621,
+      "market_cap": 0
+    },
+    {
+      "symbol": "AIZEN",
+      "name": "Irena Aizen",
+      "type": "memecoin",
+      "market_cap_rank": 6620,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PONZI",
+      "name": "PonziCoin",
+      "type": "memecoin",
+      "market_cap_rank": 6619,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FRC",
+      "name": "Force",
+      "type": "memecoin",
+      "market_cap_rank": 6618,
+      "market_cap": 0,
+      "categories": "move-to-earn,gaming"
+    },
+    {
+      "symbol": "911",
+      "name": "Never Forget",
+      "type": "memecoin",
+      "market_cap_rank": 6617,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CURIO",
+      "name": "AI Kids Companion",
+      "type": "memecoin",
+      "market_cap_rank": 6616,
+      "market_cap": 0
+    },
+    {
+      "symbol": "USPEPE",
+      "name": "USPEPE",
+      "type": "memecoin",
+      "market_cap_rank": 6615,
+      "market_cap": 0
+    },
+    {
+      "symbol": "STIPEND",
+      "name": "Stipend",
+      "type": "memecoin",
+      "market_cap_rank": 6614,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MANNA",
+      "name": "Manna",
+      "type": "memecoin",
+      "market_cap_rank": 6613,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ONPUMP",
+      "name": "Only Pumps",
+      "type": "memecoin",
+      "market_cap_rank": 6612,
+      "market_cap": 0
+    },
+    {
+      "symbol": "JBTRUMP",
+      "name": "JB - THE ALTER-EGO OF TRUMP",
+      "type": "memecoin",
+      "market_cap_rank": 6611,
+      "market_cap": 0
+    },
+    {
+      "symbol": "STSTX",
+      "name": "Stacking DAO Stacked Stacks",
+      "type": "major coin",
+      "market_cap_rank": 6610,
+      "market_cap": 0,
+      "categories": "defi,liquid-staking-tokens,stacks-ecosystem"
+    },
+    {
+      "symbol": "300BAUD",
+      "name": "300BAUD",
+      "type": "memecoin",
+      "market_cap_rank": 6609,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CHILLSANTA",
+      "name": "CHILLSANTA",
+      "type": "memecoin",
+      "market_cap_rank": 6608,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TRONK",
+      "name": "TRONK",
+      "type": "memecoin",
+      "market_cap_rank": 6607,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MEMECOINS",
+      "name": "THIS IS NOT A SECURITY",
+      "type": "memecoin",
+      "market_cap_rank": 6606,
+      "market_cap": 0
+    },
+    {
+      "symbol": "QFE",
+      "name": "Quantum Fart Entanglement",
+      "type": "memecoin",
+      "market_cap_rank": 6605,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RAZORBILL",
+      "name": "AURA BIRD",
+      "type": "memecoin",
+      "market_cap_rank": 6604,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HAMLET",
+      "name": "HAMLET",
+      "type": "memecoin",
+      "market_cap_rank": 6603,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TUFT",
+      "name": "TreasureNFT Token",
+      "type": "memecoin",
+      "market_cap_rank": 6602,
+      "market_cap": 0
+    },
+    {
+      "symbol": "EREBUS",
+      "name": "EREBUS",
+      "type": "memecoin",
+      "market_cap_rank": 6601,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RUMBLE",
+      "name": "Rumble",
+      "type": "memecoin",
+      "market_cap_rank": 6600,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BOOGA",
+      "name": "Booga",
+      "type": "memecoin",
+      "market_cap_rank": 6599,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NARTO",
+      "name": "Narto",
+      "type": "memecoin",
+      "market_cap_rank": 6598,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RFRM",
+      "name": "RFRM",
+      "type": "memecoin",
+      "market_cap_rank": 6597,
+      "market_cap": 0
+    },
+    {
+      "symbol": "OGCHILLGUY",
+      "name": "OGCHILLGUY",
+      "type": "memecoin",
+      "market_cap_rank": 6596,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MCT",
+      "name": "Magic Shoes",
+      "type": "memecoin",
+      "market_cap_rank": 6595,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MILO",
+      "name": "Milo Inu",
+      "type": "memecoin",
+      "market_cap_rank": 6594,
+      "market_cap": 0,
+      "categories": "bsc,meme,nft"
+    },
+    {
+      "symbol": "VANGOGH",
+      "name": "VANGOGH",
+      "type": "memecoin",
+      "market_cap_rank": 6593,
+      "market_cap": 0
+    },
+    {
+      "symbol": "KYLIE",
+      "name": "Kylie",
+      "type": "memecoin",
+      "market_cap_rank": 6592,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CHILLPEPE",
+      "name": "CHILLPEPE",
+      "type": "memecoin",
+      "market_cap_rank": 6591,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RONINU",
+      "name": "RONINU",
+      "type": "memecoin",
+      "market_cap_rank": 6590,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SUBDOGE",
+      "name": "Doge Subcommittee",
+      "type": "memecoin",
+      "market_cap_rank": 6589,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GAMER",
+      "name": "GameStation",
+      "type": "major coin",
+      "market_cap_rank": 6588,
+      "market_cap": 0,
+      "categories": "defi,nft"
+    },
+    {
+      "symbol": "CAMCOIN",
+      "name": "cameltoe coin",
+      "type": "memecoin",
+      "market_cap_rank": 6587,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RRMONEY",
+      "name": "viperr coin",
+      "type": "memecoin",
+      "market_cap_rank": 6586,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NRCH",
+      "name": "EnreachDAO",
+      "type": "major coin",
+      "market_cap_rank": 6585,
+      "market_cap": 0,
+      "categories": "defi,dao"
+    },
+    {
+      "symbol": "ALONE",
+      "name": "ALONE",
+      "type": "memecoin",
+      "market_cap_rank": 6584,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MASCAT",
+      "name": "Mascat Tom",
+      "type": "memecoin",
+      "market_cap_rank": 6583,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MTGX",
+      "name": "Montage Token",
+      "type": "major coin",
+      "market_cap_rank": 6582,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "CDS",
+      "name": "Crypto Development Services",
+      "type": "major coin",
+      "market_cap_rank": 6581,
+      "market_cap": 0,
+      "categories": "bsc,defi"
+    },
+    {
+      "symbol": "WIS",
+      "name": "WingSwap",
+      "type": "major coin",
+      "market_cap_rank": 6580,
+      "market_cap": 0,
+      "categories": "defi,nft"
+    },
+    {
+      "symbol": "PEPEPIG",
+      "name": "PEPE PIG",
+      "type": "memecoin",
+      "market_cap_rank": 6579,
+      "market_cap": 0
+    },
+    {
+      "symbol": "R/R",
+      "name": "retard to retired",
+      "type": "memecoin",
+      "market_cap_rank": 6578,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PHROG",
+      "name": "phrog",
+      "type": "memecoin",
+      "market_cap_rank": 6577,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ICNQ",
+      "name": "Iconiq Lab Token",
+      "type": "memecoin",
+      "market_cap_rank": 6576,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NIVIDIA",
+      "name": "retarded stock",
+      "type": "memecoin",
+      "market_cap_rank": 6575,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PEPENSION",
+      "name": "Pepension",
+      "type": "memecoin",
+      "market_cap_rank": 6574,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FRANCIS",
+      "name": "Pope Francis",
+      "type": "memecoin",
+      "market_cap_rank": 6573,
+      "market_cap": 0
+    },
+    {
+      "symbol": "JINGLEBAGS",
+      "name": "JINGLEBAGS",
+      "type": "memecoin",
+      "market_cap_rank": 6572,
+      "market_cap": 0
+    },
+    {
+      "symbol": "STR47",
+      "name": "Strategic Trump47 Reserve",
+      "type": "memecoin",
+      "market_cap_rank": 6571,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ORME",
+      "name": "Ormeus Coin",
+      "type": "memecoin",
+      "market_cap_rank": 6570,
+      "market_cap": 0
+    },
+    {
+      "symbol": "EA85Z",
+      "name": "EA85Z",
+      "type": "memecoin",
+      "market_cap_rank": 6569,
+      "market_cap": 0
+    },
+    {
+      "symbol": "47TH",
+      "name": "47TH",
+      "type": "memecoin",
+      "market_cap_rank": 6568,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PWR",
+      "name": "PWR Coin",
+      "type": "memecoin",
+      "market_cap_rank": 6567,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RAWDOG",
+      "name": "This Coin is For Men",
+      "type": "memecoin",
+      "market_cap_rank": 6566,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PEPENA",
+      "name": "PEPE + SOLANA = PEPENA",
+      "type": "memecoin",
+      "market_cap_rank": 6565,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SAFARI",
+      "name": "Safari Coin",
+      "type": "memecoin",
+      "market_cap_rank": 6564,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GOLDX",
+      "name": "Gold Index",
+      "type": "memecoin",
+      "market_cap_rank": 6563,
+      "market_cap": 0
+    },
+    {
+      "symbol": "KIBO",
+      "name": "God Of The Internet",
+      "type": "memecoin",
+      "market_cap_rank": 6562,
+      "market_cap": 0
+    },
+    {
+      "symbol": "INTUE",
+      "name": "INTUE",
+      "type": "memecoin",
+      "market_cap_rank": 6561,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SOLKR",
+      "name": "SOLKR",
+      "type": "memecoin",
+      "market_cap_rank": 6560,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WAKO",
+      "name": "Mother of Bonk",
+      "type": "memecoin",
+      "market_cap_rank": 6559,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CHILLGR",
+      "name": "CHILLGR",
+      "type": "memecoin",
+      "market_cap_rank": 6558,
+      "market_cap": 0
+    },
+    {
+      "symbol": "POTUS",
+      "name": "POPE OF THE UNITED STATES",
+      "type": "memecoin",
+      "market_cap_rank": 6557,
+      "market_cap": 0
+    },
+    {
+      "symbol": "JOHNNY",
+      "name": "JOHNNY",
+      "type": "memecoin",
+      "market_cap_rank": 6556,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BACOIN",
+      "name": "BACOIN",
+      "type": "memecoin",
+      "market_cap_rank": 6555,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BEFOREGTA6",
+      "name": "Before GTA6",
+      "type": "memecoin",
+      "market_cap_rank": 6554,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ODOM",
+      "name": "ODOM",
+      "type": "memecoin",
+      "market_cap_rank": 6553,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SOLMON",
+      "name": "Solémon",
+      "type": "memecoin",
+      "market_cap_rank": 6552,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LIBRADICK",
+      "name": "LibramyDick",
+      "type": "memecoin",
+      "market_cap_rank": 6551,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ZIGGY",
+      "name": "Ziggy",
+      "type": "memecoin",
+      "market_cap_rank": 6550,
+      "market_cap": 0,
+      "categories": "meme,base-ecosystem"
+    },
+    {
+      "symbol": "ROAST",
+      "name": "BurnieAI",
+      "type": "memecoin",
+      "market_cap_rank": 6549,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DDK",
+      "name": "DDKoin",
+      "type": "memecoin",
+      "market_cap_rank": 6548,
+      "market_cap": 0
+    },
+    {
+      "symbol": "AKRASIA",
+      "name": "Akrasia Labs",
+      "type": "memecoin",
+      "market_cap_rank": 6547,
+      "market_cap": 0
+    },
+    {
+      "symbol": "JUNJUN",
+      "name": "Junjun",
+      "type": "memecoin",
+      "market_cap_rank": 6546,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HTX",
+      "name": "HTX DAO",
+      "type": "major coin",
+      "market_cap_rank": 6545,
+      "market_cap": 0,
+      "categories": "exchange-tokens,dao"
+    },
+    {
+      "symbol": "GLOOM",
+      "name": "Gloom",
+      "type": "memecoin",
+      "market_cap_rank": 6544,
+      "market_cap": 0,
+      "categories": "meme,base-ecosystem"
+    },
+    {
+      "symbol": "THOR",
+      "name": "ThorFi",
+      "type": "memecoin",
+      "market_cap_rank": 6543,
+      "market_cap": 0
+    },
+    {
+      "symbol": "KRABS",
+      "name": "KRABS",
+      "type": "memecoin",
+      "market_cap_rank": 6542,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RIZZCEMBER",
+      "name": "RIZZCEMBER",
+      "type": "memecoin",
+      "market_cap_rank": 6541,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MURS",
+      "name": "Harry Murs",
+      "type": "memecoin",
+      "market_cap_rank": 6540,
+      "market_cap": 0
+    },
+    {
+      "symbol": "B20",
+      "name": "ALEX $B20",
+      "type": "memecoin",
+      "market_cap_rank": 6539,
+      "market_cap": 0,
+      "categories": "brc20"
+    },
+    {
+      "symbol": "GENGAR",
+      "name": "Gengar",
+      "type": "memecoin",
+      "market_cap_rank": 6538,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WINDOWS",
+      "name": "Windows",
+      "type": "memecoin",
+      "market_cap_rank": 6537,
+      "market_cap": 0
+    },
+    {
+      "symbol": "KVK",
+      "name": "Kanto vs Kansai",
+      "type": "memecoin",
+      "market_cap_rank": 6536,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GLOOMY",
+      "name": "Gloomy Coin",
+      "type": "memecoin",
+      "market_cap_rank": 6535,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PKCS",
+      "name": "PKCS",
+      "type": "memecoin",
+      "market_cap_rank": 6534,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TITO",
+      "name": "N/A",
+      "type": "memecoin",
+      "market_cap_rank": 6533,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SMART",
+      "name": "SMART BLOCKCHAIN",
+      "type": "major coin",
+      "market_cap_rank": 6532,
+      "market_cap": 0,
+      "categories": "pos,layer-1"
+    },
+    {
+      "symbol": "TUPID",
+      "name": "Black Mirror Digital Currency",
+      "type": "memecoin",
+      "market_cap_rank": 6531,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FCW",
+      "name": "Farting Chicken Wizard",
+      "type": "memecoin",
+      "market_cap_rank": 6530,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TRUMPUS",
+      "name": "TRUMPUS",
+      "type": "memecoin",
+      "market_cap_rank": 6529,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LOOMO",
+      "name": "Loomo AI",
+      "type": "memecoin",
+      "market_cap_rank": 6528,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DRAWIFY",
+      "name": "@grok draw me",
+      "type": "memecoin",
+      "market_cap_rank": 6527,
+      "market_cap": 0
+    },
+    {
+      "symbol": "D/ACC",
+      "name": "D/ACC",
+      "type": "memecoin",
+      "market_cap_rank": 6526,
+      "market_cap": 0
+    },
+    {
+      "symbol": "INTX",
+      "name": "Intentx",
+      "type": "major coin",
+      "market_cap_rank": 6525,
+      "market_cap": 0,
+      "categories": "exchange-tokens,socialfi"
+    },
+    {
+      "symbol": "ZUZU",
+      "name": "ZUZU",
+      "type": "memecoin",
+      "market_cap_rank": 6524,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FLSHR",
+      "name": "FLASHER",
+      "type": "memecoin",
+      "market_cap_rank": 6523,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NEINEI",
+      "name": "NEINEI",
+      "type": "memecoin",
+      "market_cap_rank": 6522,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DUSD",
+      "name": "Decentralized USD (Defichain)",
+      "type": "major coin",
+      "market_cap_rank": 6521,
+      "market_cap": 0,
+      "categories": "stablecoin"
+    },
+    {
+      "symbol": "DEVANN",
+      "name": "dev.fun announcement channel",
+      "type": "memecoin",
+      "market_cap_rank": 6520,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ECHAI",
+      "name": "Echelon AI",
+      "type": "memecoin",
+      "market_cap_rank": 6519,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GCR",
+      "name": "Golden Celestial Ratio",
+      "type": "memecoin",
+      "market_cap_rank": 6518,
+      "market_cap": 0,
+      "categories": "meme,solana-ecosystem"
+    },
+    {
+      "symbol": "MABA",
+      "name": "MABA",
+      "type": "memecoin",
+      "market_cap_rank": 6517,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GWOK",
+      "name": "GWOK",
+      "type": "memecoin",
+      "market_cap_rank": 6516,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SANDWICHES",
+      "name": "sandwiches",
+      "type": "memecoin",
+      "market_cap_rank": 6515,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WIFSMILE",
+      "name": "dogwifsmile",
+      "type": "memecoin",
+      "market_cap_rank": 6514,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RAMADANGUY",
+      "name": "Just a ramadan guy",
+      "type": "memecoin",
+      "market_cap_rank": 6513,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SKITOSHI",
+      "name": "SkiMaskToshi",
+      "type": "memecoin",
+      "market_cap_rank": 6512,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BROTHERS",
+      "name": "BROTHERS",
+      "type": "memecoin",
+      "market_cap_rank": 6511,
+      "market_cap": 0
+    },
+    {
+      "symbol": "COINBASE",
+      "name": "Coinbase",
+      "type": "memecoin",
+      "market_cap_rank": 6510,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CERBERUS",
+      "name": "OFFICIAL TELEGRAM DOG",
+      "type": "memecoin",
+      "market_cap_rank": 6509,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DOODOOCOIN",
+      "name": "GROK'S SHITCOIN",
+      "type": "memecoin",
+      "market_cap_rank": 6508,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ARGO2",
+      "name": "ArGo App",
+      "type": "memecoin",
+      "market_cap_rank": 6507,
+      "market_cap": 0,
+      "categories": "nft"
+    },
+    {
+      "symbol": "MOLOCH",
+      "name": "Moloch by Prometheus",
+      "type": "memecoin",
+      "market_cap_rank": 6506,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WEALTHCOIN",
+      "name": "wealthcoin",
+      "type": "memecoin",
+      "market_cap_rank": 6505,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CPEN",
+      "name": "cPen",
+      "type": "memecoin",
+      "market_cap_rank": 6504,
+      "market_cap": 0
+    },
+    {
+      "symbol": "STARFISH",
+      "name": "new black starfish specie",
+      "type": "memecoin",
+      "market_cap_rank": 6503,
+      "market_cap": 0
+    },
+    {
+      "symbol": "VTSN",
+      "name": "Vertisan",
+      "type": "memecoin",
+      "market_cap_rank": 6502,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LBTC",
+      "name": "Lightning Bitcoin",
+      "type": "major coin",
+      "market_cap_rank": 6501,
+      "market_cap": 0,
+      "categories": "bitcoin-ecosystem,pow,pos"
+    },
+    {
+      "symbol": "GOOMY",
+      "name": "Goomy Alien",
+      "type": "memecoin",
+      "market_cap_rank": 6500,
+      "market_cap": 0
+    },
+    {
+      "symbol": "JETTON",
+      "name": "JetTon Games",
+      "type": "memecoin",
+      "market_cap_rank": 6499,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PWESIDENT",
+      "name": "2028 pwesident",
+      "type": "memecoin",
+      "market_cap_rank": 6498,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MEGA",
+      "name": "Megapont",
+      "type": "memecoin",
+      "market_cap_rank": 6497,
+      "market_cap": 0,
+      "categories": "nft"
+    },
+    {
+      "symbol": "MOJU",
+      "name": "MOJU",
+      "type": "memecoin",
+      "market_cap_rank": 6496,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TRUMPSIDE",
+      "name": "Trump Inside",
+      "type": "memecoin",
+      "market_cap_rank": 6495,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PEPECULT",
+      "name": "PEPECULT",
+      "type": "memecoin",
+      "market_cap_rank": 6494,
+      "market_cap": 0
+    },
+    {
+      "symbol": "YNS",
+      "name": "YNS",
+      "type": "memecoin",
+      "market_cap_rank": 6493,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "RZNTINE",
+      "name": "Rizzentine",
+      "type": "memecoin",
+      "market_cap_rank": 6492,
+      "market_cap": 0
+    },
+    {
+      "symbol": "COLLAR",
+      "name": "Dog Collar",
+      "type": "memecoin",
+      "market_cap_rank": 6491,
+      "market_cap": 0,
+      "categories": "defi,meme"
+    },
+    {
+      "symbol": "WACKY",
+      "name": "WACKY BUM",
+      "type": "memecoin",
+      "market_cap_rank": 6490,
+      "market_cap": 0
+    },
+    {
+      "symbol": "THE NETWORK STATE",
+      "name": "The Network State",
+      "type": "memecoin",
+      "market_cap_rank": 6489,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NASDEQ",
+      "name": "Nasdeq",
+      "type": "memecoin",
+      "market_cap_rank": 6488,
+      "market_cap": 0
+    },
+    {
+      "symbol": "AISTR",
+      "name": "AISTR",
+      "type": "memecoin",
+      "market_cap_rank": 6487,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CMIT",
+      "name": "CMITCOIN",
+      "type": "memecoin",
+      "market_cap_rank": 6486,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SHIDO",
+      "name": "Shido Inu",
+      "type": "memecoin",
+      "market_cap_rank": 6485,
+      "market_cap": 0,
+      "categories": "bsc,defi,meme"
+    },
+    {
+      "symbol": "DANGER",
+      "name": "Robotaxi Mascot",
+      "type": "memecoin",
+      "market_cap_rank": 6484,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CHIGGA",
+      "name": "chigga",
+      "type": "memecoin",
+      "market_cap_rank": 6483,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ORD",
+      "name": "ordinex",
+      "type": "memecoin",
+      "market_cap_rank": 6482,
+      "market_cap": 0,
+      "categories": "brc20"
+    },
+    {
+      "symbol": "THETICKERISELSA",
+      "name": "THE•TICKER•IS•ELSA",
+      "type": "memecoin",
+      "market_cap_rank": 6481,
+      "market_cap": 0,
+      "categories": "runes"
+    },
+    {
+      "symbol": "YORL",
+      "name": "YORL",
+      "type": "memecoin",
+      "market_cap_rank": 6480,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BAMZ",
+      "name": "Bamz Space",
+      "type": "memecoin",
+      "market_cap_rank": 6479,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HULKED",
+      "name": "HULK FUCKS",
+      "type": "memecoin",
+      "market_cap_rank": 6478,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NEWCOIN",
+      "name": "NEWCOIN",
+      "type": "memecoin",
+      "market_cap_rank": 6477,
+      "market_cap": 0
+    },
+    {
+      "symbol": "POUCHI",
+      "name": "POUCHI",
+      "type": "memecoin",
+      "market_cap_rank": 6476,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HOLLY",
+      "name": "h011yw00d",
+      "type": "memecoin",
+      "market_cap_rank": 6475,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LUCKYGUY",
+      "name": "Just a Lucky Guy",
+      "type": "memecoin",
+      "market_cap_rank": 6474,
+      "market_cap": 0
+    },
+    {
+      "symbol": "IRANCAT",
+      "name": "Iran Military Cat",
+      "type": "memecoin",
+      "market_cap_rank": 6473,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WETARD",
+      "name": "wetard twump",
+      "type": "memecoin",
+      "market_cap_rank": 6472,
+      "market_cap": 0
+    },
+    {
+      "symbol": "EDG",
+      "name": "Edgeless",
+      "type": "memecoin",
+      "market_cap_rank": 6471,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SHORTCOIN",
+      "name": "The Big Short",
+      "type": "memecoin",
+      "market_cap_rank": 6470,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DSQ",
+      "name": "DollarSqueeze",
+      "type": "memecoin",
+      "market_cap_rank": 6469,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "V1",
+      "name": "V1",
+      "type": "memecoin",
+      "market_cap_rank": 6468,
+      "market_cap": 0
+    },
+    {
+      "symbol": "90DAYS",
+      "name": "Hold This For 90 Days",
+      "type": "memecoin",
+      "market_cap_rank": 6467,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BZZZZ",
+      "name": "Buzzcoin",
+      "type": "memecoin",
+      "market_cap_rank": 6466,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CPC",
+      "name": "CPChain",
+      "type": "memecoin",
+      "market_cap_rank": 6465,
+      "market_cap": 0,
+      "categories": "ai"
+    },
+    {
+      "symbol": "VAMPCOIN2",
+      "name": "vamp the vampcoin",
+      "type": "memecoin",
+      "market_cap_rank": 6464,
+      "market_cap": 0
+    },
+    {
+      "symbol": "KITEAI",
+      "name": "KiteAI",
+      "type": "memecoin",
+      "market_cap_rank": 6463,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HIF",
+      "name": "HIF",
+      "type": "memecoin",
+      "market_cap_rank": 6462,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MCVALUE",
+      "name": "McDonald's McVALUE",
+      "type": "memecoin",
+      "market_cap_rank": 6461,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FBX",
+      "name": "ForthBox",
+      "type": "major coin",
+      "market_cap_rank": 6460,
+      "market_cap": 0,
+      "categories": "bsc,defi,nft"
+    },
+    {
+      "symbol": "VRUFF",
+      "name": "VRUFF",
+      "type": "memecoin",
+      "market_cap_rank": 6459,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ZET",
+      "name": "Zetacoin",
+      "type": "memecoin",
+      "market_cap_rank": 6458,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ARIEL",
+      "name": "ARIEL",
+      "type": "memecoin",
+      "market_cap_rank": 6457,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HIJAB",
+      "name": "DogWifHijab",
+      "type": "memecoin",
+      "market_cap_rank": 6456,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TRENCHCARD",
+      "name": "Solana Trench Cards",
+      "type": "memecoin",
+      "market_cap_rank": 6455,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MCGA",
+      "name": "MAKE CRYPTO GREAT AGAIN",
+      "type": "memecoin",
+      "market_cap_rank": 6454,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BLYAT",
+      "name": "BLYAT",
+      "type": "memecoin",
+      "market_cap_rank": 6453,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SMOOTHIE",
+      "name": "SMOOTHIE",
+      "type": "memecoin",
+      "market_cap_rank": 6452,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LAUNCHER",
+      "name": "LAUNCHER",
+      "type": "memecoin",
+      "market_cap_rank": 6451,
+      "market_cap": 0
+    },
+    {
+      "symbol": "8647",
+      "name": "JUSTICE FOR TRUMP",
+      "type": "memecoin",
+      "market_cap_rank": 6450,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BOOST",
+      "name": "Boost",
+      "type": "major coin",
+      "market_cap_rank": 6449,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "PT",
+      "name": "Phemex Token",
+      "type": "major coin",
+      "market_cap_rank": 6448,
+      "market_cap": 0,
+      "categories": "exchange-tokens"
+    },
+    {
+      "symbol": "CAPP",
+      "name": "Cappasity",
+      "type": "memecoin",
+      "market_cap_rank": 6447,
+      "market_cap": 0,
+      "categories": "gaming"
+    },
+    {
+      "symbol": "DUMPFUN",
+      "name": "DUMPNOTFUN",
+      "type": "memecoin",
+      "market_cap_rank": 6446,
+      "market_cap": 0
+    },
+    {
+      "symbol": "WOG",
+      "name": "WOG",
+      "type": "memecoin",
+      "market_cap_rank": 6445,
+      "market_cap": 0
+    },
+    {
+      "symbol": "KULU",
+      "name": "Netflix's Pangolin",
+      "type": "memecoin",
+      "market_cap_rank": 6444,
+      "market_cap": 0
+    },
+    {
+      "symbol": "IXA",
+      "name": "Intellexa",
+      "type": "memecoin",
+      "market_cap_rank": 6443,
+      "market_cap": 0
+    },
+    {
+      "symbol": "UNISWAPFOUNDATION",
+      "name": "uniswapfoundation",
+      "type": "memecoin",
+      "market_cap_rank": 6442,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MEMHASH",
+      "name": "Memhash",
+      "type": "memecoin",
+      "market_cap_rank": 6441,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GTC2",
+      "name": "Game.com",
+      "type": "memecoin",
+      "market_cap_rank": 6440,
+      "market_cap": 0
+    },
+    {
+      "symbol": "USDUN",
+      "name": "USDUN",
+      "type": "memecoin",
+      "market_cap_rank": 6439,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DFB",
+      "name": "DebtFreeBot",
+      "type": "memecoin",
+      "market_cap_rank": 6438,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CHIEF",
+      "name": "CHIEF",
+      "type": "memecoin",
+      "market_cap_rank": 6437,
+      "market_cap": 0
+    },
+    {
+      "symbol": "STZIL",
+      "name": "stZIL",
+      "type": "major coin",
+      "market_cap_rank": 6436,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "UIS",
+      "name": "Unitus",
+      "type": "memecoin",
+      "market_cap_rank": 6435,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RAFIKI",
+      "name": "RAFIKI",
+      "type": "memecoin",
+      "market_cap_rank": 6434,
+      "market_cap": 0
+    },
+    {
+      "symbol": "KEYAI",
+      "name": "KeyAI",
+      "type": "memecoin",
+      "market_cap_rank": 6433,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GOMINT",
+      "name": "Algomint",
+      "type": "memecoin",
+      "market_cap_rank": 6432,
+      "market_cap": 0,
+      "categories": "algorand"
+    },
+    {
+      "symbol": "DWOOD",
+      "name": "Dûdê Frôm †hê Wôôds",
+      "type": "memecoin",
+      "market_cap_rank": 6431,
+      "market_cap": 0
+    },
+    {
+      "symbol": "JESUSCOIN",
+      "name": "jesuscoin",
+      "type": "memecoin",
+      "market_cap_rank": 6430,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HITMAN",
+      "name": "HITMAN",
+      "type": "memecoin",
+      "market_cap_rank": 6429,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BANNEDGUY",
+      "name": "Just a banned guy",
+      "type": "memecoin",
+      "market_cap_rank": 6428,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ROYA",
+      "name": "Royale Finance",
+      "type": "major coin",
+      "market_cap_rank": 6427,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "PREASE",
+      "name": "PREASE",
+      "type": "memecoin",
+      "market_cap_rank": 6426,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TRAT",
+      "name": "Tratok",
+      "type": "memecoin",
+      "market_cap_rank": 6425,
+      "market_cap": 0
+    },
+    {
+      "symbol": "VPND",
+      "name": "VaporNodes",
+      "type": "memecoin",
+      "market_cap_rank": 6424,
+      "market_cap": 0,
+      "categories": "avalanche"
+    },
+    {
+      "symbol": "SHARK",
+      "name": "Shark Coin",
+      "type": "memecoin",
+      "market_cap_rank": 6423,
+      "market_cap": 0,
+      "categories": "stacks-ecosystem"
+    },
+    {
+      "symbol": "FAGS",
+      "name": "Farting Autistic Gorilla Shark",
+      "type": "memecoin",
+      "market_cap_rank": 6422,
+      "market_cap": 0
+    },
+    {
+      "symbol": "YELLOW",
+      "name": "YELLOW",
+      "type": "memecoin",
+      "market_cap_rank": 6421,
+      "market_cap": 0
+    },
+    {
+      "symbol": "POKE6900",
+      "name": "POKE6900",
+      "type": "memecoin",
+      "market_cap_rank": 6420,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TRUMPSONS",
+      "name": "The Golden Family",
+      "type": "memecoin",
+      "market_cap_rank": 6419,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BRAINFART",
+      "name": "BrainFart Token",
+      "type": "memecoin",
+      "market_cap_rank": 6418,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ZKX",
+      "name": "ZKX",
+      "type": "major coin",
+      "market_cap_rank": 6417,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "KING",
+      "name": "King Finance",
+      "type": "major coin",
+      "market_cap_rank": 6416,
+      "market_cap": 0,
+      "categories": "bsc,defi,nft"
+    },
+    {
+      "symbol": "EDM",
+      "name": "Essence Degen Madness",
+      "type": "memecoin",
+      "market_cap_rank": 6415,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ZZZZZFEHUZZZZZ",
+      "name": "Z•Z•Z•Z•Z•FEHU•Z•Z•Z•Z•Z",
+      "type": "major coin",
+      "market_cap_rank": 6414,
+      "market_cap": 0,
+      "categories": "runes,bitcoin-ecosystem"
+    },
+    {
+      "symbol": "MOMFOLIO",
+      "name": "MOMFOLIO",
+      "type": "memecoin",
+      "market_cap_rank": 6413,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ROOMLY",
+      "name": "ROOMLY",
+      "type": "memecoin",
+      "market_cap_rank": 6412,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DOGEMON",
+      "name": "dogemon",
+      "type": "memecoin",
+      "market_cap_rank": 6411,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SQUAID",
+      "name": "SQUAID",
+      "type": "memecoin",
+      "market_cap_rank": 6410,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BLIXI",
+      "name": "ai/blix",
+      "type": "memecoin",
+      "market_cap_rank": 6409,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SMUDGE",
+      "name": "Smudge Lord",
+      "type": "memecoin",
+      "market_cap_rank": 6408,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "JDOGE",
+      "name": "John Doge",
+      "type": "memecoin",
+      "market_cap_rank": 6407,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "PALITO",
+      "name": "PALITO",
+      "type": "memecoin",
+      "market_cap_rank": 6406,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BAI",
+      "name": "Balance AI",
+      "type": "memecoin",
+      "market_cap_rank": 6405,
+      "market_cap": 0,
+      "categories": "ai"
+    },
+    {
+      "symbol": "AYO",
+      "name": "Ayo Protocol",
+      "type": "memecoin",
+      "market_cap_rank": 6404,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NYNP",
+      "name": "NYNP",
+      "type": "memecoin",
+      "market_cap_rank": 6403,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PLANTER",
+      "name": "Manic Planter",
+      "type": "memecoin",
+      "market_cap_rank": 6402,
+      "market_cap": 0
+    },
+    {
+      "symbol": "VDO",
+      "name": "ValiDAO",
+      "type": "memecoin",
+      "market_cap_rank": 6401,
+      "market_cap": 0,
+      "categories": "depin"
+    },
+    {
+      "symbol": "DARKMONA",
+      "name": "DARKMONA",
+      "type": "memecoin",
+      "market_cap_rank": 6400,
+      "market_cap": 0
+    },
+    {
+      "symbol": "PLUMBUS",
+      "name": "Plumbus",
+      "type": "memecoin",
+      "market_cap_rank": 6399,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MC",
+      "name": "Monster Cat",
+      "type": "memecoin",
+      "market_cap_rank": 6398,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "JOVIAL",
+      "name": "Jovial Merryment",
+      "type": "memecoin",
+      "market_cap_rank": 6397,
+      "market_cap": 0
+    },
+    {
+      "symbol": "FINU",
+      "name": "Formula Inu",
+      "type": "memecoin",
+      "market_cap_rank": 6396,
+      "market_cap": 0,
+      "categories": "nft,meme"
+    },
+    {
+      "symbol": "PNUTDOG",
+      "name": "Peanut the dog",
+      "type": "memecoin",
+      "market_cap_rank": 6395,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BOATSNAPS",
+      "name": "BoatSnaps",
+      "type": "memecoin",
+      "market_cap_rank": 6394,
+      "market_cap": 0
+    },
+    {
+      "symbol": "LUU",
+      "name": "Luniverse",
+      "type": "memecoin",
+      "market_cap_rank": 6393,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TRENDS",
+      "name": "Flanders",
+      "type": "memecoin",
+      "market_cap_rank": 6392,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BAMBI",
+      "name": "Bambi-Nance",
+      "type": "memecoin",
+      "market_cap_rank": 6391,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GOVNO",
+      "name": "GOVNO",
+      "type": "memecoin",
+      "market_cap_rank": 6390,
+      "market_cap": 0
+    },
+    {
+      "symbol": "UV",
+      "name": "UnityVentures",
+      "type": "major coin",
+      "market_cap_rank": 6389,
+      "market_cap": 0,
+      "categories": "bsc,defi,nft"
+    },
+    {
+      "symbol": "ODON",
+      "name": "ODON",
+      "type": "memecoin",
+      "market_cap_rank": 6388,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TESLER",
+      "name": "I Love Tesler",
+      "type": "memecoin",
+      "market_cap_rank": 6387,
+      "market_cap": 0
+    },
+    {
+      "symbol": "HBIT",
+      "name": "HashBit",
+      "type": "memecoin",
+      "market_cap_rank": 6386,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CHECKPOINT",
+      "name": "?????????",
+      "type": "memecoin",
+      "market_cap_rank": 6385,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GROK3",
+      "name": "Grok 3",
+      "type": "memecoin",
+      "market_cap_rank": 6384,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MEESEEKS",
+      "name": "MEESEEKS",
+      "type": "memecoin",
+      "market_cap_rank": 6383,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BANANAGUY",
+      "name": "BananaGuy",
+      "type": "memecoin",
+      "market_cap_rank": 6382,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NOLAND",
+      "name": "NOLAND",
+      "type": "memecoin",
+      "market_cap_rank": 6381,
+      "market_cap": 0
+    },
+    {
+      "symbol": "R/STOCKS",
+      "name": "r/stocks",
+      "type": "memecoin",
+      "market_cap_rank": 6380,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BRUHH",
+      "name": "BRUHH",
+      "type": "memecoin",
+      "market_cap_rank": 6379,
+      "market_cap": 0
+    },
+    {
+      "symbol": "OSPY",
+      "name": "Ospy",
+      "type": "memecoin",
+      "market_cap_rank": 6378,
+      "market_cap": 0,
+      "categories": "brc20"
+    },
+    {
+      "symbol": "RONK",
+      "name": "RONK",
+      "type": "memecoin",
+      "market_cap_rank": 6377,
+      "market_cap": 0
+    },
+    {
+      "symbol": "COMMUNIZM",
+      "name": "Deep China",
+      "type": "memecoin",
+      "market_cap_rank": 6376,
+      "market_cap": 0
+    },
+    {
+      "symbol": "AGENT47",
+      "name": "First Darkstorm AI Agent",
+      "type": "memecoin",
+      "market_cap_rank": 6375,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ULTRA",
+      "name": "ULTRA Prisma Finance",
+      "type": "major coin",
+      "market_cap_rank": 6374,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "SMILEY",
+      "name": "SMILEY",
+      "type": "memecoin",
+      "market_cap_rank": 6373,
+      "market_cap": 0,
+      "categories": "meme"
+    },
+    {
+      "symbol": "ALFRED",
+      "name": "ALFRED",
+      "type": "memecoin",
+      "market_cap_rank": 6372,
+      "market_cap": 0
+    },
+    {
+      "symbol": "879613",
+      "name": "Block 879613 mined by MARA Pool",
+      "type": "memecoin",
+      "market_cap_rank": 6371,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GOATYE",
+      "name": "Goatye",
+      "type": "memecoin",
+      "market_cap_rank": 6370,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NCM",
+      "name": "Naked Crab Man",
+      "type": "memecoin",
+      "market_cap_rank": 6369,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CHINESEGUY",
+      "name": "Just a Chinese Guy",
+      "type": "memecoin",
+      "market_cap_rank": 6368,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CASPAI",
+      "name": "CaspAI",
+      "type": "memecoin",
+      "market_cap_rank": 6367,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RIZZBOB",
+      "name": "RIZZBOB",
+      "type": "memecoin",
+      "market_cap_rank": 6366,
+      "market_cap": 0
+    },
+    {
+      "symbol": "VBNT",
+      "name": "Bancor Governance Token",
+      "type": "major coin",
+      "market_cap_rank": 6365,
+      "market_cap": 0,
+      "categories": "defi,dao"
+    },
+    {
+      "symbol": "PEPPINO",
+      "name": "Peppino",
+      "type": "memecoin",
+      "market_cap_rank": 6364,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DRM",
+      "name": "Dreamcoin",
+      "type": "memecoin",
+      "market_cap_rank": 6363,
+      "market_cap": 0
+    },
+    {
+      "symbol": "0.1B",
+      "name": "$0.1b is not a lot of money.",
+      "type": "memecoin",
+      "market_cap_rank": 6362,
+      "market_cap": 0
+    },
+    {
+      "symbol": "NV",
+      "name": "No Valentine",
+      "type": "memecoin",
+      "market_cap_rank": 6361,
+      "market_cap": 0
+    },
+    {
+      "symbol": "DQUACK",
+      "name": "DarkQuack",
+      "type": "memecoin",
+      "market_cap_rank": 6360,
+      "market_cap": 0
+    },
+    {
+      "symbol": "UNO",
+      "name": "Lunos",
+      "type": "memecoin",
+      "market_cap_rank": 6359,
+      "market_cap": 0,
+      "categories": "music"
+    },
+    {
+      "symbol": "PIZZA",
+      "name": "Pizza Game",
+      "type": "memecoin",
+      "market_cap_rank": 6358,
+      "market_cap": 0,
+      "categories": "avalanche,nft"
+    },
+    {
+      "symbol": "GSR",
+      "name": "GeyserCoin",
+      "type": "memecoin",
+      "market_cap_rank": 6357,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MDI",
+      "name": "Medicle",
+      "type": "memecoin",
+      "market_cap_rank": 6356,
+      "market_cap": 0,
+      "categories": "healthcare"
+    },
+    {
+      "symbol": "BIFANG",
+      "name": "BIFANG",
+      "type": "memecoin",
+      "market_cap_rank": 6355,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CHILLSNT",
+      "name": "CHILLSNT",
+      "type": "memecoin",
+      "market_cap_rank": 6354,
+      "market_cap": 0
+    },
+    {
+      "symbol": "MOODOLPH",
+      "name": "MOODOLPH",
+      "type": "memecoin",
+      "market_cap_rank": 6353,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TDP",
+      "name": "TrueDeck",
+      "type": "memecoin",
+      "market_cap_rank": 6352,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ELECTRA",
+      "name": "Electra AI",
+      "type": "memecoin",
+      "market_cap_rank": 6351,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RELAXBOY",
+      "name": "RELAXBOY",
+      "type": "memecoin",
+      "market_cap_rank": 6350,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CANCER",
+      "name": "F*CK CANCER",
+      "type": "memecoin",
+      "market_cap_rank": 6349,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SUP20",
+      "name": "SuperchainERC20",
+      "type": "memecoin",
+      "market_cap_rank": 6348,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SAMMY",
+      "name": "Success Kid",
+      "type": "memecoin",
+      "market_cap_rank": 6347,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BALLS",
+      "name": "Hairy Balls",
+      "type": "memecoin",
+      "market_cap_rank": 6346,
+      "market_cap": 0
+    },
+    {
+      "symbol": "IROBOT",
+      "name": "iROBOT",
+      "type": "memecoin",
+      "market_cap_rank": 6345,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BETZ",
+      "name": "Bet Lounge",
+      "type": "memecoin",
+      "market_cap_rank": 6344,
+      "market_cap": 0,
+      "categories": "gambling"
+    },
+    {
+      "symbol": "POTUS47",
+      "name": "president of the united states",
+      "type": "memecoin",
+      "market_cap_rank": 6343,
+      "market_cap": 0
+    },
+    {
+      "symbol": "JOCKEY",
+      "name": "Chicken Jockey",
+      "type": "memecoin",
+      "market_cap_rank": 6342,
+      "market_cap": 0
+    },
+    {
+      "symbol": "TVM",
+      "name": "TVM",
+      "type": "memecoin",
+      "market_cap_rank": 6341,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SHIBY",
+      "name": "SHIBY",
+      "type": "memecoin",
+      "market_cap_rank": 6340,
+      "market_cap": 0
+    },
+    {
+      "symbol": "D3VCAV3",
+      "name": "d3vcav3",
+      "type": "memecoin",
+      "market_cap_rank": 6339,
+      "market_cap": 0
+    },
+    {
+      "symbol": "GRIGGA",
+      "name": "Grigga",
+      "type": "memecoin",
+      "market_cap_rank": 6338,
+      "market_cap": 0
+    },
+    {
+      "symbol": "CHIIKAWA",
+      "name": "CHIIKAWA",
+      "type": "memecoin",
+      "market_cap_rank": 6337,
+      "market_cap": 0
+    },
+    {
+      "symbol": "JOOBI",
+      "name": "joobi",
+      "type": "memecoin",
+      "market_cap_rank": 6336,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RIZZGUY",
+      "name": "RIZZGUY",
+      "type": "memecoin",
+      "market_cap_rank": 6335,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SMISKI",
+      "name": "Smiski",
+      "type": "memecoin",
+      "market_cap_rank": 6334,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BABYBLAZE",
+      "name": "Baby Blaze",
+      "type": "memecoin",
+      "market_cap_rank": 6333,
+      "market_cap": 0
+    },
+    {
+      "symbol": "ALCATRAZ",
+      "name": "Jail Of The United States",
+      "type": "memecoin",
+      "market_cap_rank": 6332,
+      "market_cap": 0
+    },
+    {
+      "symbol": "BEDCOIN",
+      "name": "Buy and sleep on it",
+      "type": "memecoin",
+      "market_cap_rank": 6331,
+      "market_cap": 0
+    },
+    {
+      "symbol": "SOLAR",
+      "name": "Solar",
+      "type": "major coin",
+      "market_cap_rank": 6330,
+      "market_cap": 0,
+      "categories": "defi"
+    },
+    {
+      "symbol": "ORANJ",
+      "name": "ORANJ",
+      "type": "memecoin",
+      "market_cap_rank": 6329,
+      "market_cap": 0
+    },
+    {
+      "symbol": "RSIC",
+      "name": "RSIC•GENESIS•RUNE",
+      "type": "memecoin",
+      "market_cap_rank": 6328,
+      "market_cap": 0,
+      "categories": "runes"
+    }
+  ]
+}

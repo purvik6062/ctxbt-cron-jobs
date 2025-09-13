@@ -14,7 +14,7 @@
     "build": "echo 'Build completed'",
     "security-check": "npm audit",
     "start": "node src/api/server.js",
-    "seed:lunarcrush-tokens": "node src/scripts/seedLunarcrushTokens.js"
+    "fetch:lunarcrush-tokens": "node src/scripts/fetchLunarcrushTokens.js"
   },
   "keywords": [],
   "author": "",

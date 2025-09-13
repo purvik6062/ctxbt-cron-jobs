@@ -31,7 +31,7 @@ function startCronJobs() {
     });
 
     // updateSubscribers will run every 2 hours 
-    cron.schedule('*/10 * * * *', async () => {
+    cron.schedule('0 */2 * * *', async () => {
         console.log('Starting active subscription updater at:', new Date().toISOString());
         await updateSubscribers();
     });
@@ -42,7 +42,7 @@ function startCronJobs() {
         await fetchAndUpdateCoins();
     });
 
-    // messageSender will run every 2 hours
+    // messageSender will run every 3 hours
     let isProcessing = false;
     cron.schedule('0 */3 * * *', async () => {
         if (isProcessing) {
@@ -80,8 +80,8 @@ function startCronJobs() {
         console.log('Completed PnL normalization job at:', new Date().toISOString());
     });
 
-    // LunarCrush data aggregator - run daily at 00:10 UTC
-    cron.schedule('10 0 * * *', async () => {
+    // Run LunarCrush aggregation job every day at 10:00 AM UTC
+    cron.schedule('0 10 * * *', async () => {
         console.log('Starting LunarCrush aggregation job at:', new Date().toISOString());
         try {
             await processAllTokens();

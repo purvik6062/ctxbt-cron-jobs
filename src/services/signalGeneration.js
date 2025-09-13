@@ -1,5 +1,5 @@
 const { connect, closeConnection } = require('../db');
-const { dbName, influencerCollectionName, perplexity, tradingSignalsCollectionName } = require('../config/config');
+const { dbName, influencerCollectionName, perplexity, tradingSignalsCollectionName, lunarcrushCollectionName } = require('../config/config');
 const CryptoService = require('./cryptoService');
 const { processAndSendSignal } = require('./hyperliquidSignalService');
 const axios = require('axios');
@@ -323,12 +323,158 @@ ${data.tradeTip}
 }
 
 /**
+ * Queries LunarCrush data from MongoDB for a given symbol
+ * @param {string} symbol - The token symbol to query (case-insensitive)
+ * @returns {Object|null} - LunarCrush data object or null if not found
+ */
+async function getLunarCrushData(symbol) {
+    let client;
+    try {
+        client = await connect();
+        const signalFlowDb = client.db("ctxbt-signal-flow");
+        const lunarcrushCollection = signalFlowDb.collection(lunarcrushCollectionName);
+
+        const lunarcrushData = await lunarcrushCollection.findOne({
+            symbol: symbol.toUpperCase()
+        });
+
+        if (lunarcrushData && lunarcrushData.metrics) {
+            console.log(`Found LunarCrush data for ${symbol}`);
+            return lunarcrushData;
+        } else {
+            console.log(`No LunarCrush data found for ${symbol}`);
+            return null;
+        }
+    } catch (error) {
+        console.error(`Error fetching LunarCrush data for ${symbol}:`, error);
+        return null;
+    } finally {
+        if (client) {
+            await closeConnection(client);
+        }
+    }
+}
+
+/**
+ * Checks if a signal meets the user's threshold configuration
+ * @param {Object} userThresholds - User's customization options/thresholds
+ * @param {Object} lunarCrushMetrics - LunarCrush metrics from the signal
+ * @returns {Object} - Object with passesThreshold, failedMetrics, and reason properties
+ */
+function checkUserThresholds(userThresholds, lunarCrushMetrics) {
+    if (!userThresholds || !lunarCrushMetrics) {
+        return {
+            passesThreshold: false,
+            failedMetrics: ['missing_configuration'],
+            reason: 'Missing user thresholds or LunarCrush metrics'
+        };
+    }
+
+    const failedMetrics = [];
+    const metrics = lunarCrushMetrics;
+
+    // Helper function to safely compare metrics with thresholds
+    const checkMetric = (metricName, threshold, operator = '>=') => {
+        const metricValue = metrics[metricName];
+        const thresholdValue = threshold;
+
+        if (metricValue === null || metricValue === undefined || isNaN(metricValue)) {
+            return false; // Treat missing/invalid metrics as failing
+        }
+
+        switch (operator) {
+            case '>=':
+                return metricValue >= thresholdValue;
+            case '<=':
+                return metricValue <= thresholdValue;
+            case '>':
+                return metricValue > thresholdValue;
+            case '<':
+                return metricValue < thresholdValue;
+            default:
+                return metricValue >= thresholdValue;
+        }
+    };
+
+    // Check each metric against user thresholds
+    // Note: For neg_d_altrank_6h, higher is better (negative of rank change)
+    const checks = [
+        { metric: 'r_last6h_pct', threshold: userThresholds.r_last6h_pct, operator: '>=' },
+        { metric: 'd_pct_mktvol_6h', threshold: userThresholds.d_pct_mktvol_6h, operator: '>=' },
+        { metric: 'd_pct_socvol_6h', threshold: userThresholds.d_pct_socvol_6h, operator: '>=' },
+        { metric: 'd_pct_sent_6h', threshold: userThresholds.d_pct_sent_6h, operator: '>=' },
+        { metric: 'd_pct_users_6h', threshold: userThresholds.d_pct_users_6h, operator: '>=' },
+        { metric: 'd_pct_infl_6h', threshold: userThresholds.d_pct_infl_6h, operator: '>=' },
+        { metric: 'd_galaxy_6h', threshold: userThresholds.d_galaxy_6h, operator: '>=' },
+        { metric: 'neg_d_altrank_6h', threshold: userThresholds.neg_d_altrank_6h, operator: '>=' }
+    ];
+
+    for (const check of checks) {
+        if (!checkMetric(check.metric, check.threshold, check.operator)) {
+            failedMetrics.push({
+                metric: check.metric,
+                actual: metrics[check.metric],
+                threshold: check.threshold,
+                operator: check.operator
+            });
+        }
+    }
+
+    const passesThreshold = failedMetrics.length === 0;
+
+    return {
+        passesThreshold,
+        failedMetrics,
+        reason: passesThreshold ? 'All thresholds met' : `Failed ${failedMetrics.length} threshold(s)`
+    };
+}
+
+/**
+ * Gets user threshold configuration from database
+ * @param {string} username - User's telegramId or twitterUsername
+ * @returns {Object|null} - User's threshold configuration or null if not found
+ */
+async function getUserThresholds(username) {
+    let client;
+    try {
+        client = await connect();
+        const signalFlowDb = client.db("ctxbt-signal-flow");
+        const usersCollection = signalFlowDb.collection("users");
+
+        // Try to find user by telegramId or twitterUsername
+        const userDoc = await usersCollection.findOne({
+            $or: [
+                { telegramId: username },
+                { twitterUsername: username },
+                { telegramUserId: parseInt(username) || username }
+            ]
+        });
+
+        if (!userDoc || !userDoc.customizationOptions) {
+            console.log(`No threshold configuration found for user ${username}`);
+            return null;
+        }
+
+        console.log(`Found threshold configuration for user ${username}`);
+        return userDoc.customizationOptions;
+    } catch (error) {
+        console.error(`Error fetching thresholds for user ${username}:`, error);
+        return null;
+    } finally {
+        if (client) {
+            await closeConnection(client);
+        }
+    }
+}
+
+/**
  * Creates a prompt for the Perplexity API to generate a JSON object with trading parameters.
  * @param {string} tweetContent - The tweet text.
  * @param {Object} marketData - Market data for the coin mentioned in the tweet.
+ * @param {Object} lunarCrushData - LunarCrush metrics data (optional)
  * @returns {string} - The prompt string.
  */
-function generatePrompt(tweetContent, marketData) {
+function generatePrompt(tweetContent, marketData, lunarCrushData = null) {
     // Format market data for the specific coin
     const marketDataStr = `
      - ${marketData.token} (${marketData.coin_id}):
@@ -339,36 +485,57 @@ function generatePrompt(tweetContent, marketData) {
        Current Data (${marketData.current_data.timestamp}):
          Price: $${marketData.current_data.price_usd}
          Market Cap: $${marketData.current_data.market_cap}
-         Volume: $${marketData.current_data.total_volume} 
+         Volume: $${marketData.current_data.total_volume}
        Price Change: ${marketData.current_data.price_change_since_historical}%
          `;
 
-    return `Based on the provided tweet and market data, determine the trading signal for ${marketData.token} and fill in the following format accordingly. Use your analysis to decide the values for signal, sentiment, momentum, targets, stop loss, max exit time, etc., based on the tweet and market data provided, but only output the completed format without additional commentary or sections. 
-    
+    // Format LunarCrush metrics if available
+    let lunarCrushStr = '';
+    if (lunarCrushData && lunarCrushData.metrics) {
+        const metrics = lunarCrushData.metrics;
+        lunarCrushStr = `
+     - ${marketData.token} LunarCrush Social & Market Metrics:
+       - Return over last 6h: ${metrics.r_last6h_pct?.toFixed(2) || 'N/A'}%
+       - Market volume change (6h vs previous 6h): ${metrics.d_pct_mktvol_6h?.toFixed(2) || 'N/A'}%
+       - Social volume change (6h vs previous 6h): ${metrics.d_pct_socvol_6h?.toFixed(2) || 'N/A'}%
+       - Sentiment change (6h): ${metrics.d_pct_sent_6h?.toFixed(2) || 'N/A'}%
+       - Users engagement change (6h): ${metrics.d_pct_users_6h?.toFixed(2) || 'N/A'}%
+       - Influencer mentions change (6h): ${metrics.d_pct_infl_6h?.toFixed(2) || 'N/A'}%
+       - Predicted next 6h return: ${lunarCrushData.pred_next6h_pct?.toFixed(2) || 'N/A'}%
+       - Token type: ${lunarCrushData.type || 'N/A'}
+         `;
+    }
+
+    return `Analyze the following tweet about ${marketData.token} along with current market conditions to generate a trading signal. Consider price action, volume trends, market sentiment, and social engagement indicators. Your analysis should incorporate all available market intelligence to determine the optimal trading strategy.
+
 --- INPUT DATA ---
 ### Tweet: "${tweetContent}"
-### Market Data: ${marketDataStr}
+### Market Conditions:
+${marketDataStr}
+${lunarCrushStr ? `### Social & Market Indicators:${lunarCrushStr}` : ''}
 
-### Trading Signal Format(Pure JSON) - The JSON should have the following structure:
+### Trading Signal Format - Complete the JSON structure below:
 
 {
-  "token": "${marketData.token} (${marketData.coin_id})",
+  "token": "${marketData.token}",
   "signal": "Buy/Put Options/Hold",
   "currentPrice": ${marketData.current_data.price_usd}.toFixed(4),
   "targets": [num1 (Target Price 1), num2 (Target Price 2)],
   "stopLoss": num,
   "timeline": "Text",
   "maxExitTime": "ISO 8601 Date/Time string representing the maximum exit time",
-  "tradeTip": "Provide a concise trade tip with market insight and trading advice specific to ${marketData.token} based on the tweet and market data. The tip must not exceed four lines in length (e.g., 2 to 4 short sentences)."
+  "tradeTip": "Provide a concise trading recommendation with specific entry/exit strategy and risk management advice for ${marketData.token}. Keep it under 4 lines."
 }
 
-Please provide only the JSON object without any additional text.
+--- CRITICAL INSTRUCTIONS ---
+1. Generate ONLY the completed JSON object - no additional text, explanations, or analysis
+2. Do NOT mention data sources, APIs, or where information came from
+3. Focus purely on trading strategy based on the market conditions presented
+4. Use "Put Options" for bearish signals instead of "Sell"
+5. Ensure all numeric values are realistic for current ${marketData.token} price levels
+6. The tradeTip should contain actionable trading advice without referencing data sources
 
---- RULES ---
-1. Ensure strict, valid JSON required
-2. Do not include any additional text, analysis, or sections beyond this format. Only output the completed trading signal as shown above.
-3. Output only the JSON object, no additional text.
-4. When analysis suggests a bearish outlook, use "Put Options" instead of "Sell" as the signal value.
+Output the JSON object and nothing else:
 `;
 }
 
@@ -481,7 +648,11 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                             );
                             if (!marketData) continue;
 
-                            const prompt = generatePrompt(tweet.content, marketData);
+                            // Fetch LunarCrush data for the token symbol
+                            const tokenSymbol = marketData.symbol || marketData.token || coinId;
+                            const lunarCrushData = await getLunarCrushData(tokenSymbol);
+
+                            const prompt = generatePrompt(tweet.content, marketData, lunarCrushData);
                             const data = await callPerplexityAPI(prompt);
                             const message = generateMessage(data);
 
@@ -501,7 +672,10 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                                 exitValue: null,
                                 twitterHandle,
                                 tokenMentioned,
-                                tokenId
+                                tokenId,
+                                lunarCrushMetrics: lunarCrushData?.metrics || null,
+                                lunarCrushPrediction: lunarCrushData?.pred_next6h_pct || null,
+                                lunarCrushTokenType: lunarCrushData?.type || null
                             };
 
                             await tradingSignalsCollection.insertOne({
@@ -513,7 +687,10 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                                 generatedAt: new Date(),
                                 subscribers: doc.subscribers.map(subscriber => ({
                                     username: subscriber,
-                                    sent: false
+                                    sent: false,
+                                    thresholdCheck: null,
+                                    sentAt: null,
+                                    error: null
                                 })),
                                 tweet_link: tweet.tweet_link,
                                 messageSent: false
@@ -569,20 +746,94 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
 
                                     console.log(`User ${username} is subscribed to ${twitterHandle} and found in tradingSignalsCollection`);
 
+                                    // Check user thresholds before sending signal
+                                    const userThresholds = await getUserThresholds(username);
+                                    const thresholdCheck = userThresholds && lunarCrushData?.metrics
+                                        ? checkUserThresholds(userThresholds, lunarCrushData.metrics)
+                                        : { passesThreshold: false, reason: 'Missing thresholds or LunarCrush data' };
+
+                                    if (!thresholdCheck.passesThreshold) {
+                                        console.log(`User ${username} thresholds not met: ${thresholdCheck.reason}`);
+
+                                        // Log detailed threshold failure information
+                                        if (thresholdCheck.failedMetrics.length > 0) {
+                                            console.log(`Failed metrics for ${username}:`);
+                                            thresholdCheck.failedMetrics.forEach(failed => {
+                                                console.log(`  - ${failed.metric}: ${failed.actual?.toFixed(2) || 'N/A'} ${failed.operator} ${failed.threshold}`);
+                                            });
+                                        }
+
+                                        // Update subscriber status in database to show threshold failure
+                                        await tradingSignalsCollection.updateOne(
+                                            { tweet_id: tweet.tweet_id, twitterHandle, "subscribers.username": username },
+                                            {
+                                                $set: {
+                                                    "subscribers.$.sent": false,
+                                                    "subscribers.$.thresholdCheck": {
+                                                        passed: false,
+                                                        reason: thresholdCheck.reason,
+                                                        failedMetrics: thresholdCheck.failedMetrics,
+                                                        checkedAt: new Date()
+                                                    }
+                                                }
+                                            }
+                                        );
+                                        continue;
+                                    }
+
+                                    console.log(`User ${username} thresholds met: ${thresholdCheck.reason}`);
+
                                     // Get safe address for the user
                                     const safeAddress = await getSafeAddressForUser(username);
                                     if (!safeAddress) {
                                         console.log(`No safe address found for user ${username}, skipping API call`);
+
+                                        // Update subscriber status to show safe address failure
+                                        await tradingSignalsCollection.updateOne(
+                                            { tweet_id: tweet.tweet_id, twitterHandle, "subscribers.username": username },
+                                            {
+                                                $set: {
+                                                    "subscribers.$.sent": false,
+                                                    "subscribers.$.thresholdCheck": thresholdCheck,
+                                                    "subscribers.$.error": "No safe address found"
+                                                }
+                                            }
+                                        );
                                         continue;
                                     }
 
                                     // Send signal to GMX API
                                     const apiResult = await sendSignalToGMXAPI(enhancedSignalData, username, safeAddress);
 
+                                    // Update subscriber status based on API result
                                     if (apiResult.success) {
                                         console.log(`Successfully sent signal to API for GMX ${username}`);
+
+                                        await tradingSignalsCollection.updateOne(
+                                            { tweet_id: tweet.tweet_id, twitterHandle, "subscribers.username": username },
+                                            {
+                                                $set: {
+                                                    "subscribers.$.sent": true,
+                                                    "subscribers.$.thresholdCheck": thresholdCheck,
+                                                    "subscribers.$.sentAt": new Date(),
+                                                    "subscribers.$.apiResponse": apiResult.response
+                                                }
+                                            }
+                                        );
                                     } else {
                                         console.error(`Failed to send signal to API for GMX ${username}:`, apiResult.error);
+
+                                        await tradingSignalsCollection.updateOne(
+                                            { tweet_id: tweet.tweet_id, twitterHandle, "subscribers.username": username },
+                                            {
+                                                $set: {
+                                                    "subscribers.$.sent": false,
+                                                    "subscribers.$.thresholdCheck": thresholdCheck,
+                                                    "subscribers.$.error": apiResult.error,
+                                                    "subscribers.$.failedAt": new Date()
+                                                }
+                                            }
+                                        );
                                     }
 
                                 } catch (subscriberError) {
@@ -766,7 +1017,7 @@ async function checkInfluencerEligibility(twitterHandle, tokenId) {
     }
 }
 
-module.exports = { 
+module.exports = {
     processAndGenerateSignalsForTweets,
     isTop10Influencer,
     isTop30Influencer,
@@ -775,5 +1026,10 @@ module.exports = {
     getCurrentTopInfluencers,
     clearInfluencerCache,
     checkInfluencerEligibility,
-    shouldSendToHyperliquid
+    shouldSendToHyperliquid,
+    getLunarCrushData,
+    generatePrompt,
+    callPerplexityAPI,
+    checkUserThresholds,
+    getUserThresholds
 };
