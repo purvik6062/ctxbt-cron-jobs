@@ -21,100 +21,100 @@ function startCronJobs() {
     // cleanupCSVFiles();
 
     // Start Telegram bot listener for welcome messages
-    telegramBotListener.startListening();
+    // telegramBotListener.startListening();
 
-    // updateInfluencerScores Every Sunday at midnight
-    cron.schedule('0 0 0 * * 0', async () => {
-        console.log('Starting influencer scores update at:', new Date().toISOString());
-        await updateInfluencerScores();
-        console.log('Completed influencer scores update at:', new Date().toISOString());
-    });
+    // // updateInfluencerScores Every Sunday at midnight
+    // cron.schedule('0 0 0 * * 0', async () => {
+    //     console.log('Starting influencer scores update at:', new Date().toISOString());
+    //     await updateInfluencerScores();
+    //     console.log('Completed influencer scores update at:', new Date().toISOString());
+    // });
 
-    // updateSubscribers will run every 2 hours 
-    cron.schedule('0 */2 * * *', async () => {
-        console.log('Starting active subscription updater at:', new Date().toISOString());
-        await updateSubscribers();
-    });
+    // // updateSubscribers will run every 2 hours 
+    // cron.schedule('0 */2 * * *', async () => {
+    //     console.log('Starting active subscription updater at:', new Date().toISOString());
+    //     await updateSubscribers();
+    // });
 
-    // fetchAndUpdateCoins will run every 20 minutes
-    cron.schedule('*/20 * * * *', async () => {
-        console.log('Starting coins update job at:', new Date().toISOString());
-        await fetchAndUpdateCoins();
-    });
+    // // fetchAndUpdateCoins will run every 20 minutes
+    // cron.schedule('*/20 * * * *', async () => {
+    //     console.log('Starting coins update job at:', new Date().toISOString());
+    //     await fetchAndUpdateCoins();
+    // });
 
-    // messageSender will run every 3 hours
-    let isProcessing = false;
-    cron.schedule('0 */3 * * *', async () => {
-        if (isProcessing) {
-            console.log('Previous processTweets job is still running, skipping this run');
-            return;
-        }
+    // // messageSender will run every 3 hours
+    // let isProcessing = false;
+    // cron.schedule('0 */3 * * *', async () => {
+    //     if (isProcessing) {
+    //         console.log('Previous processTweets job is still running, skipping this run');
+    //         return;
+    //     }
 
-        try {
-            isProcessing = true;
-            console.log('Starting message sender job at:', new Date().toISOString());
-            await processTweets();
-            console.log('Completed message sender job at:', new Date().toISOString());
-        } catch (error) {
-            console.error('Error in message sender job:', error);
-        } finally {
-            isProcessing = false;
-        }
-    });
+    //     try {
+    //         isProcessing = true;
+    //         console.log('Starting message sender job at:', new Date().toISOString());
+    //         await processTweets();
+    //         console.log('Completed message sender job at:', new Date().toISOString());
+    //     } catch (error) {
+    //         console.error('Error in message sender job:', error);
+    //     } finally {
+    //         isProcessing = false;
+    //     }
+    // });
 
-    // backtesting job will run every 30 minutes
-    cron.schedule('*/30 * * * *', async () => {
-        console.log('Starting backtesting job at:', new Date().toISOString());
-        try {
-            await processSignals();
-            console.log('Completed backtesting job at:', new Date().toISOString());
-        } catch (error) {
-            console.error('Error in backtesting job:', error);
-        }
-    });
+    // // backtesting job will run every 30 minutes
+    // cron.schedule('*/30 * * * *', async () => {
+    //     console.log('Starting backtesting job at:', new Date().toISOString());
+    //     try {
+    //         await processSignals();
+    //         console.log('Completed backtesting job at:', new Date().toISOString());
+    //     } catch (error) {
+    //         console.error('Error in backtesting job:', error);
+    //     }
+    // });
 
-    // pnl normalization job will run every 4 hours
-    cron.schedule('0 */4 * * *', async () => {
-        console.log('Starting PnL normalization job at:', new Date().toISOString());
-        await pnlNormalization.processOverallNormalization();
-        console.log('Completed PnL normalization job at:', new Date().toISOString());
-    });
+    // // pnl normalization job will run every 4 hours
+    // cron.schedule('0 */4 * * *', async () => {
+    //     console.log('Starting PnL normalization job at:', new Date().toISOString());
+    //     await pnlNormalization.processOverallNormalization();
+    //     console.log('Completed PnL normalization job at:', new Date().toISOString());
+    // });
 
-    // Run LunarCrush aggregation job every day at 10:00 AM UTC
-    cron.schedule('0 10 * * *', async () => {
-        console.log('Starting LunarCrush aggregation job at:', new Date().toISOString());
-        try {
-            await processAllTokens();
-            console.log('Completed LunarCrush aggregation job at:', new Date().toISOString());
-        } catch (error) {
-            console.error('Error in LunarCrush aggregation job:', error);
-        }
-    });
+    // // Run LunarCrush aggregation job every day at 10:00 AM UTC
+    // cron.schedule('0 10 * * *', async () => {
+    //     console.log('Starting LunarCrush aggregation job at:', new Date().toISOString());
+    //     try {
+    //         await processAllTokens();
+    //         console.log('Completed LunarCrush aggregation job at:', new Date().toISOString());
+    //     } catch (error) {
+    //         console.error('Error in LunarCrush aggregation job:', error);
+    //     }
+    // });
 
-    // verifyFollows will run once every month (on the 1st day of the month at 00:00)
-    cron.schedule('0 0 1 * *', async () => {
-        console.log('Starting verifyFollows job at:', new Date().toISOString());
-        await verifyAndUpdateAllUsersFollow();
-    });
+    // // verifyFollows will run once every month (on the 1st day of the month at 00:00)
+    // cron.schedule('0 0 1 * *', async () => {
+    //     console.log('Starting verifyFollows job at:', new Date().toISOString());
+    //     await verifyAndUpdateAllUsersFollow();
+    // });
 
-    // verifyRetweets will run once every week (every Monday at 00:00)
-    cron.schedule('0 0 * * 1', async () => {
-        console.log('Starting verifyRetweets job at:', new Date().toISOString());
-        await verifyAndUpdateAllUsersRetweet();
-    });
+    // // verifyRetweets will run once every week (every Monday at 00:00)
+    // cron.schedule('0 0 * * 1', async () => {
+    //     console.log('Starting verifyRetweets job at:', new Date().toISOString());
+    //     await verifyAndUpdateAllUsersRetweet();
+    // });
 
-    // Calculate monthly payouts on the 1st of each month at 00:00
-    cron.schedule('0 0 1 * *', async () => {
-        console.log('Starting monthly payout calculation at:', new Date().toISOString());
-        await calculateMonthlyPayouts();
-        console.log('Completed monthly payout calculation at:', new Date().toISOString());
-    });
+    // // Calculate monthly payouts on the 1st of each month at 00:00
+    // cron.schedule('0 0 1 * *', async () => {
+    //     console.log('Starting monthly payout calculation at:', new Date().toISOString());
+    //     await calculateMonthlyPayouts();
+    //     console.log('Completed monthly payout calculation at:', new Date().toISOString());
+    // });
 
-    // resetCredits will run once every month (on the 1st day of the month at 00:00)
-    cron.schedule('0 0 1 * *', async () => {
-        console.log('Starting resetCredits job at:', new Date().toISOString());
-        await resetAllUsersCredits();
-    });
+    // // resetCredits will run once every month (on the 1st day of the month at 00:00)
+    // cron.schedule('0 0 1 * *', async () => {
+    //     console.log('Starting resetCredits job at:', new Date().toISOString());
+    //     await resetAllUsersCredits();
+    // });
 
     console.log('Cron jobs are scheduled.');
 
@@ -122,8 +122,8 @@ function startCronJobs() {
     // updateSubscribers();
     // console.log('Starting coins update job at:', new Date().toISOString());
     // fetchAndUpdateCoins();
-    // console.log('Starting tweets processing job at:', new Date().toISOString());
-    // processTweets();
+    console.log('Starting tweets processing job at:', new Date().toISOString());
+    processTweets();
     // console.log('Starting message sender job at:', new Date().toISOString());
     // messageSender();
     //  console.log('Starting influencer scores update at:', new Date().toISOString());

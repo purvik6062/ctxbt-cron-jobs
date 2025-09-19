@@ -14,7 +14,7 @@ module.exports = {
   tradingSignalsCollectionName: "trading-signals",
   lunarcrushCollectionName: "lunarcrush",
   lunarcrushTokensCollectionName: "lunarcrush-tokens-new",
-  scrapeEndpoint: "http://127.0.0.1:8000/scrape",
+  scrapeEndpoint: 'https://tweets-scraper.maxxit.ai/scrape',
   scraperCredentials: {
     user: "",
     password: "",

@@ -5,24 +5,23 @@ const { processAndSendSignal } = require('./hyperliquidSignalService');
 const axios = require('axios');
 
 /**
- * Gets the safe address for a user from the safe-deployment-service database
- * @param {string} username - Subscriber identifier (telegramId from tradingSignalsCollection)
- * @returns {string|null} - The safe address for arbitrum (pref) or arbitrum_sepolia, or null if not found
+ * Gets the safe address for perpetuals trading from the users collection
+ * @param {string} username - Subscriber identifier (telegramId or twitterUsername)
+ * @returns {string|null} - The safe address for perpetuals trading, or null if not found
  */
-async function getSafeAddressForUser(username) {
+async function getSafeAddressForPerpetuals(username) {
     let client;
     try {
         client = await connect();
-
-        // Resolve twitterId by looking up the user via telegramId (username from tradingSignalsCollection)
         const signalFlowDb = client.db("ctxbt-signal-flow");
         const usersCollection = signalFlowDb.collection("users");
 
-        // Try multiple identifiers just in case: telegramId (primary), twitterUsername (fallback)
+        // Try multiple identifiers: telegramId, twitterUsername, telegramUserId
         const userDoc = await usersCollection.findOne({
             $or: [
                 { telegramId: username },
-                { twitterUsername: username }
+                { twitterUsername: username },
+                { telegramUserId: parseInt(username) || username }
             ]
         });
 
@@ -31,43 +30,117 @@ async function getSafeAddressForUser(username) {
             return null;
         }
 
-        if (!userDoc.twitterId) {
-            console.log(`No twitterId found for identifier ${username}`);
+        if (!userDoc.safeConfigs || !Array.isArray(userDoc.safeConfigs)) {
+            console.log(`No safeConfigs found for user ${username}`);
             return null;
         }
 
-        const twitterId = userDoc.twitterId.toString();
+        // Filter for perpetuals type safe configs
+        const perpetualsConfigs = userDoc.safeConfigs.filter(config => 
+            config.type === 'perpetuals' && config.safeAddress
+        );
 
-        // Now get safe address from safe-deployment-service db using twitterId = safes.userInfo.userId
-        const safeDeploymentDb = client.db("safe-deployment-service");
-        const safesCollection = safeDeploymentDb.collection("safes");
-
-        const safeDoc = await safesCollection.findOne({
-            "userInfo.userId": twitterId
-        });
-
-        if (!safeDoc || !safeDoc.deployments) {
-            console.log(`No safe deployments found for twitterId ${twitterId} (identifier ${username})`);
+        if (perpetualsConfigs.length === 0) {
+            console.log(`No perpetuals safe address found for user ${username}`);
             return null;
         }
 
-        // Prefer mainnet arbitrum, fall back to arbitrum_sepolia
-        const arbMainnet = safeDoc.deployments.arbitrum && safeDoc.deployments.arbitrum.address;
-        // const arbSepolia = safeDoc.deployments.arbitrum_sepolia && safeDoc.deployments.arbitrum_sepolia.address;
+        // Prefer mainnet networks over testnets
+        const mainnetConfig = perpetualsConfigs.find(config => 
+            config.networkKey === 'arbitrum' || 
+            config.networkKey === 'ethereum'
+        );
+        
+        const selectedConfig = mainnetConfig || perpetualsConfigs[0];
+        const safeAddress = selectedConfig.safeAddress;
 
-        const safeAddress = arbMainnet || null;
-        if (!safeAddress) {
-            console.log(`No arbitrum safe address found for twitterId ${twitterId} (identifier ${username})`);
-            return null;
-        }
-
-        console.log(`Found safe address ${safeAddress} for identifier ${username} (twitterId ${twitterId})`);
+        console.log(`Found perpetuals safe address ${safeAddress} for user ${username} on ${selectedConfig.networkKey}`);
         return safeAddress;
 
     } catch (error) {
-        console.error(`Error getting safe address for user ${username}:`, error);
+        console.error(`Error getting perpetuals safe address for user ${username}:`, error);
         return null;
+    } finally {
+        if (client) {
+            await closeConnection(client);
+        }
     }
+}
+
+/**
+ * Gets the safe address for spot trading from the users collection
+ * @param {string} username - Subscriber identifier (telegramId or twitterUsername)
+ * @returns {string|null} - The safe address for spot trading, or null if not found
+ */
+async function getSafeAddressForSpot(username) {
+    let client;
+    try {
+        client = await connect();
+        const signalFlowDb = client.db("ctxbt-signal-flow");
+        const usersCollection = signalFlowDb.collection("users");
+
+        // Try multiple identifiers: telegramId, twitterUsername, telegramUserId
+        const userDoc = await usersCollection.findOne({
+            $or: [
+                { telegramId: username },
+                { twitterUsername: username },
+                { telegramUserId: parseInt(username) || username }
+            ]
+        });
+
+        if (!userDoc) {
+            console.log(`No user found in users collection for identifier ${username}`);
+            return null;
+        }
+
+        if (!userDoc.safeConfigs || !Array.isArray(userDoc.safeConfigs)) {
+            console.log(`No safeConfigs found for user ${username}`);
+            return null;
+        }
+
+        // Filter for spot type safe configs
+        const spotConfigs = userDoc.safeConfigs.filter(config => 
+            config.type === 'spot' && config.safeAddress
+        );
+
+        if (spotConfigs.length === 0) {
+            console.log(`No spot safe address found for user ${username}`);
+            return null;
+        }
+
+        // Prefer mainnet networks over testnets
+        const mainnetConfig = spotConfigs.find(config => 
+            config.networkKey === 'arbitrum' || 
+            config.networkKey === 'ethereum'
+        );
+        
+        const selectedConfig = mainnetConfig || spotConfigs[0];
+        const safeAddress = selectedConfig.safeAddress;
+
+        console.log(`Found spot safe address ${safeAddress} for user ${username} on ${selectedConfig.networkKey}`);
+        return safeAddress;
+
+    } catch (error) {
+        console.error(`Error getting spot safe address for user ${username}:`, error);
+        return null;
+    } finally {
+        if (client) {
+            await closeConnection(client);
+        }
+    }
+}
+
+/**
+ * Gets the safe address for a user from the users collection (backward compatibility)
+ * @param {string} username - Subscriber identifier (telegramId or twitterUsername)
+ * @param {string} type - Type of trading ('perpetuals' or 'spot'), defaults to 'perpetuals'
+ * @returns {string|null} - The safe address, or null if not found
+ */
+async function getSafeAddressForUser(username, type = 'perpetuals') {
+    if (type === 'spot') {
+        return await getSafeAddressForSpot(username);
+    }
+    return await getSafeAddressForPerpetuals(username);
 }
 
 /**
@@ -430,11 +503,11 @@ function checkUserThresholds(userThresholds, lunarCrushMetrics) {
 }
 
 /**
- * Gets user threshold configuration from database
+ * Gets user weightage configuration from database
  * @param {string} username - User's telegramId or twitterUsername
- * @returns {Object|null} - User's threshold configuration or null if not found
+ * @returns {Object|null} - User's weightage configuration or null if not found
  */
-async function getUserThresholds(username) {
+async function getUserWeightages(username) {
     let client;
     try {
         client = await connect();
@@ -451,14 +524,14 @@ async function getUserThresholds(username) {
         });
 
         if (!userDoc || !userDoc.customizationOptions) {
-            console.log(`No threshold configuration found for user ${username}`);
+            console.log(`No weightage configuration found for user ${username}`);
             return null;
         }
 
-        console.log(`Found threshold configuration for user ${username}`);
+        console.log(`Found weightage configuration for user ${username}`);
         return userDoc.customizationOptions;
     } catch (error) {
-        console.error(`Error fetching thresholds for user ${username}:`, error);
+        console.error(`Error fetching weightages for user ${username}:`, error);
         return null;
     } finally {
         if (client) {
@@ -472,9 +545,10 @@ async function getUserThresholds(username) {
  * @param {string} tweetContent - The tweet text.
  * @param {Object} marketData - Market data for the coin mentioned in the tweet.
  * @param {Object} lunarCrushData - LunarCrush metrics data (optional)
+ * @param {Object} userWeightages - User's customization weightages for different metrics (optional)
  * @returns {string} - The prompt string.
  */
-function generatePrompt(tweetContent, marketData, lunarCrushData = null) {
+function generatePrompt(tweetContent, marketData, lunarCrushData = null, userWeightages = null) {
     // Format market data for the specific coin
     const marketDataStr = `
      - ${marketData.token} (${marketData.coin_id}):
@@ -501,18 +575,35 @@ function generatePrompt(tweetContent, marketData, lunarCrushData = null) {
        - Sentiment change (6h): ${metrics.d_pct_sent_6h?.toFixed(2) || 'N/A'}%
        - Users engagement change (6h): ${metrics.d_pct_users_6h?.toFixed(2) || 'N/A'}%
        - Influencer mentions change (6h): ${metrics.d_pct_infl_6h?.toFixed(2) || 'N/A'}%
-       - Predicted next 6h return: ${lunarCrushData.pred_next6h_pct?.toFixed(2) || 'N/A'}%
        - Token type: ${lunarCrushData.type || 'N/A'}
          `;
     }
 
-    return `Analyze the following tweet about ${marketData.token} along with current market conditions to generate a trading signal. Consider price action, volume trends, market sentiment, and social engagement indicators. Your analysis should incorporate all available market intelligence to determine the optimal trading strategy.
+    // Format user weightages if available
+    let userPreferencesStr = '';
+    if (userWeightages) {
+        userPreferencesStr = `
+### User Preferences & Weightages:
+This user has specific preferences for different metrics. Please consider these weightages (0-100 scale) when generating the trading signal:
+ - Price Return Importance: ${userWeightages.r_last6h_pct || 0}/100
+ - Market Volume Importance: ${userWeightages.d_pct_mktvol_6h || 0}/100
+ - Social Volume Importance: ${userWeightages.d_pct_socvol_6h || 0}/100
+ - Sentiment Importance: ${userWeightages.d_pct_sent_6h || 0}/100
+ - User Engagement Importance: ${userWeightages.d_pct_users_6h || 0}/100
+ - Influencer Mentions Importance: ${userWeightages.d_pct_infl_6h || 0}/100
+ - Galaxy Score Importance: ${userWeightages.d_galaxy_6h || 0}/100
+ - Alt Rank Movement Importance: ${userWeightages.neg_d_altrank_6h || 0}/100
+
+Adjust your trading signal strength, targets, and timeline based on these user preferences. Higher weightages mean the user values those metrics more in their trading decisions.`;
+    }
+
+    return `Analyze the following tweet about ${marketData.token} along with current market conditions to generate a trading signal. Consider price action, volume trends, market sentiment, and social engagement indicators. Your analysis should incorporate all available market intelligence to determine the optimal trading strategy.${userPreferencesStr ? ' Pay special attention to the user\'s preferences and weightages for different metrics.' : ''}
 
 --- INPUT DATA ---
 ### Tweet: "${tweetContent}"
 ### Market Conditions:
 ${marketDataStr}
-${lunarCrushStr ? `### Social & Market Indicators:${lunarCrushStr}` : ''}
+${lunarCrushStr ? `### Social & Market Indicators:${lunarCrushStr}` : ''}${userPreferencesStr}
 
 ### Trading Signal Format - Complete the JSON structure below:
 
@@ -652,245 +743,174 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                             const tokenSymbol = marketData.symbol || marketData.token || coinId;
                             const lunarCrushData = await getLunarCrushData(tokenSymbol);
 
-                            const prompt = generatePrompt(tweet.content, marketData, lunarCrushData);
-                            const data = await callPerplexityAPI(prompt);
-                            const message = generateMessage(data);
-
-                            // Extract token details
-                            const tokenInfo = data.token.split('(');
-                            const tokenMentioned = tokenInfo[0].trim();
-                            const tokenId = marketData.id ? marketData.id : coinId;
-
-                            // Store enhanced data in database
-                            const enhancedSignalData = {
-                                ...data,
-                                currentPrice: marketData.current_data.price_usd,
-                                tweet_id: tweet.tweet_id,
-                                tweet_link: tweet.tweet_link,
-                                tweet_timestamp: tweet.timestamp,
-                                priceAtTweet: marketData.historical_data.price_usd,
-                                exitValue: null,
-                                twitterHandle,
-                                tokenMentioned,
-                                tokenId,
-                                lunarCrushMetrics: lunarCrushData?.metrics || null,
-                                lunarCrushPrediction: lunarCrushData?.pred_next6h_pct || null,
-                                lunarCrushTokenType: lunarCrushData?.type || null
-                            };
-
-                            await tradingSignalsCollection.insertOne({
-                                tweet_id: tweet.tweet_id,
-                                twitterHandle,
-                                coin: coinId,
-                                signal_message: message,
-                                signal_data: enhancedSignalData,
-                                generatedAt: new Date(),
-                                subscribers: doc.subscribers.map(subscriber => ({
-                                    username: subscriber,
-                                    sent: false,
-                                    thresholdCheck: null,
-                                    sentAt: null,
-                                    error: null
-                                })),
-                                tweet_link: tweet.tweet_link,
-                                messageSent: false
-                            });
-
-                            // Send signal to GMX API
-                            console.log(`Sending signal to GMX API for ${twitterHandle}'s tweet ${tweet.tweet_id}`);
-
-                            // Get users collection to check subscriptions
-                            // const signalFlowDb = client.db("ctxbt-signal-flow");
-                            // const usersCollection = signalFlowDb.collection("users");
-
-                            // Get the stored document to access subscribers as objects
-                            const storedSignal = await tradingSignalsCollection.findOne({
-                                tweet_id: tweet.tweet_id,
-                                twitterHandle
-                            });
-
-                            if (!storedSignal || !storedSignal.subscribers) {
-                                console.log(`No stored signal found for tweet ${tweet.tweet_id}, skipping GMX API calls`);
-                                return;
-                            }
-
-                            console.log(`Subscribers: ${storedSignal.subscribers.map(s => s.username).join(',')}`);
-
-                            for (const subscriber of storedSignal.subscribers) {
+                            // Generate personalized signals for each subscriber
+                            console.log(`Generating personalized signals for ${doc.subscribers.length} subscribers`);
+                            
+                            for (const subscriber of doc.subscribers) {
                                 try {
-                                    const username = subscriber.username;
-                                    console.log(`Sending signal to GMX API for ${username}`);
+                                    const username = subscriber;
+                                    console.log(`Generating personalized signal for user ${username}`);
 
-                                    // Check if user is subscribed to this twitter handle from tradingSignalsCollection
-                                    const signalDoc = await tradingSignalsCollection.findOne({
+                                    // Get user's weightage configuration
+                                    const userWeightages = await getUserWeightages(username);
+                                    
+                                    // Generate personalized prompt and signal
+                                    const personalizedPrompt = generatePrompt(tweet.content, marketData, lunarCrushData, userWeightages);
+                                    const personalizedData = await callPerplexityAPI(personalizedPrompt);
+                                    const personalizedMessage = generateMessage(personalizedData);
+
+                                    // Extract token details
+                                    const tokenInfo = personalizedData.token.split('(');
+                                    const tokenMentioned = tokenInfo[0].trim();
+                                    const tokenId = marketData.id ? marketData.id : coinId;
+
+                                    // Store personalized signal data in database
+                                    const personalizedSignalData = {
+                                        ...personalizedData,
+                                        currentPrice: marketData.current_data.price_usd,
+                                        tweet_id: tweet.tweet_id,
+                                        tweet_link: tweet.tweet_link,
+                                        tweet_timestamp: tweet.timestamp,
+                                        priceAtTweet: marketData.historical_data.price_usd,
+                                        exitValue: null,
+                                        twitterHandle,
+                                        tokenMentioned,
+                                        tokenId,
+                                        lunarCrushMetrics: lunarCrushData?.metrics || null,
+                                        lunarCrushPrediction: lunarCrushData?.pred_next6h_pct || null,
+                                        lunarCrushTokenType: lunarCrushData?.type || null,
+                                        userWeightages: userWeightages,
+                                        personalizedFor: username
+                                    };
+
+                                    // Store personalized signal in database
+                                    await tradingSignalsCollection.insertOne({
                                         tweet_id: tweet.tweet_id,
                                         twitterHandle,
-                                        "subscribers.username": username
+                                        coin: coinId,
+                                        signal_message: personalizedMessage,
+                                        signal_data: personalizedSignalData,
+                                        generatedAt: new Date(),
+                                        personalizedFor: username,
+                                        userWeightages: userWeightages,
+                                        subscribers: [{
+                                            username: username,
+                                            sent: false,
+                                            sentAt: null,
+                                            error: null
+                                        }],
+                                        tweet_link: tweet.tweet_link,
+                                        messageSent: false
                                     });
 
-                                    if (!signalDoc) {
-                                        console.log(`User ${username} is not found in tradingSignalsCollection for ${twitterHandle}, skipping API call`);
-                                        continue;
-                                    }
+                                    // Send personalized signal to GMX API
+                                    console.log(`Sending personalized signal to GMX API for ${username}`);
 
-                                    // // Additional check: verify subscription is still active in users collection
-                                    // const userDoc = await usersCollection.findOne({
-                                    //     twitterUsername: username,
-                                    //     "subscribedAccounts.twitterHandle": twitterHandle
-                                    // });
-
-                                    // if (!userDoc) {
-                                    //     console.log(`User ${username} is not subscribed to ${twitterHandle} in users collection, skipping API call`);
-                                    //     continue;
-                                    // }
-
-                                    console.log(`User ${username} is subscribed to ${twitterHandle} and found in tradingSignalsCollection`);
-
-                                    // Check user thresholds before sending signal
-                                    const userThresholds = await getUserThresholds(username);
-                                    const thresholdCheck = userThresholds && lunarCrushData?.metrics
-                                        ? checkUserThresholds(userThresholds, lunarCrushData.metrics)
-                                        : { passesThreshold: false, reason: 'Missing thresholds or LunarCrush data' };
-
-                                    if (!thresholdCheck.passesThreshold) {
-                                        console.log(`User ${username} thresholds not met: ${thresholdCheck.reason}`);
-
-                                        // Log detailed threshold failure information
-                                        if (thresholdCheck.failedMetrics.length > 0) {
-                                            console.log(`Failed metrics for ${username}:`);
-                                            thresholdCheck.failedMetrics.forEach(failed => {
-                                                console.log(`  - ${failed.metric}: ${failed.actual?.toFixed(2) || 'N/A'} ${failed.operator} ${failed.threshold}`);
-                                            });
-                                        }
-
-                                        // Update subscriber status in database to show threshold failure
-                                        await tradingSignalsCollection.updateOne(
-                                            { tweet_id: tweet.tweet_id, twitterHandle, "subscribers.username": username },
-                                            {
-                                                $set: {
-                                                    "subscribers.$.sent": false,
-                                                    "subscribers.$.thresholdCheck": {
-                                                        passed: false,
-                                                        reason: thresholdCheck.reason,
-                                                        failedMetrics: thresholdCheck.failedMetrics,
-                                                        checkedAt: new Date()
-                                                    }
-                                                }
-                                            }
-                                        );
-                                        continue;
-                                    }
-
-                                    console.log(`User ${username} thresholds met: ${thresholdCheck.reason}`);
-
-                                    // Get safe address for the user
-                                    const safeAddress = await getSafeAddressForUser(username);
+                                    // Get safe address for perpetuals trading
+                                    const safeAddress = await getSafeAddressForPerpetuals(username);
                                     if (!safeAddress) {
                                         console.log(`No safe address found for user ${username}, skipping API call`);
 
                                         // Update subscriber status to show safe address failure
                                         await tradingSignalsCollection.updateOne(
-                                            { tweet_id: tweet.tweet_id, twitterHandle, "subscribers.username": username },
+                                            { tweet_id: tweet.tweet_id, twitterHandle, personalizedFor: username },
                                             {
                                                 $set: {
-                                                    "subscribers.$.sent": false,
-                                                    "subscribers.$.thresholdCheck": thresholdCheck,
-                                                    "subscribers.$.error": "No safe address found"
+                                                    "subscribers.0.sent": false,
+                                                    "subscribers.0.error": "No safe address found"
                                                 }
                                             }
                                         );
                                         continue;
                                     }
 
-                                    // Send signal to GMX API
-                                    const apiResult = await sendSignalToGMXAPI(enhancedSignalData, username, safeAddress);
+                                    // Send personalized signal to GMX API
+                                    const apiResult = await sendSignalToGMXAPI(personalizedSignalData, username, safeAddress);
 
                                     // Update subscriber status based on API result
                                     if (apiResult.success) {
-                                        console.log(`Successfully sent signal to API for GMX ${username}`);
+                                        console.log(`Successfully sent personalized signal to API for GMX ${username}`);
 
                                         await tradingSignalsCollection.updateOne(
-                                            { tweet_id: tweet.tweet_id, twitterHandle, "subscribers.username": username },
+                                            { tweet_id: tweet.tweet_id, twitterHandle, personalizedFor: username },
                                             {
                                                 $set: {
-                                                    "subscribers.$.sent": true,
-                                                    "subscribers.$.thresholdCheck": thresholdCheck,
-                                                    "subscribers.$.sentAt": new Date(),
-                                                    "subscribers.$.apiResponse": apiResult.response
+                                                    "subscribers.0.sent": true,
+                                                    "subscribers.0.sentAt": new Date(),
+                                                    "subscribers.0.apiResponse": apiResult.response
                                                 }
                                             }
                                         );
                                     } else {
-                                        console.error(`Failed to send signal to API for GMX ${username}:`, apiResult.error);
+                                        console.error(`Failed to send personalized signal to API for GMX ${username}:`, apiResult.error);
 
                                         await tradingSignalsCollection.updateOne(
-                                            { tweet_id: tweet.tweet_id, twitterHandle, "subscribers.username": username },
+                                            { tweet_id: tweet.tweet_id, twitterHandle, personalizedFor: username },
                                             {
                                                 $set: {
-                                                    "subscribers.$.sent": false,
-                                                    "subscribers.$.thresholdCheck": thresholdCheck,
-                                                    "subscribers.$.error": apiResult.error,
-                                                    "subscribers.$.failedAt": new Date()
+                                                    "subscribers.0.sent": false,
+                                                    "subscribers.0.error": apiResult.error,
+                                                    "subscribers.0.failedAt": new Date()
                                                 }
                                             }
                                         );
+                                    }
+
+                                    // Store in backtesting database for this personalized signal
+                                    const backtestingDb = client.db('backtesting_db');
+                                    const backtestingCollection = backtestingDb.collection('trading_signals_backtesting');
+                                    await backtestingCollection.insertOne({
+                                        'Twitter Account': twitterHandle,
+                                        'Tweet': tweet.tweet_link,
+                                        'Tweet Date': new Date(tweet.timestamp),
+                                        'Signal Generation Date': new Date(),
+                                        'Signal Message': personalizedData.signal,
+                                        'Token Mentioned': tokenMentioned,
+                                        'Token ID': tokenId,
+                                        'Price at Tweet': marketData.historical_data.price_usd,
+                                        'Current Price': marketData.current_data.price_usd,
+                                        'TP1': personalizedData.targets && personalizedData.targets.length > 0 ? personalizedData.targets[0] : null,
+                                        'TP2': personalizedData.targets && personalizedData.targets.length > 1 ? personalizedData.targets[1] : null,
+                                        'SL': personalizedData.stopLoss || null,
+                                        'Max Exit Time': personalizedData.maxExitTime ? new Date(personalizedData.maxExitTime) : null,
+                                        'backtesting_done': false,
+                                        'personalizedFor': username,
+                                        'userWeightages': userWeightages
+                                    });
+
+                                    // Send signal to Hyperliquid API for position creation (only for top 10 influencers)
+                                    const { shouldSend, reason } = await shouldSendToHyperliquid(twitterHandle, tokenId);
+                                    if (shouldSend) {
+                                        try {
+                                            const signalPayload = {
+                                                signal: personalizedData.signal,
+                                                tokenMentioned: tokenMentioned,
+                                                targets: personalizedData.targets || [],
+                                                stopLoss: personalizedData.stopLoss,
+                                                currentPrice: marketData.current_data.price_usd,
+                                                maxExitTime: personalizedData.maxExitTime
+                                            };
+                                            
+                                            const apiResponse = await processAndSendSignal(signalPayload);
+                                            
+                                            if (apiResponse.status === 'success') {
+                                                console.log(`Successfully sent personalized signal to Hyperliquid API for ${tokenMentioned} from ${twitterHandle} (${reason}) - User: ${username}`);
+                                            } else {
+                                                console.error(`Failed to send personalized signal to Hyperliquid API for ${tokenMentioned} from ${twitterHandle} (${reason}) - User: ${username}:`, apiResponse.error);
+                                            }
+                                        } catch (apiError) {
+                                            console.error(`Error sending personalized signal to Hyperliquid API for ${tokenMentioned} from ${twitterHandle} (${reason}) - User: ${username}:`, apiError);
+                                        }
+                                    } else {
+                                        console.log(`Skipping Hyperliquid API for personalized signal ${tokenMentioned} - ${twitterHandle} (${reason}) - User: ${username}`);
                                     }
 
                                 } catch (subscriberError) {
-                                    console.error(`Error processing GMX ${subscriber.username}:`, subscriberError);
+                                    console.error(`Error processing personalized signal for ${username}:`, subscriberError);
                                 }
-                            }
-
-                            console.log(`Completed sending signals to all subscribers for ${twitterHandle}'s tweet ${tweet.tweet_id}`);
-
-                            // Store in backtesting database
-                            const backtestingDb = client.db('backtesting_db');
-                            const backtestingCollection = backtestingDb.collection('trading_signals_backtesting');
-                            await backtestingCollection.insertOne({
-                                'Twitter Account': twitterHandle,
-                                'Tweet': tweet.tweet_link,
-                                'Tweet Date': new Date(tweet.timestamp),
-                                'Signal Generation Date': new Date(),
-                                'Signal Message': data.signal,
-                                'Token Mentioned': tokenMentioned,
-                                'Token ID': tokenId,
-                                'Price at Tweet': marketData.historical_data.price_usd,
-                                'Current Price': marketData.current_data.price_usd,
-                                'TP1': data.targets && data.targets.length > 0 ? data.targets[0] : null,
-                                'TP2': data.targets && data.targets.length > 1 ? data.targets[1] : null,
-                                'SL': data.stopLoss || null,
-                                'Max Exit Time': data.maxExitTime ? new Date(data.maxExitTime) : null,
-                                'backtesting_done': false
-                            });
-
-                            // Send signal to Hyperliquid API for position creation (only for top 10 influencers)
-                            const { shouldSend, reason } = await shouldSendToHyperliquid(twitterHandle, tokenId);
-                            if (shouldSend) {
-                                try {
-                                    const signalPayload = {
-                                        signal: data.signal,
-                                        tokenMentioned: tokenMentioned,
-                                        targets: data.targets || [],
-                                        stopLoss: data.stopLoss,
-                                        currentPrice: marketData.current_data.price_usd,
-                                        maxExitTime: data.maxExitTime
-                                    };
-                                    
-                                    const apiResponse = await processAndSendSignal(signalPayload);
-                                    
-                                    if (apiResponse.status === 'success') {
-                                        console.log(`Successfully sent signal to Hyperliquid API for ${tokenMentioned} from ${twitterHandle} (${reason})`);
-                                    } else {
-                                        console.error(`Failed to send signal to Hyperliquid API for ${tokenMentioned} from ${twitterHandle} (${reason}):`, apiResponse.error);
-                                    }
-                                } catch (apiError) {
-                                    console.error(`Error sending signal to Hyperliquid API for ${tokenMentioned} from ${twitterHandle} (${reason}):`, apiError);
-                                }
-                            } else {
-                                console.log(`Skipping Hyperliquid API for ${tokenMentioned} - ${twitterHandle} (${reason})`);
-                            }
-
-                            console.log(`Generated signal for ${coinId} in tweet ${tweet.tweet_id}`);
+                            } // End of subscriber loop
+                            
+                            console.log(`Generated personalized signals for all subscribers for ${coinId} in tweet ${tweet.tweet_id}`);
                         } catch (coinError) {
                             console.error(`Error processing coin ${coinId} for tweet ${tweet.tweet_id}:`, coinError);
                         }
@@ -1031,5 +1051,8 @@ module.exports = {
     generatePrompt,
     callPerplexityAPI,
     checkUserThresholds,
-    getUserThresholds
+    getUserWeightages,
+    getSafeAddressForUser,
+    getSafeAddressForPerpetuals,
+    getSafeAddressForSpot
 };
