@@ -122,8 +122,8 @@ function startCronJobs() {
     // updateSubscribers();
     // console.log('Starting coins update job at:', new Date().toISOString());
     // fetchAndUpdateCoins();
-    // console.log('Starting tweets processing job at:', new Date().toISOString());
-    // processTweets();
+    console.log('Starting tweets processing job at:', new Date().toISOString());
+    processTweets();
     // console.log('Starting message sender job at:', new Date().toISOString());
     // messageSender();
     //  console.log('Starting influencer scores update at:', new Date().toISOString());

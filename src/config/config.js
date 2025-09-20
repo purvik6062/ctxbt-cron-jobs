@@ -34,7 +34,7 @@ module.exports = {
   },
   hyperliquid: {
     apiUrl: process.env.HYPERLIQUID_API_URL || "http://localhost:5000/signal",
-    timeout: parseInt(process.env.HYPERLIQUID_API_TIMEOUT) || 10000,
+    timeout: parseInt(process.env.HYPERLIQUID_API_TIMEOUT) || 60000,
     authToken: process.env.HYPERLIQUID_SIGNAL_AUTH_TOKEN,
   },
 };
