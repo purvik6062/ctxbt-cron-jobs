@@ -36,7 +36,7 @@ async function getSafeAddressForPerpetuals(username) {
         }
 
         // Filter for perpetuals type safe configs
-        const perpetualsConfigs = userDoc.safeConfigs.filter(config => 
+        const perpetualsConfigs = userDoc.safeConfigs.filter(config =>
             config.type === 'perpetuals' && config.safeAddress
         );
 
@@ -46,11 +46,11 @@ async function getSafeAddressForPerpetuals(username) {
         }
 
         // Prefer mainnet networks over testnets
-        const mainnetConfig = perpetualsConfigs.find(config => 
-            config.networkKey === 'arbitrum' || 
+        const mainnetConfig = perpetualsConfigs.find(config =>
+            config.networkKey === 'arbitrum' ||
             config.networkKey === 'ethereum'
         );
-        
+
         const selectedConfig = mainnetConfig || perpetualsConfigs[0];
         const safeAddress = selectedConfig.safeAddress;
 
@@ -99,7 +99,7 @@ async function getSafeAddressForSpot(username) {
         }
 
         // Filter for spot type safe configs
-        const spotConfigs = userDoc.safeConfigs.filter(config => 
+        const spotConfigs = userDoc.safeConfigs.filter(config =>
             config.type === 'spot' && config.safeAddress
         );
 
@@ -109,16 +109,17 @@ async function getSafeAddressForSpot(username) {
         }
 
         // Prefer mainnet networks over testnets
-        const mainnetConfig = spotConfigs.find(config => 
-            config.networkKey === 'arbitrum' || 
+        const mainnetConfig = spotConfigs.find(config =>
+            config.networkKey === 'arbitrum' ||
             config.networkKey === 'ethereum'
         );
-        
+
         const selectedConfig = mainnetConfig || spotConfigs[0];
         const safeAddress = selectedConfig.safeAddress;
+        const twitterId = userDoc.twitterId;
 
         console.log(`Found spot safe address ${safeAddress} for user ${username} on ${selectedConfig.networkKey}`);
-        return safeAddress;
+        return { safeAddress, twitterId };
 
     } catch (error) {
         console.error(`Error getting spot safe address for user ${username}:`, error);
@@ -128,19 +129,6 @@ async function getSafeAddressForSpot(username) {
             await closeConnection(client);
         }
     }
-}
-
-/**
- * Gets the safe address for a user from the users collection (backward compatibility)
- * @param {string} username - Subscriber identifier (telegramId or twitterUsername)
- * @param {string} type - Type of trading ('perpetuals' or 'spot'), defaults to 'perpetuals'
- * @returns {string|null} - The safe address, or null if not found
- */
-async function getSafeAddressForUser(username, type = 'perpetuals') {
-    if (type === 'spot') {
-        return await getSafeAddressForSpot(username);
-    }
-    return await getSafeAddressForPerpetuals(username);
 }
 
 /**
@@ -182,6 +170,39 @@ async function sendSignalToGMXAPI(signalData, username, safeAddress) {
     }
 }
 
+async function sendSignalToSafeAPI(signalData, username, safeAddress, twitterId) {
+    try {
+        const payload = {
+            "Signal Message": signalData.signal,
+            "Token Mentioned": signalData.tokenMentioned,
+            "TP1": signalData.targets && signalData.targets.length > 0 ? signalData.targets[0] : null,
+            "TP2": signalData.targets && signalData.targets.length > 1 ? signalData.targets[1] : null,
+            "SL": signalData.stopLoss || null,
+            "Current Price": signalData.currentPrice,
+            "Max Exit Time": signalData.maxExitTime ? { "$date": signalData.maxExitTime } : null,
+            "username": twitterId,
+            "safeAddress": safeAddress
+        };
+
+        console.log(`Sending signal to API for user ${username}:`, JSON.stringify(payload, null, 2));
+
+        const response = await axios.post(process.env.SAFE_API_URL + '/api/signal/process', payload, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            timeout: 60000
+        });
+
+        console.log(`Successfully sent signal to API for user ${username}:`, response.data);
+        console.log(`Signal processing API response:`, response.data);
+        return { success: true, response: response.data };
+
+    } catch (error) {
+        console.error(`Error calling signal processing API:`, error?.response?.data || error.message);
+        return { success: false, error: error.response?.data || error.message };
+    }
+}
+
 const cryptoService = new CryptoService();
 
 
@@ -213,10 +234,10 @@ async function getTopInfluencersByImpactFactor(limit = 30) {
         const client = await connect();
         const signalFlowDb = client.db("ctxbt-signal-flow");
         const influencersCollection = signalFlowDb.collection('influencers');
-        
+
         // Fetch top influencers sorted by impact factor (descending)
         const topInfluencers = await influencersCollection
-            .find({ 
+            .find({
                 impactFactor: { $exists: true, $ne: null },
                 // Filter out influencers with invalid impact factors
                 $and: [
@@ -227,14 +248,14 @@ async function getTopInfluencersByImpactFactor(limit = 30) {
             })
             .sort({ impactFactor: -1 })
             .limit(limit)
-            .project({ 
-                twitterHandle: 1, 
-                impactFactor: 1, 
-                totalPnL: 1, 
-                signalCount: 1 
+            .project({
+                twitterHandle: 1,
+                impactFactor: 1,
+                totalPnL: 1,
+                signalCount: 1
             })
             .toArray();
-        
+
         console.log(`Fetched top ${topInfluencers.length} influencers by impact factor`);
         return topInfluencers;
     } catch (error) {
@@ -251,21 +272,21 @@ async function getTopInfluencersByImpactFactor(limit = 30) {
 async function getCachedTopInfluencers(limit = 30) {
     const now = Date.now();
     const cacheKey = limit === 10 ? 'top10' : 'top30';
-    
+
     // Check if cache is valid
-    if (topInfluencersCache[cacheKey] && 
-        topInfluencersCache.lastUpdated && 
+    if (topInfluencersCache[cacheKey] &&
+        topInfluencersCache.lastUpdated &&
         (now - topInfluencersCache.lastUpdated) < topInfluencersCache.cacheDuration) {
         return topInfluencersCache[cacheKey];
     }
-    
+
     // Fetch fresh data
     const topInfluencers = await getTopInfluencersByImpactFactor(limit);
-    
+
     // Update cache
     topInfluencersCache[cacheKey] = topInfluencers;
     topInfluencersCache.lastUpdated = now;
-    
+
     return topInfluencers;
 }
 
@@ -316,7 +337,7 @@ async function shouldSendToHyperliquid(twitterHandle, tokenId) {
     const isBTC = BITCOIN_COIN_IDS.some(btcId => tokenIdLower.includes(btcId.toLowerCase()));
     const isETH = ETHEREUM_COIN_IDS.some(ethId => tokenIdLower.includes(ethId.toLowerCase()));
     const isSOL = SOLANA_COIN_IDS.some(solId => tokenIdLower.includes(solId.toLowerCase()));
-    
+
     // For BTC/ETH/SOL tokens, only top 10 influencers can send signals
     if (isBTC || isETH || isSOL) {
         const isTop10 = await isTop10Influencer(twitterHandle);
@@ -326,7 +347,7 @@ async function shouldSendToHyperliquid(twitterHandle, tokenId) {
             reason: isTop10 ? `Top 10 influencer for ${tokenType} token` : `${tokenType} tokens restricted to top 10 influencers only`
         };
     }
-    
+
     // For other tokens, top 30 influencers can send signals
     const isTop30 = await isTop30Influencer(twitterHandle);
     return {
@@ -343,20 +364,20 @@ async function shouldSendToHyperliquid(twitterHandle, tokenId) {
  */
 async function shouldProcessCoinForInfluencer(twitterHandle, coinId) {
     const coinIdLower = coinId.toLowerCase();
-    
+
     // Check if this is a Bitcoin-related coin
     const isBTC = BITCOIN_COIN_IDS.some(btcId => coinIdLower.includes(btcId.toLowerCase()));
     // Check if this is an Ethereum-related coin
     const isETH = ETHEREUM_COIN_IDS.some(ethId => coinIdLower.includes(ethId.toLowerCase()));
     // Check if this is a Solana-related coin
     const isSOL = SOLANA_COIN_IDS.some(solId => coinIdLower.includes(solId.toLowerCase()));
-    
+
     // For BTC, ETH, and SOL tokens, only top 10 influencers can process them
     if (isBTC || isETH || isSOL) {
         const isTop10 = await isTop10Influencer(twitterHandle);
         return isTop10;
     }
-    
+
     // For other tokens, top 30 influencers can process them
     const isTop30 = await isTop30Influencer(twitterHandle);
     return isTop30;
@@ -710,7 +731,7 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                             coinsToProcess.push(coinId);
                         }
                     }
-                    
+
                     if (coinsToProcess.length === 0) {
                         console.log(`No eligible coins for ${twitterHandle} in tweet ${tweet.tweet_id} (specialization filter applied)`);
                         // Still mark as processed since we've evaluated it
@@ -727,9 +748,9 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                         );
                         continue;
                     }
-                    
+
                     console.log(`Processing ${coinsToProcess.length} eligible coins for ${twitterHandle} in tweet ${tweet.tweet_id}`);
-                    
+
                     for (const coinId of coinsToProcess) {
                         try {
                             const marketData = await cryptoService.getHistoricalTokenDataFromCustomEndpoints(
@@ -745,7 +766,7 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
 
                             // Generate personalized signals for each subscriber
                             console.log(`Generating personalized signals for ${doc.subscribers.length} subscribers`);
-                            
+
                             for (const subscriber of doc.subscribers) {
                                 try {
                                     const username = subscriber;
@@ -753,7 +774,7 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
 
                                     // Get user's weightage configuration
                                     const userWeightages = await getUserWeightages(username);
-                                    
+
                                     // Generate personalized prompt and signal
                                     const personalizedPrompt = generatePrompt(tweet.content, marketData, lunarCrushData, userWeightages);
                                     const personalizedData = await callPerplexityAPI(personalizedPrompt);
@@ -856,6 +877,26 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                                         );
                                     }
 
+                                    // Send personalized signal to Safe API
+                                    console.log(`Sending personalized signal to Safe API for ${username}`);
+
+                                    // Get safe address and twitterId for spot trading
+                                    const spotResult = await getSafeAddressForSpot(username);
+                                    if (!spotResult || !spotResult.safeAddress) {
+                                        console.log(`No spot safe address found for user ${username}, skipping Safe API call`);
+                                        continue;
+                                    }
+
+                                    // Send personalized signal to Safe API
+                                    const safeApiResult = await sendSignalToSafeAPI(personalizedSignalData, username, spotResult.safeAddress, spotResult.twitterId);
+
+                                    // Log the result
+                                    if (safeApiResult.success) {
+                                        console.log(`Successfully sent personalized signal to Safe API for ${username}`);
+                                    } else {
+                                        console.error(`Failed to send personalized signal to Safe API for ${username}:`, safeApiResult.error);
+                                    }
+
                                     // Store in backtesting database for this personalized signal
                                     const backtestingDb = client.db('backtesting_db');
                                     const backtestingCollection = backtestingDb.collection('trading_signals_backtesting');
@@ -890,9 +931,9 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                                                 currentPrice: marketData.current_data.price_usd,
                                                 maxExitTime: personalizedData.maxExitTime
                                             };
-                                            
+
                                             const apiResponse = await processAndSendSignal(signalPayload);
-                                            
+
                                             if (apiResponse.status === 'success') {
                                                 console.log(`Successfully sent personalized signal to Hyperliquid API for ${tokenMentioned} from ${twitterHandle} (${reason}) - User: ${username}`);
                                             } else {
@@ -909,7 +950,7 @@ async function processAndGenerateSignalsForTweets(twitterHandle) {
                                     console.error(`Error processing personalized signal for ${username}:`, subscriberError);
                                 }
                             } // End of subscriber loop
-                            
+
                             console.log(`Generated personalized signals for all subscribers for ${coinId} in tweet ${tweet.tweet_id}`);
                         } catch (coinError) {
                             console.error(`Error processing coin ${coinId} for tweet ${tweet.tweet_id}:`, coinError);
@@ -956,7 +997,7 @@ async function getCurrentTopInfluencers() {
     try {
         const top10 = await getTop10Influencers();
         const top30 = await getTop30Influencers();
-        
+
         return {
             top10: top10.map(inf => ({
                 twitterHandle: inf.twitterHandle,
@@ -972,7 +1013,7 @@ async function getCurrentTopInfluencers() {
             })),
             cacheInfo: {
                 lastUpdated: topInfluencersCache.lastUpdated,
-                cacheAge: topInfluencersCache.lastUpdated ? 
+                cacheAge: topInfluencersCache.lastUpdated ?
                     Math.round((Date.now() - topInfluencersCache.lastUpdated) / 1000) + 's ago' : 'Never'
             }
         };
@@ -1005,17 +1046,17 @@ async function checkInfluencerEligibility(twitterHandle, tokenId) {
     try {
         const top10 = await getTop10Influencers();
         const top30 = await getTop30Influencers();
-        
+
         const isInTop10 = top10.some(inf => inf.twitterHandle === twitterHandle);
         const isInTop30 = top30.some(inf => inf.twitterHandle === twitterHandle);
-        
+
         const tokenIdLower = tokenId.toLowerCase();
         const isBTC = BITCOIN_COIN_IDS.some(btcId => tokenIdLower.includes(btcId.toLowerCase()));
         const isETH = ETHEREUM_COIN_IDS.some(ethId => tokenIdLower.includes(ethId.toLowerCase()));
         const isSOL = SOLANA_COIN_IDS.some(solId => tokenIdLower.includes(solId.toLowerCase()));
-        
+
         const { shouldSend, reason } = await shouldSendToHyperliquid(twitterHandle, tokenId);
-        
+
         return {
             twitterHandle,
             tokenId,
@@ -1052,7 +1093,6 @@ module.exports = {
     callPerplexityAPI,
     checkUserThresholds,
     getUserWeightages,
-    getSafeAddressForUser,
     getSafeAddressForPerpetuals,
     getSafeAddressForSpot
 };
