@@ -173,7 +173,7 @@ async function sendSignalToGMXAPI(signalData, username, safeAddress) {
 async function sendSignalToSafeAPI(signalData, username, safeAddress, twitterId) {
     try {
         const payload = {
-            "Signal Message": signalData.signal,
+            "Signal Message": signalData.signal.toLowerCase(),
             "Token Mentioned": signalData.tokenMentioned,
             "TP1": signalData.targets && signalData.targets.length > 0 ? signalData.targets[0] : null,
             "TP2": signalData.targets && signalData.targets.length > 1 ? signalData.targets[1] : null,
@@ -381,6 +381,7 @@ async function shouldProcessCoinForInfluencer(twitterHandle, coinId) {
     // For other tokens, top 30 influencers can process them
     const isTop30 = await isTop30Influencer(twitterHandle);
     return isTop30;
+    // return true;
 }
 
 /**

@@ -116,6 +116,10 @@ async function processTweets() {
         const influencerCollection = db.collection(influencerCollectionName);
         // Process only twitter handles with active subscribers
         const docs = await influencerCollection.find({ subscribers: { $exists: true, $ne: [] } }).toArray();
+        // const docs = await influencerCollection.find(
+        //     { twitterHandle: "anoncptn", subscribers: { $exists: true, $ne: [] } }
+        // ).toArray();
+
 
         console.log(`🚀 Starting incremental tweet processing for ${docs.length} influencers...`);
 
